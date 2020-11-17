@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace AVFXLib.AVFX
 {
     public class AVFXBlank : AVFXNode
