@@ -1,8 +1,9 @@
 ﻿binding bones is probably wrong
+quads are probably wrong
+emitter movement is probably wrong
 
 how are  timed emitters created?
 timeline / schedulers
-
 bind target point type:
 - origin
 - fitground
