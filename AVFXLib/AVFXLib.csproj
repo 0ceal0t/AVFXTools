@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EBF40CA9-0370-40F0-8583-64700FDAEB51}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AVFXLib</RootNamespace>
+    <AssemblyName>AVFXLib</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGLTF.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6f8b67557d279fe6, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\SharpGLTF.Core.1.0.0-alpha0020\lib\netstandard2.0\SharpGLTF.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGLTF.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6f8b67557d279fe6, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\SharpGLTF.Toolkit.1.0.0-alpha0020\lib\netstandard2.0\SharpGLTF.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\System.Text.Encodings.Web.4.7.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\System.Text.Json.4.7.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\AVFXStudio\packages\WindowsBase.4.6.1055.0\lib\WindowsBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AVFX\AVFXBlank.cs" />
+    <Compile Include="AVFX\AVFXLeaf.cs" />
+    <Compile Include="AVFX\AVFXNode.cs" />
+    <Compile Include="Main\ModelReader.cs" />
+    <Compile Include="Main\Reader.cs" />
+    <Compile Include="Main\Util.cs" />
+    <Compile Include="Models\AVFXBase.cs" />
+    <Compile Include="Models\AVFXBinder.cs" />
+    <Compile Include="Models\AVFXBinderData.cs" />
+    <Compile Include="Models\AVFXBinderDataPoint.cs" />
+    <Compile Include="Models\AVFXBinderProperty.cs" />
+    <Compile Include="Models\AVFXCurve.cs" />
+    <Compile Include="Models\AVFXCurve2Axis.cs" />
+    <Compile Include="Models\AVFXCurve3Axis.cs" />
+    <Compile Include="Models\AVFXCurveColor.cs" />
+    <Compile Include="Models\AVFXEffector.cs" />
+    <Compile Include="Models\AVFXEffectorData.cs" />
+    <Compile Include="Models\AVFXEffectorDataCameraQuake.cs" />
+    <Compile Include="Models\AVFXEffectorDataPointLight.cs" />
+    <Compile Include="Models\AVFXEffectorDataRadialBlur.cs" />
+    <Compile Include="Models\AVFXEmitter.cs" />
+    <Compile Include="Models\AVFXEmitterData.cs" />
+    <Compile Include="Models\AVFXEmitterDataCylinderModel.cs" />
+    <Compile Include="Models\AVFXEmitterDataModel.cs" />
+    <Compile Include="Models\AVFXEmitterDataSphereModel.cs" />
+    <Compile Include="Models\AVFXEmitterItem.cs" />
+    <Compile Include="Models\AVFXEmitterIteration.cs" />
+    <Compile Include="Models\AVFXLife.cs" />
+    <Compile Include="Models\AVFXModel.cs" />
+    <Compile Include="Models\AVFXModelEmitVertex.cs" />
+    <Compile Include="Models\AVFXModelIndex.cs" />
+    <Compile Include="Models\AVFXModelVertex.cs" />
+    <Compile Include="Models\AVFXModelVNum.cs" />
+    <Compile Include="Models\AVFXParticle.cs" />
+    <Compile Include="Models\AVFXParticleData.cs" />
+    <Compile Include="Models\AVFXParticleDataDecal.cs" />
+    <Compile Include="Models\AVFXParticleDataDecalRing.cs" />
+    <Compile Include="Models\AVFXParticleDataDisc.cs" />
+    <Compile Include="Models\AVFXParticleDataLaser.cs" />
+    <Compile Include="Models\AVFXParticleDataLightModel.cs" />
+    <Compile Include="Models\AVFXParticleDataLine.cs" />
+    <Compile Include="Models\AVFXParticleDataModel.cs" />
+    <Compile Include="Models\AVFXParticleDataParameter.cs" />
+    <Compile Include="Models\AVFXParticleDataPolygon.cs" />
+    <Compile Include="Models\AVFXParticleDataPolyline.cs" />
+    <Compile Include="Models\AVFXParticleDataPowder.cs" />
+    <Compile Include="Models\AVFXParticleDataWindmill.cs" />
+    <Compile Include="Models\AVFXParticleSimple.cs" />
+    <Compile Include="Models\AVFXParticleUVSet.cs" />
+    <Compile Include="Models\AVFXSchedule.cs" />
+    <Compile Include="Models\AVFXScheduleItem.cs" />
+    <Compile Include="Models\AVFXScheduleTrigger.cs" />
+    <Compile Include="Models\AVFXTexture.cs" />
+    <Compile Include="Models\AVFXTextureColor1.cs" />
+    <Compile Include="Models\AVFXTextureColor2.cs" />
+    <Compile Include="Models\AVFXTextureDistortion.cs" />
+    <Compile Include="Models\AVFXTextureNormal.cs" />
+    <Compile Include="Models\AVFXTexturePalette.cs" />
+    <Compile Include="Models\AVFXTextureReflection.cs" />
+    <Compile Include="Models\AVFXTimeline.cs" />
+    <Compile Include="Models\AVFXTimelineClip.cs" />
+    <Compile Include="Models\AVFXTimelineItem.cs" />
+    <Compile Include="Models\Base.cs" />
+    <Compile Include="Models\Enum.cs" />
+    <Compile Include="Models\LiteralBase.cs" />
+    <Compile Include="Models\LiteralBool.cs" />
+    <Compile Include="Models\LiteralEnum.cs" />
+    <Compile Include="Models\LiteralFloat.cs" />
+    <Compile Include="Models\LiteralInt.cs" />
+    <Compile Include="Models\LiteralString.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
