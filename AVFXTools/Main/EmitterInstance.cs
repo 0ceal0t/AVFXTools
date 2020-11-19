@@ -22,11 +22,19 @@ namespace AVFXTools.Main
         public bool JustOneCreate;
         public bool AlreadyCreated;
 
-        public EmitterCreateStruct(int idx, bool justOne)
+        public int InfluenceCoordScale;
+        public int InfluenceCoordPos;
+        public int InfluenceCoordRot;
+
+        public EmitterCreateStruct(int idx, bool justOne, int influenceC_Scale, int influenceC_Pos, int influenceC_Rot)
         {
             Idx = idx;
             JustOneCreate = justOne;
             AlreadyCreated = false;
+
+            InfluenceCoordScale = influenceC_Scale;
+            InfluenceCoordRot = influenceC_Rot;
+            InfluenceCoordPos = influenceC_Pos;
         }
     }
 
@@ -73,11 +81,19 @@ namespace AVFXTools.Main
                 var lastItPr = emitter.ItPrs[emitter.ItPrs.Count - 1];
                 for(int idx = 0; idx < lastItPr.Items.Count; idx++)
                 {
-                    int targetIdx = lastItPr.Items[idx].TargetIdx.Value;
+                    var SubItem = lastItPr.Items[idx];
+                    int targetIdx = SubItem.TargetIdx.Value;
                     if(targetIdx != -1)
                     {
-                        float targetLife = Item.C.Particles[targetIdx].Life;
-                        CreateParticles.Add(new EmitterCreateStruct(targetIdx, targetLife == -1));
+                        var Target = Item.C.Particles[targetIdx];
+                        float targetLife = Target.Life;
+                        CreateParticles.Add(new EmitterCreateStruct(
+                            targetIdx,
+                            targetLife == -1,
+                            SubItem.InfluenceCoordScale.Value,
+                            SubItem.InfluenceCoordPos.Value,
+                            SubItem.InfluenceCoordRot.Value
+                            ));
                     }
                 }
             }
@@ -87,11 +103,19 @@ namespace AVFXTools.Main
                 var lastItEm = emitter.ItEms[emitter.ItEms.Count - 1];
                 for (int idx = 0; idx < lastItEm.Items.Count; idx++)
                 {
-                    int targetIdx = lastItEm.Items[idx].TargetIdx.Value;
+                    var SubItem = lastItEm.Items[idx];
+                    int targetIdx = SubItem.TargetIdx.Value;
                     if (targetIdx != -1)
                     {
-                        float targetLife = Item.C.Emitters[targetIdx].Life;
-                        CreateEmitters.Add(new EmitterCreateStruct(targetIdx, targetLife == -1));
+                        var Target = Item.C.Emitters[targetIdx];
+                        float targetLife = Target.Life;
+                        CreateEmitters.Add(new EmitterCreateStruct(
+                            targetIdx,
+                            targetLife == -1,
+                            SubItem.InfluenceCoordScale.Value,
+                            SubItem.InfluenceCoordPos.Value,
+                            SubItem.InfluenceCoordRot.Value
+                            ));
                     }
                 }
             }

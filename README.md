@@ -1,6 +1,60 @@
-# AVFXTools
+﻿# AVFXTools
  
 Here be dragons
+
+## TODO
+### General
+- [ ] ⚠️ random (what do the random types mean)
+- [ ] curves
+- [ ] velocity
+### Particles
+- [ ] ⚠️ draw mode
+- [x] culling type
+- [x] is depth test
+- [x] is depth write
+- [ ] ⚠️ soft particle
+- [ ] tone map
+- [ ] ⚠️ how colors / color scale interact
+- [ ] brightness
+- [ ] loop start / end
+- [ ] ⚠️ fresnel
+- [ ] texture normal
+- [ ] texture reflection
+- [ ] texture palette
+- [ ] line particles
+- [ ] windmill particles
+- [ ] laser particles
+- [ ] polygon particles
+- [ ] polyline particles
+- [ ] lightmodel particle (what's the difference?)
+- [ ] morphmodel particle
+- [ ] decal particle
+- [ ] disc particle
+- [ ] collision
+- [ ] rotation base
+- [ ] depth clip
+- [ ] ⚠️ fix powder particles (gravity, etc)
+### Emitters
+- [ ] CreateTime / CreateCount: what do those mean? They already exist elsewhere, why are they in the emitter sub-items?
+- [ ] Create Probability
+- [ ] Parent Influence Coords / Color
+- [ ] Influence Coords
+- [ ] Influence Coord Binder Position
+- [ ] Inherit Parent Life
+- [ ] Override Life
+- [ ] Parameter Link
+- [ ] Start frame
+- [ ] Injection angle
+- [ ] generate delay
+- [ ] generate delay by one
+- [ ] local direction
+- [ ] any direction
+- [ ] cylinder emitter
+- [ ] ⚠️ sphere emitter
+### Effectors
+### Timelines
+### Schedulers
+### Binders
 
 ```
 TODO:
@@ -29,23 +83,6 @@ emitter types
 - cone
 - sphere
 - model
-depth clip
-draw state
-collision
-fesnel
-particle types
-- line
-- windmill
-- laser
-- polygon
-- polyline
-- lightmodel
-- morphmodel
-- decal
-- disc
-texture reflection
-texture palette
-texture normal
 effectors
 - pointlight
 - directional light

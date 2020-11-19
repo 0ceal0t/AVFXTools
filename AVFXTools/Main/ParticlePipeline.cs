@@ -109,34 +109,56 @@ namespace AVFXTools.Main
                 )
             );
             // ====== BLEND MODE ===========
-            BlendStateDescription drawMode = BlendStateDescription.SingleAdditiveBlend; // add blend
-            drawMode.BlendFactor = RgbaFloat.Black;
+            BlendStateDescription BlendStateDrawMode = BlendStateDescription.SingleAdditiveBlend;
+            BlendStateDrawMode.BlendFactor = RgbaFloat.Black;
             DrawMode MODE = (DrawMode)Enum.Parse(typeof(DrawMode), particle.DrawMode.Value, true);
             switch (MODE)
             {
                 case DrawMode.Screen:
                     break;
                 case DrawMode.Add:
-                    drawMode = BlendStateDescription.SingleAdditiveBlend;
+                    BlendStateDrawMode = BlendStateDescription.SingleAdditiveBlend;
                     break;
                 case DrawMode.Blend:
-                    drawMode = BlendStateDescription.SingleAlphaBlend;
+                    BlendStateDrawMode = BlendStateDescription.SingleAlphaBlend;
                     break;
                 case DrawMode.Multiply:
                     break;
             }
+            // ======== CULLINE MODE ======
+            FaceCullMode PipelineCullMode = FaceCullMode.None;
+            CullingType CullMode = (CullingType)Enum.Parse(typeof(CullingType), particle.CullingType.Value, true);
+            switch (CullMode)
+            {
+                case CullingType.Back:
+                    PipelineCullMode = FaceCullMode.Back;
+                    break;
+                case CullingType.Double:
+                    break;
+                case CullingType.Front:
+                    PipelineCullMode = FaceCullMode.Front;
+                    break;
+                case CullingType.Max:
+                    break;
+                case CullingType.None:
+                    break;
+            }
+            // ======= DEPTH TEST ======
+            bool PipelineDepthTest = (particle.IsDepthTest.Value == true);
+            // ======= DEPTH WRITE =====
+            bool PipelineDepthWrite = (particle.IsDepthWrite.Value == true);
             // ======= PIPELINE =======
             var pipelineDesc = new GraphicsPipelineDescription(
-                drawMode,
+                BlendStateDrawMode,
                 new DepthStencilStateDescription
                 {
-                    DepthTestEnabled = false,
-                    DepthWriteEnabled = false,
+                    DepthTestEnabled = PipelineDepthTest,
+                    DepthWriteEnabled = PipelineDepthWrite,
                     DepthComparison = ComparisonKind.Always
                 },
                 new RasterizerStateDescription()
                 {
-                    CullMode = FaceCullMode.None,
+                    CullMode = PipelineCullMode,
                     FillMode = PolygonFillMode.Solid,
                     FrontFace = FrontFace.CounterClockwise,
                     DepthClipEnabled = false,

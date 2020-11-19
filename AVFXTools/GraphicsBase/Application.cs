@@ -15,12 +15,12 @@ namespace AVFXTools.GraphicsBase
 
         protected Camera _camera;
 
-        public ApplicationWindow Window { get; }
+        public VeldridStartupWindow Window { get; }
         public GraphicsDevice GraphicsDevice { get; private set; }
         public ResourceFactory ResourceFactory { get; private set; }
         public Swapchain MainSwapchain { get; private set; }
 
-        public Application(ApplicationWindow window)
+        public Application(VeldridStartupWindow window)
         {
             Window = window;
             Window.Resized += HandleWindowResize;

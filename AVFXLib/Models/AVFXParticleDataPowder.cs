@@ -12,7 +12,7 @@ namespace AVFXLib.Models
     {
         public LiteralBool IsLightning = new LiteralBool("isLightning", "bLgt");
         public LiteralEnum DirectionalLightType = new LiteralEnum(new DirectionalLightType(), "directionalLightType", "LgtT");
-        public LiteralInt CenterOffset = new LiteralInt("centerOffset", "CnOf");
+        public LiteralFloat CenterOffset = new LiteralFloat("centerOffset", "CnOf");
 
         List<Base> Attributes;
 

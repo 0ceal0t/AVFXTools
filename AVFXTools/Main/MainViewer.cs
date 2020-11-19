@@ -14,6 +14,7 @@ using SixLabors.ImageSharp.PixelFormats;
 using AVFXTools.GraphicsBase;
 using AVFXLib.Models;
 using AVFXTools.FFXIV;
+using AVFXTools.UI;
 
 namespace AVFXTools.Main
 {
@@ -36,8 +37,10 @@ namespace AVFXTools.Main
         public ResourceGetter Getter;
         public WepModel Model;
         public Core C;
+        public ImgUIMain UI;
 
-        public MainViewer(ApplicationWindow window, AVFXBase b, ResourceGetter g, WepModel baseM) : base(window)
+
+        public MainViewer(VeldridStartupWindow window, AVFXBase b, ResourceGetter g, WepModel baseM) : base(window)
         {
             AVFX = b;
             Getter = g;
@@ -66,6 +69,7 @@ namespace AVFXTools.Main
 
             CL = factory.CreateCommandList();
             C = new Core(AVFX, Getter, Model, this, GraphicsDevice, factory, CL, MainSwapchain, _camera);
+            UI = new ImgUIMain(C, Window.igr, GraphicsDevice, CL);
         }
 
         protected override void OnDeviceDestroyed()
@@ -98,6 +102,8 @@ namespace AVFXTools.Main
 
             C.Update(deltaSeconds);
             C.Draw();
+
+            UI.Draw();
 
             CL.End();
             GraphicsDevice.SubmitCommands(CL);

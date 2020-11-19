@@ -1,4 +1,5 @@
 ﻿using AVFXLib.Models;
+using System;
 using System.Numerics;
 using Veldrid.ImageSharp;
 
@@ -64,6 +65,13 @@ namespace AVFXTools.Main
             string fileName = fileSplit[fileSplit.Length - 1].Replace("\u0000", "").Replace(".atex", ".dds");
             var t = new ImageSharpTexture(Textures.ReadFromDDS(rootPath + "\\" + fileName), false);
             return t;
+        }
+
+        // RANDOM ===========================
+        public static Random RandomGen = new Random();
+        public static float GetRandom(float Min, float Max)
+        {
+            return (float)RandomGen.NextDouble() * (Max - Min) + Min;
         }
     }
 }

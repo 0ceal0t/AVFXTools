@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
 using Veldrid;
+using ImGuiNET;
 
 namespace AVFXTools.GraphicsBase
 {
@@ -45,10 +46,13 @@ namespace AVFXTools.GraphicsBase
             _newKeysThisFrame.Clear();
             _newMouseButtonsThisFrame.Clear();
 
+            if (ImGui.IsAnyItemActive() || ImGui.IsAnyItemFocused() || ImGui.IsAnyItemHovered()) return;
+
             MousePosition = snapshot.MousePosition;
             for (int i = 0; i < snapshot.KeyEvents.Count; i++)
             {
                 KeyEvent ke = snapshot.KeyEvents[i];
+
                 if (ke.Down)
                 {
                     KeyDown(ke.Key);

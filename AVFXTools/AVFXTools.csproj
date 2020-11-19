@@ -43,6 +43,9 @@
     <Reference Include="alglib.net, Version=3.16.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\alglib.net.3.16.0\lib\net48\alglib.net.dll</HintPath>
     </Reference>
+    <Reference Include="ImGui.NET, Version=1.72.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImGui.NET.1.72.0\lib\netstandard2.0\ImGui.NET.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -254,6 +257,9 @@
     <Reference Include="Veldrid.ImageSharp, Version=4.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\Veldrid.ImageSharp.4.8.0\lib\netstandard2.0\Veldrid.ImageSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Veldrid.ImGui, Version=5.72.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Veldrid.ImGui.5.72.0\lib\netstandard2.0\Veldrid.ImGui.dll</HintPath>
+    </Reference>
     <Reference Include="Veldrid.MetalBindings, Version=4.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\Veldrid.MetalBindings.4.8.0\lib\netstandard2.0\Veldrid.MetalBindings.dll</HintPath>
     </Reference>
@@ -317,9 +323,32 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="FFXIV\Skeleton.cs" />
+    <Compile Include="UI\ImgUIMain.cs" />
+    <Compile Include="UI\UICurve.cs" />
+    <Compile Include="UI\UICurve2Axis.cs" />
+    <Compile Include="UI\UICurve3Axis.cs" />
+    <Compile Include="UI\UICurveColor.cs" />
+    <Compile Include="UI\UILife.cs" />
+    <Compile Include="UI\UIParticle.cs" />
+    <Compile Include="UI\UIParticleDataBase.cs" />
+    <Compile Include="UI\UIParticleDataLightModel.cs" />
+    <Compile Include="UI\UIParticleDataModel.cs" />
+    <Compile Include="UI\UIParticleDataPowder.cs" />
+    <Compile Include="UI\UIParticleSimple.cs" />
+    <Compile Include="UI\UIParticleUVSet.cs" />
+    <Compile Include="UI\UITextureColor1.cs" />
+    <Compile Include="UI\UITextureColor2.cs" />
+    <Compile Include="UI\UITextureDistortion.cs" />
+    <Compile Include="UI\UITextureNormal.cs" />
+    <Compile Include="UI\UITexturePalette.cs" />
+    <Compile Include="UI\UITextureReflection.cs" />
+    <Compile Include="UI\UIUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="out\nid.json" />
+    <None Include="out\rav.json" />
+    <None Include="out\test.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -338,9 +367,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="out\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="hkAnimationInterop.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -365,7 +392,9 @@
     <Error Condition="!Exists('..\AVFXStudio\packages\Veldrid.SDL2.4.8.0\build\net40\Veldrid.SDL2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\AVFXStudio\packages\Veldrid.SDL2.4.8.0\build\net40\Veldrid.SDL2.targets'))" />
     <Error Condition="!Exists('..\AVFXStudio\packages\OpenCvSharp4.runtime.win.4.5.0.20201013\build\net\OpenCvSharp4.runtime.win.props')" Text="$([System.String]::Format('$(ErrorText)', '..\AVFXStudio\packages\OpenCvSharp4.runtime.win.4.5.0.20201013\build\net\OpenCvSharp4.runtime.win.props'))" />
     <Error Condition="!Exists('..\packages\Veldrid.SPIRV.1.0.13\build\net40\Veldrid.SPIRV.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Veldrid.SPIRV.1.0.13\build\net40\Veldrid.SPIRV.targets'))" />
+    <Error Condition="!Exists('..\packages\ImGui.NET.1.72.0\build\net40\ImGui.NET.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ImGui.NET.1.72.0\build\net40\ImGui.NET.targets'))" />
   </Target>
   <Import Project="..\AVFXStudio\packages\Veldrid.SDL2.4.8.0\build\net40\Veldrid.SDL2.targets" Condition="Exists('..\AVFXStudio\packages\Veldrid.SDL2.4.8.0\build\net40\Veldrid.SDL2.targets')" />
   <Import Project="..\packages\Veldrid.SPIRV.1.0.13\build\net40\Veldrid.SPIRV.targets" Condition="Exists('..\packages\Veldrid.SPIRV.1.0.13\build\net40\Veldrid.SPIRV.targets')" />
+  <Import Project="..\packages\ImGui.NET.1.72.0\build\net40\ImGui.NET.targets" Condition="Exists('..\packages\ImGui.NET.1.72.0\build\net40\ImGui.NET.targets')" />
 </Project>

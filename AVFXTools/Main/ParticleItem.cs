@@ -45,11 +45,11 @@ namespace AVFXTools.Main
                     break;
                 // ======== QUAD ============
                 case ParticleType.Quad:
-                    InitQuad(1.0f, 2.0f);
+                    InitQuad(0.5f, 1.0f, 2.0f);
                     break;
                 // ======= POWDER ===========
                 case ParticleType.Powder:
-                    InitQuad(1.0f, 1.0f);
+                    InitQuad(1.0f, 1.0f, 1.0f);
                     break;
                 default:
                     return;
@@ -60,8 +60,20 @@ namespace AVFXTools.Main
             Pipe = new ParticlePipeline(particle, this, core);
         }
 
-        public void AddInstance(Matrix4x4 startTransform, bool powder = false) { AddInstance(startTransform, 1, powder:powder); }
-        public void AddInstance(Matrix4x4 startTransform, int num, bool powder = false)
+        public void AddInstance(
+            Matrix4x4 startTransform,
+            bool powder = false,
+            ParticleInstancePowderSpawner spawner = null
+        ) {
+            AddInstance(startTransform, 1, powder:powder, spawner:spawner);
+        }
+
+        public void AddInstance(
+            Matrix4x4 startTransform,
+            int num,
+            bool powder = false,
+            ParticleInstancePowderSpawner spawner = null
+        )
         {
             if (!DoDraw) return;
             // ====================
@@ -79,7 +91,7 @@ namespace AVFXTools.Main
                     else
                     {
                         // powder instance
-                        Instances[instanceIdx] = new ParticleInstancePowderInstance(Particle, this, startTransform);
+                        Instances[instanceIdx] = new ParticleInstancePowderInstance(Particle, this, startTransform, spawner);
                     }
                     NumToAdd--;
                 }
@@ -116,13 +128,13 @@ namespace AVFXTools.Main
             return true;
         }
 
-        public void InitQuad(float uvX, float uvY)
+        public void InitQuad(float size, float uvX, float uvY)
         {
             Verts = new VertexPositionTexture[] {
-                new VertexPositionTexture(new Vector3(-0.5f,-0.5f,0), new Vector2(0.0f,uvY)),
-                new VertexPositionTexture(new Vector3(-0.5f,0.5f,0), new Vector2(0.0f,0.0f)),
-                new VertexPositionTexture(new Vector3(0.5f,-0.5f,0), new Vector2(uvX,uvY)),
-                new VertexPositionTexture(new Vector3(0.5f,0.5f,0), new Vector2(uvX,0.0f)),
+                new VertexPositionTexture(new Vector3(-1.0f * size,-1.0f * size,0), new Vector2(0.0f,uvY)),
+                new VertexPositionTexture(new Vector3(-1.0f * size, 1.0f * size,0), new Vector2(0.0f,0.0f)),
+                new VertexPositionTexture(new Vector3( 1.0f * size,-1.0f * size,0), new Vector2(uvX,uvY)),
+                new VertexPositionTexture(new Vector3( 1.0f * size, 1.0f * size,0), new Vector2(uvX,0.0f)),
             };
             Indexes = new ushort[] {
                 2, 0, 1,

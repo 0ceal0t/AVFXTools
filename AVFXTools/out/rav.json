@@ -1,0 +1,4256 @@
+{
+  "params": {
+    "isDelayFastParticle": true,
+    "isFitGround": false,
+    "isTranformSkip": false,
+    "isAllStopOnHide": false,
+    "canBeClippedOut": true,
+    "clipBoxenabled": true,
+    "clipBoxX": 0.0,
+    "clipBoxY": 0.0,
+    "clipBoxZ": 0.0,
+    "clipBoxsizeX": 0.5,
+    "clipBoxsizeY": 0.5,
+    "clipBoxsizeZ": 0.5,
+    "biasZmaxScale": 1.0,
+    "biasZmaxDistance": 0.0,
+    "isCameraSpace": false,
+    "isFullEnvLight": false,
+    "isClipOwnSetting": false,
+    "softParticleFadeRange": 0.15,
+    "softKeyOffset": 0.0,
+    "drawLayerType": "Base",
+    "drawOrderType": "Default",
+    "directionalLightSourceType": "None",
+    "pointLightsType1": "None",
+    "pointLightsType2": "None",
+    "revisedValuesPosX": 0.0,
+    "revisedValuesPosY": 0.0,
+    "revisedValuesPosZ": 0.0,
+    "revisedValuesRotX": 0.0,
+    "revisedValuesRotY": 0.0,
+    "revisedValuesRotZ": 0.0,
+    "revisedValuesScaleX": 1.0,
+    "revisedValuesScaleY": 1.0,
+    "revisedValuesScaleZ": 1.0,
+    "revisedValuesR": 1.0,
+    "revisedValuesG": 1.0,
+    "revisedValuesB": 1.0,
+    "fadeXenabled": false,
+    "fadeXinner": 3.14159274,
+    "fadeXouter": 3.14159274,
+    "fadeYenabled": false,
+    "fadeYinner": 3.14159274,
+    "fadeYouter": 3.14159274,
+    "fadeZenabled": false,
+    "fadeZinner": 3.14159274,
+    "fadeZouter": 3.14159274,
+    "globalFogEnabled": false,
+    "globalFogInfluence": 1.0
+  },
+  "schedulers": [
+    {
+      "itemCount": 1,
+      "triggerCount": 12,
+      "items": [
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            }
+          ]
+        }
+      ],
+      "triggers": [
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 1
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 2
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 2
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 3
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 2
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 3
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 2
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 3
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 2
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 3
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 2
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 3
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 2
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 3
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 2
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": 3
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "timelineIdx": -1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "timelines": [
+    {
+      "loopStart": 0,
+      "loopEnd": 0,
+      "binderIdx": -1,
+      "timelineCount": 2,
+      "clipCount": 0,
+      "items": [
+        {
+          "items": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "endTime": -1,
+              "binderIdx": 0,
+              "effectorIdx": -1,
+              "emitterIdx": 0,
+              "platform": 0
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "endTime": -1,
+              "binderIdx": 0,
+              "effectorIdx": -1,
+              "emitterIdx": 0,
+              "platform": 0
+            },
+            {
+              "enabled": true,
+              "startTime": 0,
+              "endTime": -1,
+              "binderIdx": 0,
+              "effectorIdx": -1,
+              "emitterIdx": 2,
+              "platform": 0
+            }
+          ]
+        }
+      ],
+      "clips": []
+    },
+    {
+      "loopStart": 0,
+      "loopEnd": 0,
+      "binderIdx": -1,
+      "timelineCount": 1,
+      "clipCount": 1,
+      "items": [
+        {
+          "items": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "endTime": 1,
+              "binderIdx": -1,
+              "effectorIdx": -1,
+              "emitterIdx": -1,
+              "platform": 0,
+              "clipIdx": 0
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "uniqueId": "LLIK",
+          "intVals": [
+            20,
+            1,
+            0,
+            0
+          ],
+          "floatVals": [
+            -1,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "loopStart": 0,
+      "loopEnd": 0,
+      "binderIdx": -1,
+      "timelineCount": 1,
+      "clipCount": 1,
+      "items": [
+        {
+          "items": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "endTime": 1,
+              "binderIdx": -1,
+              "effectorIdx": -1,
+              "emitterIdx": -1,
+              "platform": 0,
+              "clipIdx": 0
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "uniqueId": "LLIK",
+          "intVals": [
+            20,
+            1,
+            0,
+            0
+          ],
+          "floatVals": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "loopStart": 0,
+      "loopEnd": 0,
+      "binderIdx": -1,
+      "timelineCount": 1,
+      "clipCount": 1,
+      "items": [
+        {
+          "items": [
+            {
+              "enabled": true,
+              "startTime": 0,
+              "endTime": 1,
+              "binderIdx": -1,
+              "effectorIdx": -1,
+              "emitterIdx": -1,
+              "platform": 0,
+              "clipIdx": 0
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "uniqueId": "TSER",
+          "intVals": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "floatVals": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "emitters": [
+    {
+      "soundNumber": -1,
+      "loopStart": 0,
+      "loopEnd": 0,
+      "childLimit": 30,
+      "effectorIdx": -1,
+      "anyDirection": false,
+      "emitterType": "Point",
+      "rotationDirectionBase": "Z",
+      "coordComputeOrder": "Scale_Rot_Translate",
+      "rotationOrder": "ZXY",
+      "particleCount": 3,
+      "emitterCount": 0,
+      "life": {
+        "value": 60.0,
+        "random": 0.0,
+        "randomType": "FirstPlusMinus",
+        "enabled": true
+      },
+      "createCount": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "createInterval": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              20.0
+            ]
+          }
+        ]
+      },
+      "airResistance": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "color": {
+        "RGB": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      },
+      "position": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "Y": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.2
+              ]
+            }
+          ]
+        }
+      },
+      "rotation": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "Z": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                3.14159274
+              ]
+            }
+          ]
+        }
+      },
+      "scale": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus"
+      },
+      "items": [],
+      "itPr": [
+        {
+          "items": [
+            {
+              "enabled": true,
+              "targetIdx": 0,
+              "localDirection": 0,
+              "createTime": 1,
+              "createCount": 1,
+              "createProbability": 100,
+              "parentInfluenceCoord": 2,
+              "parentInfluenceColor": 0,
+              "influenceCoordScale": 1,
+              "influenceCoordRot": 1,
+              "influenceCoordPos": 1,
+              "influenceCoordBinderPosition": 0,
+              "influenceCoordUnstickiness": 0,
+              "inheritParentVelocity": 0,
+              "inheritParentLife": 0,
+              "overrideLife": false,
+              "overrideLifeValue": 60,
+              "overrideLifeRandom": 0,
+              "parameterLink": -1,
+              "startFrame": 0,
+              "startFrameNullUpdate": false,
+              "byInjectionAngleX": 0.0,
+              "byInjectionAngleY": -1.39626336,
+              "byInjectionAngleZ": 0.0,
+              "generateDelay": 2,
+              "generateDelayByOne": false
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "enabled": true,
+              "targetIdx": 0,
+              "localDirection": 0,
+              "createTime": 1,
+              "createCount": 1,
+              "createProbability": 100,
+              "parentInfluenceCoord": 2,
+              "parentInfluenceColor": 0,
+              "influenceCoordScale": 1,
+              "influenceCoordRot": 1,
+              "influenceCoordPos": 1,
+              "influenceCoordBinderPosition": 0,
+              "influenceCoordUnstickiness": 0,
+              "inheritParentVelocity": 0,
+              "inheritParentLife": 0,
+              "overrideLife": false,
+              "overrideLifeValue": 60,
+              "overrideLifeRandom": 0,
+              "parameterLink": -1,
+              "startFrame": 0,
+              "startFrameNullUpdate": false,
+              "byInjectionAngleX": 0.0,
+              "byInjectionAngleY": -1.39626336,
+              "byInjectionAngleZ": 0.0,
+              "generateDelay": 2,
+              "generateDelayByOne": false
+            },
+            {
+              "enabled": true,
+              "targetIdx": 3,
+              "localDirection": 0,
+              "createTime": 1,
+              "createCount": 1,
+              "createProbability": 100,
+              "parentInfluenceCoord": 2,
+              "parentInfluenceColor": 0,
+              "influenceCoordScale": 1,
+              "influenceCoordRot": 1,
+              "influenceCoordPos": 1,
+              "influenceCoordBinderPosition": 0,
+              "influenceCoordUnstickiness": 0,
+              "inheritParentVelocity": 0,
+              "inheritParentLife": 0,
+              "overrideLife": false,
+              "overrideLifeValue": 60,
+              "overrideLifeRandom": 0,
+              "parameterLink": -1,
+              "startFrame": 0,
+              "startFrameNullUpdate": false,
+              "byInjectionAngleX": 0.0,
+              "byInjectionAngleY": 0.0,
+              "byInjectionAngleZ": 0.0,
+              "generateDelay": 0,
+              "generateDelayByOne": false
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "enabled": true,
+              "targetIdx": 0,
+              "localDirection": 0,
+              "createTime": 1,
+              "createCount": 1,
+              "createProbability": 100,
+              "parentInfluenceCoord": 2,
+              "parentInfluenceColor": 0,
+              "influenceCoordScale": 1,
+              "influenceCoordRot": 1,
+              "influenceCoordPos": 1,
+              "influenceCoordBinderPosition": 0,
+              "influenceCoordUnstickiness": 0,
+              "inheritParentVelocity": 0,
+              "inheritParentLife": 0,
+              "overrideLife": false,
+              "overrideLifeValue": 60,
+              "overrideLifeRandom": 0,
+              "parameterLink": -1,
+              "startFrame": 0,
+              "startFrameNullUpdate": false,
+              "byInjectionAngleX": 0.0,
+              "byInjectionAngleY": -1.39626336,
+              "byInjectionAngleZ": 0.0,
+              "generateDelay": 2,
+              "generateDelayByOne": false
+            },
+            {
+              "enabled": true,
+              "targetIdx": 3,
+              "localDirection": 0,
+              "createTime": 1,
+              "createCount": 1,
+              "createProbability": 100,
+              "parentInfluenceCoord": 2,
+              "parentInfluenceColor": 0,
+              "influenceCoordScale": 1,
+              "influenceCoordRot": 1,
+              "influenceCoordPos": 1,
+              "influenceCoordBinderPosition": 0,
+              "influenceCoordUnstickiness": 0,
+              "inheritParentVelocity": 0,
+              "inheritParentLife": 0,
+              "overrideLife": false,
+              "overrideLifeValue": 60,
+              "overrideLifeRandom": 0,
+              "parameterLink": -1,
+              "startFrame": 0,
+              "startFrameNullUpdate": false,
+              "byInjectionAngleX": 0.0,
+              "byInjectionAngleY": 0.0,
+              "byInjectionAngleZ": 0.0,
+              "generateDelay": 0,
+              "generateDelayByOne": false
+            },
+            {
+              "enabled": true,
+              "targetIdx": 4,
+              "localDirection": 0,
+              "createTime": 0,
+              "createCount": 1,
+              "createProbability": 100,
+              "parentInfluenceCoord": 2,
+              "parentInfluenceColor": 0,
+              "influenceCoordScale": 1,
+              "influenceCoordRot": 1,
+              "influenceCoordPos": 1,
+              "influenceCoordBinderPosition": 0,
+              "influenceCoordUnstickiness": 0,
+              "inheritParentVelocity": 0,
+              "inheritParentLife": 0,
+              "overrideLife": false,
+              "overrideLifeValue": 60,
+              "overrideLifeRandom": 0,
+              "parameterLink": -1,
+              "startFrame": 0,
+              "startFrameNullUpdate": false,
+              "byInjectionAngleX": 0.0,
+              "byInjectionAngleY": 0.0,
+              "byInjectionAngleZ": 0.0,
+              "generateDelay": 0,
+              "generateDelayByOne": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "soundNumber": -1,
+      "loopStart": 0,
+      "loopEnd": 0,
+      "childLimit": 30,
+      "effectorIdx": -1,
+      "anyDirection": false,
+      "emitterType": "Point",
+      "rotationDirectionBase": "Z",
+      "coordComputeOrder": "Scale_Translate_Rot",
+      "rotationOrder": "ZXY",
+      "particleCount": 2,
+      "emitterCount": 0,
+      "life": {
+        "value": 60.0,
+        "random": 0.0,
+        "randomType": "FirstPlusMinus",
+        "enabled": true
+      },
+      "createCount": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "createInterval": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              30.0
+            ]
+          }
+        ]
+      },
+      "airResistance": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "color": {
+        "RGB": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      },
+      "position": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "Y": {
+          "preBehavior": "Const",
+          "postBehavior": "Add",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Spline",
+              "vals": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "time": 5,
+              "type": "Spline",
+              "vals": [
+                1.0200001,
+                1.0200001,
+                0.0879166648
+              ]
+            },
+            {
+              "time": 10,
+              "type": "Spline",
+              "vals": [
+                1.0200001,
+                1.0200001,
+                0.0812500045
+              ]
+            }
+          ]
+        },
+        "Z": {
+          "preBehavior": "Const",
+          "postBehavior": "Add",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "time": 10,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.07
+              ]
+            }
+          ]
+        },
+        "RandomX": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.15
+              ]
+            }
+          ]
+        },
+        "RandomY": {
+          "preBehavior": "Const",
+          "postBehavior": "Add",
+          "randomType": "FirstMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.15
+              ]
+            },
+            {
+              "time": 10,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.18
+              ]
+            }
+          ]
+        },
+        "RandomZ": {
+          "preBehavior": "Const",
+          "postBehavior": "Add",
+          "randomType": "FirstMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.15
+              ]
+            },
+            {
+              "time": 10,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.19
+              ]
+            }
+          ]
+        }
+      },
+      "rotation": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "RandomY": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                6.28318548
+              ]
+            }
+          ]
+        }
+      },
+      "scale": {
+        "axisConnectType": "X_YZ",
+        "axisConnectRandomType": "FirstPlus",
+        "RandomX": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.35
+              ]
+            }
+          ]
+        }
+      },
+      "items": [],
+      "itPr": [
+        {
+          "items": [
+            {
+              "enabled": true,
+              "targetIdx": 1,
+              "localDirection": 0,
+              "createTime": 1,
+              "createCount": 1,
+              "createProbability": 100,
+              "parentInfluenceCoord": 2,
+              "parentInfluenceColor": 0,
+              "influenceCoordScale": 1,
+              "influenceCoordRot": 1,
+              "influenceCoordPos": 1,
+              "influenceCoordBinderPosition": 0,
+              "influenceCoordUnstickiness": 0,
+              "inheritParentVelocity": 0,
+              "inheritParentLife": 0,
+              "overrideLife": false,
+              "overrideLifeValue": 60,
+              "overrideLifeRandom": 0,
+              "parameterLink": -1,
+              "startFrame": 0,
+              "startFrameNullUpdate": false,
+              "byInjectionAngleX": 0.0,
+              "byInjectionAngleY": 0.0,
+              "byInjectionAngleZ": 0.0,
+              "generateDelay": 0,
+              "generateDelayByOne": false
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "enabled": true,
+              "targetIdx": 1,
+              "localDirection": 0,
+              "createTime": 1,
+              "createCount": 1,
+              "createProbability": 100,
+              "parentInfluenceCoord": 2,
+              "parentInfluenceColor": 0,
+              "influenceCoordScale": 1,
+              "influenceCoordRot": 1,
+              "influenceCoordPos": 1,
+              "influenceCoordBinderPosition": 0,
+              "influenceCoordUnstickiness": 0,
+              "inheritParentVelocity": 0,
+              "inheritParentLife": 0,
+              "overrideLife": false,
+              "overrideLifeValue": 60,
+              "overrideLifeRandom": 0,
+              "parameterLink": -1,
+              "startFrame": 0,
+              "startFrameNullUpdate": false,
+              "byInjectionAngleX": 0.0,
+              "byInjectionAngleY": 0.0,
+              "byInjectionAngleZ": 0.0,
+              "generateDelay": 0,
+              "generateDelayByOne": false
+            },
+            {
+              "enabled": true,
+              "targetIdx": 2,
+              "localDirection": 0,
+              "createTime": 1,
+              "createCount": 1,
+              "createProbability": 100,
+              "parentInfluenceCoord": 2,
+              "parentInfluenceColor": 0,
+              "influenceCoordScale": 1,
+              "influenceCoordRot": 1,
+              "influenceCoordPos": 1,
+              "influenceCoordBinderPosition": 0,
+              "influenceCoordUnstickiness": 0,
+              "inheritParentVelocity": 0,
+              "inheritParentLife": 0,
+              "overrideLife": false,
+              "overrideLifeValue": 60,
+              "overrideLifeRandom": 0,
+              "parameterLink": -1,
+              "startFrame": 0,
+              "startFrameNullUpdate": false,
+              "byInjectionAngleX": 0.0,
+              "byInjectionAngleY": 0.0,
+              "byInjectionAngleZ": 0.0,
+              "generateDelay": 0,
+              "generateDelayByOne": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "soundNumber": -1,
+      "loopStart": 0,
+      "loopEnd": 0,
+      "childLimit": -1,
+      "effectorIdx": -1,
+      "anyDirection": false,
+      "emitterType": "SphereModel",
+      "rotationDirectionBase": "Z",
+      "coordComputeOrder": "Scale_Rot_Translate",
+      "rotationOrder": "ZXY",
+      "particleCount": 0,
+      "emitterCount": 1,
+      "life": {
+        "value": 60.0,
+        "random": 0.0,
+        "randomType": "FirstPlusMinus",
+        "enabled": true
+      },
+      "createCount": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "createInterval": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              10.0
+            ]
+          }
+        ]
+      },
+      "airResistance": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "color": {
+        "RGB": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      },
+      "position": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "Y": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.75
+              ]
+            }
+          ]
+        }
+      },
+      "rotation": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus"
+      },
+      "scale": {
+        "axisConnectType": "X_Z",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "X": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.15
+              ]
+            }
+          ]
+        },
+        "Y": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.8
+              ]
+            }
+          ]
+        }
+      },
+      "items": [
+        {
+          "items": [
+            {
+              "enabled": true,
+              "targetIdx": 1,
+              "localDirection": 0,
+              "createTime": 0,
+              "createCount": 0,
+              "createProbability": 100,
+              "parentInfluenceCoord": 0,
+              "parentInfluenceColor": 0,
+              "influenceCoordScale": 0,
+              "influenceCoordRot": 0,
+              "influenceCoordPos": 0,
+              "influenceCoordBinderPosition": 0,
+              "influenceCoordUnstickiness": 0,
+              "inheritParentVelocity": 0,
+              "inheritParentLife": 0,
+              "overrideLife": false,
+              "overrideLifeValue": 60,
+              "overrideLifeRandom": 0,
+              "parameterLink": -1,
+              "startFrame": 0,
+              "startFrameNullUpdate": false,
+              "byInjectionAngleX": 0.0,
+              "byInjectionAngleY": 0.0,
+              "byInjectionAngleZ": 0.0,
+              "generateDelay": 0,
+              "generateDelayByOne": false
+            }
+          ]
+        }
+      ],
+      "itPr": [],
+      "data": {
+        "rotationOrder": "ZXY",
+        "generateMethod": "RandomOnVertexWithoutSingularPoint",
+        "divideX": 6,
+        "divideY": 5,
+        "radius": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "particles": [
+    {
+      "loopStart": 80,
+      "loopEnd": 90,
+      "particleType": "Model",
+      "rotationDirectionBase": "X",
+      "rotationOrder": "ZXY",
+      "coordComputeOrder": "Scale_Rot_Translate",
+      "drawMode": "Screen",
+      "cullingType": "None",
+      "envLight": "Chara",
+      "dirLight": "Directional",
+      "uvPrecision": "High",
+      "drawPriority": 1,
+      "isDepthTest": true,
+      "isDepthWrite": false,
+      "isSoftParticle": true,
+      "collisionType": -1,
+      "bs11": false,
+      "isApplyToneMap": true,
+      "isApplyFog": false,
+      "clipNearEnable": false,
+      "clipFarEnable": false,
+      "clipNearStart": 0.0,
+      "clipNearEnd": 1.0,
+      "clipFarStart": 50.0,
+      "clipFarEnd": 60.0,
+      "clipBasePoint": "Camera",
+      "uvSetCount": 4,
+      "applyRateEnvironment": 0,
+      "applyRateDirectional": 0,
+      "applyRateLightBuffer": 0,
+      "DOTy": false,
+      "depthOffset": 0.02,
+      "simpleAnimEnabled": false,
+      "life": {
+        "value": 140.0,
+        "random": 0.0,
+        "randomType": "FirstPlusMinus",
+        "enabled": true
+      },
+      "airResistance": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "scale": {
+        "axisConnectType": "X_Z",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "X": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0879166648
+              ]
+            },
+            {
+              "time": 90,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0879166648
+              ]
+            },
+            {
+              "time": 140,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.09791666
+              ]
+            }
+          ]
+        },
+        "Y": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.39958334
+              ]
+            },
+            {
+              "time": 90,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.39958334
+              ]
+            },
+            {
+              "time": 140,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.4517262
+              ]
+            }
+          ]
+        }
+      },
+      "rotation": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "X": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                3.14159274
+              ]
+            }
+          ]
+        },
+        "Y": {
+          "preBehavior": "Const",
+          "postBehavior": "Add",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "time": 10,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.34906584
+              ]
+            }
+          ]
+        },
+        "RandomY": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                3.14159274
+              ]
+            }
+          ]
+        }
+      },
+      "position": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "Y": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.45
+              ]
+            }
+          ]
+        }
+      },
+      "color": {
+        "RGB": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                0.65882355,
+                0.184313729
+              ]
+            }
+          ]
+        },
+        "alpha": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "time": 10,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            {
+              "time": 100,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.9098039
+              ]
+            },
+            {
+              "time": 139,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "brightness": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                3.0
+              ]
+            }
+          ]
+        }
+      },
+      "uvSets": [
+        {
+          "calculateUV": "ByParameter",
+          "scale": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus",
+            "X": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    0.25
+                  ]
+                }
+              ]
+            },
+            "Y": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    5.0
+                  ]
+                }
+              ]
+            }
+          },
+          "scroll": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus",
+            "X": {
+              "preBehavior": "Const",
+              "postBehavior": "Add",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ]
+                },
+                {
+                  "time": 10,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    0.1
+                  ]
+                }
+              ]
+            },
+            "Y": {
+              "preBehavior": "Const",
+              "postBehavior": "Add",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ]
+                },
+                {
+                  "time": 10,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    0.3
+                  ]
+                }
+              ]
+            },
+            "RandomX": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.025
+                  ]
+                }
+              ]
+            },
+            "RandomY": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.03333342
+                  ]
+                }
+              ]
+            }
+          },
+          "rotation": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "randomType": "FirstPlusMinus",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  1.0,
+                  1.57079637
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "calculateUV": "ByParameter",
+          "scale": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus",
+            "X": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    10.0
+                  ]
+                }
+              ]
+            },
+            "Y": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    2.0
+                  ]
+                }
+              ]
+            }
+          },
+          "scroll": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus",
+            "X": {
+              "preBehavior": "Const",
+              "postBehavior": "Add",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ]
+                },
+                {
+                  "time": 10,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    0.4
+                  ]
+                }
+              ]
+            },
+            "RandomX": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.0125
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "calculateUV": "ByParameter",
+          "scale": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus",
+            "X": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ]
+            },
+            "Y": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    3.0
+                  ]
+                }
+              ]
+            }
+          },
+          "scroll": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus",
+            "Y": {
+              "preBehavior": "Const",
+              "postBehavior": "Add",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    0.2
+                  ]
+                },
+                {
+                  "time": 10,
+                  "type": "Spline",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ]
+                }
+              ]
+            },
+            "RandomX": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.01666665
+                  ]
+                }
+              ]
+            },
+            "RandomY": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.04166663
+                  ]
+                }
+              ]
+            }
+          },
+          "rotation": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "randomType": "FirstPlusMinus",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  1.0,
+                  1.57079637
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "calculateUV": "ByParameter",
+          "scale": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus",
+            "X": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ]
+            },
+            "Y": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    8.0
+                  ]
+                }
+              ]
+            }
+          },
+          "scroll": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus",
+            "Y": {
+              "preBehavior": "Const",
+              "postBehavior": "Add",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ]
+                },
+                {
+                  "time": 12,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    0.2
+                  ]
+                }
+              ]
+            },
+            "RandomX": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.05416667
+                  ]
+                }
+              ]
+            }
+          },
+          "rotation": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "randomType": "FirstPlusMinus",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  1.0,
+                  1.57079637
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "data": {
+        "modelNumberRandomValue": 0,
+        "modelNumberRandomType": "FirstPlusMinus",
+        "modelNumberRandomInterval": 0,
+        "fresnelType": "Camera",
+        "directionalLightType": "Lambert",
+        "pointLightType": "Lambert",
+        "isLightning": false,
+        "isMorph": false,
+        "modelIdx": 0,
+        "fresnelCurve": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        },
+        "fresnelRotation": {
+          "axisConnectType": "None",
+          "axisConnectRandomType": "FirstPlusMinus",
+          "Z": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "randomType": "FirstPlusMinus",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  1.0,
+                  -0.05235988
+                ]
+              }
+            ]
+          }
+        },
+        "colorBegin": {
+          "RGB": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        },
+        "colorEnd": {
+          "RGB": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  0.2901961,
+                  0.113725491
+                ]
+              }
+            ]
+          },
+          "alpha": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "randomType": "FirstPlusMinus",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "textureColor1": {
+        "enabled": true,
+        "colorToAlpha": false,
+        "useScreenCopy": false,
+        "previousFrameCopy": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Repeat",
+        "textureBorderV": "Repeat",
+        "textureCalculateColor": "Add",
+        "textureCalculateAlpha": "Max",
+        "maskTextureIdx": 1
+      },
+      "textureColor2": {
+        "enabled": true,
+        "colorToAlpha": true,
+        "useScreenCopy": false,
+        "previousFrameCopy": false,
+        "uvSetIdx": 1,
+        "textureFilter": "Enable",
+        "textureBorderU": "Repeat",
+        "textureBorderV": "Clamp",
+        "textureCalculateColor": "Multiply",
+        "textureCalculateAlpha": "Multiply",
+        "textureIdx": 0
+      },
+      "textureColor3": {
+        "enabled": true,
+        "colorToAlpha": true,
+        "useScreenCopy": false,
+        "previousFrameCopy": false,
+        "uvSetIdx": 2,
+        "textureFilter": "VeryVeryHigh",
+        "textureBorderU": "Repeat",
+        "textureBorderV": "Repeat",
+        "textureCalculateColor": "Add",
+        "textureCalculateAlpha": "Multiply",
+        "textureIdx": 2
+      },
+      "textureNormal": {
+        "enabled": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureIdx": -1,
+        "normalPower": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      },
+      "textureReflection": {
+        "enabled": false,
+        "useScreenCopy": false,
+        "textureFilter": "Enable",
+        "textureCalculateColor": "Multiply",
+        "textureIdx": -1
+      },
+      "textureDistortion": {
+        "enabled": true,
+        "targetUV1": true,
+        "targetUV2": true,
+        "targetUV3": false,
+        "targetUV4": false,
+        "uvSetIdx": 3,
+        "textureFilter": "Enable",
+        "textureBorderU": "Repeat",
+        "textureBorderV": "Repeat",
+        "textureIdx": 1,
+        "distortPower": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.15
+              ]
+            }
+          ]
+        }
+      },
+      "texturePalette": {
+        "enabled": false,
+        "textureFilter": "Enable",
+        "textureBorder": "Repeat",
+        "textureIdx": -1
+      }
+    },
+    {
+      "loopStart": 0,
+      "loopEnd": 0,
+      "particleType": "Model",
+      "rotationDirectionBase": "Z",
+      "rotationOrder": "ZXY",
+      "coordComputeOrder": "Scale_Translate_Rot",
+      "drawMode": "Blend",
+      "cullingType": "Double",
+      "envLight": "Chara",
+      "dirLight": "Directional",
+      "uvPrecision": "High",
+      "drawPriority": 1,
+      "isDepthTest": true,
+      "isDepthWrite": false,
+      "isSoftParticle": false,
+      "collisionType": -1,
+      "bs11": false,
+      "isApplyToneMap": true,
+      "isApplyFog": false,
+      "clipNearEnable": false,
+      "clipFarEnable": false,
+      "clipNearStart": 0.0,
+      "clipNearEnd": 1.0,
+      "clipFarStart": 50.0,
+      "clipFarEnd": 60.0,
+      "clipBasePoint": "Camera",
+      "uvSetCount": 1,
+      "applyRateEnvironment": 0,
+      "applyRateDirectional": 0,
+      "applyRateLightBuffer": 0,
+      "DOTy": false,
+      "depthOffset": 0.0,
+      "simpleAnimEnabled": false,
+      "life": {
+        "value": 60.0,
+        "random": 0.0,
+        "randomType": "FirstPlusMinus",
+        "enabled": true
+      },
+      "airResistance": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "scale": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlus",
+        "X": {
+          "preBehavior": "Const",
+          "postBehavior": "Repeat",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.025
+              ]
+            },
+            {
+              "time": 1,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0575
+              ]
+            },
+            {
+              "time": 2,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.135
+              ]
+            },
+            {
+              "time": 3,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.07583333
+              ]
+            },
+            {
+              "time": 4,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0449999981
+              ]
+            },
+            {
+              "time": 5,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.027499998
+              ]
+            },
+            {
+              "time": 6,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.07041667
+              ]
+            },
+            {
+              "time": 7,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.135
+              ]
+            },
+            {
+              "time": 8,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.085833326
+              ]
+            },
+            {
+              "time": 9,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0466666669
+              ]
+            },
+            {
+              "time": 10,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.025
+              ]
+            }
+          ]
+        },
+        "Y": {
+          "preBehavior": "Const",
+          "postBehavior": "Repeat",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.08
+              ]
+            },
+            {
+              "time": 1,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.065
+              ]
+            },
+            {
+              "time": 2,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.035625
+              ]
+            },
+            {
+              "time": 4,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                -0.065625
+              ]
+            },
+            {
+              "time": 5,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                -0.075
+              ]
+            },
+            {
+              "time": 6,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                -0.00562499976
+              ]
+            },
+            {
+              "time": 8,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0531249978
+              ]
+            },
+            {
+              "time": 10,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.08
+              ]
+            }
+          ]
+        },
+        "Z": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.075
+              ]
+            }
+          ]
+        }
+      },
+      "rotation": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "X": {
+          "preBehavior": "Const",
+          "postBehavior": "Repeat",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "time": 2,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.04751174
+              ]
+            },
+            {
+              "time": 4,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.218166158
+              ]
+            },
+            {
+              "time": 5,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.264708281
+              ]
+            },
+            {
+              "time": 6,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.136717454
+              ]
+            },
+            {
+              "time": 8,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.02908882
+              ]
+            },
+            {
+              "time": 10,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      },
+      "position": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus"
+      },
+      "color": {
+        "RGB": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        },
+        "alpha": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "time": 5,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            {
+              "time": 50,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            {
+              "time": 55,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.2509804
+              ]
+            },
+            {
+              "time": 60,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "brightness": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.5
+              ]
+            }
+          ]
+        }
+      },
+      "uvSets": [
+        {
+          "calculateUV": "ByParameter",
+          "scale": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus",
+            "X": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ]
+            },
+            "Y": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ]
+            }
+          },
+          "scroll": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus"
+          }
+        }
+      ],
+      "data": {
+        "modelNumberRandomValue": 0,
+        "modelNumberRandomType": "FirstPlusMinus",
+        "modelNumberRandomInterval": 0,
+        "fresnelType": "None",
+        "directionalLightType": "Lambert",
+        "pointLightType": "Lambert",
+        "isLightning": false,
+        "isMorph": false,
+        "modelIdx": 1,
+        "fresnelCurve": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        },
+        "fresnelRotation": {
+          "axisConnectType": "None",
+          "axisConnectRandomType": "FirstPlusMinus",
+          "Z": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "randomType": "FirstPlusMinus",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  1.0,
+                  -0.05235988
+                ]
+              }
+            ]
+          }
+        },
+        "colorBegin": {
+          "RGB": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        },
+        "colorEnd": {
+          "RGB": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "textureColor1": {
+        "enabled": true,
+        "colorToAlpha": false,
+        "useScreenCopy": false,
+        "previousFrameCopy": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureCalculateColor": "Add",
+        "textureCalculateAlpha": "Max",
+        "maskTextureIdx": 3
+      },
+      "textureColor2": {
+        "enabled": false,
+        "colorToAlpha": false,
+        "useScreenCopy": false,
+        "previousFrameCopy": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureCalculateColor": "Multiply",
+        "textureCalculateAlpha": "Multiply",
+        "textureIdx": -1
+      },
+      "textureNormal": {
+        "enabled": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureIdx": -1,
+        "normalPower": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      },
+      "textureReflection": {
+        "enabled": false,
+        "useScreenCopy": false,
+        "textureFilter": "Enable",
+        "textureCalculateColor": "Multiply",
+        "textureIdx": -1
+      },
+      "textureDistortion": {
+        "enabled": false,
+        "targetUV1": false,
+        "targetUV2": false,
+        "targetUV3": false,
+        "targetUV4": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureIdx": -1
+      },
+      "texturePalette": {
+        "enabled": false,
+        "textureFilter": "Enable",
+        "textureBorder": "Repeat",
+        "textureIdx": -1
+      }
+    },
+    {
+      "loopStart": 0,
+      "loopEnd": 0,
+      "particleType": "Powder",
+      "rotationDirectionBase": "None",
+      "rotationOrder": "ZXY",
+      "coordComputeOrder": "Scale_Rot_Translate",
+      "drawMode": "Add",
+      "cullingType": "None",
+      "envLight": "Chara",
+      "dirLight": "Directional",
+      "uvPrecision": "High",
+      "drawPriority": 1,
+      "isDepthTest": true,
+      "isDepthWrite": false,
+      "isSoftParticle": false,
+      "collisionType": -1,
+      "bs11": false,
+      "isApplyToneMap": true,
+      "isApplyFog": false,
+      "clipNearEnable": false,
+      "clipFarEnable": false,
+      "clipNearStart": 0.0,
+      "clipNearEnd": 1.0,
+      "clipFarStart": 50.0,
+      "clipFarEnd": 60.0,
+      "clipBasePoint": "Camera",
+      "uvSetCount": 1,
+      "applyRateEnvironment": 0,
+      "applyRateDirectional": 0,
+      "applyRateLightBuffer": 0,
+      "DOTy": false,
+      "depthOffset": 0.0,
+      "simpleAnimEnabled": false,
+      "life": {
+        "value": 60.0,
+        "random": 0.0,
+        "randomType": "FirstPlusMinus",
+        "enabled": true
+      },
+      "airResistance": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "scale": {
+        "axisConnectType": "X_YZ",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "X": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.3
+              ]
+            }
+          ]
+        }
+      },
+      "rotation": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus"
+      },
+      "position": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus"
+      },
+      "color": {
+        "RGB": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                0.196078435,
+                0.180392161,
+                0.149019614
+              ]
+            }
+          ]
+        },
+        "alpha": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "time": 5,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            {
+              "time": 50,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            {
+              "time": 55,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.2509804
+              ]
+            },
+            {
+              "time": 60,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      },
+      "uvSets": [
+        {
+          "calculateUV": "ByParameter",
+          "scale": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus",
+            "X": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ]
+            },
+            "Y": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ]
+            }
+          },
+          "scroll": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus"
+          }
+        }
+      ],
+      "data": {
+        "isLightning": false,
+        "directionalLightType": "HalfLambert",
+        "centerOffset": 1056964608
+      },
+      "textureColor1": {
+        "enabled": true,
+        "colorToAlpha": false,
+        "useScreenCopy": false,
+        "previousFrameCopy": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureCalculateColor": "Add",
+        "textureCalculateAlpha": "Max",
+        "maskTextureIdx": 4
+      },
+      "textureColor2": {
+        "enabled": false,
+        "colorToAlpha": false,
+        "useScreenCopy": false,
+        "previousFrameCopy": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureCalculateColor": "Multiply",
+        "textureCalculateAlpha": "Multiply",
+        "textureIdx": -1
+      },
+      "textureNormal": {
+        "enabled": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureIdx": -1,
+        "normalPower": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      },
+      "textureReflection": {
+        "enabled": false,
+        "useScreenCopy": false,
+        "textureFilter": "Enable",
+        "textureCalculateColor": "Multiply",
+        "textureIdx": -1
+      },
+      "textureDistortion": {
+        "enabled": false,
+        "targetUV1": false,
+        "targetUV2": false,
+        "targetUV3": false,
+        "targetUV4": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureIdx": -1
+      },
+      "texturePalette": {
+        "enabled": false,
+        "textureFilter": "Enable",
+        "textureBorder": "Repeat",
+        "textureIdx": -1
+      }
+    },
+    {
+      "loopStart": 15,
+      "loopEnd": 50,
+      "particleType": "Model",
+      "rotationDirectionBase": "X",
+      "rotationOrder": "ZXY",
+      "coordComputeOrder": "Scale_Rot_Translate",
+      "drawMode": "Add",
+      "cullingType": "Double",
+      "envLight": "Chara",
+      "dirLight": "Directional",
+      "uvPrecision": "High",
+      "drawPriority": 8,
+      "isDepthTest": true,
+      "isDepthWrite": false,
+      "isSoftParticle": true,
+      "collisionType": -1,
+      "bs11": false,
+      "isApplyToneMap": true,
+      "isApplyFog": false,
+      "clipNearEnable": false,
+      "clipFarEnable": false,
+      "clipNearStart": 0.0,
+      "clipNearEnd": 1.0,
+      "clipFarStart": 50.0,
+      "clipFarEnd": 60.0,
+      "clipBasePoint": "Camera",
+      "uvSetCount": 1,
+      "applyRateEnvironment": 0,
+      "applyRateDirectional": 0,
+      "applyRateLightBuffer": 0,
+      "DOTy": false,
+      "depthOffset": 0.03,
+      "simpleAnimEnabled": false,
+      "life": {
+        "value": 60.0,
+        "random": 0.0,
+        "randomType": "FirstPlusMinus",
+        "enabled": true
+      },
+      "airResistance": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "scale": {
+        "axisConnectType": "X_Z",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "X": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.2
+              ]
+            },
+            {
+              "time": 8,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                2.0
+              ]
+            }
+          ]
+        },
+        "Y": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.2
+              ]
+            },
+            {
+              "time": 8,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.2
+              ]
+            }
+          ]
+        },
+        "Z": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.765
+              ]
+            },
+            {
+              "time": 8,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.4
+              ]
+            }
+          ]
+        }
+      },
+      "rotation": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "Z": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                3.14159274
+              ]
+            }
+          ]
+        }
+      },
+      "position": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "Y": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                -0.35
+              ]
+            }
+          ]
+        }
+      },
+      "color": {
+        "RGB": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                0.392156869,
+                0.08627451,
+                0.03529412
+              ]
+            }
+          ]
+        },
+        "alpha": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "time": 9,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.7764706
+              ]
+            },
+            {
+              "time": 50,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.7764706
+              ]
+            },
+            {
+              "time": 60,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      },
+      "uvSets": [
+        {
+          "calculateUV": "ByParameter",
+          "scale": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus",
+            "X": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ]
+            },
+            "Y": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ]
+            }
+          },
+          "scroll": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus"
+          }
+        }
+      ],
+      "data": {
+        "modelNumberRandomValue": 0,
+        "modelNumberRandomType": "FirstPlusMinus",
+        "modelNumberRandomInterval": 0,
+        "fresnelType": "None",
+        "directionalLightType": "Lambert",
+        "pointLightType": "Lambert",
+        "isLightning": false,
+        "isMorph": false,
+        "modelIdx": 2,
+        "fresnelCurve": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        },
+        "fresnelRotation": {
+          "axisConnectType": "None",
+          "axisConnectRandomType": "FirstPlusMinus",
+          "Z": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "randomType": "FirstPlusMinus",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  1.0,
+                  -0.05235988
+                ]
+              }
+            ]
+          }
+        },
+        "colorBegin": {
+          "RGB": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        },
+        "colorEnd": {
+          "RGB": {
+            "preBehavior": "Const",
+            "postBehavior": "Const",
+            "keys": [
+              {
+                "time": 0,
+                "type": "Linear",
+                "vals": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "textureColor1": {
+        "enabled": false,
+        "colorToAlpha": false,
+        "useScreenCopy": false,
+        "previousFrameCopy": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureCalculateColor": "Add",
+        "textureCalculateAlpha": "Max"
+      },
+      "textureColor2": {
+        "enabled": false,
+        "colorToAlpha": false,
+        "useScreenCopy": false,
+        "previousFrameCopy": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureCalculateColor": "Multiply",
+        "textureCalculateAlpha": "Multiply",
+        "textureIdx": -1
+      },
+      "textureNormal": {
+        "enabled": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureIdx": -1,
+        "normalPower": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      },
+      "textureReflection": {
+        "enabled": false,
+        "useScreenCopy": false,
+        "textureFilter": "Enable",
+        "textureCalculateColor": "Multiply",
+        "textureIdx": -1
+      },
+      "textureDistortion": {
+        "enabled": false,
+        "targetUV1": false,
+        "targetUV2": false,
+        "targetUV3": false,
+        "targetUV4": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureIdx": -1
+      },
+      "texturePalette": {
+        "enabled": false,
+        "textureFilter": "Enable",
+        "textureBorder": "Repeat",
+        "textureIdx": -1
+      }
+    },
+    {
+      "loopStart": 0,
+      "loopEnd": 0,
+      "particleType": "Powder",
+      "rotationDirectionBase": "None",
+      "rotationOrder": "ZXY",
+      "coordComputeOrder": "Scale_Rot_Translate",
+      "drawMode": "Add",
+      "cullingType": "None",
+      "envLight": "Chara",
+      "dirLight": "Directional",
+      "uvPrecision": "High",
+      "drawPriority": 1,
+      "isDepthTest": true,
+      "isDepthWrite": false,
+      "isSoftParticle": false,
+      "collisionType": -1,
+      "bs11": false,
+      "isApplyToneMap": true,
+      "isApplyFog": false,
+      "clipNearEnable": false,
+      "clipFarEnable": false,
+      "clipNearStart": 0.0,
+      "clipNearEnd": 1.0,
+      "clipFarStart": 50.0,
+      "clipFarEnd": 60.0,
+      "clipBasePoint": "Camera",
+      "uvSetCount": 1,
+      "applyRateEnvironment": 0,
+      "applyRateDirectional": 0,
+      "applyRateLightBuffer": 0,
+      "DOTy": false,
+      "depthOffset": 0.0,
+      "simpleAnimEnabled": true,
+      "life": {
+        "value": 60.0,
+        "random": 0.0,
+        "randomType": "FirstPlusMinus",
+        "enabled": true
+      },
+      "simpleAnimations": {
+        "injectionPositionType": 0,
+        "injectionDirectionType": 0,
+        "baseDirectionType": 0,
+        "createCount": 20,
+        "createAreaX": 0.05,
+        "createAreaY": 0.75,
+        "createAreaZ": 0.05,
+        "coordAccuracyX": 0.995,
+        "coordAccuracyY": 0.995,
+        "coordAccuracyZ": 0.995,
+        "coordGraX": 0.0,
+        "coordGraY": 0.00216666656,
+        "coordGraZ": 0.0,
+        "scaleXStart": 0.1,
+        "scaleYStart": 0.1,
+        "scaleXEnd": 0.05,
+        "scaleYEnd": 0.05,
+        "scaleCurve": 1.0,
+        "scaleRandX0": 1.0,
+        "scaleRandX1": 0.5,
+        "scaleRandY0": 1.0,
+        "scaleRandY1": 1.0,
+        "rotXStart": 0.0,
+        "rotYStart": 0.0,
+        "rotZStart": 0.0,
+        "rotXAdd": 0.0,
+        "rotYAdd": 0.0,
+        "rotZAdd": 0.0,
+        "rotXBase": 0.0,
+        "rotYBase": 0.0,
+        "rotZBase": 6.28318548,
+        "rotXVel": 0.0,
+        "rotYVel": 0.0,
+        "rotZVel": 0.06981317,
+        "velMin": 0.03,
+        "velMax": 0.01,
+        "velFlatteryRate": 1.0,
+        "velFlatterySpeed": 0.00333333341,
+        "uvCellU": 2,
+        "uvCellV": 2,
+        "uvInterval": 1,
+        "uvNoRandom": 4,
+        "uvNoLoopCount": 8,
+        "injectionModelIdx": -1,
+        "injectionVertexBindModelIdx": -1,
+        "injectionRadialDir0": 0,
+        "injectionRadialDir1": 1078530011,
+        "pivotX": 1.0,
+        "pivotY": 0.0,
+        "blockNum": 1,
+        "lineLengthMin": 0.1,
+        "lineLengthMax": 0.5,
+        "createIntervalVal": 1,
+        "createIntervalRandom": 0,
+        "createIntervalCount": 1,
+        "createIntervalLife": 16,
+        "createNewAfterDelete": 0,
+        "uvReverse": 0,
+        "scaleRandomLink": 255,
+        "bindParent": 0,
+        "scaleByParent": 0,
+        "polyLineTag": 1,
+        "colors": [
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255
+        ],
+        "colorFrames": [
+          0,
+          10,
+          20,
+          30
+        ]
+      },
+      "airResistance": {
+        "preBehavior": "Const",
+        "postBehavior": "Const",
+        "randomType": "FirstPlusMinus",
+        "keys": [
+          {
+            "time": 0,
+            "type": "Linear",
+            "vals": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "scale": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus"
+      },
+      "rotation": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus"
+      },
+      "position": {
+        "axisConnectType": "None",
+        "axisConnectRandomType": "FirstPlusMinus",
+        "Y": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                -0.5
+              ]
+            }
+          ]
+        }
+      },
+      "color": {
+        "RGB": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      },
+      "uvSets": [
+        {
+          "calculateUV": "ByParameter",
+          "scale": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus",
+            "X": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ]
+            },
+            "Y": {
+              "preBehavior": "Const",
+              "postBehavior": "Const",
+              "randomType": "FirstPlusMinus",
+              "keys": [
+                {
+                  "time": 0,
+                  "type": "Linear",
+                  "vals": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                }
+              ]
+            }
+          },
+          "scroll": {
+            "axisConnectType": "None",
+            "axisConnectRandomType": "FirstPlusMinus"
+          }
+        }
+      ],
+      "data": {
+        "isLightning": false,
+        "directionalLightType": "HalfLambert",
+        "centerOffset": 1056964608
+      },
+      "textureColor1": {
+        "enabled": true,
+        "colorToAlpha": false,
+        "useScreenCopy": false,
+        "previousFrameCopy": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureCalculateColor": "Add",
+        "textureCalculateAlpha": "Max",
+        "maskTextureIdx": 5
+      },
+      "textureColor2": {
+        "enabled": false,
+        "colorToAlpha": false,
+        "useScreenCopy": false,
+        "previousFrameCopy": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureCalculateColor": "Multiply",
+        "textureCalculateAlpha": "Multiply",
+        "textureIdx": -1
+      },
+      "textureNormal": {
+        "enabled": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureIdx": -1,
+        "normalPower": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      },
+      "textureReflection": {
+        "enabled": false,
+        "useScreenCopy": false,
+        "textureFilter": "Enable",
+        "textureCalculateColor": "Multiply",
+        "textureIdx": -1
+      },
+      "textureDistortion": {
+        "enabled": false,
+        "targetUV1": false,
+        "targetUV2": false,
+        "targetUV3": false,
+        "targetUV4": false,
+        "uvSetIdx": 0,
+        "textureFilter": "Enable",
+        "textureBorderU": "Clamp",
+        "textureBorderV": "Clamp",
+        "textureIdx": -1
+      },
+      "texturePalette": {
+        "enabled": false,
+        "textureFilter": "Enable",
+        "textureBorder": "Repeat",
+        "textureIdx": -1
+      }
+    }
+  ],
+  "effectors": [],
+  "binders": [
+    {
+      "startToGlobalDirection": -1,
+      "vfxScaleEnabled": false,
+      "vfxScaleBias": 1.0,
+      "vfxScaleDepthOffset": -1,
+      "vfxScaleInterpolation": false,
+      "transformScale": -1,
+      "transformScaleDepthOffset": -1,
+      "transformScaleInterpolation": false,
+      "followingTargetOrientation": -1,
+      "documentScaleEnabled": false,
+      "adjustToScreenEnabled": false,
+      "life": -1,
+      "rotationtype": "Standard",
+      "binderType": "Point",
+      "properties": {
+        "bindPointType": "Caster",
+        "bindTargetPointType": "ByName",
+        "name": "null\u0000\u0000\u0000\u0000",
+        "bindPointId": 3,
+        "generateDelay": 0,
+        "coordUpdateFrame": -1,
+        "ringEnable": false,
+        "ringProgressTime": 1,
+        "ringPositionX": 0.0,
+        "ringPositionY": 0.0,
+        "ringPositionZ": 0.0,
+        "ringRadius": 0.0,
+        "position": {
+          "axisConnectType": "None",
+          "axisConnectRandomType": "FirstPlusMinus"
+        }
+      },
+      "data": {
+        "springStrength": {
+          "preBehavior": "Const",
+          "postBehavior": "Const",
+          "randomType": "FirstPlusMinus",
+          "keys": [
+            {
+              "time": 0,
+              "type": "Linear",
+              "vals": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "textures": [
+    "chara/weapon/w1501/obj/body/b0036/vfx/texture/fire018bm.atex\u0000",
+    "chara/weapon/w1501/obj/body/b0036/vfx/texture/bt_fir7_k.atex\u0000",
+    "chara/weapon/w1501/obj/body/b0036/vfx/texture/prsm001bt.atex\u0000",
+    "chara/weapon/w1501/obj/body/b0036/vfx/texture/m0265fly01t.atex\u0000",
+    "chara/weapon/w1501/obj/body/b0036/vfx/texture/fire_tm.atex\u0000",
+    "chara/weapon/w1501/obj/body/b0036/vfx/texture/hinoko_anm.atex\u0000"
+  ],
+  "models": [
+    "",
+    "",
+    ""
+  ]
+}

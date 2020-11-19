@@ -77,7 +77,7 @@ namespace AVFXTools.Main
                     ParticleInstanceData Data = Instance.GetData();
                     Matrix4x4 TransformationMatrix = Matrix4x4.CreateTranslation(Vector3.Transform(StartingPoint, Data.TransformMatrix));
 
-                    Instance.Item.AddInstance(TransformationMatrix, true);
+                    Instance.Item.AddInstance(TransformationMatrix, true, this);
 
                     NumCreated++;
                 }

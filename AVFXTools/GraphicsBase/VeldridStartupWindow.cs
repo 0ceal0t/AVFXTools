@@ -9,6 +9,8 @@ using Veldrid.Sdl2;
 using Veldrid.StartupUtilities;
 using Veldrid.Utilities;
 
+using ImGuiNET;
+
 namespace AVFXTools.GraphicsBase
 {
     public class VeldridStartupWindow : ApplicationWindow
@@ -27,14 +29,16 @@ namespace AVFXTools.GraphicsBase
         public uint Width => (uint)_window.Width;
         public uint Height => (uint)_window.Height;
 
+        public ImGuiRenderer igr;
+
         public VeldridStartupWindow(string title)
         {
             WindowCreateInfo wci = new WindowCreateInfo
             {
                 X = 100,
                 Y = 100,
-                WindowWidth = 1280,
-                WindowHeight = 720,
+                WindowWidth = 2000,
+                WindowHeight = 1000,
                 WindowTitle = title,
             };
             _window = VeldridStartup.CreateWindow(ref wci);
@@ -59,6 +63,7 @@ namespace AVFXTools.GraphicsBase
 #endif
             _gd = VeldridStartup.CreateGraphicsDevice(_window, options, GraphicsBackend.OpenGL);
             _factory = new DisposeCollectorResourceFactory(_gd.ResourceFactory);
+            igr = new ImGuiRenderer(_gd, _gd.MainSwapchain.Framebuffer.OutputDescription, _window.Width, _window.Height, ColorSpaceHandling.Linear); // ============
             GraphicsDeviceCreated?.Invoke(_gd, _factory, _gd.MainSwapchain);
 
             Stopwatch sw = Stopwatch.StartNew();
@@ -70,15 +75,19 @@ namespace AVFXTools.GraphicsBase
                 float deltaSeconds = (float)(newElapsed - previousElapsed);
 
                 InputSnapshot inputSnapshot = _window.PumpEvents();
+                igr.Update(1f / 60f, inputSnapshot);
                 InputTracker.UpdateFrameInput(inputSnapshot);
-
                 if (_window.Exists)
                 {
+
                     previousElapsed = newElapsed;
                     if (_windowResized)
                     {
                         _windowResized = false;
                         _gd.ResizeMainWindow((uint)_window.Width, (uint)_window.Height);
+
+                        igr.WindowResized(_window.Width, _window.Height); // ===========
+
                         Resized?.Invoke();
                     }
 
