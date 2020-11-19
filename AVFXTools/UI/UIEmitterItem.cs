@@ -12,7 +12,6 @@ namespace AVFXTools.UI
 {
     public class UIEmitterItem
     {
-        public EmitterItem Item;
         public AVFXEmitterIterationItem Iteration;
         public bool IsParticle;
         //=============================
@@ -43,9 +42,8 @@ namespace AVFXTools.UI
         //==========================
         public UIEmitterDataBase Data;
 
-        public UIEmitterItem(EmitterItem item, AVFXEmitterIterationItem iteration, bool isParticle)
+        public UIEmitterItem(AVFXEmitterIterationItem iteration, bool isParticle)
         {
-            Item = item;
             Iteration = iteration;
             IsParticle = isParticle;
             //=========================

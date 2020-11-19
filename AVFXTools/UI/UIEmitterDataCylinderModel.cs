@@ -12,7 +12,6 @@ namespace AVFXTools.UI
     public class UIEmitterDataCylinderModel : UIEmitterDataBase
     {
         public AVFXEmitterDataCylinderModel Data;
-        public EmitterItem Item;
         //==========================
         public static readonly string[] RotationOrderOptions = Enum.GetNames(typeof(RotationOrder));
         public int RotationOrderIdx;
@@ -25,10 +24,9 @@ namespace AVFXTools.UI
         public UICurve InjectionSpeed;
         public UICurve Radius;
 
-        public UIEmitterDataCylinderModel(AVFXEmitterDataCylinderModel data, EmitterItem item)
+        public UIEmitterDataCylinderModel(AVFXEmitterDataCylinderModel data)
         {
             Data = data;
-            Item = item;
             //=======================
             RotationOrderIdx = Array.IndexOf(RotationOrderOptions, Data.RotationOrderType.Value);
             GenerateMethodIdx = Array.IndexOf(GenerateMethodOptions, Data.GenerateMethodType.Value);

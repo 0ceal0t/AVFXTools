@@ -69,13 +69,19 @@ namespace AVFXTools.Main
             ));
             Factory = factory;
             CL = factory.CreateCommandList();
-            refresh();
+            refreshGraphics();
+            refreshUI();
         }
 
-        public void refresh()
+
+        public void refreshGraphics()
         {
-            C = new Core(AVFX, Getter, Model, this, GraphicsDevice, Factory, CL, MainSwapchain, _camera);
-            UI = new ImgUIMain(C, Window.igr, GraphicsDevice, CL);
+            C = new Core(AVFX.clone(), Getter, Model, this, GraphicsDevice, Factory, CL, MainSwapchain, _camera);
+        }
+
+        public void refreshUI()
+        {
+            UI = new ImgUIMain(AVFX, this, Window.igr, GraphicsDevice, CL);
         }
 
         protected override void OnDeviceDestroyed()

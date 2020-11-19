@@ -12,7 +12,6 @@ namespace AVFXTools.UI
     public class UITexturePalette
     {
         public AVFXTexturePalette Tex;
-        public ParticleItem Item;
         public string Name;
         public bool Assigned;
         //============================
@@ -24,10 +23,9 @@ namespace AVFXTools.UI
         public static readonly string[] TextureBorderOptions = Enum.GetNames(typeof(TextureBorderType));
         public int TextureBorderIdx;
 
-        public UITexturePalette(AVFXTexturePalette tex, ParticleItem item)
+        public UITexturePalette(AVFXTexturePalette tex)
         {
             Tex = tex;
-            Item = item;
             if (!tex.Assigned) return;
             Assigned = true;
             //====================

@@ -12,7 +12,6 @@ namespace AVFXTools.UI
     public class UIEmitterDataSphereModel : UIEmitterDataBase
     {
         public AVFXEmitterDataSphereModel Data;
-        public EmitterItem Item;
         //==========================
         public static readonly string[] RotationOrderOptions = Enum.GetNames(typeof(RotationOrder));
         public int RotationOrderIdx;
@@ -23,10 +22,9 @@ namespace AVFXTools.UI
 
         public UICurve Radius;
 
-        public UIEmitterDataSphereModel(AVFXEmitterDataSphereModel data, EmitterItem item)
+        public UIEmitterDataSphereModel(AVFXEmitterDataSphereModel data)
         {
             Data = data;
-            Item = item;
             //=======================
             RotationOrderIdx = Array.IndexOf(RotationOrderOptions, Data.RotationOrderType.Value);
             GenerateMethodIdx = Array.IndexOf(GenerateMethodOptions, Data.GenerateMethodType.Value);

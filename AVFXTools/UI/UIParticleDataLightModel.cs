@@ -12,14 +12,12 @@ namespace AVFXTools.UI
     public class UIParticleDataLightModel : UIParticleDataBase
     {
         public AVFXParticleDataLightModel Data;
-        public ParticleItem Item;
         //==========================
         public int ModelIdx;
 
-        public UIParticleDataLightModel(AVFXParticleDataLightModel data, ParticleItem item)
+        public UIParticleDataLightModel(AVFXParticleDataLightModel data)
         {
             Data = data;
-            Item = item;
             //=======================
             ModelIdx = Data.ModelIdx.Value;
         }

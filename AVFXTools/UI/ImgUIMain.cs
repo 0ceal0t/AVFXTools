@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using AVFXLib.Models;
 using AVFXTools.Main;
 using ImGuiNET;
 using Veldrid;
@@ -12,7 +13,8 @@ namespace AVFXTools.UI
 {
     public class ImgUIMain
     {
-        public Core C;
+        public AVFXBase AVFX;
+        public MainViewer Main;
         public ImGuiRenderer I;
         public GraphicsDevice GD;
         public CommandList CL;
@@ -20,21 +22,25 @@ namespace AVFXTools.UI
         public List<UIParticle> Particles = new List<UIParticle>();
         public List<UIEmitter> Emitters = new List<UIEmitter>();
 
-        public ImgUIMain(Core core, ImGuiRenderer imgui, GraphicsDevice gd, CommandList cl)
+        public ImgUIControls Controls;
+
+        public ImgUIMain(AVFXBase avfx, MainViewer main, ImGuiRenderer imgui, GraphicsDevice gd, CommandList cl)
         {
-            C = core;
+            AVFX = avfx;
+            Main = main;
             I = imgui;
             GD = gd;
             CL = cl;
 
+            Controls = new ImgUIControls(this);
             ImGui.SetNextWindowPos(new Vector2(10, 10));
             ImGui.SetNextWindowSize(new Vector2(400, 600));
 
-            foreach(var particle in C.Particles)
+            foreach(var particle in AVFX.Particles)
             {
                 Particles.Add(new UIParticle(particle));
             }
-            foreach(var emitter in C.Emitters)
+            foreach(var emitter in AVFX.Emitters)
             {
                 Emitters.Add(new UIEmitter(emitter));
             }
@@ -42,6 +48,7 @@ namespace AVFXTools.UI
 
         public void Draw()
         {
+            Controls.Draw();
             // ================================
             ImGui.Begin("AVFX");
             if (ImGui.BeginTabBar("##MainTabs", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton | ImGuiTabBarFlags.TabListPopupButton)) {
@@ -92,7 +99,6 @@ namespace AVFXTools.UI
                 }
                 ImGui.EndTabBar();
             }
-
             I.Render(GD, CL);
         }
 

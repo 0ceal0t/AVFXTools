@@ -12,7 +12,6 @@ namespace AVFXTools.UI
     public class UITextureReflection
     {
         public AVFXTextureReflection Tex;
-        public ParticleItem Item;
         public bool Assigned;
         //============================
         public bool Enabled;
@@ -25,10 +24,9 @@ namespace AVFXTools.UI
         public int TextureCalculateColorIdx;
         public UICurve RPow;
 
-        public UITextureReflection(AVFXTextureReflection tex, ParticleItem item)
+        public UITextureReflection(AVFXTextureReflection tex)
         {
             Tex = tex;
-            Item = item;
             if (!tex.Assigned) return;
             Assigned = true;
             //====================

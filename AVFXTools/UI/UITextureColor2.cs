@@ -12,7 +12,6 @@ namespace AVFXTools.UI
     public class UITextureColor2
     {
         public AVFXTextureColor2 Tex;
-        public ParticleItem Item;
         public string Name;
         public bool Assigned;
         //============================
@@ -34,10 +33,9 @@ namespace AVFXTools.UI
         public static readonly string[] TextureCalculateAlphaOptions = Enum.GetNames(typeof(TextureCalculateAlpha));
         public int TextureCalculateAlphaIdx;
 
-        public UITextureColor2(AVFXTextureColor2 tex, ParticleItem item, string name)
+        public UITextureColor2(AVFXTextureColor2 tex, string name)
         {
             Tex = tex;
-            Item = item;
             if (!tex.Assigned) return;
             Assigned = true;
             Name = name;

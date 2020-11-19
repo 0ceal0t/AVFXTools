@@ -13,6 +13,7 @@ namespace AVFXTools
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
             //JObject obj = Reader.readJSON("D:\\FFXIV\\TOOLS\\DataPuller\\AVFXStudio\\test\\test.json");
@@ -46,14 +47,14 @@ namespace AVFXTools
 
             //var model = new WepModel(@"chara/weapon/w2201/obj/body/b0049/model/w2201b0049.mdl", getter); // tea
             //var model = new WepModel(@"chara/weapon/w2101/obj/body/b0006/model/w2101b0006.mdl", getter); // ucob
-            var model = new WepModel(@"chara/weapon/w1501/obj/body/b0050/model/w1501b0050.mdl", getter); // nid
-            //var model = new WepModel(@"chara/weapon/w1501/obj/body/b0036/model/w1501b0036.mdl", getter); // rav
+            //var model = new WepModel(@"chara/weapon/w1501/obj/body/b0050/model/w1501b0050.mdl", getter); // nid
+            var model = new WepModel(@"chara/weapon/w1501/obj/body/b0036/model/w1501b0036.mdl", getter); // rav
 
 
             //AVFXNode node = Reader.readAVFX(getter.GetData(@"chara/weapon/w2201/obj/body/b0049/vfx/eff/vw0001.avfx")); // tea
             //AVFXNode node = Reader.readAVFX(getter.GetData(@"chara/weapon/w2101/obj/body/b0006/vfx/eff/vw0002.avfx")); // ucob
-            AVFXNode node = Reader.readAVFX(getter.GetData(@"chara/weapon/w1501/obj/body/b0050/vfx/eff/vw0002.avfx")); // nid
-            //AVFXNode node = Reader.readAVFX(getter.GetData(@"chara/weapon/w1501/obj/body/b0036/vfx/eff/vw0002.avfx")); // rav
+            //AVFXNode node = Reader.readAVFX(getter.GetData(@"chara/weapon/w1501/obj/body/b0050/vfx/eff/vw0002.avfx")); // nid
+            AVFXNode node = Reader.readAVFX(getter.GetData(@"chara/weapon/w1501/obj/body/b0036/vfx/eff/vw0002.avfx")); // rav
 
             AVFXBase avfx2 = new AVFXBase();
             avfx2.read(node);

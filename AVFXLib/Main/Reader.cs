@@ -195,6 +195,10 @@ namespace AVFXLib.Main
                 }
                 // PAD
                 int pad = Util.RoundUp(Size) - Size;
+                //if(pad > 0)
+                //{
+                //    Console.WriteLine(DefName);
+                //}
                 reader.ReadBytes(pad);
 
                 // KEEP READING

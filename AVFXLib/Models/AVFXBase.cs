@@ -422,5 +422,13 @@ namespace AVFXLib.Models
                 Output(modelElem, level);
             }
         }
+
+        public AVFXBase clone()
+        {
+            AVFXNode node = toAVFX();
+            AVFXBase ret = new AVFXBase();
+            ret.read(node);
+            return ret;
+        }
     }
 }

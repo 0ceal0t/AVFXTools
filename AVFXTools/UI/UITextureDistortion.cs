@@ -12,7 +12,6 @@ namespace AVFXTools.UI
     public class UITextureDistortion
     {
         public AVFXTextureDistortion Tex;
-        public ParticleItem Item;
         public string Name;
         public bool Assigned;
         //============================
@@ -33,10 +32,9 @@ namespace AVFXTools.UI
 
         public UICurve DPow;
 
-        public UITextureDistortion(AVFXTextureDistortion tex, ParticleItem item)
+        public UITextureDistortion(AVFXTextureDistortion tex)
         {
             Tex = tex;
-            Item = item;
             if (!tex.Assigned) return;
             Assigned = true;
             //====================

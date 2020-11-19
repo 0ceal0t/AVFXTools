@@ -115,7 +115,7 @@ namespace AVFXTools.Main
                             SubItem.InfluenceCoordScale.Value,
                             SubItem.InfluenceCoordPos.Value,
                             SubItem.InfluenceCoordRot.Value
-                            ));
+                        ));
                     }
                 }
             }
@@ -157,14 +157,14 @@ namespace AVFXTools.Main
                     if (createEmitter.JustOneCreate && createEmitter.AlreadyCreated) continue;
                     createEmitter.AlreadyCreated = true;
 
-                    Item.C.AddEmitterInstance(createEmitter.Idx, CreateCount, GetData());
+                    Item.C.AddEmitterInstance(createEmitter.Idx, CreateCount, GetData(createEmitter, Age));
                 }
                 foreach (var createParticle in CreateParticles)
                 {
                     if (createParticle.JustOneCreate && createParticle.AlreadyCreated) continue;
                     createParticle.AlreadyCreated = true;
 
-                    Item.C.AddParticleInstance(createParticle.Idx, CreateCount, GetData());
+                    Item.C.AddParticleInstance(createParticle.Idx, CreateCount, GetData(createParticle, Age));
                 }
             }
         }
@@ -184,13 +184,13 @@ namespace AVFXTools.Main
             RotZ.Reset();
         }
 
-        public Matrix4x4 GetData(){ return GetData(Age); }
-        public Matrix4x4 GetData(float time)
+        public Matrix4x4 GetData(EmitterCreateStruct createData, float time) // where to start a new particle / emitter
         {
+            Vector3 Scale = createData.InfluenceCoordScale == 0? new Vector3(1,1,1) : createData.InfluenceCoordScale * new Vector3(ScaleX.GetValue(time), ScaleY.GetValue(time), ScaleZ.GetValue(time));
             // TODO: sphere / cylinder
             return PrevTransform * GUtil.TransformMatrix(
                 new Vector3(RotX.GetValue(time), RotY.GetValue(time), RotZ.GetValue(time)),
-                new Vector3(ScaleX.GetValue(time), ScaleY.GetValue(time), ScaleZ.GetValue(time)),
+                Scale,
                 new Vector3(PosX.GetValue(time), PosY.GetValue(time), PosZ.GetValue(time)),
                 _RotationOrder,
                 _CoordOrder

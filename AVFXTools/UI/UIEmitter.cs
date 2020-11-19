@@ -11,7 +11,6 @@ namespace AVFXTools.UI
 {
     public class UIEmitter
     {
-        public EmitterItem Item;
         public AVFXEmitter Emitter;
         //========================
         // TODO: sound
@@ -43,10 +42,9 @@ namespace AVFXTools.UI
         //========================
         public UIEmitterDataBase Data;
 
-        public UIEmitter(EmitterItem item)
+        public UIEmitter(AVFXEmitter emitter)
         {
-            Item = item;
-            Emitter = item.Emitter;
+            Emitter = emitter;
             //======================
             SoundNumber = Emitter.SoundNumber.Value;
             LoopStart = Emitter.LoopStart.Value;
@@ -57,7 +55,7 @@ namespace AVFXTools.UI
             RotationDirectionBaseIdx = Array.IndexOf(RotationDirectionBaseOptions, Emitter.RotationDirectionBase.Value);
             CoordComputeOrderIdx = Array.IndexOf(CoordComputeOrderOptions, Emitter.CoordComputeOrder.Value);
             RotationOrderIdx = Array.IndexOf(RotationOrderOptions, Emitter.RotationOrder.Value);
-            Life = new UILife(Item);
+            Life = new UILife(Emitter.Life);
             //========================
             CreateCount = new UICurve(Emitter.CreateCount, "Create Count");
             CreateInterval = new UICurve(Emitter.CreateInterval, "Create Interval");
@@ -73,7 +71,7 @@ namespace AVFXTools.UI
                 Particles = new UIEmitterItem[lastOne.Items.Count];
                 for(int i = 0; i < Particles.Length; i++)
                 {
-                    Particles[i] = new UIEmitterItem(Item, lastOne.Items[i], true);
+                    Particles[i] = new UIEmitterItem(lastOne.Items[i], true);
                 }
             }
             else { Particles = new UIEmitterItem[0]; }
@@ -84,7 +82,7 @@ namespace AVFXTools.UI
                 Emitters = new UIEmitterItem[lastOne.Items.Count];
                 for (int i = 0; i < Emitters.Length; i++)
                 {
-                    Emitters[i] = new UIEmitterItem(Item, lastOne.Items[i], false);
+                    Emitters[i] = new UIEmitterItem(lastOne.Items[i], false);
                 }
             }
             else { Emitters = new UIEmitterItem[0]; }
@@ -92,10 +90,10 @@ namespace AVFXTools.UI
             switch (Emitter.EmitterType.Value)
             {
                 case "SphereModel":
-                    Data = new UIEmitterDataSphereModel((AVFXEmitterDataSphereModel)Emitter.Data, Item);
+                    Data = new UIEmitterDataSphereModel((AVFXEmitterDataSphereModel)Emitter.Data);
                     break;
                 case "CylinderModel":
-                    Data = new UIEmitterDataCylinderModel((AVFXEmitterDataCylinderModel)Emitter.Data, Item);
+                    Data = new UIEmitterDataCylinderModel((AVFXEmitterDataCylinderModel)Emitter.Data);
                     break;
             }
         }

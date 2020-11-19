@@ -12,7 +12,6 @@ namespace AVFXTools.UI
     public class UIParticleDataModel : UIParticleDataBase
     {
         public AVFXParticleDataModel Data;
-        public ParticleItem Item;
         //==========================
         public int ModelNumberRandomValue;
         public static readonly string[] ModelNumberRandomTypeOptions = Enum.GetNames(typeof(RandomType));
@@ -33,10 +32,9 @@ namespace AVFXTools.UI
         public UICurveColor ColorBegin;
         public UICurveColor ColorEnd;
 
-        public UIParticleDataModel(AVFXParticleDataModel data, ParticleItem item)
+        public UIParticleDataModel(AVFXParticleDataModel data)
         {
             Data = data;
-            Item = item;
             //=======================
             ModelNumberRandomValue = Data.ModelNumberRandomValue.Value;
             ModelNumberRandomTypeIdx = Array.IndexOf(ModelNumberRandomTypeOptions, Data.ModelNumberRandomType.Value);

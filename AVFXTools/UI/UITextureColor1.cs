@@ -12,7 +12,6 @@ namespace AVFXTools.UI
     public class UITextureColor1
     {
         public AVFXTextureColor1 Tex;
-        public ParticleItem Item;
         //============================
         public bool Enabled;
         public bool ColorToAlpha;
@@ -32,10 +31,9 @@ namespace AVFXTools.UI
         public static readonly string[] TextureCalculateAlphaOptions = Enum.GetNames(typeof(TextureCalculateAlpha));
         public int TextureCalculateAlphaIdx;
 
-        public UITextureColor1(AVFXTextureColor1 tex, ParticleItem item)
+        public UITextureColor1(AVFXTextureColor1 tex)
         {
             Tex = tex;
-            Item = item;
             //====================
             Enabled = (Tex.Enabled.Value == true);
             ColorToAlpha = (Tex.ColorToAlpha.Value == true);

@@ -11,8 +11,6 @@ namespace AVFXTools.UI
 {
     public class UILife
     {
-        public EmitterItem Emitter;
-        public ParticleItem Particle;
         public AVFXLife Life;
         //====================
         public float Value;
@@ -20,20 +18,9 @@ namespace AVFXTools.UI
         public static readonly string[] RandomTypeOptions = Enum.GetNames(typeof(RandomType));
         public int RandomTypeIdx;
 
-        public UILife(ParticleItem particle)
+        public UILife(AVFXLife life)
         {
-            Particle = particle;
-            Life = particle.Particle.Life;
-            //==========================
-            Value = Life.Value.Value;
-            ValRandom = Life.ValRandom.Value;
-            RandomTypeIdx = Array.IndexOf(RandomTypeOptions, Life.ValRandomType.Value);
-        }
-
-        public UILife(EmitterItem emitter)
-        {
-            Emitter = emitter;
-            Life = emitter.Emitter.Life;
+            Life = life;
             //==========================
             Value = Life.Value.Value;
             ValRandom = Life.ValRandom.Value;

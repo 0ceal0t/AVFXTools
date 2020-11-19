@@ -12,17 +12,15 @@ namespace AVFXTools.UI
     public class UIParticleDataPowder: UIParticleDataBase
     {
         public AVFXParticleDataPowder Data;
-        public ParticleItem Item;
         //==========================
         public static readonly string[] DirectionLightTypeOptions = Enum.GetNames(typeof(DirectionalLightType));
         public int DirectionLightTypeIdx;
         public bool IsLightning;
         public float CenterOffset;
 
-        public UIParticleDataPowder(AVFXParticleDataPowder data, ParticleItem item)
+        public UIParticleDataPowder(AVFXParticleDataPowder data)
         {
             Data = data;
-            Item = item;
             //=======================
             DirectionLightTypeIdx = Array.IndexOf(DirectionLightTypeOptions, Data.DirectionalLightType.Value);
             IsLightning = (Data.IsLightning.Value == true);

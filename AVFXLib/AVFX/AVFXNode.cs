@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AVFXLib.Main;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +20,29 @@ namespace AVFXLib.AVFX
         {
             Name = n;
             Children = new List<AVFXNode>();
+        }
+
+        public virtual byte[] toBytes()
+        {
+            int totalSize = 0;
+            byte[][] byteArrays = new byte[Children.Count][];
+            for(int i = 0; i < Children.Count; i++)
+            {
+                byteArrays[i] = Children[i].toBytes();
+                totalSize += byteArrays[i].Length;
+            }
+            byte[] bytes = new byte[8 + Util.RoundUp(totalSize)];
+            byte[] name = Util.NameTo4Bytes(Name);
+            byte[] size = Util.IntTo4Bytes(totalSize);
+            Buffer.BlockCopy(name, 0, bytes, 0, 4);
+            Buffer.BlockCopy(size, 0, bytes, 4, 4);
+            int bytesSoFar = 8;
+            for(int i = 0; i < byteArrays.Length; i++)
+            {
+                Buffer.BlockCopy(byteArrays[i], 0, bytes, bytesSoFar, byteArrays[i].Length);
+                bytesSoFar += byteArrays[i].Length;
+            }
+            return bytes;
         }
 
         public virtual bool EqualsNode(AVFXNode node)

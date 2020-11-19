@@ -148,6 +148,17 @@ namespace AVFXLib.Main
             return 4 * (int)Math.Ceiling(v / 4.0);
         }
 
+        public static byte[] NameTo4Bytes(string name)
+        {
+            byte[] nameBytes = StringToBytes(name);
+            byte[] ret = new byte[] { 0, 0, 0, 0 };
+            for(int i = 0; i < nameBytes.Length; i++)
+            {
+                ret[i] = nameBytes[nameBytes.Length - i - 1];
+            }
+            return ret;
+        }
+
         public static byte[][] SplitBytes(byte[] bytes, int size)
         {
             int numElems = (int)Math.Floor((double)bytes.Length / size);

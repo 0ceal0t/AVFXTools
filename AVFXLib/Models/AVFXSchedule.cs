@@ -115,11 +115,11 @@ namespace AVFXLib.Models
 
             // Triggers
             //=======================//
-            /*foreach (AVFXScheduleTrigger triggerElem in Triggers)
+            foreach (AVFXScheduleTrigger triggerElem in Triggers)
             {
                 PutAVFX(schdAvfx, triggerElem);
-            }*/
-            if (Triggers.Count > 0)
+            }
+            /*if (Triggers.Count > 0)
             {
                 var lastTrigger = Triggers[Triggers.Count - 1];
                 var subItemCount = lastTrigger.SubItems.Count;
@@ -127,7 +127,7 @@ namespace AVFXLib.Models
                 {
                     schdAvfx.Children.Add(lastTrigger.toAVFXRange(i));
                 }
-            }
+            }*/
 
             return schdAvfx;
         }

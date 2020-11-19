@@ -37,7 +37,7 @@ namespace AVFXTools.Main
                 foreach(var subItem in lastItem.SubItems)
                 {
                     var emitterIdx = subItem.EmitterIdx.Value;
-                    if(emitterIdx != -1)
+                    if(emitterIdx != -1 && (subItem.Enabled.Value == true))
                     {
                         Items.Add(new TimelineSubItem(subItem.BinderIdx.Value, emitterIdx));
                     }

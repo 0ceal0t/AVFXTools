@@ -1,6 +1,7 @@
 ﻿using AVFXLib.Main;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,17 @@ namespace AVFXLib.AVFX
             Name = n;
             Size = s;
             Contents = c;
+        }
+
+        public override byte[] toBytes()
+        {
+            byte[] bytes = new byte[8 + Util.RoundUp(Size)];
+            byte[] name = Util.NameTo4Bytes(Name);
+            byte[] size = Util.IntTo4Bytes(Size);
+            Buffer.BlockCopy(name, 0, bytes, 0, 4);
+            Buffer.BlockCopy(size, 0, bytes, 4, 4);
+            Buffer.BlockCopy(Contents, 0, bytes, 8, Contents.Length);
+            return bytes;
         }
 
         public override bool EqualsNode(AVFXNode node)

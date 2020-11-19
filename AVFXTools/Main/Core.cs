@@ -13,6 +13,8 @@ namespace AVFXTools.Main
 {
     public class Core
     {
+        public AVFXBase B;
+
         public MainViewer Main;
         public GraphicsDevice GD;
         public ResourceFactory Factory;
@@ -30,6 +32,7 @@ namespace AVFXTools.Main
 
         public Core(AVFXBase avfx, ResourceGetter getter, WepModel model, MainViewer viewer, GraphicsDevice gd, ResourceFactory factory, CommandList cl, Swapchain swapChain, Camera camera)
         {
+            B = avfx;
             Main = viewer;
             GD = gd;
             Factory = factory;

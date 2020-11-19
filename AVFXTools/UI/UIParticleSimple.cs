@@ -13,7 +13,6 @@ namespace AVFXTools.UI
 {
     public class UIParticleSimple
     {
-        public ParticleItem Particle;
         public AVFXParticleSimple Simple;
         //====================
         public int InjectionPositionType;
@@ -64,12 +63,11 @@ namespace AVFXTools.UI
         public Vector4[] Colors;
         public int[] Frames;
 
-        public UIParticleSimple(ParticleItem particle)
+        public UIParticleSimple(AVFXParticleSimple simple)
         {
-            Particle = particle;
-            if (Particle.Particle.Simple.Assigned)
+            if (simple.Assigned)
             {
-                Simple = Particle.Particle.Simple;
+                Simple = simple;
                 //=======================
                 InjectionPositionType = Simple.InjectionPositionType.Value;
                 InjectionDirectionType = Simple.InjectionDirectionType.Value;

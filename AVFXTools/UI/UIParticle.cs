@@ -11,7 +11,6 @@ namespace AVFXTools.UI
 {
     public class UIParticle
     {
-        public ParticleItem Item;
         public AVFXParticle Particle;
         // =======================
         public int LoopStart;
@@ -79,10 +78,9 @@ namespace AVFXTools.UI
         public UITextureDistortion TD;
         public UITexturePalette TP;
 
-        public UIParticle(ParticleItem item)
+        public UIParticle(AVFXParticle particle)
         {
-            Item = item;
-            Particle = item.Particle;
+            Particle = particle;
             //==========================
             LoopStart = Particle.LoopStart.Value;
             LoopEnd = Particle.LoopEnd.Value;
@@ -116,8 +114,8 @@ namespace AVFXTools.UI
             DepthOffset = Particle.DepthOffset.Value;
             SimpleAnimEnable = (Particle.SimpleAnimEnable.Value == true);
             //==============================
-            Life = new UILife(item);
-            Simple = new UIParticleSimple(item);
+            Life = new UILife(Particle.Life);
+            Simple = new UIParticleSimple(Particle.Simple);
             Gravity = new UICurve(Particle.Gravity, "Gravity");
             AirResistance = new UICurve(Particle.AirResistance, "Air Resistance");
             Scale = new UICurve3Axis(Particle.Scale, "Scale");
@@ -128,31 +126,31 @@ namespace AVFXTools.UI
             UVSets = new UIParticleUVSet[Particle.UVSets.Count];
             for(int i = 0; i < UVSets.Length; i++)
             {
-                UVSets[i] = new UIParticleUVSet(Item, Particle.UVSets[i]);
+                UVSets[i] = new UIParticleUVSet(Particle.UVSets[i]);
             }
             //===============================
             switch (Particle.ParticleType.Value)
             {
                 case "Model":
-                    Data = new UIParticleDataModel((AVFXParticleDataModel)Particle.Data, Item);
+                    Data = new UIParticleDataModel((AVFXParticleDataModel)Particle.Data);
                     break;
                 case "LightModel":
-                    Data = new UIParticleDataLightModel((AVFXParticleDataLightModel)Particle.Data, Item);
+                    Data = new UIParticleDataLightModel((AVFXParticleDataLightModel)Particle.Data);
                     break;
                 case "Powder":
-                    Data = new UIParticleDataPowder((AVFXParticleDataPowder)Particle.Data, Item);
+                    Data = new UIParticleDataPowder((AVFXParticleDataPowder)Particle.Data);
                     break;
             }
             //============================
-            TC1 = new UITextureColor1(Particle.TC1, item);
-            TC2 = new UITextureColor2(Particle.TC2, item, "Texture Color 2");
-            TC3 = new UITextureColor2(Particle.TC3, item, "Texture Color 3");
-            TC4 = new UITextureColor2(Particle.TC4, item, "Texture Color 4");
+            TC1 = new UITextureColor1(Particle.TC1);
+            TC2 = new UITextureColor2(Particle.TC2, "Texture Color 2");
+            TC3 = new UITextureColor2(Particle.TC3, "Texture Color 3");
+            TC4 = new UITextureColor2(Particle.TC4, "Texture Color 4");
 
-            TN = new UITextureNormal(Particle.TN, item);
-            TR = new UITextureReflection(Particle.TR, item);
-            TD = new UITextureDistortion(Particle.TD, item);
-            TP = new UITexturePalette(Particle.TP, item);
+            TN = new UITextureNormal(Particle.TN);
+            TR = new UITextureReflection(Particle.TR);
+            TD = new UITextureDistortion(Particle.TD);
+            TP = new UITexturePalette(Particle.TP);
         }
 
         public void Draw(string id)

@@ -10,11 +10,13 @@ namespace AVFXTools.Main
 {
     public class BinderItem
     {
+        public AVFXBinder Binder;
         public Matrix4x4 BindMatrix = Matrix4x4.Identity;
         public Vector3 Pos;
 
         public BinderItem(AVFXBinder binder, WepModel model)
         {
+            Binder = binder;
             if(model == null)
             {
                 BindMatrix = Matrix4x4.Identity;

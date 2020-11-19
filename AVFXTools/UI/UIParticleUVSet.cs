@@ -11,7 +11,6 @@ namespace AVFXTools.UI
 {
     public class UIParticleUVSet
     {
-        public ParticleItem Item;
         public AVFXParticleUVSet UVSet;
         //=======================
         public static readonly string[] CalculateUVOptions = Enum.GetNames(typeof(TextureCalculateUV));
@@ -21,9 +20,8 @@ namespace AVFXTools.UI
         public UICurve Rot;
         public UICurve RotRandom;
 
-        public UIParticleUVSet(ParticleItem item, AVFXParticleUVSet uvSet)
+        public UIParticleUVSet(AVFXParticleUVSet uvSet)
         {
-            Item = item;
             UVSet = uvSet;
             //=================
             CalculateUVIdx = Array.IndexOf(CalculateUVOptions, UVSet.CalculateUVType.Value);

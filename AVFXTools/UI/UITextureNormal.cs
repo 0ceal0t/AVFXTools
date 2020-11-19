@@ -12,7 +12,6 @@ namespace AVFXTools.UI
     public class UITextureNormal
     {
         public AVFXTextureNormal Tex;
-        public ParticleItem Item;
         public string Name;
         public bool Assigned;
         //============================
@@ -29,10 +28,9 @@ namespace AVFXTools.UI
 
         public UICurve NPow;
 
-        public UITextureNormal(AVFXTextureNormal tex, ParticleItem item)
+        public UITextureNormal(AVFXTextureNormal tex)
         {
             Tex = tex;
-            Item = item;
             if (!tex.Assigned) return;
             Assigned = true;
             //====================
