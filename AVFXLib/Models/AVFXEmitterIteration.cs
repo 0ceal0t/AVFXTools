@@ -70,6 +70,17 @@ namespace AVFXLib.Models
             return ItPr;
         }
 
+        public virtual AVFXNode toAVFXRange(int num) // use this to get a range of a specific element
+        {
+            AVFXNode ItPr = new AVFXNode("ItPr");
+            for(int i = 0; i < num; i++)
+            {
+                var Item = Items[i];
+                ItPr.Children.AddRange(Item.toAVFX().Children);
+            }
+            return ItPr;
+        }
+
         public override void Print(int level)
         {
             Console.WriteLine("{0}------- ItPr --------", new String('\t', level));

@@ -23,6 +23,13 @@ namespace AVFXLib.Models
             return res;
         }
 
+        public override AVFXNode toAVFXRange(int num)
+        {
+            AVFXNode res = base.toAVFXRange(num);
+            res.Name = NAME;
+            return res;
+        }
+
         public override void Print(int level)
         {
             Console.WriteLine("{0}------- ItEm --------", new String('\t', level));

@@ -115,9 +115,18 @@ namespace AVFXLib.Models
 
             // Items
             //=======================//
-            foreach (AVFXTimelineItem itemElem in Items)
+            /*foreach (AVFXTimelineItem itemElem in Items)
             {
                 PutAVFX(tmlnAvfx, itemElem);
+            }*/
+            if (Items.Count > 0)
+            {
+                var lastItem = Items[Items.Count - 1];
+                var subItemCount = lastItem.SubItems.Count;
+                for (int i = 1; i <= subItemCount; i++)
+                {
+                    tmlnAvfx.Children.Add(lastItem.toAVFXRange(i));
+                }
             }
 
             // Clips

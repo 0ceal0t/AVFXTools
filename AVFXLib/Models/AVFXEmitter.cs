@@ -167,6 +167,7 @@ namespace AVFXLib.Models
 
             PutAVFX(emitAvfx, Attributes);
 
+            /*
             // ITEM
             //=======================//
             foreach (AVFXEmitterItem itemElem in ItEms)
@@ -179,6 +180,26 @@ namespace AVFXLib.Models
             foreach (AVFXEmitterIteration itprElem in ItPrs)
             {
                 PutAVFX(emitAvfx, itprElem);
+            }*/
+
+            if(ItEms.Count > 0) // only care about the last one, since the others should all be determined by it
+            {
+                var lastItEm = ItEms[ItEms.Count - 1];
+                var subItemCount = lastItEm.Items.Count;
+                for(int i = 1; i <= subItemCount; i++)
+                {
+                    emitAvfx.Children.Add(lastItEm.toAVFXRange(i));
+                }
+            }
+
+            if (ItPrs.Count > 0)
+            {
+                var lastItPr = ItPrs[ItPrs.Count - 1];
+                var subItemCount = lastItPr.Items.Count;
+                for (int i = 1; i <= subItemCount; i++)
+                {
+                    emitAvfx.Children.Add(lastItPr.toAVFXRange(i));
+                }
             }
 
             PutAVFX(emitAvfx, Data);

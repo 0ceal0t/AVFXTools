@@ -30,6 +30,16 @@ namespace AVFXTools.UI
             RandomTypeIdx = Array.IndexOf(RandomTypeOptions, Life.ValRandomType.Value);
         }
 
+        public UILife(EmitterItem emitter)
+        {
+            Emitter = emitter;
+            Life = emitter.Emitter.Life;
+            //==========================
+            Value = Life.Value.Value;
+            ValRandom = Life.ValRandom.Value;
+            RandomTypeIdx = Array.IndexOf(RandomTypeOptions, Life.ValRandomType.Value);
+        }
+
         public void Draw(string id)
         {
             if (ImGui.TreeNode("Life" + id))

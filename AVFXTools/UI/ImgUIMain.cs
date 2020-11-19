@@ -18,6 +18,7 @@ namespace AVFXTools.UI
         public CommandList CL;
 
         public List<UIParticle> Particles = new List<UIParticle>();
+        public List<UIEmitter> Emitters = new List<UIEmitter>();
 
         public ImgUIMain(Core core, ImGuiRenderer imgui, GraphicsDevice gd, CommandList cl)
         {
@@ -33,10 +34,15 @@ namespace AVFXTools.UI
             {
                 Particles.Add(new UIParticle(particle));
             }
+            foreach(var emitter in C.Emitters)
+            {
+                Emitters.Add(new UIEmitter(emitter));
+            }
         }
 
-        public void Draw() // https://github.com/ocornut/imgui/blob/master/imgui_demo.cpp
+        public void Draw()
         {
+            // ================================
             ImGui.Begin("AVFX");
             if (ImGui.BeginTabBar("##MainTabs", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton | ImGuiTabBarFlags.TabListPopupButton)) {
                 if (ImGui.BeginTabItem("Parameters"))
@@ -93,8 +99,19 @@ namespace AVFXTools.UI
         public void DrawParameters() { }
         public void DrawScheduler() { }
         public void DrawTimelines() { }
-        public void DrawEmitters() { }
 
+        // ====== EMITTERS ========
+        public void DrawEmitters() {
+            int idx = 0;
+            foreach (var emitter in Emitters)
+            {
+                if (ImGui.CollapsingHeader("Emitter #" + idx + "(" + emitter.Emitter.EmitterType.Value + ")"))
+                {
+                    emitter.Draw("##emitter-" + idx);
+                }
+                idx++;
+            }
+        }
         // ====== PARTICLES ===========
         public void DrawParticles() {
             int idx = 0;

@@ -82,10 +82,20 @@ namespace AVFXLib.Models
             {
                 itemAvfx.Children.AddRange(Item.toAVFX().Children); // flatten
             }
-
-            PutAVFX(itemAvfx, Attributes);
             return itemAvfx;
         }
+
+        public AVFXNode toAVFXRange(int num) // use this to get a range of a specific element
+        {
+            AVFXNode itemAvfx = new AVFXNode("Item");
+            for (int i = 0; i < num; i++)
+            {
+                var Item = SubItems[i];
+                itemAvfx.Children.AddRange(Item.toAVFX().Children);
+            }
+            return itemAvfx;
+        }
+
 
         public override void Print(int level)
         {

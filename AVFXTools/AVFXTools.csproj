@@ -324,10 +324,16 @@
     </Compile>
     <Compile Include="FFXIV\Skeleton.cs" />
     <Compile Include="UI\ImgUIMain.cs" />
+    <Compile Include="UI\ImgUITheme.cs" />
     <Compile Include="UI\UICurve.cs" />
     <Compile Include="UI\UICurve2Axis.cs" />
     <Compile Include="UI\UICurve3Axis.cs" />
     <Compile Include="UI\UICurveColor.cs" />
+    <Compile Include="UI\UIEmitter.cs" />
+    <Compile Include="UI\UIEmitterDataBase.cs" />
+    <Compile Include="UI\UIEmitterDataCylinderModel.cs" />
+    <Compile Include="UI\UIEmitterDataSphereModel.cs" />
+    <Compile Include="UI\UIEmitterItem.cs" />
     <Compile Include="UI\UILife.cs" />
     <Compile Include="UI\UIParticle.cs" />
     <Compile Include="UI\UIParticleDataBase.cs" />

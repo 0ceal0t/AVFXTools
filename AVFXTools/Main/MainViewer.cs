@@ -32,6 +32,7 @@ namespace AVFXTools.Main
 
         public CommandList CL;
         public ResourceSet ProjViewWorldSet;
+        public ResourceFactory Factory;
 
         public AVFXBase AVFX;
         public ResourceGetter Getter;
@@ -66,9 +67,14 @@ namespace AVFXTools.Main
                 ViewBuffer,
                 WorldBuffer
             ));
-
+            Factory = factory;
             CL = factory.CreateCommandList();
-            C = new Core(AVFX, Getter, Model, this, GraphicsDevice, factory, CL, MainSwapchain, _camera);
+            refresh();
+        }
+
+        public void refresh()
+        {
+            C = new Core(AVFX, Getter, Model, this, GraphicsDevice, Factory, CL, MainSwapchain, _camera);
             UI = new ImgUIMain(C, Window.igr, GraphicsDevice, CL);
         }
 
@@ -100,10 +106,12 @@ namespace AVFXTools.Main
             CL.ClearColorTarget(0, new RgbaFloat(0.3f, 0.3f, 0.3f, 1.0f));
             CL.ClearDepthStencil(1f);
 
-            C.Update(deltaSeconds);
-            C.Draw();
-
-            UI.Draw();
+            if (C != null)
+            {
+                C.Update(deltaSeconds);
+                C.Draw();
+                UI.Draw();
+            }
 
             CL.End();
             GraphicsDevice.SubmitCommands(CL);
