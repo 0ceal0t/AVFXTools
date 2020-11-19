@@ -15,6 +15,11 @@ namespace AVFXTools.Main
 
         public BinderItem(AVFXBinder binder, WepModel model)
         {
+            if(model == null)
+            {
+                BindMatrix = Matrix4x4.Identity;
+                return;
+            }
             if (binder.Prop.Assigned) // has property data
             {
                 var bindPoint = binder.Prop.BindPointId;

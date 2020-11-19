@@ -38,7 +38,10 @@ namespace AVFXTools.Main
             Cam = camera;
             // ==================
             Tex = new Textures(avfx.Textures, getter, this);
-            Wep = new WepModelItem(model, this);
+            if (model != null)
+            {
+                Wep = new WepModelItem(model, this);
+            }
             Binders = BinderItem.GetArray(avfx.Binders, model);
             Models = ModelItem.GetArray(avfx.Models);
             Particles = ParticleItem.GetArray(avfx.Particles, this);
@@ -77,7 +80,10 @@ namespace AVFXTools.Main
 
         public void Draw()
         {
-            Wep.Draw();
+            if (Wep != null)
+            {
+                Wep.Draw();
+            }
             foreach(ParticleItem p in Particles)
             {
                 p.Draw();
