@@ -18,7 +18,9 @@ namespace AVFXTools.UI
         public ImgUIMain Main;
         //=============
         public bool AVFXFromGameDialog = false;
-        public static uint INPUT_SIZE = 40;
+        public bool MDLFromGameDialog = false;
+
+        public static uint INPUT_SIZE = 80;
         public byte[] avfxPathBytes = new byte[INPUT_SIZE];
         public byte[] mdlPathBytes = new byte[INPUT_SIZE];
         public bool AlwaysOpen = true;
@@ -88,6 +90,7 @@ namespace AVFXTools.UI
                 {
                     if (ImGui.MenuItem("Open Model From Game", null))
                     {
+                        MDLFromGameDialog = true;
                     }
                     ImGui.EndMenu();
                 }
@@ -102,9 +105,33 @@ namespace AVFXTools.UI
             
             if (ImGui.BeginPopupModal("Game AVFX", ref AVFXFromGameDialog))
             {
-                if (ImGui.InputText("AVFX Path", avfxPathBytes, INPUT_SIZE))
+                ImGui.InputText("AVFX Path", avfxPathBytes, INPUT_SIZE);
+                if (ImGui.Button("OK##AVFX path"))
                 {
+                    string str = Util.BytesToString(avfxPathBytes).Trim('\0');
+                    AVFXFromGameDialog = false;
+                    Main.Main.OpenGameAVFX(str);
+                    Main.Main.refreshGraphics();
+                    Main.Main.refreshUI();
+                }
+                ImGui.EndPopup();
+            }
+            //=========================
+            ImGui.SetNextWindowSize(new Vector2(600, 200));
+            if (MDLFromGameDialog)
+            {
+                ImGui.OpenPopup("Game MDL");
+            }
 
+            if (ImGui.BeginPopupModal("Game MDL", ref MDLFromGameDialog))
+            {
+                ImGui.InputText("MDL Path", mdlPathBytes, INPUT_SIZE);
+                if (ImGui.Button("OK##MDL path"))
+                {
+                    string str = Util.BytesToString(mdlPathBytes).Trim('\0');
+                    AVFXFromGameDialog = false;
+                    Main.Main.OpenGameMdl(str);
+                    Main.Main.refreshGraphics();
                 }
                 ImGui.EndPopup();
             }

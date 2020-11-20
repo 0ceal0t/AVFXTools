@@ -68,19 +68,26 @@ namespace AVFXTools.GraphicsBase
 
             Stopwatch sw = Stopwatch.StartNew();
             double previousElapsed = sw.Elapsed.TotalSeconds;
+            float frameRateSeconds = 1.0f / 60.0f;
 
             while (_window.Exists)
             {
                 double newElapsed = sw.Elapsed.TotalSeconds;
                 float deltaSeconds = (float)(newElapsed - previousElapsed);
 
+                while(deltaSeconds < frameRateSeconds)
+                {
+                    newElapsed = sw.Elapsed.TotalSeconds;
+                    deltaSeconds = (float)(newElapsed - previousElapsed);
+                }
+
                 InputSnapshot inputSnapshot = _window.PumpEvents();
-                igr.Update(1f / 60f, inputSnapshot);
+                igr.Update(deltaSeconds, inputSnapshot);
                 InputTracker.UpdateFrameInput(inputSnapshot);
                 if (_window.Exists)
                 {
-
                     previousElapsed = newElapsed;
+
                     if (_windowResized)
                     {
                         _windowResized = false;

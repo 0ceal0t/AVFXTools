@@ -81,7 +81,6 @@ Here be dragons
 - [ ] How does emitter movement interact with particle movement? are they bound?
 - [ ] injection axis
 - [ ] sound?
-- [ ] 
 ### Effector Graphics
 - [ ] wut.
 - [ ] pointlight

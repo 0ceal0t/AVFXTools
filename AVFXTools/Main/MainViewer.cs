@@ -15,6 +15,8 @@ using AVFXTools.GraphicsBase;
 using AVFXLib.Models;
 using AVFXTools.FFXIV;
 using AVFXTools.UI;
+using AVFXLib.Main;
+using AVFXLib.AVFX;
 
 namespace AVFXTools.Main
 {
@@ -76,12 +78,44 @@ namespace AVFXTools.Main
 
         public void refreshGraphics()
         {
-            C = new Core(AVFX.clone(), Getter, Model, this, GraphicsDevice, Factory, CL, MainSwapchain, _camera);
+            if (AVFX != null)
+            {
+                C = new Core(AVFX.clone(), Getter, Model, this, GraphicsDevice, Factory, CL, MainSwapchain, _camera);
+            }
         }
 
         public void refreshUI()
         {
-            UI = new ImgUIMain(AVFX, this, Window.igr, GraphicsDevice, CL);
+            if (AVFX != null)
+            {
+                UI = new ImgUIMain(AVFX, this, Window.igr, GraphicsDevice, CL);
+            }
+        }
+
+        public void OpenLocalAVFX(string path)
+        {
+            AVFXNode node = Reader.readAVFX(path);
+            AVFX = new AVFXBase();
+            AVFX.read(node);
+        }
+
+        public void OpenGameAVFX(string path)
+        {
+            AVFXNode node = Reader.readAVFX(Getter.GetData(path));
+            AVFX = new AVFXBase();
+            AVFX.read(node);
+        }
+
+        public void clearAll()
+        {
+            AVFX = null;
+            C = null;
+            UI = null;
+        }
+
+        public void OpenGameMdl(string path)
+        {
+            Model = new WepModel(path, Getter);
         }
 
         protected override void OnDeviceDestroyed()
