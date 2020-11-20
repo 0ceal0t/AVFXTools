@@ -8,18 +8,17 @@ using System.Threading.Tasks;
 
 namespace AVFXTools.Main
 {
-    public class BinderItem
+    public class BinderItem : GenericInstance
     {
         public AVFXBinder Binder;
-        public Matrix4x4 BindMatrix = Matrix4x4.Identity;
         public Vector3 Pos;
 
         public BinderItem(AVFXBinder binder, WepModel model)
         {
             Binder = binder;
-            if(model == null)
+            CurrentTransform = Matrix4x4.Identity;
+            if (model == null)
             {
-                BindMatrix = Matrix4x4.Identity;
                 return;
             }
             if (binder.Prop.Assigned) // has property data
@@ -29,7 +28,7 @@ namespace AVFXTools.Main
                 {
                     var modelBind = model.BindPoints[bindPoint.Value];
                     Pos = modelBind.Point1;
-                    BindMatrix = Matrix4x4.CreateTranslation(Pos);
+                    CurrentTransform = Matrix4x4.CreateTranslation(Pos);
                 }
             }
         }

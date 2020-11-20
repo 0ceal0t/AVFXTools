@@ -31,11 +31,11 @@ namespace AVFXTools.UI
         {
             if (ImGui.TreeNode("Life" + id))
             {
-                if (ImGui.DragFloat("Value" + id, ref Value, 1, -1))
+                if (ImGui.DragFloat("Value" + id, ref Value))
                 {
                     Life.Value.GiveValue(Value);
                 }
-                if (ImGui.DragFloat("Random Value" + id, ref ValRandom, 1, 0))
+                if (ImGui.DragFloat("Random Value" + id, ref ValRandom))
                 {
                     Life.ValRandom.GiveValue(ValRandom);
                 }

@@ -21,7 +21,7 @@ namespace AVFXTools.Main
         public ushort[] Indexes;
         public ParticlePipeline Pipe;
         public int InstanceNum = 0;
-        public ParticleInstanceBase[] Instances;
+        public ParticleInstance[] Instances;
 
         public ParticleItem(AVFXParticle particle, Core core, int pIdx)
         {
@@ -55,24 +55,26 @@ namespace AVFXTools.Main
                     return;
             }
             DoDraw = true;
-            InstanceNum = 10;
-            Instances = new ParticleInstanceBase[InstanceNum];
+            InstanceNum = 20;
+            Instances = new ParticleInstance[InstanceNum];
             Pipe = new ParticlePipeline(particle, this, core);
         }
 
         public void AddInstance(
-            Matrix4x4 startTransform,
-            bool powder = false,
-            ParticleInstancePowderSpawner spawner = null
+            GenericInstance parent, Matrix4x4 startTransform, EmitterCreateStruct createData,
+            bool powder = false, ParticleInstancePowderSpawner spawner = null
         ) {
-            AddInstance(startTransform, 1, powder:powder, spawner:spawner);
+            AddInstance(
+                parent, startTransform, createData,
+                1,
+                powder:powder, spawner:spawner
+           );
         }
 
         public void AddInstance(
-            Matrix4x4 startTransform,
+            GenericInstance parent, Matrix4x4 startTransform, EmitterCreateStruct createData,
             int num,
-            bool powder = false,
-            ParticleInstancePowderSpawner spawner = null
+            bool powder = false, ParticleInstancePowderSpawner spawner = null
         )
         {
             if (!DoDraw) return;
@@ -86,12 +88,12 @@ namespace AVFXTools.Main
                 {
                     if (!powder)
                     {
-                        Instances[instanceIdx] = new ParticleInstance(Particle, this, startTransform);
+                        Instances[instanceIdx] = new ParticleInstanceModel(Particle, this, parent, startTransform, createData);
                     }
                     else
                     {
                         // powder instance
-                        Instances[instanceIdx] = new ParticleInstancePowderInstance(Particle, this, startTransform, spawner);
+                        Instances[instanceIdx] = new ParticleInstancePowderInstance(Particle, this, parent, startTransform, createData, spawner);
                     }
                     NumToAdd--;
                 }

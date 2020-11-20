@@ -157,11 +157,11 @@ namespace AVFXTools.UI
         {
             if (ImGui.TreeNode("Parameters" + id))
             {
-                if (ImGui.DragInt("Loop Start" + id, ref LoopStart, 1, 0))
+                if (ImGui.InputInt("Loop Start" + id, ref LoopStart))
                 {
                     Particle.LoopStart.GiveValue(LoopStart);
                 }
-                if (ImGui.DragInt("Loop End" + id, ref LoopEnd, 1, 0))
+                if (ImGui.InputInt("Loop End" + id, ref LoopEnd))
                 {
                     Particle.LoopEnd.GiveValue(LoopEnd);
                 }
@@ -197,7 +197,7 @@ namespace AVFXTools.UI
                 {
                     Particle.UvPrecision.GiveValue(UVPrecisionOptions[UVPrecisionIdx]);
                 }
-                if (ImGui.DragInt("Draw Priority" + id, ref DrawPriority, 1, 0))
+                if (ImGui.InputInt("Draw Priority" + id, ref DrawPriority))
                 {
                     Particle.DrawPriority.GiveValue(DrawPriority);
                 }
@@ -213,7 +213,7 @@ namespace AVFXTools.UI
                 {
                     Particle.IsSoftParticle.GiveValue(IsSoftParticle);
                 }
-                if (ImGui.DragInt("Collision Type" + id, ref CollisionType, 1, -1))
+                if (ImGui.InputInt("Collision Type" + id, ref CollisionType))
                 {
                     Particle.CollisionType.GiveValue(CollisionType);
                 }
@@ -237,19 +237,19 @@ namespace AVFXTools.UI
                 {
                     Particle.ClipFarEnable.GiveValue(ClipFarEnable);
                 }
-                if (ImGui.DragFloat("Clip Near Start" + id, ref ClipNearStart, 1, 0))
+                if (ImGui.InputFloat("Clip Near Start" + id, ref ClipNearStart))
                 {
                     Particle.ClipNearStart.GiveValue(ClipNearStart);
                 }
-                if (ImGui.DragFloat("Clip Near End" + id, ref ClipNearEnd, 1, 0))
+                if (ImGui.InputFloat("Clip Near End" + id, ref ClipNearEnd))
                 {
                     Particle.ClipNearEnd.GiveValue(ClipNearEnd);
                 }
-                if (ImGui.DragFloat("Clip Far Start" + id, ref ClipFarStart, 1, 0))
+                if (ImGui.InputFloat("Clip Far Start" + id, ref ClipFarStart))
                 {
                     Particle.ClipFarStart.GiveValue(ClipFarStart);
                 }
-                if (ImGui.DragFloat("Clip Far End" + id, ref ClipFarEnd, 1, 0))
+                if (ImGui.InputFloat("Clip Far End" + id, ref ClipFarEnd))
                 {
                     Particle.ClipFarEnd.GiveValue(ClipFarEnd);
                 }
@@ -257,15 +257,15 @@ namespace AVFXTools.UI
                 {
                     Particle.ClipBasePoint.GiveValue(ClipBasePointOptions[ClipBasePointIdx]);
                 }
-                if (ImGui.DragInt("Apply Rate Environment" + id, ref ApplyRateEnvironment, 1, 0))
+                if (ImGui.InputInt("Apply Rate Environment" + id, ref ApplyRateEnvironment))
                 {
                     Particle.ApplyRateEnvironment.GiveValue(ApplyRateEnvironment);
                 }
-                if (ImGui.DragInt("Apply Rate Directional" + id, ref ApplyRateDirectional, 1, 0))
+                if (ImGui.InputInt("Apply Rate Directional" + id, ref ApplyRateDirectional))
                 {
                     Particle.ApplyRateDirectional.GiveValue(ApplyRateDirectional);
                 }
-                if (ImGui.DragInt("Apply Rate Light Buffer" + id, ref ApplyRateLightBuffer, 1, 0))
+                if (ImGui.InputInt("Apply Rate Light Buffer" + id, ref ApplyRateLightBuffer))
                 {
                     Particle.ApplyRateLightBuffer.GiveValue(ApplyRateLightBuffer);
                 }
@@ -273,7 +273,7 @@ namespace AVFXTools.UI
                 {
                     Particle.DOTy.GiveValue(DOTy);
                 }
-                if (ImGui.DragFloat("Depth Offset" + id, ref DepthOffset, 1, 0))
+                if (ImGui.InputFloat("Depth Offset" + id, ref DepthOffset))
                 {
                     Particle.DepthOffset.GiveValue(DepthOffset);
                 }

@@ -10,41 +10,43 @@ namespace AVFXTools.Main
 {
     public class EmitterCreateStruct
     {
-
-        /*
-        * timed emitter -> -1 particle, just once
-        * -1 emitter -> -1 particle, just once
-        * -1 emitter -> timed particle, repeat
-        * timed emitter -> timed particle, repeat
-        */
-
         public int Idx;
         public bool JustOneCreate;
         public bool AlreadyCreated;
 
-        public int InfluenceCoordScale;
-        public int InfluenceCoordPos;
-        public int InfluenceCoordRot;
+        public bool InfluenceCoordScale;
+        public bool InfluenceCoordPos;
+        public bool InfluenceCoordRot;
 
-        public EmitterCreateStruct(int idx, bool justOne, int influenceC_Scale, int influenceC_Pos, int influenceC_Rot)
+        public EmitterCreateStruct(int idx, bool justOne, AVFXEmitterIterationItem subItem)
         {
             Idx = idx;
             JustOneCreate = justOne;
             AlreadyCreated = false;
 
-            InfluenceCoordScale = influenceC_Scale;
-            InfluenceCoordRot = influenceC_Rot;
-            InfluenceCoordPos = influenceC_Pos;
+            InfluenceCoordPos = (subItem.InfluenceCoordPos.Value == 1);
+            InfluenceCoordScale = (subItem.InfluenceCoordScale.Value == 1);
+            InfluenceCoordRot = (subItem.InfluenceCoordRot.Value == 1);
+        }
+
+        public EmitterCreateStruct(int idx, bool justOne, bool pos, bool scale, bool rot)
+        {
+            Idx = idx;
+            JustOneCreate = justOne;
+            AlreadyCreated = false;
+
+            InfluenceCoordPos = pos;
+            InfluenceCoordRot = rot;
+            InfluenceCoordScale = scale;
         }
     }
 
-    public class EmitterInstance
+    public class EmitterInstance : GenericInstance
     {
         public float Age;
         public float Life;
         public bool Dead = false;
         public EmitterItem Item;
-        public Matrix4x4 PrevTransform;
 
         public float TimeUntilCreate = 0.0f;
         public float CreateInterval;
@@ -66,15 +68,27 @@ namespace AVFXTools.Main
         public CurveRandomGroup ScaleY;
         public CurveRandomGroup ScaleZ;
 
-        public EmitterInstance(AVFXEmitter emitter, EmitterItem item, Matrix4x4 prevTransform)
+        public EmitterInstance(
+            AVFXEmitter emitter,
+            EmitterItem item,
+            GenericInstance parent,
+            Matrix4x4 startTransform,
+            EmitterCreateStruct createData
+        )
         {
-            PrevTransform = prevTransform;
             Age = 0.0f;
             Life = emitter.Life.Value.Value;
             Item = item;
 
+            Parent = parent;
+            StartTransform = startTransform;
+            CreateData = createData;
+            CurrentTransform = Matrix4x4.Identity;
+            // =======================
+
             CreateCount = (int)emitter.CreateCount.Keys[0].Z;
             CreateInterval = emitter.CreateInterval.Keys[0].Z;
+
             // WHICH PARTICLES TO CREATE? ===========
             if(emitter.ItPrs.Count > 0)
             {
@@ -90,9 +104,7 @@ namespace AVFXTools.Main
                         CreateParticles.Add(new EmitterCreateStruct(
                             targetIdx,
                             targetLife == -1,
-                            SubItem.InfluenceCoordScale.Value,
-                            SubItem.InfluenceCoordPos.Value,
-                            SubItem.InfluenceCoordRot.Value
+                            SubItem
                             ));
                     }
                 }
@@ -112,9 +124,7 @@ namespace AVFXTools.Main
                         CreateEmitters.Add(new EmitterCreateStruct(
                             targetIdx,
                             targetLife == -1,
-                            SubItem.InfluenceCoordScale.Value,
-                            SubItem.InfluenceCoordPos.Value,
-                            SubItem.InfluenceCoordRot.Value
+                            SubItem
                         ));
                     }
                 }
@@ -147,6 +157,7 @@ namespace AVFXTools.Main
                 Age = 0;
                 Reset(); // TEMP? need to figure out how timed emitters are created
             }
+            CurrentTransform = GetCurrentTransform() * GetMatrix(Age);
             // ===== TIME TO CREATE? =====
             TimeUntilCreate -= dT;
             if(TimeUntilCreate < 0 && !Dead)
@@ -157,14 +168,14 @@ namespace AVFXTools.Main
                     if (createEmitter.JustOneCreate && createEmitter.AlreadyCreated) continue;
                     createEmitter.AlreadyCreated = true;
 
-                    Item.C.AddEmitterInstance(createEmitter.Idx, CreateCount, GetData(createEmitter, Age));
+                    Item.C.AddEmitterInstance(createEmitter.Idx, this, Matrix4x4.Identity, createEmitter); // TODO: generate point better here
                 }
                 foreach (var createParticle in CreateParticles)
                 {
                     if (createParticle.JustOneCreate && createParticle.AlreadyCreated) continue;
                     createParticle.AlreadyCreated = true;
 
-                    Item.C.AddParticleInstance(createParticle.Idx, CreateCount, GetData(createParticle, Age));
+                    Item.C.AddParticleInstance(createParticle.Idx, this, Matrix4x4.Identity, createParticle, num: CreateCount); // TODO: generate point better here
                 }
             }
         }
@@ -184,13 +195,11 @@ namespace AVFXTools.Main
             RotZ.Reset();
         }
 
-        public Matrix4x4 GetData(EmitterCreateStruct createData, float time) // where to start a new particle / emitter
+        public Matrix4x4 GetMatrix(float time)
         {
-            Vector3 Scale = createData.InfluenceCoordScale == 0? new Vector3(1,1,1) : createData.InfluenceCoordScale * new Vector3(ScaleX.GetValue(time), ScaleY.GetValue(time), ScaleZ.GetValue(time));
-            // TODO: sphere / cylinder
-            return PrevTransform * GUtil.TransformMatrix(
+            return GUtil.TransformMatrix(
                 new Vector3(RotX.GetValue(time), RotY.GetValue(time), RotZ.GetValue(time)),
-                Scale,
+                new Vector3(ScaleX.GetValue(time), ScaleY.GetValue(time), ScaleZ.GetValue(time)),
                 new Vector3(PosX.GetValue(time), PosY.GetValue(time), PosZ.GetValue(time)),
                 _RotationOrder,
                 _CoordOrder

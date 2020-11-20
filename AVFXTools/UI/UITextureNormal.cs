@@ -54,11 +54,11 @@ namespace AVFXTools.UI
                 {
                     Tex.Enabled.GiveValue(Enabled);
                 }
-                if (ImGui.DragInt("UVSet Index" + id, ref UvSetIdx, 1, 0))
+                if (ImGui.InputInt("UVSet Index" + id, ref UvSetIdx))
                 {
                     Tex.UvSetIdx.GiveValue(UvSetIdx);
                 }
-                if (ImGui.DragInt("Texture Index" + id, ref TextureIdx, 1, -1))
+                if (ImGui.InputInt("Texture Index" + id, ref TextureIdx))
                 {
                     Tex.TextureIdx.GiveValue(TextureIdx);
                 }

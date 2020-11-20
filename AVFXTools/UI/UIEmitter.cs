@@ -102,23 +102,23 @@ namespace AVFXTools.UI
         {
             if (ImGui.TreeNode("Parameters" + id))
             {
-                if (ImGui.DragInt("Sound Number" + id, ref SoundNumber, 1, -1))
+                if (ImGui.InputInt("Sound Number" + id, ref SoundNumber))
                 {
                     Emitter.SoundNumber.GiveValue(SoundNumber);
                 }
-                if (ImGui.DragInt("Loop Start" + id, ref LoopStart, 1, 0))
+                if (ImGui.InputInt("Loop Start" + id, ref LoopStart))
                 {
                     Emitter.LoopStart.GiveValue(LoopStart);
                 }
-                if (ImGui.DragInt("Loop End" + id, ref LoopEnd, 1, 0))
+                if (ImGui.InputInt("Loop End" + id, ref LoopEnd))
                 {
                     Emitter.LoopEnd.GiveValue(LoopEnd);
                 }
-                if (ImGui.DragInt("Child Limit" + id, ref ChildLimit, 1, -1))
+                if (ImGui.InputInt("Child Limit" + id, ref ChildLimit))
                 {
                     Emitter.ChildLimit.GiveValue(ChildLimit);
                 }
-                if (ImGui.DragInt("Effector Index" + id, ref EffectorIdx, 1, -1))
+                if (ImGui.InputInt("Effector Index" + id, ref EffectorIdx))
                 {
                     Emitter.EffectorIdx.GiveValue(EffectorIdx);
                 }

@@ -58,15 +58,17 @@ namespace AVFXTools.Main
             }
         }
 
-        public void AddEmitterInstance(int idx, int count, Matrix4x4 startTransform)
+        public void AddParticleInstance(int idx, GenericInstance parent, Matrix4x4 startTransform, EmitterCreateStruct createData, int num=1)
         {
-            Emitters[idx].AddInstance(startTransform, count);
+            Particles[idx].AddInstance(parent, startTransform, createData, num);
         }
 
-        public void AddParticleInstance(int idx, int count, Matrix4x4 startTransform)
+        public void AddEmitterInstance(int idx, GenericInstance parent, Matrix4x4 startTransform, EmitterCreateStruct createData, int num=1)
         {
-            Particles[idx].AddInstance(startTransform, count);
+            Emitters[idx].AddInstance(parent, startTransform, createData, num);
         }
+
+
 
         public void Update(float dT)
         {

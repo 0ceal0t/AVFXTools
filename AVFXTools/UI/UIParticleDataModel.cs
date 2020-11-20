@@ -56,7 +56,7 @@ namespace AVFXTools.UI
         {
             if (ImGui.TreeNode("Data" + id))
             {
-                if (ImGui.DragInt("Model Number Random" + id, ref ModelNumberRandomValue, 1, 0))
+                if (ImGui.InputInt("Model Number Random" + id, ref ModelNumberRandomValue))
                 {
                     Data.ModelNumberRandomValue.GiveValue(ModelNumberRandomValue);
                 }
@@ -64,7 +64,7 @@ namespace AVFXTools.UI
                 {
                     Data.ModelNumberRandomType.GiveValue(ModelNumberRandomTypeOptions[ModelNumberRandomTypeIdx]);
                 }
-                if (ImGui.DragInt("Model Number Random Interval" + id, ref ModelNumberRandomInterval, 1, 0))
+                if (ImGui.InputInt("Model Number Random Interval" + id, ref ModelNumberRandomInterval))
                 {
                     Data.ModelNumberRandomInterval.GiveValue(ModelNumberRandomInterval);
                 }
@@ -88,7 +88,7 @@ namespace AVFXTools.UI
                 {
                     Data.IsMorph.GiveValue(IsMorph);
                 }
-                if (ImGui.DragInt("Model Number" + id, ref ModelIdx, 1, 0))
+                if (ImGui.InputInt("Model Number" + id, ref ModelIdx))
                 {
                     Data.ModelIdx.GiveValue(ModelIdx);
                 }

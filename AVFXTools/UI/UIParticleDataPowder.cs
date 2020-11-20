@@ -39,7 +39,7 @@ namespace AVFXTools.UI
                 {
                     Data.IsLightning.GiveValue(IsLightning);
                 }
-                if (ImGui.DragFloat("Center Offset" + id, ref CenterOffset, 1, 0))
+                if (ImGui.InputFloat("Center Offset" + id, ref CenterOffset))
                 {
                     Data.CenterOffset.GiveValue(CenterOffset);
                 }

@@ -26,7 +26,7 @@ namespace AVFXTools.UI
         {
             if (ImGui.TreeNode("Data" + id))
             {
-                if (ImGui.DragInt("Model Number" + id, ref ModelIdx, 1, 0))
+                if (ImGui.InputInt("Model Number" + id, ref ModelIdx))
                 {
                     Data.ModelIdx.GiveValue(ModelIdx);
                 }

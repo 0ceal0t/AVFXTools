@@ -69,11 +69,11 @@ namespace AVFXTools.UI
                 {
                     Tex.PreviousFrameCopy.GiveValue(PreviousFrameCopy);
                 }
-                if (ImGui.DragInt("UVSet Index" + id, ref UvSetIdx, 1, 0))
+                if (ImGui.InputInt("UVSet Index" + id, ref UvSetIdx))
                 {
                     Tex.UvSetIdx.GiveValue(UvSetIdx);
                 }
-                if (ImGui.DragInt("Mask Texture Index" + id, ref MaskTextureIdx, 1, -1))
+                if (ImGui.InputInt("Mask Texture Index" + id, ref MaskTextureIdx))
                 {
                     Tex.MaskTextureIdx.GiveValue(MaskTextureIdx);
                 }

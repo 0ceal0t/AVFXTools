@@ -51,6 +51,14 @@ namespace AVFXTools.UI
             Controls.Draw();
             // ================================
             ImGui.Begin("AVFX");
+            //================================
+            ImGui.PushStyleColor(ImGuiCol.Button, new Vector4(0.8f, 0, 0, 1));
+            if (ImGui.Button("UPDATE"))
+            {
+                Main.refreshGraphics();
+            }
+            ImGui.PopStyleColor();
+            //================================
             if (ImGui.BeginTabBar("##MainTabs", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton | ImGuiTabBarFlags.TabListPopupButton)) {
                 if (ImGui.BeginTabItem("Parameters"))
                 {

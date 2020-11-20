@@ -134,204 +134,204 @@ namespace AVFXTools.UI
             if (Simple == null) return;
             if (ImGui.TreeNode("Simple Animation" + id))
             {
-                if (ImGui.DragInt("Injection Position Type" + id, ref InjectionPositionType, 1, 0))
+                if (ImGui.InputInt("Injection Position Type" + id, ref InjectionPositionType))
                 {
                     Simple.InjectionPositionType.GiveValue(InjectionPositionType);
                 }
-                if (ImGui.DragInt("Injection Direction Type" + id, ref InjectionDirectionType, 1, 0))
+                if (ImGui.InputInt("Injection Direction Type" + id, ref InjectionDirectionType))
                 {
                     Simple.InjectionDirectionType.GiveValue(InjectionDirectionType);
                 }
-                if (ImGui.DragInt("Base Direction Type" + id, ref BaseDirectionType, 1, 0))
+                if (ImGui.InputInt("Base Direction Type" + id, ref BaseDirectionType))
                 {
                     Simple.BaseDirectionType.GiveValue(BaseDirectionType);
                 }
-                if (ImGui.DragInt("Create Count" + id, ref CreateCount, 1, 0))
+                if (ImGui.InputInt("Create Count" + id, ref CreateCount))
                 {
                     Simple.CreateCount.GiveValue(CreateCount);
                 }
-                if(ImGui.DragFloat3("Create Area" + id, ref CreateArea, 1))
+                if(ImGui.InputFloat3("Create Area" + id, ref CreateArea))
                 {
                     Simple.CreateAreaX.GiveValue(CreateArea.X);
                     Simple.CreateAreaY.GiveValue(CreateArea.Y);
                     Simple.CreateAreaZ.GiveValue(CreateArea.Z);
                 }
-                if (ImGui.DragFloat3("Coord Accuracy" + id, ref CoordAccuracy, 1, 0))
+                if (ImGui.InputFloat3("Coord Accuracy" + id, ref CoordAccuracy))
                 {
                     Simple.CoordAccuracyX.GiveValue(CoordAccuracy.X);
                     Simple.CoordAccuracyY.GiveValue(CoordAccuracy.Y);
                     Simple.CoordAccuracyZ.GiveValue(CoordAccuracy.Z);
                 }
-                if (ImGui.DragFloat3("Coord Gra" + id, ref CoordGra, 1, 0))
+                if (ImGui.InputFloat3("Coord Gra" + id, ref CoordGra))
                 {
                     Simple.CoordGraX.GiveValue(CoordGra.X);
                     Simple.CoordGraY.GiveValue(CoordGra.Y);
                     Simple.CoordGraZ.GiveValue(CoordGra.Z);
                 }
-                if (ImGui.DragFloat2("Scale Start" + id, ref ScaleStart, 1))
+                if (ImGui.InputFloat2("Scale Start" + id, ref ScaleStart))
                 {
                     Simple.ScaleXStart.GiveValue(ScaleStart.X);
                     Simple.ScaleYStart.GiveValue(ScaleStart.Y);
                 }
-                if (ImGui.DragFloat2("Scale End" + id, ref ScaleEnd, 1))
+                if (ImGui.InputFloat2("Scale End" + id, ref ScaleEnd))
                 {
                     Simple.ScaleXEnd.GiveValue(ScaleEnd.X);
                     Simple.ScaleYEnd.GiveValue(ScaleEnd.Y);
                 }
-                if (ImGui.DragFloat("Scale Curve" + id, ref ScaleCurve, 1, 0))
+                if (ImGui.InputFloat("Scale Curve" + id, ref ScaleCurve))
                 {
                     Simple.ScaleCurve.GiveValue(ScaleCurve);
                 }
-                if (ImGui.DragFloat2("Scale Random X" + id, ref ScaleRandX, 1))
+                if (ImGui.InputFloat2("Scale Random X" + id, ref ScaleRandX))
                 {
                     Simple.ScaleRandX0.GiveValue(ScaleRandX.X);
                     Simple.ScaleRandX1.GiveValue(ScaleRandX.Y);
                 }
-                if (ImGui.DragFloat2("Scale Random Y" + id, ref ScaleRandY, 1))
+                if (ImGui.InputFloat2("Scale Random Y" + id, ref ScaleRandY))
                 {
                     Simple.ScaleRandY0.GiveValue(ScaleRandY.X);
                     Simple.ScaleRandY1.GiveValue(ScaleRandY.Y);
                 }
-                if (ImGui.DragFloat3("Rotation Start" + id, ref RotStart, 1))
+                if (ImGui.InputFloat3("Rotation Start" + id, ref RotStart))
                 {
                     Simple.RotXStart.GiveValue(RotStart.X);
                     Simple.RotYStart.GiveValue(RotStart.Y);
                     Simple.RotZStart.GiveValue(RotStart.Z);
                 }
-                if (ImGui.DragFloat3("Rotation Add" + id, ref RotAdd, 1))
+                if (ImGui.InputFloat3("Rotation Add" + id, ref RotAdd))
                 {
                     Simple.RotXAdd.GiveValue(RotAdd.X);
                     Simple.RotYAdd.GiveValue(RotAdd.Y);
                     Simple.RotZAdd.GiveValue(RotAdd.Z);
                 }
-                if (ImGui.DragFloat3("Rotation Base" + id, ref RotBase, 1))
+                if (ImGui.InputFloat3("Rotation Base" + id, ref RotBase))
                 {
                     Simple.RotXBase.GiveValue(RotBase.X);
                     Simple.RotYBase.GiveValue(RotBase.Y);
                     Simple.RotZBase.GiveValue(RotBase.Z);
                 }
-                if (ImGui.DragFloat3("Rotation Velocity" + id, ref RotVel, 1))
+                if (ImGui.InputFloat3("Rotation Velocity" + id, ref RotVel))
                 {
                     Simple.RotXVel.GiveValue(RotVel.X);
                     Simple.RotYVel.GiveValue(RotVel.Y);
                     Simple.RotZVel.GiveValue(RotVel.Z);
                 }
-                if (ImGui.DragFloat("Velocity Min" + id, ref VelMin, 1, 0))
+                if (ImGui.InputFloat("Velocity Min" + id, ref VelMin))
                 {
                     Simple.VelMin.GiveValue(CreateCount);
                 }
-                if (ImGui.DragFloat("Velocity Max" + id, ref VelMax, 1, 0))
+                if (ImGui.InputFloat("Velocity Max" + id, ref VelMax))
                 {
                     Simple.VelMax.GiveValue(CreateCount);
                 }
-                if (ImGui.DragFloat("Velocity Flattery Rate" + id, ref VelFlatteryRate, 1, 0))
+                if (ImGui.InputFloat("Velocity Flattery Rate" + id, ref VelFlatteryRate))
                 {
                     Simple.VelFlatteryRate.GiveValue(VelFlatteryRate);
                 }
-                if (ImGui.DragFloat("Velocity Flatter Speed" + id, ref VelFlatterySpeed, 1, 0))
+                if (ImGui.InputFloat("Velocity Flatter Speed" + id, ref VelFlatterySpeed))
                 {
                     Simple.VelFlatterySpeed.GiveValue(VelFlatterySpeed);
                 }
-                if (ImGui.DragInt("UV Cell U" + id, ref UvCellU, 1, 0))
+                if (ImGui.InputInt("UV Cell U" + id, ref UvCellU))
                 {
                     Simple.UvCellU.GiveValue(UvCellU);
                 }
-                if (ImGui.DragInt("UV Cell V" + id, ref UvCellV, 1, 0))
+                if (ImGui.InputInt("UV Cell V" + id, ref UvCellV))
                 {
                     Simple.UvCellV.GiveValue(UvCellV);
                 }
-                if (ImGui.DragInt("UV Interval" + id, ref UvInterval, 1, 0))
+                if (ImGui.InputInt("UV Interval" + id, ref UvInterval))
                 {
                     Simple.UvInterval.GiveValue(UvInterval);
                 }
-                if (ImGui.DragInt("UV Number Random" + id, ref UvNoRandom, 1, 0))
+                if (ImGui.InputInt("UV Number Random" + id, ref UvNoRandom))
                 {
                     Simple.UvNoRandom.GiveValue(UvNoRandom);
                 }
-                if (ImGui.DragInt("UV Number Loop Count" + id, ref UvNoLoopCount, 1, -1))
+                if (ImGui.InputInt("UV Number Loop Count" + id, ref UvNoLoopCount))
                 {
                     Simple.UvNoLoopCount.GiveValue(UvNoLoopCount);
                 }
-                if (ImGui.DragInt("Injection Model Index" + id, ref InjectionModelIdx, 1, -1))
+                if (ImGui.InputInt("Injection Model Index" + id, ref InjectionModelIdx))
                 {
                     Simple.InjectionModelIdx.GiveValue(InjectionModelIdx);
                 }
-                if (ImGui.DragInt("Injection Vertex Bind Model Idx" + id, ref InjectionVertexBindModelIdx, 1, 0))
+                if (ImGui.InputInt("Injection Vertex Bind Model Idx" + id, ref InjectionVertexBindModelIdx))
                 {
                     Simple.InjectionVertexBindModelIdx.GiveValue(InjectionVertexBindModelIdx);
                 }
-                if (ImGui.DragInt("Injection Radial Direction 0" + id, ref InjectionRadialDir0, 1, 0))
+                if (ImGui.InputInt("Injection Radial Direction 0" + id, ref InjectionRadialDir0))
                 {
                     Simple.InjectionRadialDir0.GiveValue(InjectionRadialDir0);
                 }
-                if (ImGui.DragInt("Injection Radial Direction 1" + id, ref InjectionRadialDir1, 1, 0))
+                if (ImGui.InputInt("Injection Radial Direction 1" + id, ref InjectionRadialDir1))
                 {
                     Simple.InjectionRadialDir1.GiveValue(InjectionRadialDir1);
                 }
-                if (ImGui.DragFloat("Pivot X" + id, ref PivotX, 1, 0))
+                if (ImGui.InputFloat("Pivot X" + id, ref PivotX))
                 {
                     Simple.PivotX.GiveValue(PivotX);
                 }
-                if (ImGui.DragFloat("Pivot Y" + id, ref PivotY, 1, 0))
+                if (ImGui.InputFloat("Pivot Y" + id, ref PivotY))
                 {
                     Simple.PivotY.GiveValue(PivotY);
                 }
-                if (ImGui.DragInt("Block Number" + id, ref BlockNum, 1, 0))
+                if (ImGui.InputInt("Block Number" + id, ref BlockNum))
                 {
                     Simple.BlockNum.GiveValue(BlockNum);
                 }
-                if (ImGui.DragFloat("Min Line Length" + id, ref LineLengthMin, 1, 0))
+                if (ImGui.InputFloat("Min Line Length" + id, ref LineLengthMin))
                 {
                     Simple.LineLengthMin.GiveValue(LineLengthMin);
                 }
-                if (ImGui.DragFloat("Max Line Length" + id, ref LineLengthMax, 1, 0))
+                if (ImGui.InputFloat("Max Line Length" + id, ref LineLengthMax))
                 {
                     Simple.LineLengthMax.GiveValue(LineLengthMax);
                 }
-                if (ImGui.DragInt("Create Interval" + id, ref CreateIntervalVal, 1, 0))
+                if (ImGui.InputInt("Create Interval" + id, ref CreateIntervalVal))
                 {
                     Simple.CreateIntervalVal.GiveValue(CreateIntervalVal);
                 }
-                if (ImGui.DragInt("Create Interval Random" + id, ref CreateIntervalRandom, 1, 0))
+                if (ImGui.InputInt("Create Interval Random" + id, ref CreateIntervalRandom))
                 {
                     Simple.CreateIntervalRandom.GiveValue(CreateIntervalRandom);
                 }
-                if (ImGui.DragInt("Create Interval Count" + id, ref CreateIntervalCount, 1, 0))
+                if (ImGui.InputInt("Create Interval Count" + id, ref CreateIntervalCount))
                 {
                     Simple.CreateIntervalCount.GiveValue(CreateIntervalCount);
                 }
-                if (ImGui.DragInt("Create Interval Life" + id, ref CreateIntervalLife, 1, 0))
+                if (ImGui.InputInt("Create Interval Life" + id, ref CreateIntervalLife))
                 {
                     Simple.CreateIntervalLife.GiveValue(CreateIntervalLife);
                 }
-                if (ImGui.DragInt("Create New After Delete" + id, ref CreateNewAfterDelete, 1, 0))
+                if (ImGui.InputInt("Create New After Delete" + id, ref CreateNewAfterDelete))
                 {
                     Simple.CreateNewAfterDelete.GiveValue(CreateNewAfterDelete);
                 }
-                if (ImGui.DragInt("UV Reverse" + id, ref UvReverse, 1, 0))
+                if (ImGui.InputInt("UV Reverse" + id, ref UvReverse))
                 {
                     Simple.UvReverse.GiveValue(UvReverse);
                 }
-                if (ImGui.DragInt("Scale Random Link" + id, ref ScaleRandomLink, 1, 0))
+                if (ImGui.InputInt("Scale Random Link" + id, ref ScaleRandomLink))
                 {
                     Simple.ScaleRandomLink.GiveValue(ScaleRandomLink);
                 }
-                if (ImGui.DragInt("Bind Parent" + id, ref BindParent, 1, 0))
+                if (ImGui.InputInt("Bind Parent" + id, ref BindParent))
                 {
                     Simple.BindParent.GiveValue(BindParent);
                 }
-                if (ImGui.DragInt("Scale By Parent" + id, ref ScaleByParent, 1, 0))
+                if (ImGui.InputInt("Scale By Parent" + id, ref ScaleByParent))
                 {
                     Simple.ScaleByParent.GiveValue(ScaleByParent);
                 }
-                if (ImGui.DragInt("Polyline Tag" + id, ref PolyLineTag, 1, 0))
+                if (ImGui.InputInt("Polyline Tag" + id, ref PolyLineTag))
                 {
                     Simple.PolyLineTag.GiveValue(PolyLineTag);
                 }
                 //====================
                 for(int i = 0; i < 4; i++)
                 {
-                    if(ImGui.DragInt("Frame#" + i + id, ref Frames[i], 1, 0))
+                    if(ImGui.InputInt("Frame#" + i + id, ref Frames[i]))
                     {
                         Simple.Frames.frames[i] = Frames[i];
                     }

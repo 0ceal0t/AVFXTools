@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AVFXTools.Main
 {
-    public class ParticleInstancePowderInstance : ParticleInstanceBase
+    public class ParticleInstancePowderInstance : ParticleInstance
     {
         public ParticleInstancePowderSpawner PowerSpawner;
 
@@ -29,15 +29,25 @@ namespace AVFXTools.Main
 
         public Vector4 Color;
 
-        public ParticleInstancePowderInstance(AVFXParticle particle, ParticleItem item, Matrix4x4 prevTransform, ParticleInstancePowderSpawner spawner)
+        public ParticleInstancePowderInstance(
+            AVFXParticle particle,
+            ParticleItem item,
+            GenericInstance parent,
+            Matrix4x4 startTransform,
+            EmitterCreateStruct createData,
+            ParticleInstancePowderSpawner spawner
+            )
         {
             PowerSpawner = spawner;
             AVFXParticleSimple Simple = particle.Simple;
-            PrevTransform = prevTransform;
+
+            Parent = parent;
+            StartTransform = startTransform;
+            CreateData = createData;
             Age = 0.0f;
             Item = item;
             Life = Simple.CreateIntervalLife.Value;
-
+            // ===================================
             CurrentPos = new Vector3(0, 0, 0);
             VMin = Simple.VelMin.Value;
             VMax = Simple.VelMax.Value;
@@ -65,7 +75,7 @@ namespace AVFXTools.Main
                 Dead = true;
             }
             // UVs
-
+            CurrentTransform = GetCurrentTransform();
         }
 
         public override void Reset()
@@ -82,9 +92,6 @@ namespace AVFXTools.Main
             int UVIterations = (int)Math.Floor(Age / UVInterval);
             int CellX = UVIterations % UVCellsX;
             int CellY = UVIterations % UVCellsY;
-
-            Vector2 ScrollUV = new Vector2(-0.25f, -0.25f);
-            Vector2 ScaleUV = new Vector2(0.5f, 0.5f);
 
             /* x scaled by 1/cells
              * y scaled by 1/2*cells
@@ -107,8 +114,8 @@ namespace AVFXTools.Main
             float UVOverhangY = (0.5f / UVScaleY - 0.5f) * UVScaleY;
             float UVOffsetY = (float)CellY * UVScaleY;
 
-            ScaleUV = new Vector2(UVScaleX, UVScaleY);
-            ScrollUV = new Vector2(UVOffsetX - UVOverhangX, UVOffsetY - UVOverhangY);
+            Vector2  ScaleUV = new Vector2(UVScaleX, UVScaleY);
+            Vector2  ScrollUV = new Vector2(UVOffsetX - UVOverhangX, UVOffsetY - UVOverhangY);
 
             Matrix4x4 TranslationMatrix = GUtil.TransformMatrix(
                 new Vector3(),
@@ -116,33 +123,18 @@ namespace AVFXTools.Main
                 CurrentPos,
                 RotationOrder.ZYX,
                 CoordComputeOrder.Scale_Rot_Translate
-            ) * PrevTransform;
+            ) * CurrentTransform;
 
             return new ParticleInstanceData(
                 TranslationMatrix,
-
                 Color,
                 1,
                 new Vector4(1,1,1,1),
-
-                ScrollUV,
-                ScaleUV,
-                0,
-
-                ScrollUV,
-                ScaleUV,
-                0,
-
-                ScrollUV,
-                ScaleUV,
-                0,
-
-                ScrollUV,
-                ScaleUV,
-                0,
-
-                1,
-                1
+                ScrollUV, ScaleUV, 0,
+                ScrollUV, ScaleUV, 0,
+                ScrollUV, ScaleUV, 0,
+                ScrollUV, ScaleUV, 0,
+                1, 1
             );
         }
     }

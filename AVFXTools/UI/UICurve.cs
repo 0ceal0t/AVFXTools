@@ -102,7 +102,7 @@ namespace AVFXTools.UI
 
         public void Draw(string id)
         {
-            if (ImGui.DragInt("Time" + id, ref Time, 1, 0))
+            if (ImGui.InputInt("Time" + id, ref Time))
             {
                 Key.Time = Time;
             }
@@ -123,7 +123,7 @@ namespace AVFXTools.UI
             }
             else
             {
-                if (ImGui.DragFloat3("Value" + id, ref Data))
+                if (ImGui.InputFloat3("Value" + id, ref Data))
                 {
                     Key.X = Data.X;
                     Key.Y = Data.Y;

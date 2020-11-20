@@ -52,7 +52,7 @@ namespace AVFXTools.UI
                 {
                     Tex.UseScreenCopy.GiveValue(UseScreenCopy);
                 }
-                if (ImGui.DragInt("Texture Index" + id, ref TextureIdx, 1, -1))
+                if (ImGui.InputInt("Texture Index" + id, ref TextureIdx))
                 {
                     Tex.TextureIdx.GiveValue(TextureIdx);
                 }

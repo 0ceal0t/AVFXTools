@@ -10,27 +10,9 @@ namespace AVFXTools.Main
 {
     public class ParticleInstancePowderSpawner
     {
-        // injection position type
-        // injection direction type
-        // base direction type
-
-        // create interval life -> life of powder
-        // create area x
-        // create area y
-        // create area z
-
-        /*
-         * they are all tree billboardsz? (maybe camera)
-         * x,y,z determined by area x,y,z (randomly)
-         * 
-         * 
-         * the model has VEmit
-         * VNums is probably the order (0-8)
-         */
-
         public AVFXParticle Particle;
         public AVFXParticleSimple Simple;
-        public ParticleInstance Instance;
+        public ParticleInstanceModel Instance;
         // ========================
         public int CreateCount;
         public float CreateInterval;
@@ -42,7 +24,7 @@ namespace AVFXTools.Main
 
         public ModelItem Model;
 
-        public ParticleInstancePowderSpawner(AVFXParticle particle, ParticleInstance instance)
+        public ParticleInstancePowderSpawner(AVFXParticle particle, ParticleInstanceModel instance)
         {
             Particle = particle;
             Simple = particle.Simple;
@@ -75,9 +57,10 @@ namespace AVFXTools.Main
                         StartingPoint = emitV.Pos;
                     }
                     ParticleInstanceData Data = Instance.GetData();
-                    Matrix4x4 TransformationMatrix = Matrix4x4.CreateTranslation(Vector3.Transform(StartingPoint, Data.TransformMatrix));
+                    Matrix4x4 startTransform = Matrix4x4.CreateTranslation(Vector3.Transform(StartingPoint, Data.TransformMatrix));
 
-                    Instance.Item.AddInstance(TransformationMatrix, true, this);
+                    EmitterCreateStruct createData = new EmitterCreateStruct(-1, false, false, false, false); // TODO: update this
+                    Instance.Item.AddInstance(Instance, startTransform, createData, true, this);
 
                     NumCreated++;
                 }

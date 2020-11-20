@@ -81,59 +81,59 @@ namespace AVFXTools.UI
                 {
                     Iteration.Enabled.GiveValue(Enabled);
                 }
-                if (ImGui.DragInt("Target Index" + id, ref TargetIdx, 1, 0))
+                if (ImGui.InputInt("Target Index" + id, ref TargetIdx))
                 {
                     Iteration.TargetIdx.GiveValue(TargetIdx);
                 }
-                if (ImGui.DragInt("Local Direction" + id, ref LocalDirection, 1, 0))
+                if (ImGui.InputInt("Local Direction" + id, ref LocalDirection))
                 {
                     Iteration.LocalDirection.GiveValue(LocalDirection);
                 }
-                if (ImGui.DragInt("Create Time" + id, ref CreateTime, 1, 0))
+                if (ImGui.InputInt("Create Time" + id, ref CreateTime))
                 {
                     Iteration.CreateTime.GiveValue(CreateTime);
                 }
-                if (ImGui.DragInt("Create Count" + id, ref CreateCount, 1, 0))
+                if (ImGui.InputInt("Create Count" + id, ref CreateCount))
                 {
                     Iteration.CreateCount.GiveValue(CreateCount);
                 }
-                if (ImGui.DragInt("Create Probability" + id, ref CreateProbability, 1, 0))
+                if (ImGui.InputInt("Create Probability" + id, ref CreateProbability))
                 {
                     Iteration.CreateProbability.GiveValue(CreateProbability);
                 }
-                if (ImGui.DragInt("Parent Influence Coordinates" + id, ref ParentInfluenceCoord, 1, 0))
+                if (ImGui.InputInt("Parent Influence Coordinates" + id, ref ParentInfluenceCoord))
                 {
                     Iteration.ParentInfluenceCoord.GiveValue(ParentInfluenceCoord);
                 }
-                if (ImGui.DragInt("Parent Influence Color" + id, ref ParentInfluenceColor, 1, 0))
+                if (ImGui.InputInt("Parent Influence Color" + id, ref ParentInfluenceColor))
                 {
                     Iteration.ParentInfluenceColor.GiveValue(ParentInfluenceColor);
                 }
-                if (ImGui.DragInt("Influence Coordinates Scale" + id, ref InfluenceCoordScale, 1, 0))
+                if (ImGui.InputInt("Influence Coordinates Scale" + id, ref InfluenceCoordScale))
                 {
                     Iteration.InfluenceCoordScale.GiveValue(InfluenceCoordScale);
                 }
-                if (ImGui.DragInt("Influence Coordinates Rotation" + id, ref InfluenceCoordRot, 1, 0))
+                if (ImGui.InputInt("Influence Coordinates Rotation" + id, ref InfluenceCoordRot))
                 {
                     Iteration.InfluenceCoordRot.GiveValue(InfluenceCoordRot);
                 }
-                if (ImGui.DragInt("Influence Coordinates Position" + id, ref InfluenceCoordPos, 1, 0))
+                if (ImGui.InputInt("Influence Coordinates Position" + id, ref InfluenceCoordPos))
                 {
                     Iteration.InfluenceCoordPos.GiveValue(InfluenceCoordPos);
                 }
-                if (ImGui.DragInt("Influence Coords. Binder Position" + id, ref InfluenceCoordBinderPosition, 1, 0))
+                if (ImGui.InputInt("Influence Coords. Binder Position" + id, ref InfluenceCoordBinderPosition))
                 {
                     Iteration.InfluenceCoordBinderPosition.GiveValue(InfluenceCoordBinderPosition);
                 }
-                if (ImGui.DragInt("Influence Coords. Unstickiness" + id, ref InfluenceCoordUnstickiness, 1, 0))
+                if (ImGui.InputInt("Influence Coords. Unstickiness" + id, ref InfluenceCoordUnstickiness))
                 {
                     Iteration.InfluenceCoordUnstickiness.GiveValue(InfluenceCoordUnstickiness);
                 }
-                if (ImGui.DragInt("Inherit Parent Velocity" + id, ref InheritParentVelocity, 1, 0))
+                if (ImGui.InputInt("Inherit Parent Velocity" + id, ref InheritParentVelocity))
                 {
                     Iteration.InheritParentVelocity.GiveValue(InheritParentVelocity);
                 }
-                if (ImGui.DragInt("Inherit Parent Life" + id, ref InheritParentLife, 1, 0))
+                if (ImGui.InputInt("Inherit Parent Life" + id, ref InheritParentLife))
                 {
                     Iteration.InheritParentLife.GiveValue(InheritParentLife);
                 }
@@ -141,19 +141,19 @@ namespace AVFXTools.UI
                 {
                     Iteration.OverrideLife.GiveValue(OverrideLife);
                 }
-                if (ImGui.DragInt("Override Life Value" + id, ref OverrideLifeValue, 1, 0))
+                if (ImGui.InputInt("Override Life Value" + id, ref OverrideLifeValue))
                 {
                     Iteration.OverrideLifeValue.GiveValue(OverrideLifeValue);
                 }
-                if (ImGui.DragInt("Override Life Random" + id, ref OverrideLifeRandom, 1, 0))
+                if (ImGui.InputInt("Override Life Random" + id, ref OverrideLifeRandom))
                 {
                     Iteration.OverrideLifeRandom.GiveValue(OverrideLifeRandom);
                 }
-                if (ImGui.DragInt("Parameter Link" + id, ref ParameterLink, 1, -1))
+                if (ImGui.InputInt("Parameter Link" + id, ref ParameterLink))
                 {
                     Iteration.ParameterLink.GiveValue(ParameterLink);
                 }
-                if (ImGui.DragInt("Start Frame" + id, ref StartFrame, 1, 0))
+                if (ImGui.InputInt("Start Frame" + id, ref StartFrame))
                 {
                     Iteration.StartFrame.GiveValue(StartFrame);
                 }
@@ -161,13 +161,13 @@ namespace AVFXTools.UI
                 {
                     Iteration.StartFrameNullUpdate.GiveValue(StartFrameNullUpdate);
                 }
-                if (ImGui.DragFloat3("By Injection Angle" + id, ref ByInjectionAngle))
+                if (ImGui.InputFloat3("By Injection Angle" + id, ref ByInjectionAngle))
                 {
                     Iteration.ByInjectionAngleX.GiveValue(ByInjectionAngle.X);
                     Iteration.ByInjectionAngleY.GiveValue(ByInjectionAngle.Y);
                     Iteration.ByInjectionAngleZ.GiveValue(ByInjectionAngle.Z);
                 }
-                if (ImGui.DragInt("Generate Delay" + id, ref GenerateDelay, 1, -1))
+                if (ImGui.InputInt("Generate Delay" + id, ref GenerateDelay))
                 {
                     Iteration.GenerateDelay.GiveValue(GenerateDelay);
                 }

@@ -17,10 +17,11 @@ namespace AVFXTools.UI
     {
         public ImgUIMain Main;
         //=============
-        public bool OpenFromGameDialogOpen = false;
+        public bool AVFXFromGameDialog = false;
         public static uint INPUT_SIZE = 40;
         public byte[] avfxPathBytes = new byte[INPUT_SIZE];
         public byte[] mdlPathBytes = new byte[INPUT_SIZE];
+        public bool AlwaysOpen = true;
 
         public ImgUIControls(ImgUIMain main)
         {
@@ -29,9 +30,17 @@ namespace AVFXTools.UI
 
         public void Draw()
         {
+            ImGui.SetNextWindowSize(new Vector2(400, 100));
+            ImGui.SetNextWindowPos(new Vector2(Main.Main.Window.Width / 2 - 100, 40));
+            if(ImGui.Begin("Just An Approximation", ref AlwaysOpen, ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoInputs | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoBackground))
+            {
+                ImGui.Text("Just An Approximation");
+                ImGui.End();
+            }
+            //=========================
             if (ImGui.BeginMainMenuBar())
             {
-                if (ImGui.BeginMenu("File"))
+                if (ImGui.BeginMenu("AVFX##Menu"))
                 {
                     if (ImGui.MenuItem("Open Local AVFX", "Ctrl+O"))
                     {
@@ -54,7 +63,7 @@ namespace AVFXTools.UI
                     }
                     if (ImGui.MenuItem("Open AVFX From Game", null))
                     {
-                        OpenFromGameDialogOpen = true;
+                        AVFXFromGameDialog = true;
                     }
                     if (ImGui.MenuItem("Export", "Ctrl+S"))
                     {
@@ -75,22 +84,25 @@ namespace AVFXTools.UI
                     }
                     ImGui.EndMenu();
                 }
+                if (ImGui.BeginMenu("Model##"))
+                {
+                    if (ImGui.MenuItem("Open Model From Game", null))
+                    {
+                    }
+                    ImGui.EndMenu();
+                }
                 ImGui.EndMainMenuBar();
             }
             //=========================
             ImGui.SetNextWindowSize(new Vector2(600, 200));
-            if (OpenFromGameDialogOpen)
+            if (AVFXFromGameDialog)
             {
-                ImGui.OpenPopup("Choose In-Game File");
+                ImGui.OpenPopup("Game AVFX");
             }
             
-            if (ImGui.BeginPopupModal("Choose In-Game File", ref OpenFromGameDialogOpen))
+            if (ImGui.BeginPopupModal("Game AVFX", ref AVFXFromGameDialog))
             {
                 if (ImGui.InputText("AVFX Path", avfxPathBytes, INPUT_SIZE))
-                {
-
-                }
-                if (ImGui.InputText("MDL Path", mdlPathBytes, INPUT_SIZE))
                 {
 
                 }

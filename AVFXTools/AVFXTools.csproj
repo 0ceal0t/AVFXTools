@@ -300,11 +300,12 @@
     <Compile Include="Main\CurveRandomAttribute.cs" />
     <Compile Include="Main\EmitterInstance.cs" />
     <Compile Include="Main\EmitterItem.cs" />
+    <Compile Include="Main\GenericInstance.cs" />
     <Compile Include="Main\GUtil.cs" />
     <Compile Include="Main\MainViewer.cs" />
     <Compile Include="Main\ModelItem.cs" />
+    <Compile Include="Main\ParticleInstanceModel.cs" />
     <Compile Include="Main\ParticleInstance.cs" />
-    <Compile Include="Main\ParticleInstanceBase.cs" />
     <Compile Include="Main\ParticleInstanceData.cs" />
     <Compile Include="Main\ParticleInstancePowderInstance.cs" />
     <Compile Include="Main\ParticleItem.cs" />
@@ -380,14 +381,6 @@
     <Content Include="hkAnimationInterop.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="img\aura005a16j.png" />
-    <Content Include="img\dist009a16j.png" />
-    <Content Include="img\glow007aj.png" />
-    <Content Include="img\line006a16j.png" />
-    <Content Include="img\pat001a16j.png" />
-    <Content Include="img\prism001a16j.png" />
-    <Content Include="img\spnza_bricks_a_diff.png" />
-    <Content Include="img\sprite005a16j.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\AVFXStudio\packages\Veldrid.SPIRV.1.0.13\build\net40\Veldrid.SPIRV.targets" Condition="Exists('..\AVFXStudio\packages\Veldrid.SPIRV.1.0.13\build\net40\Veldrid.SPIRV.targets')" />

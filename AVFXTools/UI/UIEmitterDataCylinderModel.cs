@@ -51,11 +51,11 @@ namespace AVFXTools.UI
                 {
                     Data.GenerateMethodType.GiveValue(GenerateMethodOptions[GenerateMethodIdx]);
                 }
-                if (ImGui.DragInt("Divide X" + id, ref DivideX, 1, 0))
+                if (ImGui.InputInt("Divide X" + id, ref DivideX))
                 {
                     Data.DivideX.GiveValue(DivideX);
                 }
-                if (ImGui.DragInt("Divide Y" + id, ref DivideY, 1, 0))
+                if (ImGui.InputInt("Divide Y" + id, ref DivideY))
                 {
                     Data.DivideY.GiveValue(DivideY);
                 }

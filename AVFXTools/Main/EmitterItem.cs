@@ -30,8 +30,8 @@ namespace AVFXTools.Main
             Instances = new EmitterInstance[InstanceNum];
         }
 
-        public void AddInstance(Matrix4x4 startTransform) { AddInstance(startTransform, 1); }
-        public void AddInstance(Matrix4x4 startTransform, int num)
+        public void AddInstance(GenericInstance parent, Matrix4x4 startTransform, EmitterCreateStruct createData) { AddInstance(parent, startTransform, createData, 1); }
+        public void AddInstance(GenericInstance parent, Matrix4x4 startTransform, EmitterCreateStruct createData, int num)
         {
             int NumToAdd = num;
             for (int instanceIdx = 0; instanceIdx < Instances.Length; instanceIdx++)
@@ -40,7 +40,7 @@ namespace AVFXTools.Main
                 // ==== RESET DEAD ONES ====
                 if (Instances[instanceIdx] == null || Instances[instanceIdx].Dead)
                 {
-                    Instances[instanceIdx] = new EmitterInstance(Emitter, this, startTransform);
+                    Instances[instanceIdx] = new EmitterInstance(Emitter, this, parent, startTransform, createData);
                     NumToAdd--;
                 }
             }

@@ -3,12 +3,14 @@
 Here be dragons
 
 ## TODO
+
 ### UI Stuff
 - [x] UI and Graphics AVFX need to independent objects (this will allow adding/removing particles without breaking the graphics)
-- [ ] Add update button (will sync them: AVFXBase -> AVFXNode -> AVFXBase)
+- [x] Add update button (will sync them: AVFXBase -> AVFXNode -> AVFXBase)
 - [x] Choose local avfx file
 - [ ] Choose local mdl file
 - [ ] Choose in-game mdl + avfx files
+- [ ] Base parameters
 - [x] Particles
 - [x] Emitters
 - [ ] Timelines
@@ -17,20 +19,20 @@ Here be dragons
 - [ ] Schedulers
 - [ ] Textures
 - [ ] Models
-- [ ] Maybe switch from `DragInt/Float` to `InputInt/Float`
+- [x] Maybe switch from `DragInt/Float` to `InputInt/Float`
 - [ ] Separate popups for model / avfx
 - [ ] Option to remove model
 - [ ] Better theme
 - [ ] Choose game location + save settings
-### General
+### General Graphics
 - [ ] ⚠️ random (what do the random types mean)
 - [ ] curves
 - [ ] velocity
 - [ ] gravity / velocity / position / air resistance
 - [ ] Make sure bad bindings can be handled
 - [ ] Clean up console logs
-### Particles
-- [ ] ⚠️ draw mode
+### Particle Graphics
+- [ ] ⚠️ draw mode (screen, reverse, multiply)
 - [x] culling type
 - [x] is depth test
 - [x] is depth write
@@ -57,7 +59,7 @@ Here be dragons
 - [ ] depth clip
 - [ ] ⚠️ fix powder particles (gravity, etc)
 - [ ] double-check quads
-### Emitters
+### Emitter Graphics
 - [ ] CreateTime / CreateCount: what do those mean? They already exist elsewhere, why are they in the emitter sub-items?
 - [ ] Create Probability
 - [ ] Parent Influence Coords / Color
@@ -80,23 +82,23 @@ Here be dragons
 - [ ] injection axis
 - [ ] sound?
 - [ ] 
-### Effectors
+### Effector Graphics
 - [ ] wut.
 - [ ] pointlight
 - [ ] directional light
 - [ ] radial blur
 - [ ] black hole
 - [ ] camera quake
-### Timelines
+### Timeline Graphics
 - [ ] How are emitters with a lifespan created?
 - [ ] What does this even mean?
 - [ ] clip
 - [ ] start / end time
 - [ ] parent influence
-### Schedulers
+### Scheduler Graphics
 - [ ] wut.
 - [ ] trigger kicks
-### Binders
+### Binder Graphics
 - [ ] Bone mapping is probably wrong
 - [ ] Origin
 - [ ] Fitground

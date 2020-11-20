@@ -49,13 +49,14 @@ namespace AVFXTools.Main
         {
             foreach(var subItem in Items)
             {
-                Matrix4x4 BinderMatrix = Matrix4x4.Identity;
+                BinderItem binder = null;
                 Console.WriteLine("emitter {0} binder {1}", subItem.EmitterIdx, subItem.BinderIdx);
                 if (subItem.BinderIdx != -1 && subItem.BinderIdx < C.Binders.Length)
                 {
-                    BinderMatrix = C.Binders[subItem.BinderIdx].BindMatrix;
+                    binder = C.Binders[subItem.BinderIdx];
                 }
-                C.AddEmitterInstance(subItem.EmitterIdx, 1, BinderMatrix);
+
+                C.AddEmitterInstance(subItem.EmitterIdx, binder, Matrix4x4.Identity, null);
             }
         }
 
