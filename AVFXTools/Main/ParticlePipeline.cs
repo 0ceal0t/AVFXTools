@@ -110,11 +110,21 @@ namespace AVFXTools.Main
             );
             // ====== BLEND MODE ===========
             BlendStateDescription BlendStateDrawMode = BlendStateDescription.SingleAdditiveBlend;
-            BlendStateDrawMode.BlendFactor = RgbaFloat.Black;
+            BlendStateDrawMode.BlendFactor = RgbaFloat.Grey;
             DrawMode MODE = (DrawMode)Enum.Parse(typeof(DrawMode), particle.DrawMode.Value, true);
             switch (MODE)
             {
                 case DrawMode.Screen:
+                    /*BlendStateDrawMode.AttachmentStates[0] = new BlendAttachmentDescription
+                    {
+                        SourceColorFactor = BlendFactor.One,
+                        DestinationColorFactor = BlendFactor.InverseSourceColor,
+                        ColorFunction = BlendFunction.Add,
+                        SourceAlphaFactor = BlendFactor.One,
+                        DestinationAlphaFactor = BlendFactor.Zero,
+                        AlphaFunction = BlendFunction.Add,
+                        BlendEnabled = true
+                    };*/
                     break;
                 case DrawMode.Add:
                     BlendStateDrawMode = BlendStateDescription.SingleAdditiveBlend;
@@ -123,6 +133,8 @@ namespace AVFXTools.Main
                     BlendStateDrawMode = BlendStateDescription.SingleAlphaBlend;
                     break;
                 case DrawMode.Multiply:
+                    break;
+                case DrawMode.Reverse:
                     break;
             }
             // ======== CULLINE MODE ======
@@ -167,9 +179,9 @@ namespace AVFXTools.Main
                 PrimitiveTopology.TriangleList,
                 shaderSet,
                 new[] {
-                        InstanceLayout,
-                        C.Main.GlobalLayout,
-                        TextureLayout
+                    InstanceLayout,
+                    C.Main.GlobalLayout,
+                    TextureLayout
                 },
                 C.Chain.Framebuffer.OutputDescription
             );

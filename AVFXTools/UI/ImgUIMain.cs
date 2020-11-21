@@ -19,8 +19,11 @@ namespace AVFXTools.UI
         public GraphicsDevice GD;
         public CommandList CL;
 
+        UIBaseParameters Params;
+        public List<UITimeline> Timelines = new List<UITimeline>();
         public List<UIParticle> Particles = new List<UIParticle>();
         public List<UIEmitter> Emitters = new List<UIEmitter>();
+        public List<UIBinder> Binders = new List<UIBinder>();
 
         public ImgUIControls Controls;
 
@@ -33,10 +36,13 @@ namespace AVFXTools.UI
             CL = cl;
 
             Controls = new ImgUIControls(this);
-            ImGui.SetNextWindowPos(new Vector2(10, 10));
-            ImGui.SetNextWindowSize(new Vector2(400, 600));
 
-            foreach(var particle in AVFX.Particles)
+            Params = new UIBaseParameters(AVFX);
+            foreach (var timeline in AVFX.Timelines)
+            {
+                Timelines.Add(new UITimeline(timeline));
+            }
+            foreach (var particle in AVFX.Particles)
             {
                 Particles.Add(new UIParticle(particle));
             }
@@ -44,11 +50,17 @@ namespace AVFXTools.UI
             {
                 Emitters.Add(new UIEmitter(emitter));
             }
+            foreach(var binder in AVFX.Binders)
+            {
+                Binders.Add(new UIBinder(binder));
+            }
+
+            ImGui.SetNextWindowPos(new Vector2(10, 10));
+            ImGui.SetNextWindowSize(new Vector2(400, 600));
         }
 
         public void Draw()
         {
-            Controls.Draw();
             // ================================
             ImGui.Begin("AVFX");
             //================================
@@ -107,13 +119,29 @@ namespace AVFXTools.UI
                 }
                 ImGui.EndTabBar();
             }
+
+            Controls.Draw();
+
             I.Render(GD, CL);
         }
 
-        public void DrawParameters() { }
+        // ======== PARAMETERS ========
+        public void DrawParameters() {
+            Params.Draw("##params");
+        }
         public void DrawScheduler() { }
-        public void DrawTimelines() { }
-
+        // ======== TIMELINES =======
+        public void DrawTimelines() {
+            int idx = 0;
+            foreach (var timeline in Timelines)
+            {
+                if (ImGui.CollapsingHeader("Timeline #" + idx))
+                {
+                    timeline.Draw("##timeline-" + idx);
+                }
+                idx++;
+            }
+        }
         // ====== EMITTERS ========
         public void DrawEmitters() {
             int idx = 0;
@@ -140,7 +168,19 @@ namespace AVFXTools.UI
         }
 
         public void DrawEffectors() { }
-        public void DrawBinders() { }
+
+        // ====== BINDERS =========
+        public void DrawBinders() {
+            int idx = 0;
+            foreach (var binder in Binders)
+            {
+                if (ImGui.CollapsingHeader("Binder #" + idx + "(" + binder.Binder.BType.Value + ")"))
+                {
+                    binder.Draw("##binder-" + idx);
+                }
+                idx++;
+            }
+        }
         public void DrawTextures() { }
         public void DrawModels() { }
     }

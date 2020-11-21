@@ -57,6 +57,7 @@ namespace AVFXTools.Main
         public RotationOrder _RotationOrder;
         public CoordComputeOrder _CoordOrder;
         public RotationDirectionBase _RotationBase;
+        public EmitterType _Type;
 
         public CurveRandomGroup PosX;
         public CurveRandomGroup PosY;
@@ -97,7 +98,7 @@ namespace AVFXTools.Main
                 {
                     var SubItem = lastItPr.Items[idx];
                     int targetIdx = SubItem.TargetIdx.Value;
-                    if(targetIdx != -1)
+                    if(targetIdx != -1 && targetIdx < Item.C.Particles.Length)  // TODO: sometimes it's over. why?
                     {
                         var Target = Item.C.Particles[targetIdx];
                         float targetLife = Target.Life;
@@ -105,7 +106,7 @@ namespace AVFXTools.Main
                             targetIdx,
                             targetLife == -1,
                             SubItem
-                            ));
+                        ));
                     }
                 }
             }
@@ -117,7 +118,7 @@ namespace AVFXTools.Main
                 {
                     var SubItem = lastItEm.Items[idx];
                     int targetIdx = SubItem.TargetIdx.Value;
-                    if (targetIdx != -1)
+                    if (targetIdx != -1 && targetIdx < Item.C.Emitters.Length) // TODO: sometimes it's over. why?
                     {
                         var Target = Item.C.Emitters[targetIdx];
                         float targetLife = Target.Life;
@@ -133,6 +134,7 @@ namespace AVFXTools.Main
             _RotationOrder = (RotationOrder)Enum.Parse(typeof(RotationOrder), emitter.RotationOrder.Value, true);
             _CoordOrder = (CoordComputeOrder)Enum.Parse(typeof(CoordComputeOrder), emitter.CoordComputeOrder.Value, true);
             _RotationBase = (RotationDirectionBase)Enum.Parse(typeof(RotationDirectionBase), emitter.RotationDirectionBase.Value, true);
+            _Type = (EmitterType)Enum.Parse(typeof(EmitterType), emitter.EmitterType.Value, true);
 
             PosX = new CurveRandomGroup("PosX", emitter.Position.X, emitter.Position.RX);
             PosY = new CurveRandomGroup("PosY", emitter.Position.Y, emitter.Position.RY);
@@ -204,6 +206,21 @@ namespace AVFXTools.Main
                 _RotationOrder,
                 _CoordOrder
             );
+        }
+
+        public Matrix4x4 GetNewInstancePosition()
+        {
+            switch (_Type)
+            {
+                case EmitterType.SphereModel:
+                    return Matrix4x4.Identity;
+                    break;
+                case EmitterType.CylinderModel:
+                    return Matrix4x4.Identity;
+                    break;
+                default:
+                    return Matrix4x4.Identity;
+            }
         }
     }
 }

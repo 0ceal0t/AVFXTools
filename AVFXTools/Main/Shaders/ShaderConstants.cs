@@ -179,6 +179,7 @@ void main() {{
     if(Alpha < 0.001)
         discard;
 
+    Color = Color * Alpha;
     fsout_color = vec4(Color, Alpha);
 }}";
     }

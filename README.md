@@ -8,19 +8,18 @@ Here be dragons
 - [x] UI and Graphics AVFX need to independent objects (this will allow adding/removing particles without breaking the graphics)
 - [x] Add update button (will sync them: AVFXBase -> AVFXNode -> AVFXBase)
 - [x] Choose local avfx file
-- [ ] Choose local mdl file
-- [ ] Choose in-game mdl + avfx files
-- [ ] Base parameters
+- [x] Choose local mdl file
+- [x] Base parameters
 - [x] Particles
 - [x] Emitters
-- [ ] Timelines
-- [ ] Binders
+- [x] Timelines
+- [x] Binders
 - [ ] Effectors
 - [ ] Schedulers
 - [ ] Textures
 - [ ] Models
 - [x] Maybe switch from `DragInt/Float` to `InputInt/Float`
-- [ ] Separate popups for model / avfx
+- [x] Separate popups for model / avfx
 - [ ] Option to remove model
 - [ ] Better theme
 - [ ] Choose game location + save settings

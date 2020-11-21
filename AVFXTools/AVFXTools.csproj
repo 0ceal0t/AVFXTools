@@ -328,6 +328,11 @@
     <Compile Include="UI\ImgUIControls.cs" />
     <Compile Include="UI\ImgUIMain.cs" />
     <Compile Include="UI\ImgUITheme.cs" />
+    <Compile Include="UI\UIBaseParameters.cs" />
+    <Compile Include="UI\UIBinder.cs" />
+    <Compile Include="UI\UIBinderDataBase.cs" />
+    <Compile Include="UI\UIBinderDataPoint.cs" />
+    <Compile Include="UI\UIBinderProperties.cs" />
     <Compile Include="UI\UICurve.cs" />
     <Compile Include="UI\UICurve2Axis.cs" />
     <Compile Include="UI\UICurve3Axis.cs" />
@@ -351,6 +356,9 @@
     <Compile Include="UI\UITextureNormal.cs" />
     <Compile Include="UI\UITexturePalette.cs" />
     <Compile Include="UI\UITextureReflection.cs" />
+    <Compile Include="UI\UITimeline.cs" />
+    <Compile Include="UI\UITimelineClip.cs" />
+    <Compile Include="UI\UITimelineItem.cs" />
     <Compile Include="UI\UIUtils.cs" />
   </ItemGroup>
   <ItemGroup>

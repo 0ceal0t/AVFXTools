@@ -43,7 +43,6 @@ namespace AVFXTools.UI
                 {
                     Data.CenterOffset.GiveValue(CenterOffset);
                 }
-
                 ImGui.TreePop();
             }
         }

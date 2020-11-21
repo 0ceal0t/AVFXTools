@@ -146,7 +146,6 @@ namespace AVFXTools.UI
             TC2 = new UITextureColor2(Particle.TC2, "Texture Color 2");
             TC3 = new UITextureColor2(Particle.TC3, "Texture Color 3");
             TC4 = new UITextureColor2(Particle.TC4, "Texture Color 4");
-
             TN = new UITextureNormal(Particle.TN);
             TR = new UITextureReflection(Particle.TR);
             TD = new UITextureDistortion(Particle.TD);
@@ -315,7 +314,6 @@ namespace AVFXTools.UI
             TC2.Draw(id + "-tc2");
             TC3.Draw(id + "-tc3");
             TC4.Draw(id + "-tc4");
-
             TN.Draw(id + "-tn");
             TR.Draw(id + "-tr");
             TD.Draw(id + "-td");
