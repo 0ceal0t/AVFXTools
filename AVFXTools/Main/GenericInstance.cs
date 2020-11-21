@@ -16,7 +16,7 @@ namespace AVFXTools.Main
 
         public Matrix4x4 GetCurrentTransform()
         {
-            Matrix4x4 PrevTransform = Parent == null ? Matrix4x4.Identity : Parent.CurrentTransform;
+            Matrix4x4 PrevTransform = (Parent == null) ? Matrix4x4.Identity : Parent.CurrentTransform;
             Vector3 Scale;
             Quaternion Rotation;
             Vector3 Translation;
@@ -36,7 +36,7 @@ namespace AVFXTools.Main
                     Rotation = new Quaternion(1, 0, 0, 0);
                 }
             }
-            Matrix4x4 Recomposed = Matrix4x4.CreateScale(Scale) * Matrix4x4.CreateFromQuaternion(Rotation) * Matrix4x4.CreateTranslation(Translation);
+            Matrix4x4 Recomposed = Matrix4x4.CreateTranslation(Translation) * Matrix4x4.CreateFromQuaternion(Rotation);
             return Recomposed * StartTransform;
         }
     }

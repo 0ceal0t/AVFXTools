@@ -42,17 +42,17 @@ namespace AVFXTools.Main
             switch (_CoordOrder)
             {
                 case CoordComputeOrder.Rot_Scale_Translate:
-                    return R_ * S_ * T_;
-                case CoordComputeOrder.Rot_Translate_Scale:
-                    return R_ * T_ * S_;
-                case CoordComputeOrder.Scale_Rot_Translate:
-                    return S_ * R_ * T_;
-                case CoordComputeOrder.Scale_Translate_Rot:
-                    return S_ * T_ * R_;
-                case CoordComputeOrder.Translate_Rot_Scale:
-                    return T_ * R_ * S_;
-                case CoordComputeOrder.Translate_Scale_Rot:
                     return T_ * S_ * R_;
+                case CoordComputeOrder.Rot_Translate_Scale:
+                    return S_ * T_ * R_;
+                case CoordComputeOrder.Scale_Rot_Translate:
+                    return T_ * R_ * S_;
+                case CoordComputeOrder.Scale_Translate_Rot:
+                    return R_ * T_ * S_;
+                case CoordComputeOrder.Translate_Rot_Scale:
+                    return S_ * R_ * T_;
+                case CoordComputeOrder.Translate_Scale_Rot:
+                    return R_ * S_ * T_;
                 default:
                     return Matrix4x4.Identity;
             }

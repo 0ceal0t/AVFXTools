@@ -59,7 +59,7 @@ namespace AVFXTools.Main
                     ParticleInstanceData Data = Instance.GetData();
                     Matrix4x4 startTransform = Matrix4x4.CreateTranslation(Vector3.Transform(StartingPoint, Data.TransformMatrix));
 
-                    EmitterCreateStruct createData = new EmitterCreateStruct(-1, false, false, false, false); // TODO: update this
+                    EmitterCreateStruct createData = new EmitterCreateStruct(-1, false, false, false, false, 1); // TODO: update this
                     Instance.Item.AddInstance(Instance, startTransform, createData, true, this);
 
                     NumCreated++;

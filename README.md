@@ -1,6 +1,6 @@
 ﻿# AVFXTools
  
-Here be dragons
+Here be dragons. Someone more knowledgable than me please help -_-
 
 ## TODO
 
@@ -29,8 +29,10 @@ Here be dragons
 - [ ] velocity
 - [ ] gravity / velocity / position / air resistance
 - [ ] Make sure bad bindings can be handled
-- [ ] Clean up console logs
+- [ ] Clean up console log
+- [ ] Check transformation order. In C#, it's `T * R * S` (probably)
 ### Particle Graphics
+- [ ] ⚠️ so turns out powder particles don't need to have simple animations turned on. oops. rework all of that
 - [ ] ⚠️ draw mode (screen, reverse, multiply)
 - [x] culling type
 - [x] is depth test

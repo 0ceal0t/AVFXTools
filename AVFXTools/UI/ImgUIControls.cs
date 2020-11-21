@@ -2,6 +2,7 @@
 using AVFXLib.Main;
 using AVFXLib.Models;
 using ImGuiNET;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,7 +37,7 @@ namespace AVFXTools.UI
             ImGui.SetNextWindowPos(new Vector2(Main.Main.Window.Width / 2 - 100, 40));
             if(ImGui.Begin("Just An Approximation", ref AlwaysOpen, ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoInputs | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoBackground))
             {
-                ImGui.Text("Just An Approximation");
+                ImGui.Text("Just a Poor Approximation Q-Q");
                 ImGui.End();
             }
             //=========================
@@ -84,6 +85,23 @@ namespace AVFXTools.UI
                             }
                         }
                     }
+                    if (ImGui.MenuItem("Export to JSON", null))
+                    {
+                        Stream stream;
+                        SaveFileDialog saveDialog = new SaveFileDialog();
+                        saveDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+                        saveDialog.RestoreDirectory = true;
+                        if (saveDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            if ((stream = saveDialog.OpenFile()) != null)
+                            {
+                                JObject json = (JObject)Main.AVFX.toJSON();
+                                byte[] bytes = Util.StringToBytes(json.ToString());
+                                stream.Write(bytes, 0, bytes.Length);
+                                stream.Close();
+                            }
+                        }
+                    }
                     ImGui.EndMenu();
                 }
                 if (ImGui.BeginMenu("Model##"))
@@ -108,7 +126,7 @@ namespace AVFXTools.UI
                 ImGui.InputText("AVFX Path", avfxPathBytes, INPUT_SIZE);
                 if (ImGui.Button("OK##AVFX path"))
                 {
-                    string str = Util.BytesToString(avfxPathBytes).Trim('\0');
+                    string str = Util.BytesToString(avfxPathBytes).Trim('\0').Trim(' ');
                     AVFXFromGameDialog = false;
                     Main.Main.OpenGameAVFX(str);
                     Main.Main.refreshGraphics();
@@ -128,7 +146,7 @@ namespace AVFXTools.UI
                 ImGui.InputText("MDL Path", mdlPathBytes, INPUT_SIZE);
                 if (ImGui.Button("OK##MDL path"))
                 {
-                    string str = Util.BytesToString(mdlPathBytes).Trim('\0');
+                    string str = Util.BytesToString(mdlPathBytes).Trim('\0').Trim(' ');
                     AVFXFromGameDialog = false;
                     Main.Main.OpenGameMdl(str);
                     Main.Main.refreshGraphics();

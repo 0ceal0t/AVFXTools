@@ -84,6 +84,7 @@ namespace AVFXTools.Main
             Parent = parent;
             StartTransform = startTransform;
             CreateData = createData;
+
             CurrentTransform = Matrix4x4.Identity;
             //======================================
             _RotationOrder = (RotationOrder)Enum.Parse(typeof(RotationOrder), particle.RotationOrder.Value, true);

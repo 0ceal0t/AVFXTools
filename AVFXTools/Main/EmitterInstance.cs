@@ -12,28 +12,22 @@ namespace AVFXTools.Main
     {
         public int Idx;
         public bool JustOneCreate;
-        public bool AlreadyCreated;
+        public int NumCreated;
+        public int CreateCount;
 
         public bool InfluenceCoordScale;
         public bool InfluenceCoordPos;
         public bool InfluenceCoordRot;
 
-        public EmitterCreateStruct(int idx, bool justOne, AVFXEmitterIterationItem subItem)
+        public EmitterCreateStruct(int idx, bool justOne, AVFXEmitterIterationItem subItem) : this(idx, justOne, subItem.InfluenceCoordPos.Value == 1, subItem.InfluenceCoordScale.Value == 1, subItem.InfluenceCoordRot.Value == 1, subItem.CreateCount.Value)
         {
-            Idx = idx;
-            JustOneCreate = justOne;
-            AlreadyCreated = false;
-
-            InfluenceCoordPos = (subItem.InfluenceCoordPos.Value == 1);
-            InfluenceCoordScale = (subItem.InfluenceCoordScale.Value == 1);
-            InfluenceCoordRot = (subItem.InfluenceCoordRot.Value == 1);
         }
-
-        public EmitterCreateStruct(int idx, bool justOne, bool pos, bool scale, bool rot)
+        public EmitterCreateStruct(int idx, bool justOne, bool pos, bool scale, bool rot, int createCount)
         {
             Idx = idx;
             JustOneCreate = justOne;
-            AlreadyCreated = false;
+            NumCreated = 0;
+            CreateCount = Math.Max(1,createCount);
 
             InfluenceCoordPos = pos;
             InfluenceCoordRot = rot;
@@ -68,6 +62,11 @@ namespace AVFXTools.Main
         public CurveRandomGroup ScaleX;
         public CurveRandomGroup ScaleY;
         public CurveRandomGroup ScaleZ;
+        // ======== CYLINDER / SPHERE ========
+        public CurveRandomGroup Radius;
+        public CurveRandomGroup Length;
+        public int DivideX;
+        public int DivideY;
 
         public EmitterInstance(
             AVFXEmitter emitter,
@@ -98,7 +97,7 @@ namespace AVFXTools.Main
                 {
                     var SubItem = lastItPr.Items[idx];
                     int targetIdx = SubItem.TargetIdx.Value;
-                    if(targetIdx != -1 && targetIdx < Item.C.Particles.Length)  // TODO: sometimes it's over. why?
+                    if(targetIdx != -1 && SubItem.Enabled.Value == true && targetIdx < Item.C.Particles.Length)  // TODO: sometimes it's over. why?
                     {
                         var Target = Item.C.Particles[targetIdx];
                         float targetLife = Target.Life;
@@ -118,7 +117,7 @@ namespace AVFXTools.Main
                 {
                     var SubItem = lastItEm.Items[idx];
                     int targetIdx = SubItem.TargetIdx.Value;
-                    if (targetIdx != -1 && targetIdx < Item.C.Emitters.Length) // TODO: sometimes it's over. why?
+                    if (targetIdx != -1 && SubItem.Enabled.Value == true && targetIdx < Item.C.Emitters.Length) // TODO: sometimes it's over. why?
                     {
                         var Target = Item.C.Emitters[targetIdx];
                         float targetLife = Target.Life;
@@ -135,6 +134,16 @@ namespace AVFXTools.Main
             _CoordOrder = (CoordComputeOrder)Enum.Parse(typeof(CoordComputeOrder), emitter.CoordComputeOrder.Value, true);
             _RotationBase = (RotationDirectionBase)Enum.Parse(typeof(RotationDirectionBase), emitter.RotationDirectionBase.Value, true);
             _Type = (EmitterType)Enum.Parse(typeof(EmitterType), emitter.EmitterType.Value, true);
+            switch (_Type)
+            {
+                case EmitterType.CylinderModel:
+                    AVFXEmitterDataCylinderModel data = (AVFXEmitterDataCylinderModel)emitter.Data;
+                    Radius = new CurveRandomGroup("Radius", data.Radius, null);
+                    Length = new CurveRandomGroup("Length", data.Length, null);
+                    DivideX = data.DivideX.Value;
+                    DivideY = data.DivideY.Value;
+                    break;
+            }
 
             PosX = new CurveRandomGroup("PosX", emitter.Position.X, emitter.Position.RX);
             PosY = new CurveRandomGroup("PosY", emitter.Position.Y, emitter.Position.RY);
@@ -159,7 +168,7 @@ namespace AVFXTools.Main
                 Age = 0;
                 Reset(); // TEMP? need to figure out how timed emitters are created
             }
-            CurrentTransform = GetCurrentTransform() * GetMatrix(Age);
+            CurrentTransform = GetMatrix(Age) * GetCurrentTransform();
             // ===== TIME TO CREATE? =====
             TimeUntilCreate -= dT;
             if(TimeUntilCreate < 0 && !Dead)
@@ -167,17 +176,24 @@ namespace AVFXTools.Main
                 TimeUntilCreate = CreateInterval;
                 foreach(var createEmitter in CreateEmitters)
                 {
-                    if (createEmitter.JustOneCreate && createEmitter.AlreadyCreated) continue;
-                    createEmitter.AlreadyCreated = true;
+                    if (createEmitter.JustOneCreate && createEmitter.NumCreated > 0) continue;
+                    createEmitter.NumCreated++;
 
-                    Item.C.AddEmitterInstance(createEmitter.Idx, this, Matrix4x4.Identity, createEmitter); // TODO: generate point better here
+                    for (int idx = 0; idx < createEmitter.CreateCount; idx++)
+                    {
+                        Matrix4x4 startMatrix = GetNewInstancePosition(idx);
+                        Item.C.AddEmitterInstance(createEmitter.Idx, this, startMatrix, createEmitter); // TODO: generate point better here
+                    }
                 }
                 foreach (var createParticle in CreateParticles)
                 {
-                    if (createParticle.JustOneCreate && createParticle.AlreadyCreated) continue;
-                    createParticle.AlreadyCreated = true;
-
-                    Item.C.AddParticleInstance(createParticle.Idx, this, Matrix4x4.Identity, createParticle, num: CreateCount); // TODO: generate point better here
+                    if (createParticle.JustOneCreate && createParticle.NumCreated > 0) continue;
+                    createParticle.NumCreated++;
+                    for (int idx = 0; idx < createParticle.CreateCount; idx++)
+                    {
+                        Matrix4x4 startMatrix = GetNewInstancePosition(idx);
+                        Item.C.AddParticleInstance(createParticle.Idx, this, startMatrix, createParticle, num: CreateCount); // TODO: generate point better here
+                    }
                 }
             }
         }
@@ -208,7 +224,7 @@ namespace AVFXTools.Main
             );
         }
 
-        public Matrix4x4 GetNewInstancePosition()
+        public Matrix4x4 GetNewInstancePosition(int NumCreated)
         {
             switch (_Type)
             {
@@ -216,7 +232,11 @@ namespace AVFXTools.Main
                     return Matrix4x4.Identity;
                     break;
                 case EmitterType.CylinderModel:
-                    return Matrix4x4.Identity;
+                    Console.WriteLine(NumCreated);
+                    float R = Radius.GetValue(Age) * ScaleX.GetValue(Age);
+                    float L = Length.GetValue(Age);
+                    float RotX = (2 * (float)Math.PI / DivideX) * NumCreated;
+                    return Matrix4x4.CreateTranslation(new Vector3(R, 0, 0)) * Matrix4x4.CreateRotationY(RotX);
                     break;
                 default:
                     return Matrix4x4.Identity;
