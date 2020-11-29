@@ -97,7 +97,7 @@ namespace AVFXTools.Main
 
             switch (image.Format)
             {
-                case ImageFormat.Rgba32: // can keep as-is
+                case ImageFormat.Rgba32:
                     for (int y = 0; y < Height; y++)
                     {
                         for (int x = 0; x < Width; x++)
@@ -111,7 +111,7 @@ namespace AVFXTools.Main
                         }
                     }
                     break;
-                case ImageFormat.Rgb24: // use some color channel as alpha. good enough for now
+                case ImageFormat.Rgb24:
                     for (int y = 0; y < Height; y++)
                     {
                         for (int x = 0; x < Width; x++)
@@ -121,20 +121,24 @@ namespace AVFXTools.Main
                             NewData[newPos + 0] = image.Data[originalPos + 2];
                             NewData[newPos + 1] = image.Data[originalPos + 1];
                             NewData[newPos + 2] = image.Data[originalPos + 0];
-                            NewData[newPos + 3] = image.Data[originalPos + 1];
+                            //NewData[newPos + 3] = image.Data[originalPos + 1];
+                            NewData[newPos + 3] = 255;
                         }
                     }
                     break;
-                case ImageFormat.Rgb8: //
+                case ImageFormat.Rgb8:
                     for (int y = 0; y < Height; y++)
                     {
                         for (int x = 0; x < Width; x++)
                         {
                             int originalPos = (y * image.Stride) + x * BytesPerPixel;
                             int newPos = (y * 4 * Width) + x * 4;
-                            NewData[newPos + 0] = image.Data[originalPos];
-                            NewData[newPos + 1] = image.Data[originalPos];
-                            NewData[newPos + 2] = image.Data[originalPos];
+                            //NewData[newPos + 0] = image.Data[originalPos];
+                            //NewData[newPos + 1] = image.Data[originalPos];
+                            //NewData[newPos + 2] = image.Data[originalPos];
+                            NewData[newPos + 0] = 0;
+                            NewData[newPos + 1] = 0;
+                            NewData[newPos + 2] = 0;
                             NewData[newPos + 3] = image.Data[originalPos];
                         }
                     }

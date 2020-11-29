@@ -45,6 +45,7 @@ layout(set = 1, binding = 2) uniform WorldBuffer {{ mat4 World; }};
 layout(location = 0) in vec3 Position;
 layout(location = 1) in vec2 TexCoords;
 layout(location = 2) in vec2 UV2;
+layout(location = 3) in vec4 Color;
 
 layout(location = 0) out vec2 fsin_texCoords;
 layout(location = 1) out vec2 UV;
@@ -66,6 +67,7 @@ layout(location = 16) out vec4 Color_Scale;
 layout(location = 17) out float N_Pow;
 layout(location = 18) out float D_Pow;
 layout(location = 19) flat out int idx;
+layout(location = 20) out vec4 Vert_Color;
 
 void main() {{
     idx = 0;
@@ -100,6 +102,7 @@ void main() {{
     Color_Scale = Instances[idx].ColorScale;
     N_Pow = Instances[idx].NPow;
     D_Pow = Instances[idx].DPow;
+    Vert_Color = Color;
 }}";
 
         public const string RotateDirectionNormal = @"";
@@ -130,6 +133,7 @@ layout(location = 16) in vec4 Color_Scale;
 layout(location = 17) in float N_Pow;
 layout(location = 18) in float D_Pow;
 layout(location = 19) flat in int idx;
+layout(location = 20) in vec4 Vert_Color;
 
 layout(set = 2, binding = 0) uniform texture2D TC1_Texture;
 layout(set = 2, binding = 1) uniform sampler TC1_Sampler;
@@ -150,7 +154,9 @@ layout(location = 0) out vec4 fsout_color;
 vec2 rotateUV(vec2 uv, float rotation) {{ float mid = 0.5; return vec2( cos(rotation) * (uv.x - mid) + sin(rotation) * (uv.y - mid) + mid, cos(rotation) * (uv.y - mid) - sin(rotation) * (uv.x - mid) + mid);}}
 vec2 rotateUV(vec2 uv, float rotation, vec2 mid) {{ return vec2( cos(rotation) * (uv.x - mid.x) + sin(rotation) * (uv.y - mid.y) + mid.x, cos(rotation) * (uv.y - mid.y) - sin(rotation) * (uv.x - mid.x) + mid.y ); }}
 vec2 rotateUV(vec2 uv, float rotation, float mid) {{ return vec2( cos(rotation) * (uv.x - mid) + sin(rotation) * (uv.y - mid) + mid, cos(rotation) * (uv.y - mid) - sin(rotation) * (uv.x - mid) + mid ); }}
-float Lumin(vec3 color) {{ return 0.3*color[0] + 0.59*color[1] + 0.11*color[2]; }}
+
+float Lumin(vec4 color) {{ return 0.3*color.x + 0.59*color.y + 0.11*color.z; }}
+
 vec3 normalizeColor(vec3 color) {{ return color / max(color.x, max(color.y, color.z)); }}
 // ======================
 
@@ -160,27 +166,37 @@ void main() {{
     vec2 UV3_Coords = vec2(0.5, 0.5) + UV3_Scale * (rotateUV(fsin_texCoords, UV3_Rot) - vec2(0.5, 0.5)) + UV3_Scroll;
     vec2 UV4_Coords = vec2(0.5, 0.5) + UV4_Scale * (rotateUV(fsin_texCoords, UV4_Rot) - vec2(0.5, 0.5)) + UV4_Scroll;
 
-    vec3 Color = vec3(Color_RGBA[0], Color_RGBA[1], Color_RGBA[2]);
-    vec3 ColorScale = normalizeColor(vec3(Color_Scale.x, Color_Scale.y, Color_Scale.z));
-    float Lum = Lumin(Color);
-    float Alpha = 0;
+    //vec3 Color = vec3(Color_RGBA[0], Color_RGBA[1], Color_RGBA[2]);
+    //vec3 ColorScale = normalizeColor(vec3(Color_Scale.x, Color_Scale.y, Color_Scale.z));
+    //float Lum = Lumin(Color);
+    //float Alpha = 0;
+    // -------------------------
+    //Alpha = Alpha * Color_Scale[3] * Color_RGBA[3];
+    //Color = Color * ColorScale;
+    //if(Alpha < 0.001)
+    //    discard;
+    //Color = Color * vec3(Vert_Color[0], Vert_Color[1], Vert_Color[2]);
+    //Alpha = Alpha * Vert_Color[3];
 
-    {0} // Distort goes first
-    {1}
-    {2}
-    {3}
-    {4}
-    {5}
-    {6}
-    {7}
+    vec4 Color = vec4(1,1,1,1);
 
-    Alpha = Alpha * Color_Scale[3] * Color_RGBA[3];
-    Color = Color * ColorScale;
-    if(Alpha < 0.001)
+{0}
+{1}
+{2}
+{3}
+{4}
+{5}
+{6}
+{7}
+
+    
+    Color = Color * Color_RGBA * Vert_Color;
+    Color.xyz = Color.xyz * Color.w;
+    Color = clamp(Color, 0, 1);
+    if (Color.w < 0.0039)
         discard;
 
-    Color = Color * Alpha;
-    fsout_color = vec4(Color, Alpha);
+    fsout_color = Color;
 }}";
     }
 }

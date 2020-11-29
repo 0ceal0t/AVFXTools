@@ -100,7 +100,8 @@ namespace AVFXTools.Main
                     new VertexLayoutDescription(
                         new VertexElementDescription("Position", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float3),
                         new VertexElementDescription("TexCoords", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2),
-                        new VertexElementDescription("UV2", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2)
+                        new VertexElementDescription("UV2", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2),
+                        new VertexElementDescription("Color", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float4)
                     )
                 },
                 C.Factory.CreateFromSpirv(
@@ -109,20 +110,89 @@ namespace AVFXTools.Main
                 )
             );
             // ====== BLEND MODE ===========
-            BlendStateDescription BlendStateDrawMode = BlendStateDescription.SingleAdditiveBlend;
-            BlendStateDrawMode.BlendFactor = RgbaFloat.Black;
+            BlendStateDescription BlendDrawMode = new BlendStateDescription
+            {
+                AttachmentStates = new BlendAttachmentDescription[]
+                {
+                    new BlendAttachmentDescription
+                    {
+                        BlendEnabled = true,
+                        SourceColorFactor = BlendFactor.SourceAlpha,
+                        DestinationColorFactor = BlendFactor.InverseSourceAlpha,
+                        ColorFunction = BlendFunction.Add,
+                        SourceAlphaFactor = BlendFactor.One,
+                        DestinationAlphaFactor = BlendFactor.InverseSourceAlpha,
+                        AlphaFunction = BlendFunction.Add
+                    }
+                }
+            };
+            BlendStateDescription ReverseDrawMode = new BlendStateDescription
+            {
+                AttachmentStates = new BlendAttachmentDescription[]
+                {
+                    new BlendAttachmentDescription
+                    {
+                        BlendEnabled = true,
+                        SourceColorFactor = BlendFactor.One,
+                        DestinationColorFactor = BlendFactor.InverseSourceColor,
+                        ColorFunction = BlendFunction.Add,
+                        SourceAlphaFactor = BlendFactor.Zero,
+                        DestinationAlphaFactor = BlendFactor.One,
+                        AlphaFunction = BlendFunction.Add
+                    }
+                }
+            };
+            BlendStateDescription AddDrawMode = new BlendStateDescription
+            {
+                AttachmentStates = new BlendAttachmentDescription[]
+                {
+                    new BlendAttachmentDescription
+                    {
+                        BlendEnabled = true,
+                        SourceColorFactor = BlendFactor.SourceAlpha,
+                        DestinationColorFactor = BlendFactor.One,
+                        ColorFunction = BlendFunction.Add,
+                        SourceAlphaFactor = BlendFactor.Zero,
+                        DestinationAlphaFactor = BlendFactor.One,
+                        AlphaFunction = BlendFunction.Add
+                    }
+                }
+            };
+            BlendStateDescription MultiplyDrawMode = new BlendStateDescription
+            {
+                AttachmentStates = new BlendAttachmentDescription[]
+                {
+                    new BlendAttachmentDescription
+                    {
+                        BlendEnabled = true,
+                        SourceColorFactor = BlendFactor.DestinationColor,
+                        DestinationColorFactor = BlendFactor.InverseSourceAlpha,
+                        ColorFunction = BlendFunction.Add,
+                        SourceAlphaFactor = BlendFactor.Zero,
+                        DestinationAlphaFactor = BlendFactor.One,
+                        AlphaFunction = BlendFunction.Add
+                    }
+                }
+            };
+
+            BlendStateDescription BlendStateDrawMode = BlendDrawMode;
             DrawMode MODE = (DrawMode)Enum.Parse(typeof(DrawMode), particle.DrawMode.Value, true);
             switch (MODE)
             {
+                case DrawMode.Reverse:
+                    BlendStateDrawMode = ReverseDrawMode;
+                    break;
                 case DrawMode.Screen:
+                    BlendStateDrawMode = ReverseDrawMode;
                     break;
                 case DrawMode.Add:
-                    BlendStateDrawMode = BlendStateDescription.SingleAdditiveBlend;
+                    BlendStateDrawMode = AddDrawMode;
                     break;
                 case DrawMode.Blend:
-                    BlendStateDrawMode = BlendStateDescription.SingleAlphaBlend;
+                    BlendStateDrawMode = BlendDrawMode;
                     break;
                 case DrawMode.Multiply:
+                    BlendStateDrawMode = MultiplyDrawMode;
                     break;
             }
             // ======== CULLINE MODE ======

@@ -40,7 +40,7 @@ namespace AVFXTools.Main
         public ResourceGetter Getter;
         public WepModel Model;
         public Core C;
-        public ImgUIMain UI;
+        public UIMain UI;
 
 
         public MainViewer(VeldridStartupWindow window, AVFXBase b, ResourceGetter g, WepModel baseM) : base(window)
@@ -88,7 +88,7 @@ namespace AVFXTools.Main
         {
             if (AVFX != null)
             {
-                UI = new ImgUIMain(AVFX, this, Window.igr, GraphicsDevice, CL);
+                UI = new UIMain(AVFX, this, Window.igr, GraphicsDevice, CL);
             }
         }
 

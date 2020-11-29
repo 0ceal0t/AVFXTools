@@ -7431,7 +7431,7 @@
         "textureBorderU": "Repeat",
         "textureBorderV": "Repeat",
         "textureIdx": 5,
-        "distortPower": {
+        "distortPower": {x
           "preBehavior": "Const",
           "postBehavior": "Const",
           "randomType": "FirstPlusMinus",

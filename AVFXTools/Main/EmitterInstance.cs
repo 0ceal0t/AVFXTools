@@ -230,14 +230,12 @@ namespace AVFXTools.Main
             {
                 case EmitterType.SphereModel:
                     return Matrix4x4.Identity;
-                    break;
                 case EmitterType.CylinderModel:
                     Console.WriteLine(NumCreated);
-                    float R = Radius.GetValue(Age) * ScaleX.GetValue(Age);
-                    float L = Length.GetValue(Age);
-                    float RotX = (2 * (float)Math.PI / DivideX) * NumCreated;
-                    return Matrix4x4.CreateTranslation(new Vector3(R, 0, 0)) * Matrix4x4.CreateRotationY(RotX);
-                    break;
+                    float R = Radius.GetValue(Age);
+                    float Rot = (2 * (float)Math.PI / DivideX) * NumCreated;
+                    Vector3 Position = new Vector3(R * ScaleX.GetValue(Age) * (float)Math.Cos(Rot), 0, R * ScaleY.GetValue(Age) * (float)Math.Sin(Rot));
+                    return Matrix4x4.CreateTranslation(Position);
                 default:
                     return Matrix4x4.Identity;
             }

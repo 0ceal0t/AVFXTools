@@ -16,8 +16,8 @@ Here be dragons. Someone more knowledgable than me please help -_-
 - [x] Binders
 - [ ] Effectors
 - [ ] Schedulers
-- [ ] Textures
-- [ ] Models
+- [x] Textures
+- [x] Models
 - [x] Maybe switch from `DragInt/Float` to `InputInt/Float`
 - [x] Separate popups for model / avfx
 - [ ] Option to remove model
@@ -33,7 +33,7 @@ Here be dragons. Someone more knowledgable than me please help -_-
 - [ ] Check transformation order. In C#, it's `T * R * S` (probably)
 ### Particle Graphics
 - [ ] ⚠️ so turns out powder particles don't need to have simple animations turned on. oops. rework all of that
-- [ ] ⚠️ draw mode (screen, reverse, multiply)
+- [x] ⚠️ draw mode (screen, reverse, multiply)
 - [x] culling type
 - [x] is depth test
 - [x] is depth write
