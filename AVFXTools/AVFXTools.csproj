@@ -303,6 +303,7 @@
     <Compile Include="Main\GenericInstance.cs" />
     <Compile Include="Main\GUtil.cs" />
     <Compile Include="Main\MainViewer.cs" />
+    <Compile Include="Main\Components\MatrixTriplet.cs" />
     <Compile Include="Main\ModelItem.cs" />
     <Compile Include="Main\ParticleInstanceModel.cs" />
     <Compile Include="Main\ParticleInstance.cs" />

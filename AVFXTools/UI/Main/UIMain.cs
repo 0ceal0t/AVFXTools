@@ -69,46 +69,46 @@ namespace AVFXTools.UI
             //================================
             if (ImGui.BeginTabBar("##MainTabs", ImGuiTabBarFlags.NoCloseWithMiddleMouseButton | ImGuiTabBarFlags.TabListPopupButton))
             {
-                if (ImGui.BeginTabItem("Parameters"))
+                if (ImGui.BeginTabItem("Parameters##Main"))
                 {
                     ParameterView.Draw();
                     ImGui.EndTabItem();
                 }
-                if (ImGui.BeginTabItem("Scheduler"))
+                if (ImGui.BeginTabItem("Scheduler##Main"))
                 {
                     ScheduleView.Draw();
                     ImGui.EndTabItem();
                 }
-                if (ImGui.BeginTabItem("Timelines"))
+                if (ImGui.BeginTabItem("Timelines##Main"))
                 {
                     TimelineView.Draw();
                     ImGui.EndTabItem();
                 }
-                if (ImGui.BeginTabItem("Emitters"))
+                if (ImGui.BeginTabItem("Emitters##Main"))
                 {
                     EmitterView.Draw();
                     ImGui.EndTabItem();
                 }
-                if (ImGui.BeginTabItem("Particles"))
+                if (ImGui.BeginTabItem("Particles##Main"))
                 {
                     ParticleView.Draw();
                     ImGui.EndTabItem();
                 }
-                if (ImGui.BeginTabItem("Effectors"))
+                if (ImGui.BeginTabItem("Effectors##Main"))
                 {
                     ImGui.EndTabItem();
                 }
-                if (ImGui.BeginTabItem("Binders"))
+                if (ImGui.BeginTabItem("Binders##Main"))
                 {
                     BinderView.Draw();
                     ImGui.EndTabItem();
                 }
-                if (ImGui.BeginTabItem("Textures"))
+                if (ImGui.BeginTabItem("Textures##Main"))
                 {
                     TextureView.Draw();
                     ImGui.EndTabItem();
                 }
-                if (ImGui.BeginTabItem("Models"))
+                if (ImGui.BeginTabItem("Models##Main"))
                 {
                     ModelView.Draw();
                     ImGui.EndTabItem();

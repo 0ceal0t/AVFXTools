@@ -112,6 +112,7 @@ namespace AVFXTools.UI
                     Rotation.Draw(id);
                     Position.Draw(id);
                     Color.Draw(id);
+                    ImGui.TreePop();
                 }
                 //=======================
                 if (ImGui.TreeNode("Particles (" + Particles.Length + ")" + id))

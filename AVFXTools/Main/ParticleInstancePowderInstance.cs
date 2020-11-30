@@ -114,8 +114,8 @@ namespace AVFXTools.Main
             float UVOverhangY = (0.5f / UVScaleY - 0.5f) * UVScaleY;
             float UVOffsetY = (float)CellY * UVScaleY;
 
-            Vector2  ScaleUV = new Vector2(UVScaleX, UVScaleY);
-            Vector2  ScrollUV = new Vector2(UVOffsetX - UVOverhangX, UVOffsetY - UVOverhangY);
+            Vector2 ScaleUV = new Vector2(UVScaleX, UVScaleY);
+            Vector2 ScrollUV = new Vector2(UVOffsetX - UVOverhangX, UVOffsetY - UVOverhangY);
 
             Matrix4x4 TranslationMatrix = GUtil.TransformMatrix(
                 new Vector3(),
@@ -129,7 +129,7 @@ namespace AVFXTools.Main
                 TranslationMatrix,
                 Color,
                 1,
-                new Vector4(1,1,1,1),
+                new Vector4(1, 1, 1, 1),
                 ScrollUV, ScaleUV, 0,
                 ScrollUV, ScaleUV, 0,
                 ScrollUV, ScaleUV, 0,

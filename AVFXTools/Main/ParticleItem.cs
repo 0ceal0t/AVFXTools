@@ -45,11 +45,11 @@ namespace AVFXTools.Main
                     break;
                 // ======== QUAD ============
                 case ParticleType.Quad:
-                    InitQuad(0.5f, 1.0f, 2.0f);
+                    InitQuad(0.5f);
                     break;
                 // ======= POWDER ===========
                 case ParticleType.Powder:
-                    InitQuad(1.0f, 1.0f, 1.0f);
+                    InitQuad(1.0f);
                     break;
                 default:
                     return;
@@ -130,13 +130,13 @@ namespace AVFXTools.Main
             return true;
         }
 
-        public void InitQuad(float size, float uvX, float uvY)
+        public void InitQuad(float size)
         {
             Verts = new VertexPositionTexture[] {
-                new VertexPositionTexture(new Vector3(-1.0f * size,-1.0f * size,0), new Vector2(0.0f,uvY), new Vector4(1,1,1,1)),
-                new VertexPositionTexture(new Vector3(-1.0f * size, 1.0f * size,0), new Vector2(0.0f,0.0f), new Vector4(1,1,1,1)),
-                new VertexPositionTexture(new Vector3( 1.0f * size,-1.0f * size,0), new Vector2(uvX,uvY), new Vector4(1,1,1,1)),
-                new VertexPositionTexture(new Vector3( 1.0f * size, 1.0f * size,0), new Vector2(uvX,0.0f), new Vector4(1,1,1,1)),
+                new VertexPositionTexture(new Vector3(-1.0f * size,-1.0f * size,0), new Vector2(1,0), new Vector4(1,1,1,1)),
+                new VertexPositionTexture(new Vector3(-1.0f * size, 1.0f * size,0), new Vector2(1,1), new Vector4(1,1,1,1)),
+                new VertexPositionTexture(new Vector3( 1.0f * size,-1.0f * size,0), new Vector2(0,0), new Vector4(1,1,1,1)),
+                new VertexPositionTexture(new Vector3( 1.0f * size, 1.0f * size,0), new Vector2(0,1), new Vector4(1,1,1,1)),
             };
             Indexes = new ushort[] {
                 2, 0, 1,

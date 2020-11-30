@@ -128,11 +128,7 @@ namespace AVFXTools.Main
             CL.Begin();
 
             // PROJECTION
-            CL.UpdateBuffer(ProjectionBuffer, 0, Matrix4x4.CreatePerspectiveFieldOfView(
-                1.0f,
-                (float)Window.Width / Window.Height,
-                0.5f,
-                100f));
+            CL.UpdateBuffer(ProjectionBuffer, 0, _camera.ProjectionMatrix);
             // CAMERA + VIEW
             CL.UpdateBuffer(ViewBuffer, 0, _camera.ViewMatrix);
             CameraPos = _camera.Position;

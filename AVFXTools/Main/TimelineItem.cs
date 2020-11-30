@@ -31,13 +31,13 @@ namespace AVFXTools.Main
             Timeline = timeline;
             C = core;
             //==============
-            if(timeline.Items.Count > 0)
+            if (timeline.Items.Count > 0)
             {
                 var lastItem = timeline.Items[timeline.Items.Count - 1];
-                foreach(var subItem in lastItem.SubItems)
+                foreach (var subItem in lastItem.SubItems)
                 {
                     var emitterIdx = subItem.EmitterIdx.Value;
-                    if(emitterIdx != -1 && (subItem.Enabled.Value == true))
+                    if (emitterIdx != -1 && (subItem.Enabled.Value == true))
                     {
                         Items.Add(new TimelineSubItem(subItem.BinderIdx.Value, emitterIdx));
                     }
@@ -47,7 +47,7 @@ namespace AVFXTools.Main
 
         public void Start()
         {
-            foreach(var subItem in Items)
+            foreach (var subItem in Items)
             {
                 BinderItem binder = null;
                 Console.WriteLine("emitter {0} binder {1}", subItem.EmitterIdx, subItem.BinderIdx);

@@ -133,6 +133,9 @@ namespace AVFXTools.Main
                 UV1_ScaleX = new CurveRandomGroup("UV1_ScaleX", UV.Scale.X, UV.Scale.RX, D: 1.0f);
                 UV1_ScaleY = new CurveRandomGroup("UV1_ScaleY", UV.Scale.Y, UV.Scale.RY, D: 1.0f);
                 UV1_Rot = new CurveRandomGroup("UV1_Rot", UV.Rot, UV.RotRandom);
+
+                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV1_ScrollX, ref UV1_ScrollY);
+                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV1_ScaleX, ref UV1_ScaleY);
             }
             // UV2
             if (UVLen > 1)
@@ -144,6 +147,9 @@ namespace AVFXTools.Main
                 UV2_ScaleX = new CurveRandomGroup("UV2_ScaleX", UV.Scale.X, UV.Scale.RX, D: 1.0f);
                 UV2_ScaleY = new CurveRandomGroup("UV2_ScaleY", UV.Scale.Y, UV.Scale.RY, D: 1.0f);
                 UV2_Rot = new CurveRandomGroup("UV2_Rot", UV.Rot, UV.RotRandom);
+
+                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV2_ScrollX, ref UV2_ScrollY);
+                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV2_ScaleX, ref UV2_ScaleY);
             }
             // UV3
             if (UVLen > 2)
@@ -155,6 +161,9 @@ namespace AVFXTools.Main
                 UV3_ScaleX = new CurveRandomGroup("UV3_ScaleX", UV.Scale.X, UV.Scale.RX, D: 1.0f);
                 UV3_ScaleY = new CurveRandomGroup("UV3_ScaleY", UV.Scale.Y, UV.Scale.RY, D: 1.0f);
                 UV3_Rot = new CurveRandomGroup("UV3_Rot", UV.Rot, UV.RotRandom);
+
+                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV3_ScrollX, ref UV3_ScrollY);
+                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV3_ScaleX, ref UV3_ScaleY);
             }
             // UV4
             if (UVLen > 3)
@@ -166,6 +175,9 @@ namespace AVFXTools.Main
                 UV4_ScaleX = new CurveRandomGroup("UV4_ScaleX", UV.Scale.X, UV.Scale.RX, D: 1.0f);
                 UV4_ScaleY = new CurveRandomGroup("UV4_ScaleY", UV.Scale.Y, UV.Scale.RY, D: 1.0f);
                 UV4_Rot = new CurveRandomGroup("UV4_Rot", UV.Rot, UV.RotRandom);
+
+                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV4_ScrollX, ref UV4_ScrollY);
+                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV4_ScaleX, ref UV4_ScaleY);
             }
             // NPow
             var TN = particle.TN.UvSetIdx;
@@ -191,6 +203,13 @@ namespace AVFXTools.Main
                 Dead = true;
             }
             CurrentTransform = GetMatrix(Age) * GetCurrentTransform();
+
+            if(Item.ParticleIdx == 3)
+            {
+                //CurrentTransform = Matrix4x4.CreateRotationZ((float)Math.PI);//* Matrix4x4.CreateRotationZ((float)Math.PI * 0);
+                CurrentTransform = GetMatrix(Age);
+            }
+
             // CHECK TO SEE IF POWDER NEEDS TO BE SPAWNED
             if (Spawner != null)
             {
@@ -231,6 +250,7 @@ namespace AVFXTools.Main
         public override ParticleInstanceData GetData() { return GetData(Age); }
         public override ParticleInstanceData GetData(float time)
         {
+
             Matrix4x4 TranslationMatrix = CurrentTransform;
             if (_RotationBase == RotationDirectionBase.CameraBillboard)
             {

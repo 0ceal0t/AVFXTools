@@ -215,6 +215,24 @@ namespace AVFXTools.Main
                     break;
             }
         }
+        public static void AxisConnect(string axisConnect, ref CurveRandomGroup X, ref CurveRandomGroup Y)
+        {
+            switch (axisConnect)
+            {
+                case "X_YZ":
+                    Y = X;
+                    break;
+                case "X_Y":
+                    Y = X;
+                    break;
+                case "Y_XZ":
+                    X = Y;
+                    break;
+                case "Y_X":
+                    X = Y;
+                    break;
+            }
+        }
 
         public static AVFXCurve SplitCurve(AVFXCurve curve, int idx)
         {

@@ -59,7 +59,7 @@ Here be dragons. Someone more knowledgable than me please help -_-
 - [ ] rotation base
 - [ ] depth clip
 - [ ] ⚠️ fix powder particles (gravity, etc)
-- [ ] double-check quads
+- [x] double-check quads
 ### Emitter Graphics
 - [ ] CreateTime / CreateCount: what do those mean? They already exist elsewhere, why are they in the emitter sub-items?
 - [ ] Create Probability

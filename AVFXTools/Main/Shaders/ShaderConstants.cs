@@ -76,7 +76,7 @@ void main() {{
 
     {0}
 
-    vec4 SRT_Position = vec4((SRTMatrix * vec4(Pos, 1)).xyz,1);
+    vec4 SRT_Position = (SRTMatrix * vec4(Pos, 1));
 
     vec4 worldPosition = World * SRT_Position;
     vec4 viewPosition = View * worldPosition;
