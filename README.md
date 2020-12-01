@@ -15,7 +15,7 @@ Here be dragons. Someone more knowledgable than me please help -_-
 - [x] Timelines
 - [x] Binders
 - [ ] Effectors
-- [ ] Schedulers
+- [x] Schedulers
 - [x] Textures
 - [x] Models
 - [x] Maybe switch from `DragInt/Float` to `InputInt/Float`
@@ -25,12 +25,13 @@ Here be dragons. Someone more knowledgable than me please help -_-
 - [ ] Choose game location + save settings
 ### General Graphics
 - [ ] ⚠️ random (what do the random types mean)
+- [ ] random axis linking
 - [ ] curves
-- [ ] velocity
 - [ ] gravity / velocity / position / air resistance
 - [ ] Make sure bad bindings can be handled
-- [ ] Clean up console log
-- [ ] Check transformation order. In C#, it's `T * R * S` (probably)
+- [x] Clean up console log
+- [x] Check transformation order. In C#, it's `T * R * S` (probably)
+- [ ] Perspective is off (see Omega), items are foreshortened
 ### Particle Graphics
 - [ ] ⚠️ so turns out powder particles don't need to have simple animations turned on. oops. rework all of that
 - [x] ⚠️ draw mode (screen, reverse, multiply)
@@ -60,6 +61,7 @@ Here be dragons. Someone more knowledgable than me please help -_-
 - [ ] depth clip
 - [ ] ⚠️ fix powder particles (gravity, etc)
 - [x] double-check quads
+- [ ] texture filter
 ### Emitter Graphics
 - [ ] CreateTime / CreateCount: what do those mean? They already exist elsewhere, why are they in the emitter sub-items?
 - [ ] Create Probability

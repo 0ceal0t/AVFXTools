@@ -45,11 +45,13 @@ namespace AVFXLib.AVFX
             return bytes;
         }
 
+        // =====================
+
         public virtual bool EqualsNode(AVFXNode node)
         {
             if((node is AVFXLeaf) || (node is AVFXBlank))
             {
-                Console.WriteLine("Wrong Type 1");
+                Console.WriteLine("Wrong Type");
 
                 return false;
             }
@@ -86,7 +88,6 @@ namespace AVFXLib.AVFX
                 {
                     Console.WriteLine(n.Name);
                 }
-                Console.WriteLine("---------------");
                 foreach (AVFXNode n in notBlank2)
                 {
                     Console.WriteLine(n.Name);
@@ -96,17 +97,25 @@ namespace AVFXLib.AVFX
             }
             for(int idx = 0; idx < notBlank.Count; idx++)
             {
-                //if (notBlank[idx].Name == "Modl") continue; // temp
                 bool e = notBlank[idx].EqualsNode(notBlank2[idx]);
                 if (!e)
                 {
-                    Console.WriteLine("{0} : {1}", Name, idx.ToString());
+                    Console.WriteLine("Not Equal {0} : {1}", Name, idx.ToString());
 
                     return false;
                 }
             }
 
             return true;
+        }
+
+        public virtual void Print(int level)
+        {
+            Console.WriteLine("{0} {1}", new String('\t', level), Name);
+            foreach (var c in Children)
+            {
+                c.Print(level + 1);
+            }
         }
     }
 }

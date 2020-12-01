@@ -14,14 +14,6 @@ namespace AVFXTools.UI
         public AVFXTimelineSubItem Item;
         public int Idx;
         //===========================
-        public bool Enabled;
-        public int StartTime;
-        public int EndTime;
-        public int BinderIdx;
-        public int EffectorIdx;
-        public int EmitterIdx;
-        public int Platform;
-        public int ClipNumber;
 
         public UITimelineItem(AVFXTimelineSubItem item)
         {

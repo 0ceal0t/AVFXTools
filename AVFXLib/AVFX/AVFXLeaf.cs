@@ -36,7 +36,7 @@ namespace AVFXLib.AVFX
         {
             if(!(node is AVFXLeaf))
             {
-                Console.WriteLine("Wrong Type 2 {0}", node.Name);
+                Console.WriteLine("Wrong Type {0}", node.Name);
                 return false;
             }
             AVFXLeaf leaf = (AVFXLeaf)node;
@@ -66,6 +66,11 @@ namespace AVFXLib.AVFX
                 }
             }
             return true;
+        }
+
+        public override void Print(int level)
+        {
+            Console.WriteLine("{0} {1} {2}", new String('\t', level), Name, Size);
         }
     }
 }

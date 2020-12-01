@@ -29,7 +29,6 @@ namespace AVFXTools.Main
             Images = new Image<Rgba32>[textures.Count];
             for (int idx = 0; idx < textures.Count; idx++)
             {
-                Console.WriteLine(textures[idx].Path.Value);
                 string p = textures[idx].Path.Value.Replace("\u0000", "");
                 byte[] bytes = getter.GetDDS(p);
                 var image = Pfim.Pfim.FromStream(new MemoryStream(bytes));
@@ -121,7 +120,6 @@ namespace AVFXTools.Main
                             NewData[newPos + 0] = image.Data[originalPos + 2];
                             NewData[newPos + 1] = image.Data[originalPos + 1];
                             NewData[newPos + 2] = image.Data[originalPos + 0];
-                            //NewData[newPos + 3] = image.Data[originalPos + 1];
                             NewData[newPos + 3] = 255;
                         }
                     }
@@ -133,18 +131,15 @@ namespace AVFXTools.Main
                         {
                             int originalPos = (y * image.Stride) + x * BytesPerPixel;
                             int newPos = (y * 4 * Width) + x * 4;
-                            //NewData[newPos + 0] = image.Data[originalPos];
-                            //NewData[newPos + 1] = image.Data[originalPos];
-                            //NewData[newPos + 2] = image.Data[originalPos];
-                            NewData[newPos + 0] = 0;
-                            NewData[newPos + 1] = 0;
-                            NewData[newPos + 2] = 0;
+                            NewData[newPos + 0] = 255;
+                            NewData[newPos + 1] = 255;
+                            NewData[newPos + 2] = 255;
                             NewData[newPos + 3] = image.Data[originalPos];
                         }
                     }
                     break;
                 default:
-                    Console.WriteLine(" ? ");
+                    Console.WriteLine("Unsupported Pixel Format");
                     break;
             }
             return Image.LoadPixelData<Rgba32>(NewData, Width, Height);

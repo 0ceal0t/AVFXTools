@@ -231,7 +231,6 @@ namespace AVFXTools.Main
                 case EmitterType.SphereModel:
                     return Matrix4x4.Identity;
                 case EmitterType.CylinderModel:
-                    Console.WriteLine(NumCreated);
                     float R = Radius.GetValue(Age);
                     float Rot = (2 * (float)Math.PI / DivideX) * NumCreated;
                     Vector3 Position = new Vector3(R * ScaleX.GetValue(Age) * (float)Math.Cos(Rot), 0, R * ScaleY.GetValue(Age) * (float)Math.Sin(Rot));

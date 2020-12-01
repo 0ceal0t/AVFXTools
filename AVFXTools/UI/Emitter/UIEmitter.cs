@@ -21,6 +21,7 @@ namespace AVFXTools.UI
         public UILife Life;
         public UICurve CreateCount;
         public UICurve CreateInterval;
+        public UICurve CreateIntervalRandom;
         public UICurve AirResistance;
         public UICurveColor Color;
         public UICurve3Axis Position;
@@ -49,6 +50,7 @@ namespace AVFXTools.UI
             Life = new UILife(Emitter.Life);
             CreateCount = new UICurve(Emitter.CreateCount, "Create Count");
             CreateInterval = new UICurve(Emitter.CreateInterval, "Create Interval");
+            CreateIntervalRandom = new UICurve(Emitter.CreateIntervalRandom, "Create Interval Random");
             AirResistance = new UICurve(Emitter.AirResistance, "Air Resistance");
             Color = new UICurveColor(Emitter.Color, "Color");
             Position = new UICurve3Axis(Emitter.Position, "Position");
@@ -107,6 +109,7 @@ namespace AVFXTools.UI
                     Life.Draw(id);
                     CreateCount.Draw(id);
                     CreateInterval.Draw(id);
+                    CreateIntervalRandom.Draw(id);
                     AirResistance.Draw(id);
                     Scale.Draw(id);
                     Rotation.Draw(id);

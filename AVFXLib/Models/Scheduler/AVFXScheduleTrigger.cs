@@ -75,10 +75,10 @@ namespace AVFXLib.Models
             return itemAvfx;
         }
 
-        public AVFXNode toAVFXRange(int num) // use this to get a range of a specific element
+        public AVFXNode toAVFXRange(int end, int start = 0, string name = "Trgr") // get a range of subitems
         {
-            AVFXNode itemAvfx = new AVFXNode("Trgr");
-            for (int i = 0; i < num; i++)
+            AVFXNode itemAvfx = new AVFXNode(name);
+            for (int i = start; i < end; i++)
             {
                 var Item = SubItems[i];
                 itemAvfx.Children.AddRange(Item.toAVFX().Children);
@@ -98,11 +98,11 @@ namespace AVFXLib.Models
 
     public class AVFXScheduleSubItem : Base
     {
-        LiteralBool Enabled = new LiteralBool("enabled", "bEna");
-        LiteralInt StartTime = new LiteralInt("startTime", "StTm");
-        LiteralInt TimelineIdx = new LiteralInt("timelineIdx", "TlNo");
+        public LiteralBool Enabled = new LiteralBool("enabled", "bEna");
+        public LiteralInt StartTime = new LiteralInt("startTime", "StTm");
+        public LiteralInt TimelineIdx = new LiteralInt("timelineIdx", "TlNo");
 
-        List<Base> Attributes;
+        public List<Base> Attributes;
 
         public AVFXScheduleSubItem() : base("subItem", "SubItem")
         {

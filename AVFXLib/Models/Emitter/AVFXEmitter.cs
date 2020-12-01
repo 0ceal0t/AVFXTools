@@ -29,6 +29,7 @@ namespace AVFXLib.Models
 
         public AVFXCurve CreateCount = new AVFXCurve("createCount", "CrC");
         public AVFXCurve CreateInterval = new AVFXCurve("createInterval", "CrI");
+        public AVFXCurve CreateIntervalRandom = new AVFXCurve("createIntervalRandom", "CrIR");
         public AVFXCurve AirResistance = new AVFXCurve("airResistance", "ARs");
         public AVFXCurveColor Color = new AVFXCurveColor("color");
         public AVFXCurve3Axis Position = new AVFXCurve3Axis("position", "Pos");

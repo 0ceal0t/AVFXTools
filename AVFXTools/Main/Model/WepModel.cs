@@ -64,8 +64,6 @@ namespace AVFXTools.Main
                 Vector3 P1 = new Vector3(UIntToFloat(u.Unknown3), UIntToFloat(u.Unknown4), UIntToFloat(u.Unknown5));
                 Vector3 P2 = new Vector3(UIntToFloat(u.Unknown6), UIntToFloat(u.Unknown7), UIntToFloat(u.Unknown8));
 
-                Console.WriteLine("{0} {1} {2} {3} {4} {5} {6} {7}", u.Unknown1, u.Unknown2, u.Unknown3, UIntToFloat(u.Unknown4), u.Unknown5, u.Unknown6, u.Unknown7, u.Unknown8);
-
                 if (sheetIdx != LAST_NUM)
                 {
                     LAST_NUM = sheetIdx;
@@ -76,23 +74,18 @@ namespace AVFXTools.Main
 
                 BindPoints[bindIdx] = new BindPoint(P1, P2);
 
-                var row = sheet[sheetIdx];
-                Console.WriteLine("{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12} {13} {14} {15} {16}", row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16]);
-                Console.WriteLine("-------------------");
+                var row = sheet[sheetIdx]; // goes from row[0] to row[16]
             }
 
             for (int idx = 0; idx < skeleton.BoneCount; idx++)
             {
-                Console.WriteLine("{0} {1}", skeleton.BoneNames[idx], skeleton.ParentBoneIndices[idx]);
-                Console.WriteLine("{0} {1} {2}", skeleton.ReferencePosLocal[idx].Translation.X, skeleton.ReferencePosLocal[idx].Translation.Y, skeleton.ReferencePosLocal[idx].Translation.Z);
-                Console.WriteLine("================");
+                Console.WriteLine("BONE| {0} {1} : {2} {3} {4}", skeleton.BoneNames[idx], skeleton.ParentBoneIndices[idx], skeleton.ReferencePosLocal[idx].Translation.X, skeleton.ReferencePosLocal[idx].Translation.Y, skeleton.ReferencePosLocal[idx].Translation.Z);
             }
 
 
             // ==========
             // SET UP MODEL VERTICES
             // ==========
-
             Vertices = new BasicVertex[model.Meshes.Length][];
             Indices = new ushort[model.Meshes.Length][];
 

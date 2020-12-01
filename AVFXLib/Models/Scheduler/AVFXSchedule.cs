@@ -108,26 +108,43 @@ namespace AVFXLib.Models
 
             // Items
             //=======================//
-            foreach (AVFXScheduleItem itemElem in Items)
+            /*foreach (AVFXScheduleItem itemElem in Items)
             {
                 PutAVFX(schdAvfx, itemElem);
+            }*/
+            if (Items.Count > 0)
+            {
+                var lastItem = Items[Items.Count - 1];
+                for (int i = 1; i <= lastItem.SubItems.Count; i++) // get 1, then 2, etc.
+                {
+                    schdAvfx.Children.Add(lastItem.toAVFXRange(i, name: "Item"));
+                }
             }
 
             // Triggers
             //=======================//
-            foreach (AVFXScheduleTrigger triggerElem in Triggers)
+            /*foreach (AVFXScheduleTrigger triggerElem in Triggers)
             {
                 PutAVFX(schdAvfx, triggerElem);
-            }
-            /*if (Triggers.Count > 0)
+            }*/
+            if(Triggers.Count > 0)
             {
                 var lastTrigger = Triggers[Triggers.Count - 1];
-                var subItemCount = lastTrigger.SubItems.Count;
-                for (int i = 1; i <= subItemCount; i++)
+                List<AVFXScheduleSubItem> lastItemSubItems = (Items.Count > 0) ? Items[Items.Count - 1].SubItems : new List<AVFXScheduleSubItem>();
+                lastItemSubItems.Reverse(); // since we want to add them to the front in reverse order
+
+                for(int i = 1; i <= lastTrigger.SubItems.Count - lastItemSubItems.Count; i++)
                 {
-                    schdAvfx.Children.Add(lastTrigger.toAVFXRange(i));
+                    int start = lastItemSubItems.Count;
+                    int end = start + i;
+                    AVFXNode triggerAvfx = lastTrigger.toAVFXRange(end, start: start); // get the actual trigger parts. this is a subset of the last trigger's parts minus the first ones, which are determined by the last item
+                    foreach(var subItem in lastItemSubItems)
+                    {
+                        triggerAvfx.Children.InsertRange(0, subItem.toAVFX().Children);
+                    }
+                    schdAvfx.Children.Add(triggerAvfx);
                 }
-            }*/
+            }
 
             return schdAvfx;
         }

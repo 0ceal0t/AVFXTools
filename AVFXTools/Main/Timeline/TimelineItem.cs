@@ -50,7 +50,6 @@ namespace AVFXTools.Main
             foreach (var subItem in Items)
             {
                 BinderItem binder = null;
-                Console.WriteLine("emitter {0} binder {1}", subItem.EmitterIdx, subItem.BinderIdx);
                 if (subItem.BinderIdx != -1 && subItem.BinderIdx < C.Binders.Length)
                 {
                     binder = C.Binders[subItem.BinderIdx];

@@ -23,10 +23,14 @@ namespace AVFXLib.AVFX
         {
             if(!(node is AVFXBlank))
             {
-                Console.WriteLine("Wrong Type 3");
+                Console.WriteLine("Not Blank");
                 return false;
             }
             return true;
+        }
+
+        public override void Print(int level)
+        {
         }
     }
 }

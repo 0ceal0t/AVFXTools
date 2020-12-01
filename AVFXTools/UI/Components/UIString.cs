@@ -45,9 +45,11 @@ namespace AVFXTools.UI
 
         public override void Draw(string id)
         {
-            if (ImGui.InputText(Id + id, Value, (uint)Value.Length))
+            ImGui.InputText(Id + id, Value, (uint)Value.Length);
+            ImGui.SameLine();
+            if (ImGui.Button("Update" + id))
             {
-                if(ChangeFunction == null)
+                if (ChangeFunction == null)
                 {
                     Literal.GiveValue(Util.BytesToString(Value).Trim('\0'));
                 }

@@ -41,9 +41,6 @@ namespace AVFXTools.Main.Shaders
 
         public void BuildFrag()
         {
-
-            Console.WriteLine(Particle.TC1.Enabled.Value);
-
             string TC1 = (Particle.TC1.Enabled.Value == true) ? GetTextureColor("TC1", Particle.TC1.UvSetIdx, Particle.TC1.TextureCalculateColor, Particle.TC1.TextureCalculateAlpha, Particle.TC1.ColorToAlpha, Particle.TC1.TextureFilter) : "";
             string TC2 = (Particle.TC2.Enabled.Value == true) ? GetTextureColor("TC2", Particle.TC2.UvSetIdx, Particle.TC2.TextureCalculateColor, Particle.TC2.TextureCalculateAlpha, Particle.TC2.ColorToAlpha, Particle.TC2.TextureFilter) : "";
             string TC3 = (Particle.TC3.Enabled.Value == true) ? GetTextureColor("TC3", Particle.TC3.UvSetIdx, Particle.TC3.TextureCalculateColor, Particle.TC3.TextureCalculateAlpha, Particle.TC3.ColorToAlpha, Particle.TC3.TextureFilter) : "";

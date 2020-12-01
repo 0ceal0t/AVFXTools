@@ -149,11 +149,23 @@ namespace AVFXLib.Main
             "YR",
             "ZR",
             "CrI",
+            "CrIR",
             "CrC",
             "Trgr",
             "SpS",
             "IjS",
             "ItEm"
+        });
+
+        static HashSet<String> ALLOW = new HashSet<string>(new string[]{
+            "Clip",
+            "Keys",
+            "Tex",
+            "VDrw",
+            "VIdx",
+            "VNum",
+            "VEmt",
+            "Cols"
         });
 
         public static List<AVFXNode> readDef(BinaryReader reader)
@@ -185,20 +197,16 @@ namespace AVFXLib.Main
                 }
                 else
                 {
-                    //if (Size > 8)
-                    //{
-                    //    Console.WriteLine("{0} {1}", DefName, Size);
-                    //}
+                    if (Size > 8 && !(ALLOW.Contains(DefName)))
+                    {
+                        Console.WriteLine("LARGE BLOCK: {0} {1}", DefName, Size);
+                    }
 
                     AVFXLeaf leafNode = new AVFXLeaf(DefName, Size, Contents);
                     r.Add(leafNode);
                 }
                 // PAD
                 int pad = Util.RoundUp(Size) - Size;
-                //if(pad > 0)
-                //{
-                //    Console.WriteLine(DefName);
-                //}
                 reader.ReadBytes(pad);
 
                 // KEEP READING
