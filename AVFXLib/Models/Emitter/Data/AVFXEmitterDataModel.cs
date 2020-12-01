@@ -11,8 +11,8 @@ namespace AVFXLib.Models
     public class AVFXEmitterDataModel : AVFXEmitterData
     {
         public LiteralInt ModelIdx = new LiteralInt("modelIdx", "MdNo");
-        public LiteralEnum RotationOrderType = new LiteralEnum(new RotationOrder(), "rotationOrder", "ROT");
-        public LiteralEnum GenerateMethodType = new LiteralEnum(new GenerateMethod(), "generateMethod", "GeMT");
+        public LiteralEnum<RotationOrder> RotationOrderType = new LiteralEnum<RotationOrder>("rotationOrder", "ROT");
+        public LiteralEnum<GenerateMethod> GenerateMethodType = new LiteralEnum<GenerateMethod>("generateMethod", "GeMT");
         public AVFXCurve AX = new AVFXCurve("angleX", "AX");
         public AVFXCurve AY = new AVFXCurve("angleY", "AY");
         public AVFXCurve AZ = new AVFXCurve("angleZ", "AZ");

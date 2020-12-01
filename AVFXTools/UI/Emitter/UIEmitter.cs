@@ -79,15 +79,15 @@ namespace AVFXTools.UI
             }
             else { Emitters = new UIEmitterItem[0]; }
             //=======================
-            switch (Emitter.EmitterType.Value)
+            switch (Emitter.EmitterVariety.Value)
             {
-                case "SphereModel":
+                case EmitterType.SphereModel:
                     Data = new UIEmitterDataSphereModel((AVFXEmitterDataSphereModel)Emitter.Data);
                     break;
-                case "CylinderModel":
+                case EmitterType.CylinderModel:
                     Data = new UIEmitterDataCylinderModel((AVFXEmitterDataCylinderModel)Emitter.Data);
                     break;
-                case "Model":
+                case EmitterType.Model:
                     Data = new UIEmitterDataModel((AVFXEmitterDataModel)Emitter.Data);
                     break;
             }
@@ -96,7 +96,7 @@ namespace AVFXTools.UI
         public override void Draw(string parentId)
         {
             string id = parentId + "/Emitter" + Idx;
-            if (ImGui.CollapsingHeader("Emitter " + Idx + "(" + Emitter.EmitterType.Value + ")" + id))
+            if (ImGui.CollapsingHeader("Emitter " + Idx + "(" + Emitter.EmitterVariety.stringValue() + ")" + id))
             {
                 if (ImGui.TreeNode("Parameters" + id))
                 {

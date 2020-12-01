@@ -11,8 +11,8 @@ namespace AVFXLib.Models
     public class AVFXTexturePalette : Base
     {
         public LiteralBool Enabled = new LiteralBool("enabled", "bEna");
-        public LiteralEnum TextureFilter = new LiteralEnum(new TextureFilterType(), "textureFilter", "TFT");
-        public LiteralEnum TextureBorder = new LiteralEnum(new TextureBorderType(), "textureBorder", "TBT");
+        public LiteralEnum<TextureFilterType> TextureFilter = new LiteralEnum<TextureFilterType>("textureFilter", "TFT");
+        public LiteralEnum<TextureBorderType> TextureBorder = new LiteralEnum<TextureBorderType>("textureBorder", "TBT");
         public LiteralInt TextureIdx = new LiteralInt("textureIdx", "TxNo");
 
         List<Base> Attributes;

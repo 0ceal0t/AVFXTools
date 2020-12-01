@@ -51,7 +51,7 @@ namespace AVFXTools.Main
             return Views[idx];
         }
 
-        public Sampler GetSampler(LiteralEnum U, LiteralEnum V)
+        public Sampler GetSampler(LiteralEnum<TextureBorderType> U, LiteralEnum<TextureBorderType> V)
         {
             SamplerDescription MaskSamplerD = SamplerDescription.Aniso4x;
             if (U.Assigned)
@@ -65,15 +65,15 @@ namespace AVFXTools.Main
             return C.Factory.CreateSampler(MaskSamplerD);
         }
 
-        public static SamplerAddressMode GetSamplerMode(string mode)
+        public static SamplerAddressMode GetSamplerMode(TextureBorderType mode)
         {
             switch (mode)
             {
-                case "Repeat":
+                case TextureBorderType.Repeat:
                     return SamplerAddressMode.Wrap;
-                case "Clamp":
+                case TextureBorderType.Clamp:
                     return SamplerAddressMode.Clamp;
-                case "Mirror":
+                case TextureBorderType.Mirror:
                     return SamplerAddressMode.Mirror;
             }
             return SamplerAddressMode.Wrap;

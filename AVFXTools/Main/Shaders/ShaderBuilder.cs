@@ -28,10 +28,10 @@ namespace AVFXTools.Main.Shaders
             string rotationDirection = ShaderConstants.RotateDirectionNormal;
             switch (Particle.RotationDirectionBase.Value)
             {
-                case "CameraBillboard":
+                case RotationDirectionBase.CameraBillboard:
                     rotationDirection = ShaderConstants.RotateDirectionBillboardCamera;
                     break;
-                case "TreeBillboard":
+                case RotationDirectionBase.TreeBillboard:
                     rotationDirection = ShaderConstants.RotateDirectionBillboardCamera;
                     break;
             }
@@ -101,17 +101,17 @@ namespace AVFXTools.Main.Shaders
         public string GetTextureColor(
             string prefix,
             LiteralInt uvIdx,
-            LiteralEnum colorMix,
-            LiteralEnum alphaMix,
+            LiteralEnum<TextureCalculateColor> colorMix,
+            LiteralEnum<TextureCalculateAlpha> alphaMix,
             LiteralBool colorToAlpha,
-            LiteralEnum textureFilter
+            LiteralEnum<TextureFilterType> textureFilter
         )
         {
             string uvPrefix = "UV" + (uvIdx.Value + 1).ToString();
 
             // COLOR ==================
             string colorCode = "";
-            TextureCalculateColor colorCalc = (TextureCalculateColor)Enum.Parse(typeof(TextureCalculateColor), colorMix.Value, true);
+            TextureCalculateColor colorCalc = colorMix.Value;
             switch (colorCalc)
             {
                 case TextureCalculateColor.Add:
@@ -133,7 +133,7 @@ namespace AVFXTools.Main.Shaders
 
             // ALPHA =======================
             string alphaCode = "";
-            TextureCalculateAlpha alphaCalc = (TextureCalculateAlpha)Enum.Parse(typeof(TextureCalculateAlpha), alphaMix.Value, true);
+            TextureCalculateAlpha alphaCalc = alphaMix.Value;
             switch (alphaCalc)
             {
                 case TextureCalculateAlpha.Max:

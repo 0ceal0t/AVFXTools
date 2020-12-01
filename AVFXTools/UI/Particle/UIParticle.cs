@@ -88,37 +88,36 @@ namespace AVFXTools.UI
                 UVSets[i] = new UIParticleUVSet(Particle.UVSets[i]);
             }
             //===============================
-            switch (Particle.ParticleType.Value)
+            switch (Particle.ParticleVariety.Value)
             {
-                case "Model":
+                case ParticleType.Model:
                     Data = new UIParticleDataModel((AVFXParticleDataModel)Particle.Data);
                     break;
-                case "LightModel":
+                case ParticleType.LightModel:
                     Data = new UIParticleDataLightModel((AVFXParticleDataLightModel)Particle.Data);
                     break;
-                case "Powder":
+                case ParticleType.Powder:
                     Data = new UIParticleDataPowder((AVFXParticleDataPowder)Particle.Data);
                     break;
-                //
-                case "Decal":
+                case ParticleType.Decal:
                     Data = new UIParticleDataDecal((AVFXParticleDataDecal)Particle.Data);
                     break;
-                case "DecalRing":
+                case ParticleType.DecalRing:
                     Data = new UIParticleDataDecalRing((AVFXParticleDataDecalRing)Particle.Data);
                     break;
-                case "Disc":
+                case ParticleType.Disc:
                     Data = new UIParticleDataDisc((AVFXParticleDataDisc)Particle.Data);
                     break;
-                case "Laser":
+                case ParticleType.Laser:
                     Data = new UIParticleDataLaser((AVFXParticleDataLaser)Particle.Data);
                     break;
-                case "Polygon":
+                case ParticleType.Polygon:
                     Data = new UIParticleDataPolygon((AVFXParticleDataPolygon)Particle.Data);
                     break;
-                case "Polyline":
+                case ParticleType.Polyline:
                     Data = new UIParticleDataPolyline((AVFXParticleDataPolyline)Particle.Data);
                     break;
-                case "Windmill":
+                case ParticleType.Windmill:
                     Data = new UIParticleDataWindmill((AVFXParticleDataWindmill)Particle.Data);
                     break;
             }
@@ -136,7 +135,7 @@ namespace AVFXTools.UI
         public override void Draw(string parentId)
         {
             string id = parentId + "/Particle" + Idx;
-            if (ImGui.CollapsingHeader("Particle " + Idx + "(" + Particle.ParticleType.Value + ")" + id))
+            if (ImGui.CollapsingHeader("Particle " + Idx + "(" + Particle.ParticleVariety.stringValue() + ")" + id))
             {
                 if (ImGui.TreeNode("Parameters" + id))
                 {

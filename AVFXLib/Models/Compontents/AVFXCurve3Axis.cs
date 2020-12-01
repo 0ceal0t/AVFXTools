@@ -10,8 +10,8 @@ namespace AVFXLib.Models
 {
     public class AVFXCurve3Axis : Base
     {
-        public LiteralEnum AxisConnectType = new LiteralEnum(new AxisConnect(), "axisConnectType", "ACT");
-        public LiteralEnum AxisConnectRandomType = new LiteralEnum(new RandomType(), "axisConnectRandomType", "ACTR");
+        public LiteralEnum<AxisConnect> AxisConnectType = new LiteralEnum<AxisConnect>("axisConnectType", "ACT");
+        public LiteralEnum<RandomType> AxisConnectRandomType = new LiteralEnum<RandomType>("axisConnectRandomType", "ACTR");
         public AVFXCurve X = new AVFXCurve("X", "X");
         public AVFXCurve Y = new AVFXCurve("Y", "Y");
         public AVFXCurve Z = new AVFXCurve("Z", "Z");

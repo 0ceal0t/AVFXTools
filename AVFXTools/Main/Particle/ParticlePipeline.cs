@@ -176,7 +176,7 @@ namespace AVFXTools.Main
             };
 
             BlendStateDescription BlendStateDrawMode = BlendDrawMode;
-            DrawMode MODE = (DrawMode)Enum.Parse(typeof(DrawMode), particle.DrawMode.Value, true);
+            DrawMode MODE = particle.DrawMode.Value;
             switch (MODE)
             {
                 case DrawMode.Reverse:
@@ -197,7 +197,7 @@ namespace AVFXTools.Main
             }
             // ======== CULLINE MODE ======
             FaceCullMode PipelineCullMode = FaceCullMode.None;
-            CullingType CullMode = (CullingType)Enum.Parse(typeof(CullingType), particle.CullingType.Value, true);
+            CullingType CullMode = particle.CullingType.Value;
             switch (CullMode)
             {
                 case CullingType.Back:

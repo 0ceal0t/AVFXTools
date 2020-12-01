@@ -12,15 +12,15 @@ namespace AVFXLib.Models
     {
         public const string NAME = "Efct";
 
-        public LiteralEnum EffectorType = new LiteralEnum(new EffectorType(), "effectorType", "EfVT");
-        public LiteralEnum RotationOrder = new LiteralEnum(new RotationOrder(), "rotationOrder", "RoOT");
-        public LiteralEnum CoordComputeOrder = new LiteralEnum(new CoordComputeOrder(), "coordComputeOrder", "CCOT");
+        public LiteralEnum<EffectorType> EffectorVariety = new LiteralEnum<EffectorType>("effectorType", "EfVT");
+        public LiteralEnum<RotationOrder> RotationOrder = new LiteralEnum<RotationOrder>("rotationOrder", "RoOT");
+        public LiteralEnum<CoordComputeOrder> CoordComputeOrder = new LiteralEnum<CoordComputeOrder>("coordComputeOrder", "CCOT");
         public LiteralBool AffectOtherVfx = new LiteralBool("affectOtherVfx", "bAOV");
         public LiteralBool AffectGame = new LiteralBool("affectGame", "bAGm");
         public LiteralInt LoopPointStart = new LiteralInt("loopPointStart", "LpSt");
         public LiteralInt LoopPointEnd = new LiteralInt("loopPointEnd", "LpEd");
 
-        public string Type;
+        public EffectorType Type;
         public AVFXEffectorData Data;
 
         List<Base> Attributes;
@@ -28,7 +28,7 @@ namespace AVFXLib.Models
         public AVFXEffector() : base("effectors", NAME)
         {
             Attributes = new List<Base>(new Base[]{
-                EffectorType,
+                EffectorVariety,
                 RotationOrder,
                 CoordComputeOrder,
                 AffectOtherVfx,
@@ -42,7 +42,7 @@ namespace AVFXLib.Models
         {
             Assigned = true;
             ReadJSON(Attributes, elem);
-            Type = EffectorType.Value;
+            Type = EffectorVariety.Value;
 
             // Data
             //========================//
@@ -54,7 +54,7 @@ namespace AVFXLib.Models
         {
             Assigned = true;
             ReadAVFX(Attributes, node);
-            Type = EffectorType.Value;
+            Type = EffectorVariety.Value;
 
             foreach (AVFXNode item in node.Children){
                 switch (item.Name){
@@ -92,23 +92,23 @@ namespace AVFXLib.Models
             Output(Data, level);
         }
 
-        public void SetType(string type)
+        public void SetType(EffectorType type)
         {
             switch (Type)
             {
-                case "PointLight":
+                case EffectorType.PointLight:
                     Data = new AVFXEffectorDataPointLight("data");
                     break;
-                case "DirectionalLight":
+                case EffectorType.DirectionalLight:
                     throw new System.InvalidOperationException("Directional Light Effector!");
                     break;
-                case "RadialBlur":
+                case EffectorType.RadialBlur:
                     Data = new AVFXEffectorDataRadialBlur("data");
                     break;
-                case "BlackHole":
+                case EffectorType.BlackHole:
                     throw new System.InvalidOperationException("Black Hole Effector!");
                     break;
-                case "CameraQuake":
+                case EffectorType.CameraQuake:
                     Data = new AVFXEffectorDataCameraQuake("data");
                     break;
             }

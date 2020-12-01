@@ -14,7 +14,7 @@ namespace AVFXLib.Models
         public AVFXCurve DistanceScale = new AVFXCurve("distanceScale", "DstS");
         public AVFXCurve3Axis Rotation = new AVFXCurve3Axis("rotation", "Rot");
         public AVFXCurve3Axis Position = new AVFXCurve3Axis("position", "Pos");
-        public LiteralEnum PointLightAttenuationType = new LiteralEnum(new PointLightAttenuation(), "pointLightAttenuationType", "Attn");
+        public LiteralEnum<PointLightAttenuation> PointLightAttenuationType = new LiteralEnum<PointLightAttenuation>("pointLightAttenuationType", "Attn");
         public LiteralBool EnableShadow = new LiteralBool("enableShadow", "bSdw");
         public LiteralBool EnableCharShadow = new LiteralBool("enableCharShadow", "bChS");
         public LiteralBool EnableMapShadow = new LiteralBool("enableMapShadow", "bMpS");

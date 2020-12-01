@@ -19,10 +19,10 @@ namespace AVFXLib.Models
         public LiteralInt ChildLimit = new LiteralInt("childLimit", "ClCn");
         public LiteralInt EffectorIdx = new LiteralInt("effectorIdx", "EfNo");
         public LiteralBool AnyDirection = new LiteralBool("anyDirection", "bAD", size:1);
-        public LiteralEnum EmitterType = new LiteralEnum(new EmitterType(), "emitterType", "EVT");
-        public LiteralEnum RotationDirectionBase = new LiteralEnum(new RotationDirectionBase(), "rotationDirectionBase", "RBDT");
-        public LiteralEnum CoordComputeOrder = new LiteralEnum(new CoordComputeOrder(), "coordComputeOrder", "CCOT");
-        public LiteralEnum RotationOrder = new LiteralEnum(new RotationOrder(), "rotationOrder", "ROT");
+        public LiteralEnum<EmitterType> EmitterVariety = new LiteralEnum<EmitterType>("emitterType", "EVT");
+        public LiteralEnum<RotationDirectionBase> RotationDirectionBase = new LiteralEnum<RotationDirectionBase>("rotationDirectionBase", "RBDT");
+        public LiteralEnum<CoordComputeOrder> CoordComputeOrder = new LiteralEnum<CoordComputeOrder>("coordComputeOrder", "CCOT");
+        public LiteralEnum<RotationOrder> RotationOrder = new LiteralEnum<RotationOrder>("rotationOrder", "ROT");
         public LiteralInt ParticleCount = new LiteralInt("particleCount", "PrCn");
         public LiteralInt EmitterCount = new LiteralInt("emitterCount", "EmCn");
         public AVFXLife Life = new AVFXLife("life");
@@ -41,7 +41,7 @@ namespace AVFXLib.Models
         public List<AVFXEmitterIteration> ItPrs = new List<AVFXEmitterIteration>();
 
         // Data
-        public string Type;
+        public EmitterType Type;
         public AVFXEmitterData Data;
 
         List<Base> Attributes;
@@ -57,7 +57,7 @@ namespace AVFXLib.Models
                 ChildLimit,
                 EffectorIdx,
                 AnyDirection,
-                EmitterType,
+                EmitterVariety,
                 RotationDirectionBase,
                 CoordComputeOrder,
                 RotationOrder,
@@ -78,7 +78,7 @@ namespace AVFXLib.Models
         {
             Assigned = true;
             ReadJSON(Attributes, elem);
-            Type = EmitterType.Value;
+            Type = EmitterVariety.Value;
 
             // ITEM
             //=======================//
@@ -110,7 +110,7 @@ namespace AVFXLib.Models
         {
             Assigned = true;
             ReadAVFX(Attributes, node);
-            Type = EmitterType.Value;
+            Type = EmitterVariety.Value;
 
             foreach (AVFXNode item in node.Children){
                 switch (item.Name){
@@ -230,25 +230,25 @@ namespace AVFXLib.Models
             Output(Data, level);
         }
 
-        public void SetType(string type)
+        public void SetType(EmitterType type)
         {
             switch (type)
             {
-                case "Point": // no data here :)
+                case EmitterType.Point: // no data here :)
                     break;
-                case "Cone":
+                case EmitterType.Cone:
                     throw new System.InvalidOperationException("Cone Emitter!");
                     break;
-                case "ConeModel":
+                case EmitterType.ConeModel:
                     throw new System.InvalidOperationException("Cone Model Emitter!");
                     break;
-                case "SphereModel":
+                case EmitterType.SphereModel:
                     Data = new AVFXEmitterDataSphereModel("data");
                     break;
-                case "CylinderModel":
+                case EmitterType.CylinderModel:
                     Data = new AVFXEmitterDataCylinderModel("data");
                     break;
-                case "Model":
+                case EmitterType.Model:
                     Data = new AVFXEmitterDataModel("data");
                     break;
             }

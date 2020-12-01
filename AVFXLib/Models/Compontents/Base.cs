@@ -14,9 +14,6 @@ namespace AVFXLib.Models
         public string JSONPath { get; set; }
         public string AVFXName { get; set; }
 
-        // temp
-        //public List<LiteralBase> Attributes { get; set; }
-
         public Base() // temp
         {
             JSONPath = "";
@@ -32,7 +29,6 @@ namespace AVFXLib.Models
         public abstract AVFXNode toAVFX();
         public abstract void Print(int level);
 
-        // public abstract JToken toJSON();
         public virtual JToken toJSON() // TEMP
         {
             return new JValue("");
@@ -40,9 +36,6 @@ namespace AVFXLib.Models
 
         public abstract void read(JObject elem);
         public abstract void read(AVFXNode node);
-        // TEMP
-        //public void read(JObject elem) { }
-        //public void read(AVFXNode node) { }
 
         // STATIC ===========================
         public static void ReadJSON(List<Base> attributes, JObject elem)

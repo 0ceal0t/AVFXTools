@@ -3,8 +3,13 @@
 Here be dragons. Someone more knowledgable than me please help -_-
 
 ## TODO
-
+### General Everything
+- [ ] ⚠️ Need to do another pass through, missed a lot of undocumented block (ex: `NoAN` in Model Particles is `NoANimation`)
+- [ ] ⚠️ Only output avfx if assigned
+- [ ] ⚠️ Rework `LiteralEnum`
+- [ ] ⚠️ Rework models: note that order doesn't matter
 ### UI Stuff
+- [ ] ⚠️ Show unassigned
 - [x] UI and Graphics AVFX need to independent objects (this will allow adding/removing particles without breaking the graphics)
 - [x] Add update button (will sync them: AVFXBase -> AVFXNode -> AVFXBase)
 - [x] Choose local avfx file

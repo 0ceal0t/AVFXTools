@@ -16,9 +16,9 @@ namespace AVFXLib.Models
         public LiteralBool TargetUV3 = new LiteralBool("targetUV3", "bT3");
         public LiteralBool TargetUV4 = new LiteralBool("targetUV4", "bT4");
         public LiteralInt UvSetIdx = new LiteralInt("uvSetIdx", "UvSN");
-        public LiteralEnum TextureFilter = new LiteralEnum(new TextureFilterType(), "textureFilter", "TFT");
-        public LiteralEnum TextureBorderU = new LiteralEnum(new TextureBorderType(), "textureBorderU", "TBUT");
-        public LiteralEnum TextureBorderV = new LiteralEnum(new TextureBorderType(), "textureBorderV", "TBVT");
+        public LiteralEnum<TextureFilterType> TextureFilter = new LiteralEnum<TextureFilterType>("textureFilter", "TFT");
+        public LiteralEnum<TextureBorderType> TextureBorderU = new LiteralEnum<TextureBorderType>("textureBorderU", "TBUT");
+        public LiteralEnum<TextureBorderType> TextureBorderV = new LiteralEnum<TextureBorderType>("textureBorderV", "TBVT");
         public LiteralInt TextureIdx = new LiteralInt("textureIdx", "TxNo");
         public AVFXCurve DPow = new AVFXCurve("distortPower", "DPow");
 

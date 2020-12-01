@@ -25,7 +25,7 @@ namespace AVFXTools.Main
             // ==================
             // TODO: set up cylinder / sphere
             Life = emitter.Life.Value.Value;
-            Type = (EmitterType)Enum.Parse(typeof(EmitterType), emitter.EmitterType.Value, true);
+            Type = emitter.EmitterVariety.Value;
             InstanceNum = 5;
             Instances = new EmitterInstance[InstanceNum];
         }

@@ -12,8 +12,8 @@ namespace AVFXLib.Models
     {
         public const string NAME = "PrpS";
 
-        public LiteralEnum BindPointType = new LiteralEnum(new BindPoint(), "bindPointType", "BPT");
-        public LiteralEnum BindTargetPointType = new LiteralEnum(new BindTargetPoint(), "bindTargetPointType", "BPTP");
+        public LiteralEnum<BindPoint> BindPointType = new LiteralEnum<BindPoint>("bindPointType", "BPT");
+        public LiteralEnum<BindTargetPoint> BindTargetPointType = new LiteralEnum<BindTargetPoint>("bindTargetPointType", "BPTP");
         public LiteralString Name = new LiteralString("name", "Name");
         public LiteralInt BindPointId = new LiteralInt("bindPointId", "BPID");
         public LiteralInt GenerateDelay = new LiteralInt("generateDelay", "GenD");

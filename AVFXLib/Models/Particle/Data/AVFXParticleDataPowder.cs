@@ -11,7 +11,7 @@ namespace AVFXLib.Models
     public class AVFXParticleDataPowder : AVFXParticleData
     {
         public LiteralBool IsLightning = new LiteralBool("isLightning", "bLgt");
-        public LiteralEnum DirectionalLightType = new LiteralEnum(new DirectionalLightType(), "directionalLightType", "LgtT");
+        public LiteralEnum<DirectionalLightType> DirectionalLightType = new LiteralEnum<DirectionalLightType>("directionalLightType", "LgtT");
         public LiteralFloat CenterOffset = new LiteralFloat("centerOffset", "CnOf");
 
         List<Base> Attributes;

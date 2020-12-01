@@ -12,7 +12,7 @@ namespace AVFXLib.Models
     {
         public LiteralFloat FadeStartDistance = new LiteralFloat("fadeStartDistance", "FSDc");
         public LiteralFloat FadeEndDistance = new LiteralFloat("fadeEndDistance", "FEDc");
-        public LiteralEnum FadeBasePointType = new LiteralEnum(new ClipBasePoint(), "fadeBasePoint", "FaBP");
+        public LiteralEnum<ClipBasePoint> FadeBasePointType = new LiteralEnum<ClipBasePoint>("fadeBasePoint", "FaBP");
         public AVFXCurve Length = new AVFXCurve("length", "Len");
         public AVFXCurve Strength = new AVFXCurve("strength", "Str");
         public AVFXCurve Gradation = new AVFXCurve("gradation", "Gra");

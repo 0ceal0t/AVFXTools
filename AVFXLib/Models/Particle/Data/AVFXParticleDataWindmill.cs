@@ -10,7 +10,7 @@ namespace AVFXLib.Models
 {
     public class AVFXParticleDataWindmill : AVFXParticleData
     {
-        public LiteralEnum WindmillUVType = new LiteralEnum(new WindmillUVType(), "windmillUVType", "WUvT");
+        public LiteralEnum<WindmillUVType> WindmillUVType = new LiteralEnum<WindmillUVType>("windmillUVType", "WUvT");
 
         List<Base> Attributes;
 

@@ -130,10 +130,10 @@ namespace AVFXTools.Main
                 }
             }
 
-            _RotationOrder = (RotationOrder)Enum.Parse(typeof(RotationOrder), emitter.RotationOrder.Value, true);
-            _CoordOrder = (CoordComputeOrder)Enum.Parse(typeof(CoordComputeOrder), emitter.CoordComputeOrder.Value, true);
-            _RotationBase = (RotationDirectionBase)Enum.Parse(typeof(RotationDirectionBase), emitter.RotationDirectionBase.Value, true);
-            _Type = (EmitterType)Enum.Parse(typeof(EmitterType), emitter.EmitterType.Value, true);
+            _RotationOrder = emitter.RotationOrder.Value;
+            _CoordOrder = emitter.CoordComputeOrder.Value;
+            _RotationBase = emitter.RotationDirectionBase.Value;
+            _Type = emitter.EmitterVariety.Value;
             switch (_Type)
             {
                 case EmitterType.CylinderModel:
@@ -155,9 +155,9 @@ namespace AVFXTools.Main
             ScaleY = new CurveRandomGroup("ScaleY", emitter.Scale.Y, emitter.Scale.RY, D: 1.0f);
             ScaleZ = new CurveRandomGroup("ScaleZ", emitter.Scale.Z, emitter.Scale.RZ, D: 1.0f);
 
-            CurveRandomAttribute.AxisConnect(emitter.Position.AxisConnectType.Value, ref PosX, ref PosY, ref PosZ);
-            CurveRandomAttribute.AxisConnect(emitter.Rotation.AxisConnectType.Value, ref RotX, ref RotY, ref RotZ);
-            CurveRandomAttribute.AxisConnect(emitter.Scale.AxisConnectType.Value, ref ScaleX, ref ScaleY, ref ScaleZ);
+            CurveRandomAttribute.ConnectAxis(emitter.Position.AxisConnectType.Value, ref PosX, ref PosY, ref PosZ);
+            CurveRandomAttribute.ConnectAxis(emitter.Rotation.AxisConnectType.Value, ref RotX, ref RotY, ref RotZ);
+            CurveRandomAttribute.ConnectAxis(emitter.Scale.AxisConnectType.Value, ref ScaleX, ref ScaleY, ref ScaleZ);
         }
 
         public void UpdateTime(float dT)

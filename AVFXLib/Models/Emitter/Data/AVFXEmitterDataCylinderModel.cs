@@ -10,8 +10,8 @@ namespace AVFXLib.Models
 {
     public class AVFXEmitterDataCylinderModel : AVFXEmitterData
     {
-        public LiteralEnum RotationOrderType = new LiteralEnum(new RotationOrder(), "rotationOrder", "ROT");
-        public LiteralEnum GenerateMethodType = new LiteralEnum(new GenerateMethod(), "generateMethod", "GeMT");
+        public LiteralEnum<RotationOrder> RotationOrderType = new LiteralEnum<RotationOrder>("rotationOrder", "ROT");
+        public LiteralEnum<GenerateMethod> GenerateMethodType = new LiteralEnum<GenerateMethod>("generateMethod", "GeMT");
         public LiteralInt DivideX = new LiteralInt("divideX", "DivX");
         public LiteralInt DivideY = new LiteralInt("divideY", "DivY");
 

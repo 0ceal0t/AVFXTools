@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace AVFXLib.Models
 {
-    public class LiteralEnum : LiteralBase
+    public class LiteralEnum<T> : LiteralBase
     {
-        public string Value { get; set; }
-        public Enum EnumType { get; set; }
+        public T Value { get; set; }
+        public string[] Options = Enum.GetNames(typeof(T));
 
-        public LiteralEnum(Enum e, string jsonPath, string avfxName, int size = 4, bool inJson = true, bool inAVFX = true) : base(jsonPath, avfxName, size, inJson, inAVFX)
+        public LiteralEnum(string jsonPath, string avfxName, int size = 4, bool inJson = true, bool inAVFX = true) : base(jsonPath, avfxName, size, inJson, inAVFX)
         {
-            EnumType = e;
         }
 
         public override void read(JObject json)
@@ -31,7 +30,7 @@ namespace AVFXLib.Models
         {
             if ((int)value != -1)
             {
-                Value = (string)value;
+                GiveValue((string)value);
             }
             Assigned = true;
         }
@@ -41,12 +40,7 @@ namespace AVFXLib.Models
             int intValue = Util.Bytes4ToInt(leaf.Contents);
             if (intValue != -1) // means none
             {
-                Value = Enum.GetName(EnumType.GetType(), intValue);
-
-                if (Value == null)
-                {
-                    throw new System.InvalidOperationException(intValue.ToString() + " " + EnumType.GetType().ToString());
-                }
+                Value = (T)(object)intValue;
             }
 
             Size = leaf.Size;
@@ -55,13 +49,13 @@ namespace AVFXLib.Models
 
         public void GiveValue(string value)
         {
-            Value = value;
+            Value = (T)Enum.Parse(typeof(T), value, true);
             Assigned = true;
         }
 
         public override JToken toJSON()
         {
-            return new JValue(Value);
+            return new JValue(stringValue());
         }
 
         public override AVFXNode toAVFX()
@@ -69,14 +63,14 @@ namespace AVFXLib.Models
             int enumValue = -1;
             if(Value != null)
             {
-                enumValue = (int)Enum.Parse(EnumType.GetType(), Value, true);
+                enumValue = (int)(object)Value;
             }
             return new AVFXLeaf(AVFXName, Size, Util.IntTo4Bytes(enumValue));
         }
 
         public override string stringValue()
         {
-            return Value;
+            return Value.ToString();
         }
     }
 }

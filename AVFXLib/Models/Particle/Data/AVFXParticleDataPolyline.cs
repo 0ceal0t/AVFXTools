@@ -10,8 +10,8 @@ namespace AVFXLib.Models
 {
     public class AVFXParticleDataPolyline : AVFXParticleData
     {
-        public LiteralEnum CreateLineType = new LiteralEnum(new LineCreateType(), "createLineType", "LnCT");
-        public LiteralEnum NotBillBoardBaseAxisType = new LiteralEnum(new NotBillboardBaseAxisType(), "notBillBoardBaseAxisType", "NBBA");
+        public LiteralEnum<LineCreateType> CreateLineType = new LiteralEnum<LineCreateType>("createLineType", "LnCT");
+        public LiteralEnum<NotBillboardBaseAxisType> NotBillBoardBaseAxisType = new LiteralEnum<NotBillboardBaseAxisType>("notBillBoardBaseAxisType", "NBBA");
         public LiteralInt BindWeaponType = new LiteralInt("bindWeaponType", "BWpT");
         public LiteralInt PointCount = new LiteralInt("pointCount", "PnC");
         public LiteralInt PointCountCenter = new LiteralInt("pointCountCenter", "PnCC");

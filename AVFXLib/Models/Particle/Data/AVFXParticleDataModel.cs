@@ -11,11 +11,11 @@ namespace AVFXLib.Models
     public class AVFXParticleDataModel : AVFXParticleData
     {
         public LiteralInt ModelNumberRandomValue = new LiteralInt("modelNumberRandomValue", "MNRv");
-        public LiteralEnum ModelNumberRandomType = new LiteralEnum(new RandomType(), "modelNumberRandomType", "MNRt");
+        public LiteralEnum<RandomType> ModelNumberRandomType = new LiteralEnum<RandomType>("modelNumberRandomType", "MNRt");
         public LiteralInt ModelNumberRandomInterval = new LiteralInt("modelNumberRandomInterval", "MNRi");
-        public LiteralEnum FresnelType = new LiteralEnum(new FresnelType(), "fresnelType", "FrsT");
-        public LiteralEnum DirectionalLightType = new LiteralEnum(new DirectionalLightType(), "directionalLightType", "DLT");
-        public LiteralEnum PointLightType = new LiteralEnum(new PointLightType(), "pointLightType", "PLT");
+        public LiteralEnum<FresnelType> FresnelType = new LiteralEnum<FresnelType>("fresnelType", "FrsT");
+        public LiteralEnum<DirectionalLightType> DirectionalLightType = new LiteralEnum<DirectionalLightType>("directionalLightType", "DLT");
+        public LiteralEnum<PointLightType> PointLightType = new LiteralEnum<PointLightType>("pointLightType", "PLT");
         public LiteralBool IsLightning = new LiteralBool("isLightning", "bLgt");
         public LiteralBool IsMorph = new LiteralBool("isMorph", "bShp");
         public LiteralInt ModelIdx = new LiteralInt("modelIdx", "MdNo", size: 1);

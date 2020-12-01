@@ -30,7 +30,8 @@ namespace AVFXTools.Main
             C = core;
             // ================
             Life = particle.Life.Value.Value;
-            Type = (ParticleType)Enum.Parse(typeof(ParticleType), particle.ParticleType.Value, true);
+            Type = particle.ParticleVariety.Value;
+
             switch (Type)
             {
                 // ======= MODEL ========

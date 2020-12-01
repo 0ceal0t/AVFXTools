@@ -71,7 +71,7 @@ namespace AVFXTools.Main
         public float MinTime;
         public float MaxTime;
         public bool isRandom;
-        public string RandomType;
+        public RandomType RandomVariety;
 
         public CurveBehavior PreType;
         public CurveBehavior PostType;
@@ -80,7 +80,7 @@ namespace AVFXTools.Main
         {
             Curve = curve;
             isRandom = R;
-            RandomType = Curve.Random.Value;
+            RandomVariety = Curve.Random.Value;
 
             if (Curve.Keys.Count == 1)
             {
@@ -89,8 +89,8 @@ namespace AVFXTools.Main
             else
             {
                 isConstant = false;
-                PreType = (CurveBehavior)Enum.Parse(typeof(CurveBehavior), Curve.PreBehavior.Value, true);
-                PostType = (CurveBehavior)Enum.Parse(typeof(CurveBehavior), Curve.PostBehavior.Value, true);
+                PreType = Curve.PreBehavior.Value;
+                PostType = Curve.PostBehavior.Value;
                 MinTime = Curve.Keys[0].Time;
                 MaxTime = Curve.Keys[Curve.Keys.Count - 1].Time;
             }
@@ -179,56 +179,56 @@ namespace AVFXTools.Main
         // STATIC 
         // ======================
         // AXIS CONNECT
-        public static void AxisConnect(string axisConnect, ref CurveRandomGroup X, ref CurveRandomGroup Y, ref CurveRandomGroup Z)
+        public static void ConnectAxis(AxisConnect axisConnect, ref CurveRandomGroup X, ref CurveRandomGroup Y, ref CurveRandomGroup Z)
         {
             switch (axisConnect)
             {
-                case "X_YZ":
+                case AxisConnect.X_YZ:
                     Y = X;
                     Z = X;
                     break;
-                case "X_Y":
+                case AxisConnect.X_Y:
                     Y = X;
                     break;
-                case "X_Z":
+                case AxisConnect.X_Z:
                     Z = X;
                     break;
-                case "Y_XZ":
+                case AxisConnect.Y_XZ:
                     X = Y;
                     Z = Y;
                     break;
-                case "Y_X":
+                case AxisConnect.Y_X:
                     X = Y;
                     break;
-                case "Y_Z":
+                case AxisConnect.Y_Z:
                     Z = Y;
                     break;
-                case "Z_XY":
+                case AxisConnect.Z_XY:
                     X = Z;
                     Y = Z;
                     break;
-                case "Z_X":
+                case AxisConnect.Z_X:
                     X = Z;
                     break;
-                case "Z_Y":
+                case AxisConnect.Z_Y:
                     Y = Z;
                     break;
             }
         }
-        public static void AxisConnect(string axisConnect, ref CurveRandomGroup X, ref CurveRandomGroup Y)
+        public static void ConnectAxis(AxisConnect axisConnect, ref CurveRandomGroup X, ref CurveRandomGroup Y)
         {
             switch (axisConnect)
             {
-                case "X_YZ":
+                case AxisConnect.X_YZ:
                     Y = X;
                     break;
-                case "X_Y":
+                case AxisConnect.X_Y:
                     Y = X;
                     break;
-                case "Y_XZ":
+                case AxisConnect.Y_XZ:
                     X = Y;
                     break;
-                case "Y_X":
+                case AxisConnect.Y_X:
                     X = Y;
                     break;
             }

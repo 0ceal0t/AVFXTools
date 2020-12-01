@@ -62,7 +62,6 @@ namespace AVFXLib.Models
             AVFXLeaf leaf = (AVFXLeaf)node;
             byte[] contents = leaf.Contents;
             int offset = 0;
-
             byte[] stringBytes = new byte[4];
             Buffer.BlockCopy(contents, offset, stringBytes, 0, 4);
             UniqueId = Util.BytesToString(stringBytes);

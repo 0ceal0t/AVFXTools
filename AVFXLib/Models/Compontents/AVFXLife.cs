@@ -17,7 +17,7 @@ namespace AVFXLib.Models
 
         public LiteralFloat Value = new LiteralFloat("value", "Val");
         public LiteralFloat ValRandom = new LiteralFloat("random", "ValR");
-        public LiteralEnum ValRandomType = new LiteralEnum(new RandomType(), "randomType", "Type");
+        public LiteralEnum<RandomType> ValRandomType = new LiteralEnum<RandomType>("randomType", "Type");
 
         List<Base> Attributes;
 

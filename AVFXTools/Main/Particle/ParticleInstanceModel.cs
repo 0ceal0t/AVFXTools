@@ -87,9 +87,9 @@ namespace AVFXTools.Main
 
             CurrentTransform = Matrix4x4.Identity;
             //======================================
-            _RotationOrder = (RotationOrder)Enum.Parse(typeof(RotationOrder), particle.RotationOrder.Value, true);
-            _CoordOrder = (CoordComputeOrder)Enum.Parse(typeof(CoordComputeOrder), particle.CoordComputeOrder.Value, true);
-            _RotationBase = (RotationDirectionBase)Enum.Parse(typeof(RotationDirectionBase), particle.RotationDirectionBase.Value, true);
+            _RotationOrder = particle.RotationOrder.Value;
+            _CoordOrder = particle.CoordComputeOrder.Value;
+            _RotationBase = particle.RotationDirectionBase.Value;
 
             if(item.Type == ParticleType.Powder)
             {
@@ -110,9 +110,9 @@ namespace AVFXTools.Main
             ScaleY = new CurveRandomGroup("ScaleY", particle.Scale.Y, particle.Scale.RY, D: 1.0f);
             ScaleZ = new CurveRandomGroup("ScaleZ", particle.Scale.Z, particle.Scale.RZ, D: 1.0f);
 
-            CurveRandomAttribute.AxisConnect(particle.Position.AxisConnectType.Value, ref PosX, ref PosY, ref PosZ);
-            CurveRandomAttribute.AxisConnect(particle.Rotation.AxisConnectType.Value, ref RotX, ref RotY, ref RotZ);
-            CurveRandomAttribute.AxisConnect(particle.Scale.AxisConnectType.Value, ref ScaleX, ref ScaleY, ref ScaleZ);
+            CurveRandomAttribute.ConnectAxis(particle.Position.AxisConnectType.Value, ref PosX, ref PosY, ref PosZ);
+            CurveRandomAttribute.ConnectAxis(particle.Rotation.AxisConnectType.Value, ref RotX, ref RotY, ref RotZ);
+            CurveRandomAttribute.ConnectAxis(particle.Scale.AxisConnectType.Value, ref ScaleX, ref ScaleY, ref ScaleZ);
 
             ColorR = new CurveRandomGroup("ColorR", CurveRandomAttribute.SplitCurve(particle.Color.RGB, 0), particle.Color.RanR);
             ColorG = new CurveRandomGroup("ColorG", CurveRandomAttribute.SplitCurve(particle.Color.RGB, 1), particle.Color.RanG);
@@ -134,8 +134,8 @@ namespace AVFXTools.Main
                 UV1_ScaleY = new CurveRandomGroup("UV1_ScaleY", UV.Scale.Y, UV.Scale.RY, D: 1.0f);
                 UV1_Rot = new CurveRandomGroup("UV1_Rot", UV.Rot, UV.RotRandom);
 
-                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV1_ScrollX, ref UV1_ScrollY);
-                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV1_ScaleX, ref UV1_ScaleY);
+                CurveRandomAttribute.ConnectAxis(UV.Scale.AxisConnectType.Value, ref UV1_ScrollX, ref UV1_ScrollY);
+                CurveRandomAttribute.ConnectAxis(UV.Scale.AxisConnectType.Value, ref UV1_ScaleX, ref UV1_ScaleY);
             }
             // UV2
             if (UVLen > 1)
@@ -148,8 +148,8 @@ namespace AVFXTools.Main
                 UV2_ScaleY = new CurveRandomGroup("UV2_ScaleY", UV.Scale.Y, UV.Scale.RY, D: 1.0f);
                 UV2_Rot = new CurveRandomGroup("UV2_Rot", UV.Rot, UV.RotRandom);
 
-                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV2_ScrollX, ref UV2_ScrollY);
-                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV2_ScaleX, ref UV2_ScaleY);
+                CurveRandomAttribute.ConnectAxis(UV.Scale.AxisConnectType.Value, ref UV2_ScrollX, ref UV2_ScrollY);
+                CurveRandomAttribute.ConnectAxis(UV.Scale.AxisConnectType.Value, ref UV2_ScaleX, ref UV2_ScaleY);
             }
             // UV3
             if (UVLen > 2)
@@ -162,8 +162,8 @@ namespace AVFXTools.Main
                 UV3_ScaleY = new CurveRandomGroup("UV3_ScaleY", UV.Scale.Y, UV.Scale.RY, D: 1.0f);
                 UV3_Rot = new CurveRandomGroup("UV3_Rot", UV.Rot, UV.RotRandom);
 
-                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV3_ScrollX, ref UV3_ScrollY);
-                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV3_ScaleX, ref UV3_ScaleY);
+                CurveRandomAttribute.ConnectAxis(UV.Scale.AxisConnectType.Value, ref UV3_ScrollX, ref UV3_ScrollY);
+                CurveRandomAttribute.ConnectAxis(UV.Scale.AxisConnectType.Value, ref UV3_ScaleX, ref UV3_ScaleY);
             }
             // UV4
             if (UVLen > 3)
@@ -176,8 +176,8 @@ namespace AVFXTools.Main
                 UV4_ScaleY = new CurveRandomGroup("UV4_ScaleY", UV.Scale.Y, UV.Scale.RY, D: 1.0f);
                 UV4_Rot = new CurveRandomGroup("UV4_Rot", UV.Rot, UV.RotRandom);
 
-                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV4_ScrollX, ref UV4_ScrollY);
-                CurveRandomAttribute.AxisConnect(UV.Scale.AxisConnectType.Value, ref UV4_ScaleX, ref UV4_ScaleY);
+                CurveRandomAttribute.ConnectAxis(UV.Scale.AxisConnectType.Value, ref UV4_ScrollX, ref UV4_ScrollY);
+                CurveRandomAttribute.ConnectAxis(UV.Scale.AxisConnectType.Value, ref UV4_ScaleX, ref UV4_ScaleY);
             }
             // NPow
             var TN = particle.TN.UvSetIdx;

@@ -14,15 +14,15 @@ namespace AVFXLib.Models
 
         public LiteralInt LoopStart = new LiteralInt("loopStart", "LpSt");
         public LiteralInt LoopEnd = new LiteralInt("loopEnd", "LpEd");
-        public LiteralEnum ParticleType = new LiteralEnum(new ParticleType(), "particleType", "PrVT");
-        public LiteralEnum RotationDirectionBase = new LiteralEnum(new RotationDirectionBase(), "rotationDirectionBase", "RBDT");
-        public LiteralEnum RotationOrder = new LiteralEnum(new RotationOrder(), "rotationOrder", "RoOT");
-        public LiteralEnum CoordComputeOrder = new LiteralEnum(new CoordComputeOrder(), "coordComputeOrder", "CCOT");
-        public LiteralEnum DrawMode = new LiteralEnum(new DrawMode(), "drawMode", "RMT");
-        public LiteralEnum CullingType = new LiteralEnum(new CullingType(), "cullingType", "CulT");
-        public LiteralEnum EnvLight = new LiteralEnum(new EnvLight(), "envLight", "EnvT");
-        public LiteralEnum DirLight = new LiteralEnum(new DirLight(), "dirLight", "DirT");
-        public LiteralEnum UvPrecision = new LiteralEnum(new UVPrecision(), "uvPrecision", "UVPT");
+        public LiteralEnum<ParticleType> ParticleVariety = new LiteralEnum<ParticleType>("particleType", "PrVT");
+        public LiteralEnum<RotationDirectionBase> RotationDirectionBase = new LiteralEnum<RotationDirectionBase>("rotationDirectionBase", "RBDT");
+        public LiteralEnum<RotationOrder> RotationOrder = new LiteralEnum<RotationOrder>("rotationOrder", "RoOT");
+        public LiteralEnum<CoordComputeOrder> CoordComputeOrder = new LiteralEnum<CoordComputeOrder>("coordComputeOrder", "CCOT");
+        public LiteralEnum<DrawMode> DrawMode = new LiteralEnum<DrawMode>("drawMode", "RMT");
+        public LiteralEnum<CullingType> CullingType = new LiteralEnum<CullingType>("cullingType", "CulT");
+        public LiteralEnum<EnvLight> EnvLight = new LiteralEnum<EnvLight>("envLight", "EnvT");
+        public LiteralEnum<DirLight> DirLight = new LiteralEnum<DirLight>("dirLight", "DirT");
+        public LiteralEnum<UVPrecision> UvPrecision = new LiteralEnum<UVPrecision>("uvPrecision", "UVPT");
         public LiteralInt DrawPriority = new LiteralInt("drawPriority", "DwPr");
         public LiteralBool IsDepthTest = new LiteralBool("isDepthTest", "DsDt");
         public LiteralBool IsDepthWrite = new LiteralBool("isDepthWrite", "DsDw");
@@ -37,7 +37,7 @@ namespace AVFXLib.Models
         public LiteralFloat ClipNearEnd = new LiteralFloat("clipNearEnd", "NeEd");
         public LiteralFloat ClipFarStart = new LiteralFloat("clipFarStart", "FaSt");
         public LiteralFloat ClipFarEnd = new LiteralFloat("clipFarEnd", "FaEd");
-        public LiteralEnum ClipBasePoint = new LiteralEnum(new ClipBasePoint(), "clipBasePoint", "FaBP");
+        public LiteralEnum<ClipBasePoint> ClipBasePoint = new LiteralEnum<ClipBasePoint>("clipBasePoint", "FaBP");
         public LiteralInt UvSetCount = new LiteralInt("uvSetCount", "UvSN");
         public LiteralInt ApplyRateEnvironment = new LiteralInt("applyRateEnvironment", "EvAR");
         public LiteralInt ApplyRateDirectional = new LiteralInt("applyRateDirectional", "DlAR");
@@ -60,7 +60,7 @@ namespace AVFXLib.Models
 
         // Data
         //=====================//
-        public string Type;
+        public ParticleType Type;
         public AVFXParticleData Data;
 
         // Texture Properties
@@ -82,7 +82,7 @@ namespace AVFXLib.Models
             Attributes = new List<Base>(new Base[]{
                 LoopStart,
                 LoopEnd,
-                ParticleType,
+                ParticleVariety,
                 RotationDirectionBase,
                 RotationOrder,
                 CoordComputeOrder,
@@ -139,7 +139,7 @@ namespace AVFXLib.Models
         {
             Assigned = true;
             ReadAVFX(Attributes, node);
-            Type = ParticleType.Value;
+            Type = ParticleVariety.Value;
 
             foreach (AVFXNode item in node.Children) 
             {
@@ -166,7 +166,7 @@ namespace AVFXLib.Models
         {
             Assigned = true;
             ReadJSON(Attributes, elem);
-            Type = ParticleType.Value;
+            Type = ParticleVariety.Value;
 
             // UVSets
             //=======================//
@@ -237,47 +237,47 @@ namespace AVFXLib.Models
             Output(Attributes2, level);
         }
 
-        public void SetType(string type)
+        public void SetType(ParticleType type)
         {
             switch (type)
             {
-                case "Parameter":
+                case ParticleType.Parameter:
                     throw new System.InvalidOperationException("Parameter Particle Data!");
                     Data = new AVFXParticleDataParameter("data");
                     break;
-                case "Powder":
+                case ParticleType.Powder:
                     Data = new AVFXParticleDataPowder("data");
                     break;
-                case "Windmill":
+                case ParticleType.Windmill:
                     Data = new AVFXParticleDataWindmill("data");
                     break;
-                case "Line":
+                case ParticleType.Line:
                     throw new System.InvalidOperationException("Line Particle Data!");
                     Data = new AVFXParticleDataLine("data");
                     break;
-                case "Model":
+                case ParticleType.Model:
                     Data = new AVFXParticleDataModel("data");
                     break;
-                case "Polyline":
+                case ParticleType.Polyline:
                     Data = new AVFXParticleDataPolyline("data");
                     break;
-                case "Reserve0":
+                case ParticleType.Reserve0:
                     break;
-                case "Quad":
+                case ParticleType.Quad:
                     break;
-                case "Polygon":
+                case ParticleType.Polygon:
                     Data = new AVFXParticleDataPolygon("data");
                     break;
-                case "Decal":
+                case ParticleType.Decal:
                     Data = new AVFXParticleDataDecal("data");
                     break;
-                case "DecalRing":
+                case ParticleType.DecalRing:
                     Data = new AVFXParticleDataDecalRing("data");
                     break;
-                case "Disc":
+                case ParticleType.Disc:
                     Data = new AVFXParticleDataDisc("data");
                     break;
-                case "LightModel":
+                case ParticleType.LightModel:
                     Data = new AVFXParticleDataLightModel("data");
                     break;
             }

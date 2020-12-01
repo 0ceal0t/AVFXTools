@@ -12,8 +12,8 @@ namespace AVFXLib.Models
     {
         public LiteralBool Enabled = new LiteralBool("enabled", "bEna");
         public LiteralBool UseScreenCopy = new LiteralBool("useScreenCopy", "bUSC");
-        public LiteralEnum TextureFilter = new LiteralEnum(new TextureFilterType(), "textureFilter", "TFT");
-        public LiteralEnum TextureCalculateColor = new LiteralEnum(new TextureCalculateColor(), "textureCalculateColor", "TCCT");
+        public LiteralEnum<TextureFilterType> TextureFilter = new LiteralEnum<TextureFilterType>("textureFilter", "TFT");
+        public LiteralEnum<TextureCalculateColor> TextureCalculateColor = new LiteralEnum<TextureCalculateColor>("textureCalculateColor", "TCCT");
         public LiteralInt TextureIdx = new LiteralInt("textureIdx", "TxNo");
         public AVFXCurve RPow = new AVFXCurve("reflectionPower", "RPow");
 

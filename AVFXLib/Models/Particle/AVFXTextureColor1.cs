@@ -15,11 +15,11 @@ namespace AVFXLib.Models
         public LiteralBool UseScreenCopy = new LiteralBool("useScreenCopy", "bUSC");
         public LiteralBool PreviousFrameCopy = new LiteralBool("previousFrameCopy", "bPFC");
         public LiteralInt UvSetIdx = new LiteralInt("uvSetIdx", "UvSN");
-        public LiteralEnum TextureFilter = new LiteralEnum(new TextureFilterType(), "textureFilter", "TFT");
-        public LiteralEnum TextureBorderU = new LiteralEnum(new TextureBorderType(), "textureBorderU", "TBUT");
-        public LiteralEnum TextureBorderV = new LiteralEnum(new TextureBorderType(), "textureBorderV", "TBVT");
-        public LiteralEnum TextureCalculateColor = new LiteralEnum(new TextureCalculateColor(), "textureCalculateColor", "TCCT");
-        public LiteralEnum TextureCalculateAlpha = new LiteralEnum(new TextureCalculateAlpha(), "textureCalculateAlpha", "TCAT");
+        public LiteralEnum<TextureFilterType> TextureFilter = new LiteralEnum<TextureFilterType>("textureFilter", "TFT");
+        public LiteralEnum<TextureBorderType> TextureBorderU = new LiteralEnum<TextureBorderType>("textureBorderU", "TBUT");
+        public LiteralEnum<TextureBorderType> TextureBorderV = new LiteralEnum<TextureBorderType>("textureBorderV", "TBVT");
+        public LiteralEnum<TextureCalculateColor> TextureCalculateColor = new LiteralEnum<TextureCalculateColor>("textureCalculateColor", "TCCT");
+        public LiteralEnum<TextureCalculateAlpha> TextureCalculateAlpha = new LiteralEnum<TextureCalculateAlpha>("textureCalculateAlpha", "TCAT");
         public LiteralInt TextureIdx = new LiteralInt("textureIdx", "TxNo");
         public LiteralInt MaskTextureIdx = new LiteralInt("maskTextureIdx", "TLst");
 

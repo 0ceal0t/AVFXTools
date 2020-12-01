@@ -12,7 +12,7 @@ namespace AVFXLib.Models
     {
         public const string NAME = "UvSt";
 
-        public LiteralEnum CalculateUVType = new LiteralEnum(new TextureCalculateUV(), "calculateUV", "CUvT");
+        public LiteralEnum<TextureCalculateUV> CalculateUVType = new LiteralEnum<TextureCalculateUV>("calculateUV", "CUvT");
         public AVFXCurve2Axis Scale = new AVFXCurve2Axis("scale", "Scl");
         public AVFXCurve2Axis Scroll = new AVFXCurve2Axis("scroll", "Scr");
         public AVFXCurve Rot = new AVFXCurve("rotation", "Rot");

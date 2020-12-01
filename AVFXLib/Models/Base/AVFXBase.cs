@@ -31,11 +31,11 @@ namespace AVFXLib.Models
         public LiteralBool IsClipOwnSetting = new LiteralBool("isClipOwnSetting", "bOSt");
         public LiteralFloat SoftParticleFadeRange = new LiteralFloat("softParticleFadeRange", "SPFR");
         public LiteralFloat SoftKeyOffset = new LiteralFloat("softKeyOffset", "SKO");
-        public LiteralEnum DrawLayerType = new LiteralEnum(new DrawLayer(), "drawLayerType", "DwLy");
-        public LiteralEnum DrawOrderType = new LiteralEnum(new DrawOrder(), "drawOrderType", "DwOT");
-        public LiteralEnum DirectionalLightSourceType = new LiteralEnum(new DirectionalLightSource(), "directionalLightSourceType", "DLST");
-        public LiteralEnum PointLightsType1 = new LiteralEnum(new PointLightSouce(), "pointLightsType1", "PL1S");
-        public LiteralEnum PointLightsType2 = new LiteralEnum(new PointLightSouce(), "pointLightsType2", "PL2S");
+        public LiteralEnum<DrawLayer> DrawLayerType = new LiteralEnum<DrawLayer>("drawLayerType", "DwLy");
+        public LiteralEnum<DrawOrder> DrawOrderType = new LiteralEnum<DrawOrder>("drawOrderType", "DwOT");
+        public LiteralEnum<DirectionalLightSource> DirectionalLightSourceType = new LiteralEnum<DirectionalLightSource>("directionalLightSourceType", "DLST");
+        public LiteralEnum<PointLightSouce> PointLightsType1 = new LiteralEnum<PointLightSouce>("pointLightsType1", "PL1S");
+        public LiteralEnum<PointLightSouce> PointLightsType2 = new LiteralEnum<PointLightSouce>("pointLightsType2", "PL2S");
         public LiteralFloat RevisedValuesPosX = new LiteralFloat("revisedValuesPosX", "RvPx");
         public LiteralFloat RevisedValuesPosY = new LiteralFloat("revisedValuesPosY", "RvPy");
         public LiteralFloat RevisedValuesPosZ = new LiteralFloat("revisedValuesPosZ", "RvPz");

@@ -24,11 +24,11 @@ namespace AVFXLib.Models
         public LiteralBool DocumentScaleEnabled = new LiteralBool("documentScaleEnabled", "bDSE");
         public LiteralBool AdjustToScreenEnabled = new LiteralBool("adjustToScreenEnabled", "bATS");
         public LiteralInt Life = new LiteralInt("life", "Life");
-        public LiteralEnum BinderRotationType = new LiteralEnum(new BinderRotation(), "rotationtype", "RoTp");
-        public LiteralEnum BType = new LiteralEnum(new BinderType(), "binderType", "BnVr");
+        public LiteralEnum<BinderRotation> BinderRotationType = new LiteralEnum<BinderRotation>("rotationtype", "RoTp");
+        public LiteralEnum<BinderType> BinderVariety = new LiteralEnum<BinderType>("binderType", "BnVr");
         public AVFXBinderProperty Prop = new AVFXBinderProperty("properties");
 
-        public string Type;
+        public BinderType Type;
         public AVFXBinderData Data;
 
         List<Base> Attributes;
@@ -49,7 +49,7 @@ namespace AVFXLib.Models
                 AdjustToScreenEnabled,
                 Life,
                 BinderRotationType,
-                BType,
+                BinderVariety,
                 Prop
             });
         }
@@ -58,7 +58,7 @@ namespace AVFXLib.Models
         {
             Assigned = true;
             ReadJSON(Attributes, elem);
-            Type = BType.Value;
+            Type = BinderVariety.Value;
 
             // Data
             //========================//
@@ -70,7 +70,7 @@ namespace AVFXLib.Models
         {
             Assigned = true;
             ReadAVFX(Attributes, node);
-            Type = BType.Value;
+            Type = BinderVariety.Value;
 
             foreach (AVFXNode item in node.Children)
             {
@@ -111,20 +111,20 @@ namespace AVFXLib.Models
             Output(Data, level);
         }
 
-        public void SetType(string type)
+        public void SetType(BinderType type)
         {
             switch (type)
             {
-                case "Point":
+                case BinderType.Point:
                     Data = new AVFXBinderDataPoint("data");
                     break;
-                case "Linear":
+                case BinderType.Linear:
                     throw new System.InvalidOperationException("Linear Binder Data!");
                     break;
-                case "Spline":
+                case BinderType.Spline:
                     throw new System.InvalidOperationException("Spline Particle Data!");
                     break;
-                case "Camera":
+                case BinderType.Camera:
                     throw new System.InvalidOperationException("Camera Particle Data!");
                     break;
             }

@@ -12,9 +12,9 @@ namespace AVFXLib.Models
 {
     public class AVFXCurve : Base
     {
-        public LiteralEnum PreBehavior = new LiteralEnum(new CurveBehavior(), "preBehavior", "BvPr");
-        public LiteralEnum PostBehavior = new LiteralEnum(new CurveBehavior(), "postBehavior", "BvPo");
-        public LiteralEnum Random = new LiteralEnum(new RandomType(), "randomType", "RanT");
+        public LiteralEnum<CurveBehavior> PreBehavior = new LiteralEnum<CurveBehavior>("preBehavior", "BvPr");
+        public LiteralEnum<CurveBehavior> PostBehavior = new LiteralEnum<CurveBehavior>("postBehavior", "BvPo");
+        public LiteralEnum<RandomType> Random = new LiteralEnum<RandomType>("randomType", "RanT");
 
         public List<AVFXKey> Keys = new List<AVFXKey>();
         List<Base> Attributes;
