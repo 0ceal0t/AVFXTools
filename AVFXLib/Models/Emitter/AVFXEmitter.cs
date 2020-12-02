@@ -28,13 +28,17 @@ namespace AVFXLib.Models
         public AVFXLife Life = new AVFXLife("life");
 
         public AVFXCurve CreateCount = new AVFXCurve("createCount", "CrC");
+        public AVFXCurve CreateCountRandom = new AVFXCurve("createCountRandom", "CrCR");
         public AVFXCurve CreateInterval = new AVFXCurve("createInterval", "CrI");
         public AVFXCurve CreateIntervalRandom = new AVFXCurve("createIntervalRandom", "CrIR");
+
         public AVFXCurve AirResistance = new AVFXCurve("airResistance", "ARs");
+
         public AVFXCurveColor Color = new AVFXCurveColor("color");
         public AVFXCurve3Axis Position = new AVFXCurve3Axis("position", "Pos");
         public AVFXCurve3Axis Rotation = new AVFXCurve3Axis("rotation", "Rot");
         public AVFXCurve3Axis Scale = new AVFXCurve3Axis("scale", "Scl");
+
 
         // ItPr
         public List<AVFXEmitterItem> ItEms = new List<AVFXEmitterItem>();
@@ -64,13 +68,18 @@ namespace AVFXLib.Models
                 ParticleCount,
                 EmitterCount,
                 Life,
+
                 CreateCount,
+                CreateCountRandom,
                 CreateInterval,
+                CreateIntervalRandom,
+
                 AirResistance,
+
                 Color,
                 Position,
                 Rotation,
-                Scale
+                Scale,
             });
         }
 

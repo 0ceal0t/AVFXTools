@@ -36,6 +36,7 @@ namespace AVFXTools.UI
             Attributes.Add(new UICurve(Data.WidthBegin, "Width Begin"));
             Attributes.Add(new UICurve(Data.WidthCenter, "Width Center"));
             Attributes.Add(new UICurve(Data.WidthEnd, "Width End"));
+            Attributes.Add(new UICurve(Data.Softness, "Softness"));
             Attributes.Add(new UICurve(Data.Length, "Length"));
             Attributes.Add(new UICurveColor(Data.ColorBegin, "Color Begin"));
             Attributes.Add(new UICurveColor(Data.ColorCenter, "Color Center"));

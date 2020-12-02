@@ -42,6 +42,7 @@ namespace AVFXTools.Main
         public Core C;
         public UIMain UI;
 
+        public AVFXNode LastImportNode;
 
         public MainViewer(VeldridStartupWindow window, AVFXBase b, ResourceGetter g, WepModel baseM) : base(window)
         {

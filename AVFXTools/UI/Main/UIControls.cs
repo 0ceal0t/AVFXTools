@@ -43,6 +43,7 @@ namespace AVFXTools.UI
             //=========================
             if (ImGui.BeginMainMenuBar())
             {
+                // === AVFX ====
                 if (ImGui.BeginMenu("AVFX##Menu"))
                 {
                     if (ImGui.MenuItem("Open Local AVFX", "Ctrl+O"))
@@ -70,45 +71,34 @@ namespace AVFXTools.UI
                     }
                     if (ImGui.MenuItem("Export", "Ctrl+S"))
                     {
-                        Stream stream;
-                        SaveFileDialog saveDialog = new SaveFileDialog();
-                        saveDialog.Filter = "AVFX files (*.avfx)|*.avfx|All files (*.*)|*.*";
-                        saveDialog.RestoreDirectory = true;
-                        if (saveDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            if ((stream = saveDialog.OpenFile()) != null)
-                            {
-                                AVFXNode node = Main.AVFX.toAVFX();
-                                byte[] bytes = node.toBytes();
-                                stream.Write(bytes, 0, bytes.Length);
-                                stream.Close();
-                            }
-                        }
+                        AVFXNode node = Main.AVFX.toAVFX();
+                        byte[] bytes = node.toBytes();
+                        Save("AVFX files (*.avfx)|*.avfx|All files (*.*)|*.*", bytes);
                     }
                     if (ImGui.MenuItem("Export to JSON", null))
                     {
-                        Stream stream;
-                        SaveFileDialog saveDialog = new SaveFileDialog();
-                        saveDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
-                        saveDialog.RestoreDirectory = true;
-                        if (saveDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            if ((stream = saveDialog.OpenFile()) != null)
-                            {
-                                JObject json = (JObject)Main.AVFX.toJSON();
-                                byte[] bytes = Util.StringToBytes(json.ToString());
-                                stream.Write(bytes, 0, bytes.Length);
-                                stream.Close();
-                            }
-                        }
+                        JObject json = (JObject)Main.AVFX.toJSON();
+                        byte[] bytes = Util.StringToBytes(json.ToString());
+                        Save("JSON files (*.json)|*.json|All files (*.*)|*.*", bytes);
                     }
                     ImGui.EndMenu();
                 }
-                if (ImGui.BeginMenu("Model##"))
+                // === MODEL ====
+                if (ImGui.BeginMenu("Model##Menu"))
                 {
                     if (ImGui.MenuItem("Open Model From Game", null))
                     {
                         MDLFromGameDialog = true;
+                    }
+                    ImGui.EndMenu();
+                }
+                // === DEBUG ===
+                if (ImGui.BeginMenu("Debug##Menu"))
+                {
+                    if (ImGui.MenuItem("Export Raw Structure", null))
+                    {
+                        byte[] bytes = Util.StringToBytes(Main.Main.LastImportNode.exportString(0));
+                        Save("TXT files (*.txt)|*.txt|All files (*.*)|*.*", bytes);
                     }
                     ImGui.EndMenu();
                 }
@@ -152,6 +142,22 @@ namespace AVFXTools.UI
                     Main.Main.refreshGraphics();
                 }
                 ImGui.EndPopup();
+            }
+        }
+
+        public static void Save(string Filter, byte[] bytes)
+        {
+            Stream stream;
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = Filter;
+            saveDialog.RestoreDirectory = true;
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                if ((stream = saveDialog.OpenFile()) != null)
+                {
+                    stream.Write(bytes, 0, bytes.Length);
+                    stream.Close();
+                }
             }
         }
     }

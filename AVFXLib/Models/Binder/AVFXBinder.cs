@@ -119,13 +119,13 @@ namespace AVFXLib.Models
                     Data = new AVFXBinderDataPoint("data");
                     break;
                 case BinderType.Linear:
-                    throw new System.InvalidOperationException("Linear Binder Data!");
+                    Data = new AVFXBinderDataLinear("data");
                     break;
                 case BinderType.Spline:
-                    throw new System.InvalidOperationException("Spline Particle Data!");
+                    Data = new AVFXBinderDataSpline("data");
                     break;
                 case BinderType.Camera:
-                    throw new System.InvalidOperationException("Camera Particle Data!");
+                    Data = new AVFXBinderDataCamera("data");
                     break;
             }
         }

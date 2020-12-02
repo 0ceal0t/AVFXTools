@@ -30,7 +30,7 @@ namespace AVFXLib.Models
         public LiteralBool IsFullEnvLight = new LiteralBool("isFullEnvLight", "bFEL");
         public LiteralBool IsClipOwnSetting = new LiteralBool("isClipOwnSetting", "bOSt");
         public LiteralFloat SoftParticleFadeRange = new LiteralFloat("softParticleFadeRange", "SPFR");
-        public LiteralFloat SoftKeyOffset = new LiteralFloat("softKeyOffset", "SKO");
+        public LiteralFloat SoftKeyOffset = new LiteralFloat("sortKeyOffset", "SKO");
         public LiteralEnum<DrawLayer> DrawLayerType = new LiteralEnum<DrawLayer>("drawLayerType", "DwLy");
         public LiteralEnum<DrawOrder> DrawOrderType = new LiteralEnum<DrawOrder>("drawOrderType", "DwOT");
         public LiteralEnum<DirectionalLightSource> DirectionalLightSourceType = new LiteralEnum<DirectionalLightSource>("directionalLightSourceType", "DLST");

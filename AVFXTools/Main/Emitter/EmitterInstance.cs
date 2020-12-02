@@ -19,10 +19,32 @@ namespace AVFXTools.Main
         public bool InfluenceCoordPos;
         public bool InfluenceCoordRot;
 
-        public EmitterCreateStruct(int idx, bool justOne, AVFXEmitterIterationItem subItem) : this(idx, justOne, subItem.InfluenceCoordPos.Value == 1, subItem.InfluenceCoordScale.Value == 1, subItem.InfluenceCoordRot.Value == 1, subItem.CreateCount.Value)
+        public Vector3 InjectionAngle;
+
+        public EmitterCreateStruct(
+            int idx,
+            bool justOne,
+            AVFXEmitterIterationItem subItem
+            ) : this(
+                idx,
+                justOne,
+                subItem.InfluenceCoordPos.Value == 1,
+                subItem.InfluenceCoordScale.Value == 1,
+                subItem.InfluenceCoordRot.Value == 1,
+                subItem.CreateCount.Value,
+                injectionAngle: new Vector3(subItem.ByInjectionAngleX.Value, subItem.ByInjectionAngleY.Value, subItem.ByInjectionAngleZ.Value)
+                )
         {
         }
-        public EmitterCreateStruct(int idx, bool justOne, bool pos, bool scale, bool rot, int createCount)
+        public EmitterCreateStruct(
+            int idx,
+            bool justOne,
+            bool pos,
+            bool scale,
+            bool rot,
+            int createCount,
+            Vector3 injectionAngle = new Vector3()
+            )
         {
             Idx = idx;
             JustOneCreate = justOne;
@@ -32,6 +54,8 @@ namespace AVFXTools.Main
             InfluenceCoordPos = pos;
             InfluenceCoordRot = rot;
             InfluenceCoordScale = scale;
+
+            InjectionAngle = injectionAngle;
         }
     }
 
@@ -62,6 +86,9 @@ namespace AVFXTools.Main
         public CurveRandomGroup ScaleX;
         public CurveRandomGroup ScaleY;
         public CurveRandomGroup ScaleZ;
+
+
+
         // ======== CYLINDER / SPHERE ========
         public CurveRandomGroup Radius;
         public CurveRandomGroup Length;
@@ -181,7 +208,8 @@ namespace AVFXTools.Main
 
                     for (int idx = 0; idx < createEmitter.CreateCount; idx++)
                     {
-                        Matrix4x4 startMatrix = GetNewInstancePosition(idx);
+                        Matrix4x4 injectionMatrix = GUtil.RotationMatrix(idx * createEmitter.InjectionAngle, RotationOrder.ZXY);
+                        Matrix4x4 startMatrix = injectionMatrix * GetNewInstancePosition(idx);
                         Item.C.AddEmitterInstance(createEmitter.Idx, this, startMatrix, createEmitter); // TODO: generate point better here
                     }
                 }
@@ -189,9 +217,11 @@ namespace AVFXTools.Main
                 {
                     if (createParticle.JustOneCreate && createParticle.NumCreated > 0) continue;
                     createParticle.NumCreated++;
+
                     for (int idx = 0; idx < createParticle.CreateCount; idx++)
                     {
-                        Matrix4x4 startMatrix = GetNewInstancePosition(idx);
+                        Matrix4x4 injectionMatrix = GUtil.RotationMatrix(idx * createParticle.InjectionAngle, RotationOrder.ZXY);
+                        Matrix4x4 startMatrix = injectionMatrix * GetNewInstancePosition(idx);
                         Item.C.AddParticleInstance(createParticle.Idx, this, startMatrix, createParticle, num: CreateCount); // TODO: generate point better here
                     }
                 }

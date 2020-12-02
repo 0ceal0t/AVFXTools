@@ -30,7 +30,7 @@ namespace AVFXTools.UI
             Attributes.Add(new UICheckbox("Full Env Light", AVFX.IsFullEnvLight));
             Attributes.Add(new UICheckbox("Clip Own Setting", AVFX.IsClipOwnSetting));
             Attributes.Add(new UIFloat("Soft Particle Fade Range", AVFX.SoftParticleFadeRange));
-            Attributes.Add(new UIFloat("Soft Key Offset", AVFX.SoftKeyOffset));
+            Attributes.Add(new UIFloat("Sort Key Offset", AVFX.SoftKeyOffset));
             Attributes.Add(new UICombo<DrawLayer>("Draw Layer", AVFX.DrawLayerType));
             Attributes.Add(new UICombo<DrawOrder>("Draw Order", AVFX.DrawOrderType));
             Attributes.Add(new UICombo<DirectionalLightSource>("Directional Light Source", AVFX.DirectionalLightSourceType));

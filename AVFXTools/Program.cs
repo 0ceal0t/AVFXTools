@@ -56,9 +56,8 @@ namespace AVFXTools
             //AVFXNode node = Reader.readAVFX(getter.GetData(@"chara/weapon/w1501/obj/body/b0050/vfx/eff/vw0002.avfx")); // nid
             //AVFXNode node = Reader.readAVFX(getter.GetData(@"chara/weapon/w1501/obj/body/b0036/vfx/eff/vw0002.avfx")); // rav
 
-            AVFXNode node = Reader.readAVFX(getter.GetData(@"vfx/common/eff/z3of_stlp1_c0c.avfx")); // omega
-            //AVFXNode node = Reader.readAVFX(getter.GetData(@"vfx/common/eff/cnj17wing_c0h.avfx")); // misc
-            //node.Print(0);
+            //AVFXNode node = Reader.readAVFX(getter.GetData(@"vfx/common/eff/z3of_stlp1_c0c.avfx")); // omega
+            AVFXNode node = Reader.readAVFX(getter.GetData(@"vfx/common/eff/cnj17wing_c0h.avfx")); // misc
 
 
             /*
@@ -106,6 +105,7 @@ namespace AVFXTools
             //Viewer viewer = new Viewer(window, avfx2, getter, model);
 
             MainViewer mv = new MainViewer(window, avfx2, getter, model);
+            mv.LastImportNode = node;
             window.Run();
         }
     }

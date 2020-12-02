@@ -88,6 +88,7 @@ namespace AVFXLib.Main
             "Len",
             "FrC",
             "FrRt",
+            "Sft",
             "ColB",
             "ColE",
             "Wd",

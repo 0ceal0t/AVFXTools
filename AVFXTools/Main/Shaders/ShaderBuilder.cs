@@ -90,9 +90,9 @@ namespace AVFXTools.Main.Shaders
             }
 
             return String.Format(@"
-                vec2 {0}_Coords = {1}_Coords;
+                vec2 {0}_Coords = MoveUV(UV2_C.xy, {1}_Scale, {1}_Scroll, {1}_Rot);
                 vec4 {0}_Val = texture(sampler2D({0}_Texture, {0}_Sampler), {0}_Coords);
-                float Offset = D_Pow * {0}_Val[0];
+                vec2 Offset = D_Pow * ({0}_Val.xy - 0.5f);
                 
                 {2}
                 ", prefix, uvPrefix, OffsetCode);

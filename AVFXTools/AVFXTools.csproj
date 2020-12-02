@@ -390,6 +390,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="out\base.json" />
     <None Include="out\nid.json" />
     <None Include="out\rav.json" />
     <None Include="out\test.json" />

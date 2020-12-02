@@ -134,10 +134,10 @@ namespace AVFXTools.Main
         public void InitQuad(float size)
         {
             Verts = new VertexPositionTexture[] {
-                new VertexPositionTexture(new Vector3(-1.0f * size,-1.0f * size,0), new Vector2(1,0), new Vector4(1,1,1,1)),
-                new VertexPositionTexture(new Vector3(-1.0f * size, 1.0f * size,0), new Vector2(1,1), new Vector4(1,1,1,1)),
-                new VertexPositionTexture(new Vector3( 1.0f * size,-1.0f * size,0), new Vector2(0,0), new Vector4(1,1,1,1)),
-                new VertexPositionTexture(new Vector3( 1.0f * size, 1.0f * size,0), new Vector2(0,1), new Vector4(1,1,1,1)),
+                new VertexPositionTexture(new Vector3(-1.0f * size,-1.0f * size,0), new Vector4(1,0,1,0), new Vector4(1,1,1,1)),
+                new VertexPositionTexture(new Vector3(-1.0f * size, 1.0f * size,0), new Vector4(1,1,1,1), new Vector4(1,1,1,1)),
+                new VertexPositionTexture(new Vector3( 1.0f * size,-1.0f * size,0), new Vector4(0,0,0,0), new Vector4(1,1,1,1)),
+                new VertexPositionTexture(new Vector3( 1.0f * size, 1.0f * size,0), new Vector4(0,1,0,1), new Vector4(1,1,1,1)),
             };
             Indexes = new ushort[] {
                 2, 0, 1,

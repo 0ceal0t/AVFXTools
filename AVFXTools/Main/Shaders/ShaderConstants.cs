@@ -43,12 +43,12 @@ layout(set = 1, binding = 1) uniform ViewBuffer {{ mat4 View; }};
 layout(set = 1, binding = 2) uniform WorldBuffer {{ mat4 World; }};
 
 layout(location = 0) in vec3 Position;
-layout(location = 1) in vec2 TexCoords;
-layout(location = 2) in vec2 UV2;
+layout(location = 1) in vec4 UV1;
+layout(location = 2) in vec4 UV2;
 layout(location = 3) in vec4 Color;
 
-layout(location = 0) out vec2 fsin_texCoords;
-layout(location = 1) out vec2 UV;
+layout(location = 0) out vec4 UV1_C;
+layout(location = 1) out vec4 UV2_C;
 layout(location = 2) out vec2 UV1_Scroll;
 layout(location = 3) out vec2 UV1_Scale;
 layout(location = 4) out float UV1_Rot;
@@ -83,8 +83,9 @@ void main() {{
     vec4 clipPosition = Projection * viewPosition;
     gl_Position = clipPosition;
 
-    fsin_texCoords = TexCoords;
-    UV = UV2;
+    UV1_C = UV1;
+    UV2_C = UV2;
+
     UV1_Scroll = Instances[idx].UV1_Scroll;
     UV1_Scale = Instances[idx].UV1_Scale;
     UV1_Rot = Instances[idx].UV1_Rot;
@@ -113,8 +114,9 @@ void main() {{
 
         public const string FragmentCode = @"
 #version 450
-layout(location = 0) in vec2 fsin_texCoords;
-layout(location = 1) in vec2 UV;
+layout(location = 0) in vec4 UV1_C;
+layout(location = 1) in vec4 UV2_C;
+
 layout(location = 2) in vec2 UV1_Scroll;
 layout(location = 3) in vec2 UV1_Scale;
 layout(location = 4) in float UV1_Rot;
@@ -157,26 +159,18 @@ vec2 rotateUV(vec2 uv, float rotation, float mid) {{ return vec2( cos(rotation) 
 
 float Lumin(vec4 color) {{ return 0.3*color.x + 0.59*color.y + 0.11*color.z; }}
 
+vec2 MoveUV(vec2 Coords, vec2 Scale, vec2 Scroll, float Rot) {{ return vec2(0.5, 0.5) + Scale * (rotateUV(Coords, Rot) - vec2(0.5, 0.5)) + Scroll; }}
+
 vec3 normalizeColor(vec3 color) {{ return color / max(color.x, max(color.y, color.z)); }}
 // ======================
 
 void main() {{
-    vec2 UV1_Coords = vec2(0.5, 0.5) + UV1_Scale * (rotateUV(fsin_texCoords, UV1_Rot) - vec2(0.5, 0.5)) + UV1_Scroll;
-    vec2 UV2_Coords = vec2(0.5, 0.5) + UV2_Scale * (rotateUV(fsin_texCoords, UV2_Rot) - vec2(0.5, 0.5)) + UV2_Scroll;
-    vec2 UV3_Coords = vec2(0.5, 0.5) + UV3_Scale * (rotateUV(fsin_texCoords, UV3_Rot) - vec2(0.5, 0.5)) + UV3_Scroll;
-    vec2 UV4_Coords = vec2(0.5, 0.5) + UV4_Scale * (rotateUV(fsin_texCoords, UV4_Rot) - vec2(0.5, 0.5)) + UV4_Scroll;
+    vec2 fsin_texCoords = UV1_C.xy;
 
-    //vec3 Color = vec3(Color_RGBA[0], Color_RGBA[1], Color_RGBA[2]);
-    //vec3 ColorScale = normalizeColor(vec3(Color_Scale.x, Color_Scale.y, Color_Scale.z));
-    //float Lum = Lumin(Color);
-    //float Alpha = 0;
-    // -------------------------
-    //Alpha = Alpha * Color_Scale[3] * Color_RGBA[3];
-    //Color = Color * ColorScale;
-    //if(Alpha < 0.001)
-    //    discard;
-    //Color = Color * vec3(Vert_Color[0], Vert_Color[1], Vert_Color[2]);
-    //Alpha = Alpha * Vert_Color[3];
+    vec2 UV1_Coords = MoveUV(fsin_texCoords, UV1_Scale, UV1_Scroll, UV1_Rot);
+    vec2 UV2_Coords = MoveUV(fsin_texCoords, UV2_Scale, UV2_Scroll, UV2_Rot);
+    vec2 UV3_Coords = MoveUV(fsin_texCoords, UV3_Scale, UV3_Scroll, UV3_Rot);
+    vec2 UV4_Coords = MoveUV(fsin_texCoords, UV4_Scale, UV4_Scroll, UV4_Rot);
 
     vec4 Color = vec4(1,1,1,1);
 

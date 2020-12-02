@@ -41,11 +41,10 @@ namespace AVFXTools.Main
             {
                 ret[idx] = new VertexPositionTexture(
                     new Vector3(v.Position[0], v.Position[1], v.Position[2]),
-                    new Vector2(v.UV1[0] + 0.5f, v.UV1[1] + 0.5f),
-                    new Vector2(v.UV2[2], v.UV2[3]),
+                    new Vector4(v.UV1[0], v.UV1[1], v.UV1[2], v.UV1[3]) + new Vector4(0.5f),
+                    new Vector4(v.UV2[0], v.UV2[1], v.UV2[2], v.UV2[3]) + new Vector4(0.5f),
                     new Vector4(v.Color[0], v.Color[1], v.Color[2], v.Color[3]) / 255.0f
                 );
-                //Console.WriteLine("{0} {1} {2} {3}", v.Color[0], v.Color[1], v.Color[2], v.Color[3]);
                 idx++;
             }
             return ret;
@@ -94,16 +93,16 @@ namespace AVFXTools.Main
 
     public struct VertexPositionTexture
     {
-        public const uint SizeInBytes = 44;
+        public const uint SizeInBytes = 60;
 
         public Vector3 Pos;
-        public Vector2 UV;
-        public Vector2 UV2;
+        public Vector4 UV;
+        public Vector4 UV2;
         public Vector4 Color;
 
-        public VertexPositionTexture(Vector3 _Pos, Vector2 _UV, Vector4 _Color) : this(_Pos, _UV, _UV, _Color) {}
+        public VertexPositionTexture(Vector3 _Pos, Vector4 _UV, Vector4 _Color) : this(_Pos, _UV, _UV, _Color) {}
 
-        public VertexPositionTexture(Vector3 _Pos, Vector2 _UV, Vector2 _UV2, Vector4 _Color)
+        public VertexPositionTexture(Vector3 _Pos, Vector4 _UV, Vector4 _UV2, Vector4 _Color)
         {
             Pos = _Pos;
             UV = _UV;

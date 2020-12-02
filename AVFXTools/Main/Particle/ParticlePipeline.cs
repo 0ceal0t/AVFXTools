@@ -99,8 +99,8 @@ namespace AVFXTools.Main
                 new[] {
                     new VertexLayoutDescription(
                         new VertexElementDescription("Position", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float3),
-                        new VertexElementDescription("TexCoords", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2),
-                        new VertexElementDescription("UV2", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2),
+                        new VertexElementDescription("UV1", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float4),
+                        new VertexElementDescription("UV2", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float4),
                         new VertexElementDescription("Color", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float4)
                     )
                 },

@@ -109,13 +109,14 @@ namespace AVFXLib.AVFX
             return true;
         }
 
-        public virtual void Print(int level)
+        public virtual string exportString(int level)
         {
-            Console.WriteLine("{0} {1}", new String('\t', level), Name);
-            foreach (var c in Children)
+            string ret = String.Format("{0}+---  {1} ----\n", new String('\t', level), Name);
+            foreach(var c in Children)
             {
-                c.Print(level + 1);
+                ret = ret + c.exportString(level + 1);
             }
+            return ret;
         }
     }
 }

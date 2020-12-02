@@ -29,8 +29,9 @@ namespace AVFXLib.AVFX
             return true;
         }
 
-        public override void Print(int level)
+        public override string exportString(int level)
         {
+            return "";
         }
     }
 }

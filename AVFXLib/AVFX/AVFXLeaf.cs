@@ -68,9 +68,9 @@ namespace AVFXLib.AVFX
             return true;
         }
 
-        public override void Print(int level)
+        public override string exportString(int level)
         {
-            Console.WriteLine("{0} {1} {2}", new String('\t', level), Name, Size);
+            return String.Format("{0}> {1} {2}\n", new String('\t', level), Name, Size);
         }
     }
 }
