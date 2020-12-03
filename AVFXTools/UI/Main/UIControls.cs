@@ -37,7 +37,7 @@ namespace AVFXTools.UI
             ImGui.SetNextWindowPos(new Vector2(Main.Main.Window.Width / 2 - 100, 40));
             if (ImGui.Begin("Just An Approximation", ref AlwaysOpen, ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoInputs | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoBackground))
             {
-                ImGui.Text("Just a Poor Approximation Q-Q");
+                ImGui.Text("Just An Approximation");
                 ImGui.End();
             }
             //=========================

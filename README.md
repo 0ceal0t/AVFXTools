@@ -6,71 +6,77 @@ Here be dragons. Someone more knowledgable than me please help -_-
 ### General Everything
 - [ ] ⚠️ Need to do another pass through, missed a lot of undocumented block (ex: `NoAN` in Model Particles is `NoANimation`)
 - [ ] ⚠️ Only output avfx if assigned
-- [ ] ⚠️ Rework `LiteralEnum`
-- [ ] ⚠️ Rework models: note that order doesn't matter
+- [x] ~~Rework `LiteralEnum`~~
 ### UI Stuff
-- [ ] ⚠️ Show unassigned
-- [x] UI and Graphics AVFX need to independent objects (this will allow adding/removing particles without breaking the graphics)
-- [x] Add update button (will sync them: AVFXBase -> AVFXNode -> AVFXBase)
-- [x] Choose local avfx file
-- [x] Choose local mdl file
-- [x] Base parameters
-- [x] Particles
-- [x] Emitters
-- [x] Timelines
-- [x] Binders
-- [ ] Effectors
-- [x] Schedulers
-- [x] Textures
-- [x] Models
-- [x] Maybe switch from `DragInt/Float` to `InputInt/Float`
-- [x] Separate popups for model / avfx
+- [x] ~~Show unassigned~~
+- [x] ~~UI and Graphics AVFX need to independent objects (this will allow adding/removing particles without breaking the graphics)~~
+- [x] ~~Add update button (will sync them: AVFXBase -> AVFXNode -> AVFXBase)~~
+- [x] ~~Choose local avfx file~~
+- [x] ~~Choose local mdl file~~
+- [x] ~~Base parameters~~
+- [x] ~~Particles~~
+- [x] ~~Emitters~~
+- [x] ~~Timelines~~
+- [x] ~~Binders~~
+- [x] ~~Effectors~~
+- [x] ~~Schedulers~~
+- [x] ~~Texture~~s
+- [x] ~~Models~~
+- [ ] 3D display of models
+- [x] ~~Maybe switch from `DragInt/Float` to `InputInt/Float`~~
+- [x] ~~Separate popups for model / avfx~~
 - [ ] Option to remove model
 - [ ] Better theme
 - [ ] Choose game location + save settings
+- [ ] ⚠️ Scheduler addition + deletion
+- [ ] ⚠️ Effector addition + deletion
+- [ ] ⚠️ Emitter addition + deletion
+- [ ] ⚠️ Timeline addition + deletion
+- [ ] ⚠️ Particle addition + deletion
+- [ ] ⚠️ Texture addition + deletion
 ### General Graphics
 - [ ] ⚠️ random (what do the random types mean)
 - [ ] random axis linking
-- [ ] curves
+- [ ] fix curves (some subtle issues, need to understand linear/spline/step stuff)
 - [ ] gravity / velocity / position / air resistance
 - [ ] Make sure bad bindings can be handled
-- [x] Clean up console log
-- [x] Check transformation order. In C#, it's `T * R * S` (probably)
+- [x] ~~Clean up console log~~
+- [x] ~~Check transformation order. In C#, it's `T * R * S` (probably)~~
 - [ ] Perspective is off (see Omega), items are foreshortened
+- [ ] loop start / end
 ### Particle Graphics
 - [ ] ⚠️ so turns out powder particles don't need to have simple animations turned on. oops. rework all of that
-- [x] ⚠️ draw mode (screen, reverse, multiply)
-- [x] culling type
-- [x] is depth test
-- [x] is depth write
+- [x] ~~draw mode (screen, reverse, multiply)~~
+- [x] ~~culling type~~
+- [x] ~~is depth test~~
+- [x] ~~is depth write~~
 - [ ] ⚠️ soft particle
 - [ ] tone map
 - [ ] ⚠️ how colors / color scale interact
 - [ ] brightness
-- [ ] loop start / end
 - [ ] ⚠️ fresnel
 - [ ] texture normal
 - [ ] texture reflection
 - [ ] texture palette
-- [ ] line particles
-- [ ] windmill particles
+- [ ] windmill particles (omega avfx?)
 - [ ] laser particles
 - [ ] polygon particles
-- [ ] polyline particles
+- [ ] p⚠️ olyline particles (needs work, see IR and temperance vfx)
 - [ ] lightmodel particle (what's the difference?)
 - [ ] morphmodel particle
 - [ ] decal particle
-- [ ] disc particle
+- [ ] disc particle (netural sect avfx?)
 - [ ] collision
 - [ ] rotation base
 - [ ] depth clip
 - [ ] ⚠️ fix powder particles (gravity, etc)
-- [x] double-check quads
+- [ ] double-check quads (see Ramuh vfx)
+- [ ] fix polyline (see IR and temperance vfx)
 - [ ] texture filter
 ### Emitter Graphics
 - [ ] CreateTime / CreateCount: what do those mean? They already exist elsewhere, why are they in the emitter sub-items?
 - [ ] Create Probability
-- [ ] Parent Influence Coords / Color
+- [ ] Parent Influence Coords / Color (partially done)
 - [ ] Influence Coords
 - [ ] Influence Coord Binder Position
 - [ ] Inherit Parent Life
@@ -82,12 +88,12 @@ Here be dragons. Someone more knowledgable than me please help -_-
 - [ ] generate delay by one
 - [ ] local direction
 - [ ] any direction
-- [ ] ⚠️ cylinder emitter
+- [ ] ⚠️ cylinder emitter (partially done)
 - [ ] ⚠️ sphere emitter
 - [ ] cone emitter
 - [ ] model emitter
 - [ ] How does emitter movement interact with particle movement? are they bound?
-- [ ] injection axis
+- [ ] injection axis (partially done)
 - [ ] sound?
 ### Effector Graphics
 - [ ] wut.
@@ -117,7 +123,7 @@ Here be dragons. Someone more knowledgable than me please help -_-
 - [ ] bind to character / target
 
 ```
-TODO:
+MISC TODO STUFF:
 scheduler
 timeline clip
 timeline start/end time
