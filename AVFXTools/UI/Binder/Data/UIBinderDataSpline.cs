@@ -9,18 +9,17 @@ using System.Threading.Tasks;
 
 namespace AVFXTools.UI
 {
-    public class UIParticleDataDecalRing : UIBase
+    public class UIBinderDataSpline : UIBase
     {
-        public AVFXParticleDataDecalRing Data;
-        //==========================
+        public AVFXBinderDataSpline Data;
+        //=======================
 
-        public UIParticleDataDecalRing(AVFXParticleDataDecalRing data)
+        public UIBinderDataSpline(AVFXBinderDataSpline data)
         {
             Data = data;
-            //=======================
-            Attributes.Add(new UICurve(Data.Width, "Width"));
-            Attributes.Add(new UIFloat("Scaling Scale", Data.ScalingScale));
-            Attributes.Add(new UIFloat("Ring Fan", Data.RingFan));
+            //==================
+            Attributes.Add(new UICurve(data.CarryOverFactor, "Carry Over Factor"));
+            Attributes.Add(new UICurve(data.CarryOverFactorRandom, "Carry Over Factor Random"));
         }
 
         public override void Draw(string parentId)

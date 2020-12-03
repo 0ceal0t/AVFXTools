@@ -10,11 +10,11 @@ namespace AVFXLib.Models
 {
     public class AVFXBinderProperty : Base
     {
-        public const string NAME = "PrpS";
+        public string Name = "PrpS";
 
         public LiteralEnum<BindPoint> BindPointType = new LiteralEnum<BindPoint>("bindPointType", "BPT");
         public LiteralEnum<BindTargetPoint> BindTargetPointType = new LiteralEnum<BindTargetPoint>("bindTargetPointType", "BPTP");
-        public LiteralString Name = new LiteralString("name", "Name");
+        public LiteralString BinderName = new LiteralString("name", "Name");
         public LiteralInt BindPointId = new LiteralInt("bindPointId", "BPID");
         public LiteralInt GenerateDelay = new LiteralInt("generateDelay", "GenD");
         public LiteralInt CoordUpdateFrame = new LiteralInt("coordUpdateFrame", "CoUF");
@@ -28,12 +28,13 @@ namespace AVFXLib.Models
 
         List<Base> Attributes;
 
-        public AVFXBinderProperty(string jsonPath) : base(jsonPath, NAME)
+        public AVFXBinderProperty(string jsonPath, string name) : base(jsonPath, name)
         {
+            Name = name;
             Attributes = new List<Base>(new Base[]{
                 BindPointType,
                 BindTargetPointType,
-                Name,
+                BinderName,
                 BindPointId,
                 GenerateDelay,
                 CoordUpdateFrame,
@@ -68,14 +69,14 @@ namespace AVFXLib.Models
 
         public override AVFXNode toAVFX()
         {
-            AVFXNode dataAvfx = new AVFXNode("PrpS");
+            AVFXNode dataAvfx = new AVFXNode(Name);
             PutAVFX(dataAvfx, Attributes);
             return dataAvfx;
         }
 
         public override void Print(int level)
         {
-            Console.WriteLine("{0}------- PrPs --------", new String('\t', level));
+            Console.WriteLine("{0}------- {1} --------", new String('\t', level), Name);
             Output(Attributes, level);
         }
     }

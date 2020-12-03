@@ -51,6 +51,8 @@ namespace AVFXLib.Models
         public AVFXCurve Gravity = new AVFXCurve("gravity", "Gra");
         public AVFXCurve GravityRandom = new AVFXCurve("gravityRandom", "GraR");
         public AVFXCurve AirResistance = new AVFXCurve("airResistance", "ARs");
+        public AVFXCurve AirResistanceRandom = new AVFXCurve("airResistanceRandom", "ARsR");
+
         public AVFXCurve3Axis Scale = new AVFXCurve3Axis("scale", "Scl");
         public AVFXCurve3Axis Rotation = new AVFXCurve3Axis("rotation", "Rot");
         public AVFXCurve3Axis Position = new AVFXCurve3Axis("position", "Pos");
@@ -120,6 +122,7 @@ namespace AVFXLib.Models
                 Gravity,
                 GravityRandom,
                 AirResistance,
+                AirResistanceRandom,
                 Scale,
                 Rotation,
                 Position,

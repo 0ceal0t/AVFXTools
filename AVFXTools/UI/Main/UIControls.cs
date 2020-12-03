@@ -57,6 +57,7 @@ namespace AVFXTools.UI
                             if ((stream = fileDialog.OpenFile()) != null)
                             {
                                 AVFXNode node = Reader.readAVFX(new BinaryReader(stream));
+                                Main.Main.LastImportNode = node;
                                 Main.Main.AVFX = new AVFXBase();
                                 Main.Main.AVFX.read(node);
                                 Main.Main.refreshGraphics();
@@ -99,6 +100,11 @@ namespace AVFXTools.UI
                     {
                         byte[] bytes = Util.StringToBytes(Main.Main.LastImportNode.exportString(0));
                         Save("TXT files (*.txt)|*.txt|All files (*.*)|*.*", bytes);
+                    }
+                    if (ImGui.MenuItem("Verify", null))
+                    {
+                        AVFXNode node = Main.AVFX.toAVFX();
+                        Console.WriteLine(Main.Main.LastImportNode.EqualsNode(node));
                     }
                     ImGui.EndMenu();
                 }

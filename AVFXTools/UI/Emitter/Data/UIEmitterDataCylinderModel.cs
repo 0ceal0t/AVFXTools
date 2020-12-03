@@ -25,6 +25,7 @@ namespace AVFXTools.UI
             Attributes.Add(new UICurve(Data.Radius, "Radius"));
             Attributes.Add(new UICurve(Data.Length, "Length"));
             Attributes.Add(new UICurve(Data.InjectionSpeed, "Injection Speed"));
+            Attributes.Add(new UICurve(Data.InjectionSpeedRandom, "Injection Speed Random"));
         }
 
         public override void Draw(string parentId)

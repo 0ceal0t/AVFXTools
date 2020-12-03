@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ImGuiNET;
 
 namespace AVFXTools.UI
 {
@@ -28,6 +29,10 @@ namespace AVFXTools.UI
                 binder.Idx = bIdx;
                 binder.Draw(id);
                 bIdx++;
+            }
+            if (ImGui.Button("+ Binder" + id))
+            {
+                // TODO
             }
         }
     }

@@ -326,6 +326,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="FFXIV\Skeleton.cs" />
+    <Compile Include="UI\Binder\Data\UIBinderDataCamera.cs" />
+    <Compile Include="UI\Binder\Data\UIBinderDataLinear.cs" />
+    <Compile Include="UI\Binder\Data\UIBinderDataSpline.cs" />
     <Compile Include="UI\Binder\UIBinderView.cs" />
     <Compile Include="UI\Components\UIBase.cs" />
     <Compile Include="UI\Components\UICheckbox.cs" />
@@ -364,7 +367,7 @@
     <Compile Include="UI\Texture\UITextureView.cs" />
     <Compile Include="UI\Timeline\UITimelineView.cs" />
     <Compile Include="UI\Binder\UIBinder.cs" />
-    <Compile Include="UI\Binder\UIBinderDataPoint.cs" />
+    <Compile Include="UI\Binder\Data\UIBinderDataPoint.cs" />
     <Compile Include="UI\Binder\UIBinderProperties.cs" />
     <Compile Include="UI\Components\Curve\UICurve.cs" />
     <Compile Include="UI\Components\Curve\UICurve2Axis.cs" />

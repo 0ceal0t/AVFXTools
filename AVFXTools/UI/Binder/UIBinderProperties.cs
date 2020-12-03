@@ -13,12 +13,15 @@ namespace AVFXTools.UI
     public class UIBinderProperties : UIBase
     {
         public AVFXBinderProperty Prop;
+        public string Name;
         //===================
         // TODO: Name
 
-        public UIBinderProperties(AVFXBinderProperty prop)
+        public UIBinderProperties(string name, AVFXBinderProperty prop)
         {
             Prop = prop;
+            Name = name;
+            if (!prop.Assigned) { Assigned = false; return; }
             //====================
             Attributes.Add(new UICombo<BindPoint>("Bind Point Type", Prop.BindPointType));
             Attributes.Add(new UICombo<BindTargetPoint>("Bind Target Point Type", Prop.BindTargetPointType));
@@ -34,9 +37,23 @@ namespace AVFXTools.UI
 
         public override void Draw(string parentId)
         {
-            string id = parentId + "/PROP";
-            if (ImGui.TreeNode("Properties" + id))
+            string id = parentId + "/" + Name;
+            // === UNASSIGNED ===
+            if (!Assigned)
             {
+                if (ImGui.Button("+ " + Name + id))
+                {
+                    // TODO
+                }
+                return;
+            }
+            // ==== ASSIGNED ===
+            if (ImGui.TreeNode(Name + id))
+            {
+                if (UIUtils.RemoveButton("Delete" + id))
+                {
+                    // TODO
+                }
                 DrawAttrs(id);
                 ImGui.TreePop();
             }

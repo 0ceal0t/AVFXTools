@@ -26,6 +26,7 @@ namespace AVFXLib.Models
         public LiteralBool IsLocal = new LiteralBool("isLocal", "bLcl");
 
         public AVFXCurve Width = new AVFXCurve("width", "Wd");
+        public AVFXCurve WidthRandom = new AVFXCurve("widthRandom", "WdR");
         public AVFXCurve WidthBegin = new AVFXCurve("widthBegin", "WdB");
         public AVFXCurve WidthCenter = new AVFXCurve("widthCenter", "WdC");
         public AVFXCurve WidthEnd = new AVFXCurve("widthEnd", "WdE");
@@ -58,6 +59,7 @@ namespace AVFXLib.Models
                 IsSpline,
                 IsLocal,
                 Width,
+                WidthRandom,
                 WidthBegin,
                 WidthCenter,
                 WidthEnd,

@@ -70,7 +70,8 @@ namespace AVFXLib.AVFX
 
         public override string exportString(int level)
         {
-            return String.Format("{0}> {1} {2}\n", new String('\t', level), Name, Size);
+            string C = Size < 8 ? BitConverter.ToString(Contents).Replace("-", String.Empty) : "";
+            return String.Format("{0}> {1} {2} / {3}\n", new String('\t', level), Name, Size, C);
         }
     }
 }

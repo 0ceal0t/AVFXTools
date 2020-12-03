@@ -12,9 +12,9 @@ namespace AVFXTools.UI
     {
         public AVFXBinder Binder;
         public int Idx;
-        //==================
-        public UIBinderProperties Prop;
         //====================
+        // TODO: Binder Type
+        // ====================
         public UIBase Data;
 
         public UIBinder(AVFXBinder binder)
@@ -34,17 +34,22 @@ namespace AVFXTools.UI
             Attributes.Add(new UICheckbox("Adjust to Screen", Binder.AdjustToScreenEnabled));
             Attributes.Add(new UIInt("Life", Binder.Life));
             Attributes.Add(new UICombo<BinderRotation>("Binder Rotation Type", Binder.BinderRotationType));
-            Attributes.Add(new UICombo<BinderType>("Binder Type", Binder.BinderVariety));
-            //=====================
-            if (Binder.Prop.Assigned)
-            {
-                Prop = new UIBinderProperties(Binder.Prop);
-            }
+            Attributes.Add(new UIBinderProperties("Properties Start", Binder.PropStart));
+            Attributes.Add(new UIBinderProperties("Properties Goal", Binder.PropGoal));
             //======================
             switch (Binder.BinderVariety.Value)
             {
                 case BinderType.Point:
                     Data = new UIBinderDataPoint((AVFXBinderDataPoint)Binder.Data);
+                    break;
+                case BinderType.Linear:
+                    Data = new UIBinderDataLinear((AVFXBinderDataLinear)Binder.Data);
+                    break;
+                case BinderType.Spline:
+                    Data = new UIBinderDataSpline((AVFXBinderDataSpline)Binder.Data);
+                    break;
+                case BinderType.Camera:
+                    Data = new UIBinderDataCamera((AVFXBinderDataCamera)Binder.Data);
                     break;
             }
         }
@@ -54,12 +59,11 @@ namespace AVFXTools.UI
             string id = parentId + "/Binder" + Idx;
             if (ImGui.CollapsingHeader("Binder " + Idx + "(" + Binder.BinderVariety.stringValue() + ")" + id))
             {
-                DrawAttrs(id);
-                //=====================
-                if (Prop != null)
+                if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    Prop.Draw(id);
+                    // TODO
                 }
+                DrawAttrs(id);
                 //====================
                 if (Data != null)
                 {

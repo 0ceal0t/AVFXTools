@@ -131,16 +131,15 @@ namespace AVFXLib.Models
             {
                 var lastTrigger = Triggers[Triggers.Count - 1];
                 List<AVFXScheduleSubItem> lastItemSubItems = (Items.Count > 0) ? Items[Items.Count - 1].SubItems : new List<AVFXScheduleSubItem>();
-                lastItemSubItems.Reverse(); // since we want to add them to the front in reverse order
 
                 for(int i = 1; i <= lastTrigger.SubItems.Count - lastItemSubItems.Count; i++)
                 {
                     int start = lastItemSubItems.Count;
                     int end = start + i;
                     AVFXNode triggerAvfx = lastTrigger.toAVFXRange(end, start: start); // get the actual trigger parts. this is a subset of the last trigger's parts minus the first ones, which are determined by the last item
-                    foreach(var subItem in lastItemSubItems)
+                    for(int j = 0; j < lastItemSubItems.Count; j++)
                     {
-                        triggerAvfx.Children.InsertRange(0, subItem.toAVFX().Children);
+                        triggerAvfx.Children.InsertRange(0, lastItemSubItems[lastItemSubItems.Count - j - 1].toAVFX().Children); // insert them to the front in reverse order
                     }
                     schdAvfx.Children.Add(triggerAvfx);
                 }

@@ -10,14 +10,16 @@ namespace AVFXLib.Models
 {
     public class AVFXParticleDataDecalRing : AVFXParticleData
     {
+        public AVFXCurve Width = new AVFXCurve("width", "WID");
         public LiteralFloat ScalingScale = new LiteralFloat("scalingScale", "SS");
-        public LiteralFloat RingFan = new LiteralFloat("ringFan", "RFan");
+        public LiteralFloat RingFan = new LiteralFloat("ringFan", "RF");
 
         List<Base> Attributes;
 
         public AVFXParticleDataDecalRing(string jsonPath) : base(jsonPath, "Data")
         {
             Attributes = new List<Base>(new Base[]{
+                Width,
                 ScalingScale,
                 RingFan
             });

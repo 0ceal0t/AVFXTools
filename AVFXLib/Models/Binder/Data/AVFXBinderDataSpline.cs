@@ -10,14 +10,16 @@ namespace AVFXLib.Models
 {
     public class AVFXBinderDataSpline : AVFXBinderData
     {
-        public AVFXCurve CarryOverFactor = new AVFXCurve("carryOverFactor", "COFR");
+        public AVFXCurve CarryOverFactor = new AVFXCurve("carryOverFactor", "COF");
+        public AVFXCurve CarryOverFactorRandom = new AVFXCurve("carryOverFactorRandom", "COFR");
 
         List<Base> Attributes;
 
         public AVFXBinderDataSpline(string jsonPath) : base(jsonPath, "Data")
         {
             Attributes = new List<Base>(new Base[]{
-                CarryOverFactor
+                CarryOverFactor,
+                CarryOverFactorRandom
             });
         }
 

@@ -17,6 +17,7 @@ namespace AVFXLib.Models
         public AVFXCurve AY = new AVFXCurve("angleY", "AY");
         public AVFXCurve AZ = new AVFXCurve("angleZ", "AZ");
         public AVFXCurve InjectionSpeed = new AVFXCurve("injectionSpeed", "IjS");
+        public AVFXCurve InjectionSpeedRandom = new AVFXCurve("injectionSpeedRandom", "IjSR");
 
         List<Base> Attributes;
 
@@ -29,7 +30,8 @@ namespace AVFXLib.Models
                 AX,
                 AY,
                 AZ,
-                InjectionSpeed
+                InjectionSpeed,
+                InjectionSpeedRandom
             });
         }
 

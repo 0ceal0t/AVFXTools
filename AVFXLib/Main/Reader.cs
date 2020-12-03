@@ -92,6 +92,7 @@ namespace AVFXLib.Main
             "ColB",
             "ColE",
             "Wd",
+            "WdR",
             "WdB",
             "WdC",
             "WdE",
@@ -119,11 +120,13 @@ namespace AVFXLib.Main
             "TD",
             "TP",
             "PrpS",
+            "PrpG",
             "DstS",
             "Len",
             "Str",
             "Smpl",
             "ARs",
+            "ARsR",
             "Gra",
             "GraR",
             "IRad",
@@ -156,8 +159,12 @@ namespace AVFXLib.Main
             "Trgr",
             "SpS",
             "IjS",
+            "IjSR",
             "ItEm",
-            "Moph"
+            "Moph",
+            "COF",
+            "COFR",
+            "WID"
         });
 
         static HashSet<String> ALLOW = new HashSet<string>(new string[]{

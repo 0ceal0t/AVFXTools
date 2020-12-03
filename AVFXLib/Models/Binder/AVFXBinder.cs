@@ -26,7 +26,8 @@ namespace AVFXLib.Models
         public LiteralInt Life = new LiteralInt("life", "Life");
         public LiteralEnum<BinderRotation> BinderRotationType = new LiteralEnum<BinderRotation>("rotationtype", "RoTp");
         public LiteralEnum<BinderType> BinderVariety = new LiteralEnum<BinderType>("binderType", "BnVr");
-        public AVFXBinderProperty Prop = new AVFXBinderProperty("properties");
+        public AVFXBinderProperty PropStart = new AVFXBinderProperty("propertiesStart", "PrpS");
+        public AVFXBinderProperty PropGoal = new AVFXBinderProperty("propertiesGoal", "PrpG");
 
         public BinderType Type;
         public AVFXBinderData Data;
@@ -50,7 +51,8 @@ namespace AVFXLib.Models
                 Life,
                 BinderRotationType,
                 BinderVariety,
-                Prop
+                PropStart,
+                PropGoal
             });
         }
 

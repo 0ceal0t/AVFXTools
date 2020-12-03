@@ -96,6 +96,7 @@ namespace AVFXTools.Main
         public void OpenLocalAVFX(string path)
         {
             AVFXNode node = Reader.readAVFX(path);
+            LastImportNode = node;
             AVFX = new AVFXBase();
             AVFX.read(node);
         }
@@ -103,6 +104,7 @@ namespace AVFXTools.Main
         public void OpenGameAVFX(string path)
         {
             AVFXNode node = Reader.readAVFX(Getter.GetData(path));
+            LastImportNode = node;
             AVFX = new AVFXBase();
             AVFX.read(node);
         }

@@ -18,6 +18,7 @@ namespace AVFXLib.Models
         public AVFXCurve Length = new AVFXCurve("length", "Len");
         public AVFXCurve Radius = new AVFXCurve("radius", "Rad");
         public AVFXCurve InjectionSpeed = new AVFXCurve("injectionSpeed", "IjS");
+        public AVFXCurve InjectionSpeedRandom = new AVFXCurve("injectionSpeedRandom", "IjSR");
 
         List<Base> Attributes;
 
@@ -31,6 +32,7 @@ namespace AVFXLib.Models
                 Length,
                 Radius,
                 InjectionSpeed,
+                InjectionSpeedRandom
             });
         }
 

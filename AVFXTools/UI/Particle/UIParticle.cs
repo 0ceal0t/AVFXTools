@@ -64,6 +64,7 @@ namespace AVFXTools.UI
             Animation.Add(new UICurve(Particle.Gravity, "Gravity"));
             Animation.Add(new UICurve(Particle.GravityRandom, "Gravity Random"));
             Animation.Add(new UICurve(Particle.AirResistance, "Air Resistance"));
+            Animation.Add(new UICurve(Particle.AirResistanceRandom, "Air Resistance Random"));
             Animation.Add(new UICurve3Axis(Particle.Scale, "Scale"));
             Animation.Add(new UICurve3Axis(Particle.Rotation, "Rotation"));
             Animation.Add(new UICurve3Axis(Particle.Position, "Position"));

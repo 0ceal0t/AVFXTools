@@ -57,8 +57,8 @@ namespace AVFXTools
             //AVFXNode node = Reader.readAVFX(getter.GetData(@"chara/weapon/w1501/obj/body/b0036/vfx/eff/vw0002.avfx")); // rav
 
             //AVFXNode node = Reader.readAVFX(getter.GetData(@"vfx/common/eff/z3of_stlp1_c0c.avfx")); // omega
-            AVFXNode node = Reader.readAVFX(getter.GetData(@"vfx/common/eff/cnj17wing_c0h.avfx")); // misc
-            //AVFXNode node = Reader.readAVFX(getter.GetData(@"vfx/common/eff/abi_as027c1h.avfx")); // misc
+            //AVFXNode node = Reader.readAVFX(getter.GetData(@"vfx/common/eff/cnj17wing_c0h.avfx")); // misc
+            AVFXNode node = Reader.readAVFX(getter.GetData(@"vfx/common/eff/daiichiram_stlp01p.avfx")); // misc
 
 
             /*

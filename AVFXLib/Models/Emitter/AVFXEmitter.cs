@@ -32,7 +32,10 @@ namespace AVFXLib.Models
         public AVFXCurve CreateInterval = new AVFXCurve("createInterval", "CrI");
         public AVFXCurve CreateIntervalRandom = new AVFXCurve("createIntervalRandom", "CrIR");
 
+        public AVFXCurve Gravity = new AVFXCurve("gravity", "Gra");
+        public AVFXCurve GravityRandom = new AVFXCurve("gravityRandom", "GraR");
         public AVFXCurve AirResistance = new AVFXCurve("airResistance", "ARs");
+        public AVFXCurve AirResistanceRandom = new AVFXCurve("airResistanceRandom", "ARsR");
 
         public AVFXCurveColor Color = new AVFXCurveColor("color");
         public AVFXCurve3Axis Position = new AVFXCurve3Axis("position", "Pos");
@@ -74,7 +77,10 @@ namespace AVFXLib.Models
                 CreateInterval,
                 CreateIntervalRandom,
 
+                Gravity,
+                GravityRandom,
                 AirResistance,
+                AirResistanceRandom,
 
                 Color,
                 Position,

@@ -21,9 +21,9 @@ namespace AVFXTools.Main
             {
                 return;
             }
-            if (binder.Prop.Assigned) // has property data
+            if (binder.PropStart.Assigned) // has property data
             {
-                var bindPoint = binder.Prop.BindPointId;
+                var bindPoint = binder.PropStart.BindPointId;
                 if (bindPoint.Assigned && bindPoint.Value > -1 && model.BindPoints.ContainsKey(bindPoint.Value))
                 {
                     var modelBind = model.BindPoints[bindPoint.Value];

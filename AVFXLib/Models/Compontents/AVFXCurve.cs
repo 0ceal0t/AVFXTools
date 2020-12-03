@@ -86,6 +86,8 @@ namespace AVFXLib.Models
             curveAvfx.Children.Add(new AVFXLeaf("KeyC", 4, BitConverter.GetBytes(Keys.Count())));
             PutAVFX(curveAvfx, Attributes);
 
+            if(Keys.Count == 0) { return curveAvfx; }
+
             // concat the keys
             byte[] keyBArray = new byte[16 * Keys.Count()];
             int offset = 0;

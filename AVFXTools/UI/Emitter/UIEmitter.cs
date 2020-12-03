@@ -43,7 +43,10 @@ namespace AVFXTools.UI
             Animation.Add(new UICurve(Emitter.CreateCount, "Create Count"));
             Animation.Add(new UICurve(Emitter.CreateInterval, "Create Interval"));
             Animation.Add(new UICurve(Emitter.CreateIntervalRandom, "Create Interval Random"));
+            Animation.Add(new UICurve(Emitter.Gravity, "Gravity"));
+            Animation.Add(new UICurve(Emitter.GravityRandom, "Gravity Random"));
             Animation.Add(new UICurve(Emitter.AirResistance, "Air Resistance"));
+            Animation.Add(new UICurve(Emitter.AirResistanceRandom, "Air Resistance Random"));
             Animation.Add(new UICurveColor(Emitter.Color, "Color"));
             Animation.Add(new UICurve3Axis(Emitter.Position, "Position"));
             Animation.Add(new UICurve3Axis(Emitter.Rotation, "Rotation"));
