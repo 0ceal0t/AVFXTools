@@ -13,14 +13,12 @@ namespace AVFXTools.UI
     {
         public AVFXTextureNormal Tex;
         public string Name;
-        public bool Assigned;
         //============================
 
         public UITextureNormal(AVFXTextureNormal tex)
         {
             Tex = tex;
-            if (!tex.Assigned) return;
-            Assigned = true;
+            if (!tex.Assigned) { Assigned = false; return; }
             //====================
             Attributes.Add(new UICheckbox("Enabled", Tex.Enabled));
             Attributes.Add(new UIInt("UV Set Index", Tex.UvSetIdx));
@@ -34,9 +32,21 @@ namespace AVFXTools.UI
         public override void Draw(string parentId)
         {
             string id = parentId + "/TN";
-            if (!Assigned) return;
+            // === UNASSIGNED ===
+            if (!Assigned)
+            {
+                if (ImGui.Button("+ Texture Normal" + id))
+                {
+                    // TODO
+                }
+                return;
+            }
             if (ImGui.TreeNode("Normal" + id))
             {
+                if (UIUtils.RemoveButton("Delete " + id))
+                {
+                    // TODO
+                }
                 DrawAttrs(id);
                 ImGui.TreePop();
             }

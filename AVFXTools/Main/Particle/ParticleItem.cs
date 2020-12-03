@@ -52,6 +52,11 @@ namespace AVFXTools.Main
                 case ParticleType.Powder:
                     InitQuad(1.0f);
                     break;
+                // ======= POLYLINE ===========
+                case ParticleType.Polyline:
+                    var polyLineData = (AVFXParticleDataPolyline)particle.Data;
+                    InitPolyline(polyLineData, 1.0f);
+                    break;
                 default:
                     return;
             }
@@ -134,15 +139,63 @@ namespace AVFXTools.Main
         public void InitQuad(float size)
         {
             Verts = new VertexPositionTexture[] {
-                new VertexPositionTexture(new Vector3(-1.0f * size,-1.0f * size,0), new Vector4(1,0,1,0), new Vector4(1,1,1,1)),
-                new VertexPositionTexture(new Vector3(-1.0f * size, 1.0f * size,0), new Vector4(1,1,1,1), new Vector4(1,1,1,1)),
-                new VertexPositionTexture(new Vector3( 1.0f * size,-1.0f * size,0), new Vector4(0,0,0,0), new Vector4(1,1,1,1)),
-                new VertexPositionTexture(new Vector3( 1.0f * size, 1.0f * size,0), new Vector4(0,1,0,1), new Vector4(1,1,1,1)),
+                new VertexPositionTexture(new Vector3(-1.0f * size,-1.0f * size,0), new Vector4(1,0,1,0), new Vector4(1)),
+                new VertexPositionTexture(new Vector3(-1.0f * size, 1.0f * size,0), new Vector4(1,1,1,1), new Vector4(1)),
+                new VertexPositionTexture(new Vector3( 1.0f * size,-1.0f * size,0), new Vector4(0,0,0,0), new Vector4(1)),
+                new VertexPositionTexture(new Vector3( 1.0f * size, 1.0f * size,0), new Vector4(0,1,0,1), new Vector4(1)),
             };
             Indexes = new ushort[] {
                 2, 0, 1,
                 3, 2, 1
             };
+        }
+
+        public void InitPolyline(AVFXParticleDataPolyline polyLineData, float size)
+        {
+            int points = polyLineData.PointCount.Value;
+            int center = polyLineData.PointCountCenter.Value;
+
+
+            float width = 1.0f / (float)points;
+            /*    x --- 1 --- 3
+             *    |  \  |  \  |
+             *    x --- 0 --- 2
+             */
+            float XOffset = 0; //center * width;
+            int flip = polyLineData.IsLocal.Value == true ? -1 : 1;
+
+            Verts = new VertexPositionTexture[(points + 1) * 2];
+            Indexes = new ushort[points * 6];
+            for(int i = 0; i <= points; i++)
+            {
+                float x = (i * width - XOffset) * size;
+                Verts[i * 2 ] = new VertexPositionTexture(
+                        new Vector3(flip * x, 1.0f * size, 0),
+                        new Vector4(0, 1 - i * width, 0, 1 - i * width),
+                        new Vector4(1)
+                );
+                Verts[i * 2 + 1] = new VertexPositionTexture(
+                        new Vector3(flip * x, -1.0f * size, 0),
+                        new Vector4(1, 1 - i * width, 0, 1 - i * width),
+                        new Vector4(1)
+                );
+
+                if(i != 0)
+                {
+                    int i0 = (i - 1) * 2;
+                    int i1 = i0 + 1;
+                    int i2 = i * 2;
+                    int i3 = i2 + 1;
+
+                    int indexRoot = (i - 1) * 6;
+                    Indexes[indexRoot + 0] = (ushort)i2;
+                    Indexes[indexRoot + 1] = (ushort)i0;
+                    Indexes[indexRoot + 2] = (ushort)i1;
+                    Indexes[indexRoot + 3] = (ushort)i3;
+                    Indexes[indexRoot + 4] = (ushort)i2;
+                    Indexes[indexRoot + 5] = (ushort)i1;
+                }
+            }
         }
 
         // ======== ARRAY =============

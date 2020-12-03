@@ -32,6 +32,11 @@ namespace AVFXTools.UI
             string id = parentId + "/Texture" + Idx;
             if (ImGui.CollapsingHeader("Texture " + Idx + id))
             {
+                if (UIUtils.RemoveButton("Delete" + id))
+                {
+                    // TODO
+                    // TODO: need to change bindings as well
+                }
                 DrawAttrs(id);
                 TextureInfo info = Bindings.IndexToPointer[Idx];
                 ImGui.Image(info.Pointer, new Vector2(info.Width, info.Height));

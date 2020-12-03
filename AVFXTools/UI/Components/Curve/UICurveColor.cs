@@ -20,9 +20,9 @@ namespace AVFXTools.UI
         public UICurveColor(AVFXCurveColor curve, string name)
         {
             Curve = curve;
-            if (!curve.Assigned) return;
-            Assigned = true;
             Name = name;
+            if (!curve.Assigned) { Assigned = false; return; }
+            Assigned = true;
             // ======================
             Attributes.Add(new UICurve(Curve.RGB, "RGB", color:true));
             Attributes.Add(new UICurve(Curve.A, "Alpha"));
@@ -41,9 +41,22 @@ namespace AVFXTools.UI
         public override void Draw(string parentId)
         {
             string id = parentId + "/" + Name;
-            if (!Assigned) return;
+            // === UNASSIGNED ===
+            if (!Assigned)
+            {
+                if (ImGui.Button("+ " + Name + id))
+                {
+                    // TODO
+                }
+                return;
+            }
+            // ==== ASSIGNED ===
             if (ImGui.TreeNode(Name + id))
             {
+                if (UIUtils.RemoveButton("Delete" + id))
+                {
+                    // TODO
+                }
                 DrawAttrs(id);
                 ImGui.TreePop();
             }

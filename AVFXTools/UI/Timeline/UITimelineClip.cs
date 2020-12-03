@@ -37,6 +37,10 @@ namespace AVFXTools.UI
             string id = parentId + "/TLClip" + Idx;
             if (ImGui.TreeNode("Clip " + Idx + id))
             {
+                if (UIUtils.RemoveButton("Delete" + id))
+                {
+                    // TODO
+                }
                 if (ImGui.InputFloat4("Unknown Ints" + id, ref UnknownInts))
                 {
                     Clip.UnknownInts[0] = (int)UnknownInts.X;

@@ -20,6 +20,7 @@ namespace AVFXLib.Models
         public LiteralBool IsMorph = new LiteralBool("isMorph", "bShp");
         public LiteralInt ModelIdx = new LiteralInt("modelIdx", "MdNo", size: 1);
 
+        public AVFXCurve Morph = new AVFXCurve("morph", "Moph");
         public AVFXCurve FresnelCurve = new AVFXCurve("fresnelCurve", "FrC");
         public AVFXCurve3Axis FresnelRotation = new AVFXCurve3Axis("fresnelRotation", "FrRt");
         public AVFXCurveColor ColorBegin = new AVFXCurveColor("colorBegin", name: "ColB");
@@ -39,6 +40,7 @@ namespace AVFXLib.Models
                 IsLightning,
                 IsMorph,
                 ModelIdx,
+                Morph,
                 FresnelCurve,
                 FresnelRotation,
                 ColorBegin,

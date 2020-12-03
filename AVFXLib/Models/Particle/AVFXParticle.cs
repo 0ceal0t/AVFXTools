@@ -47,7 +47,9 @@ namespace AVFXLib.Models
         public LiteralBool SimpleAnimEnable = new LiteralBool("simpleAnimEnabled", "bSCt");
         public AVFXLife Life = new AVFXLife("life");
         public AVFXParticleSimple Simple = new AVFXParticleSimple("simpleAnimations");
+
         public AVFXCurve Gravity = new AVFXCurve("gravity", "Gra");
+        public AVFXCurve GravityRandom = new AVFXCurve("gravityRandom", "GraR");
         public AVFXCurve AirResistance = new AVFXCurve("airResistance", "ARs");
         public AVFXCurve3Axis Scale = new AVFXCurve3Axis("scale", "Scl");
         public AVFXCurve3Axis Rotation = new AVFXCurve3Axis("rotation", "Rot");
@@ -116,6 +118,7 @@ namespace AVFXLib.Models
                 Life,
                 Simple,
                 Gravity,
+                GravityRandom,
                 AirResistance,
                 Scale,
                 Rotation,

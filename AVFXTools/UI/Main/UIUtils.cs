@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using ImGuiNET;
@@ -30,6 +31,18 @@ namespace AVFXTools.UI
                 }
                 ImGui.EndCombo();
             }
+            return ret;
+        }
+
+        public static bool RemoveButton(string label)
+        {
+            bool ret = false;
+            ImGui.PushStyleColor(ImGuiCol.Button, new Vector4(0.8f, 0, 0, 1));
+            if (ImGui.Button(label))
+            {
+                ret = true;
+            }
+            ImGui.PopStyleColor();
             return ret;
         }
     }

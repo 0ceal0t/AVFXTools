@@ -54,6 +54,10 @@ namespace AVFXTools.UI
             string id = parentId + "/Item" + Type + Idx;
             if (ImGui.TreeNode(Type + " " + Idx + id))
             {
+                if (UIUtils.RemoveButton("Delete " + Type + id))
+                {
+                    // TODO
+                }
                 DrawAttrs(id);
                 ImGui.TreePop();
             }

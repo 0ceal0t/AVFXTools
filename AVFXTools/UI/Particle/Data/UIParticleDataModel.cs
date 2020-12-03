@@ -27,6 +27,7 @@ namespace AVFXTools.UI
             Attributes.Add(new UICheckbox("Is Lightning", Data.IsLightning));
             Attributes.Add(new UICheckbox("Is Morph", Data.IsMorph));
             Attributes.Add(new UIInt("Model Index", Data.ModelIdx));
+            Attributes.Add(new UICurve(Data.Morph, "Morph"));
             Attributes.Add(new UICurve(Data.FresnelCurve, "Fresnel Curve"));
             Attributes.Add(new UICurve3Axis(Data.FresnelRotation, "Fresnel Rotation"));
             Attributes.Add(new UICurveColor(Data.ColorBegin, "Color Begin"));

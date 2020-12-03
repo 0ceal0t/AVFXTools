@@ -46,6 +46,7 @@ namespace AVFXTools.UI
             ParameterView = new UIParameterView(avfx);
             BinderView = new UIBinderView(avfx);
             EmitterView = new UIEmitterView(avfx);
+            EffectorView = new UIEffectorView(avfx);
             TimelineView = new UITimelineView(avfx);
             TextureView = new UITextureView(avfx, TextureBindings);
             ModelView = new UIModelView(avfx);
@@ -96,6 +97,7 @@ namespace AVFXTools.UI
                 }
                 if (ImGui.BeginTabItem("Effectors##Main"))
                 {
+                    EffectorView.Draw();
                     ImGui.EndTabItem();
                 }
                 if (ImGui.BeginTabItem("Binders##Main"))

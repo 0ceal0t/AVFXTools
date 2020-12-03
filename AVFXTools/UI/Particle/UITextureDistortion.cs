@@ -13,14 +13,12 @@ namespace AVFXTools.UI
     {
         public AVFXTextureDistortion Tex;
         public string Name;
-        public bool Assigned;
         //============================
 
         public UITextureDistortion(AVFXTextureDistortion tex)
         {
             Tex = tex;
-            if (!tex.Assigned) return;
-            Assigned = true;
+            if (!tex.Assigned) { Assigned = false; return; }
             //====================
             Attributes.Add(new UICheckbox("Enabled", Tex.Enabled));
             Attributes.Add(new UICheckbox("Distort UV1", Tex.TargetUV1));
@@ -38,9 +36,22 @@ namespace AVFXTools.UI
         public override void Draw(string parentId)
         {
             string id = parentId + "/TD";
-            if (!Assigned) return;
+            // === UNASSIGNED ===
+            if (!Assigned)
+            {
+                if (ImGui.Button("+ Texture Distortion" + id))
+                {
+                    // TODO
+                }
+                return;
+            }
+            // ==== ASSIGNED ===
             if (ImGui.TreeNode("Distortion" + id))
             {
+                if (UIUtils.RemoveButton("Delete " + id))
+                {
+                    // TODO
+                }
                 DrawAttrs(id);
                 ImGui.TreePop();
             }

@@ -12,14 +12,12 @@ namespace AVFXTools.UI
     public class UITextureReflection : UIBase
     {
         public AVFXTextureReflection Tex;
-        public bool Assigned;
         //============================
 
         public UITextureReflection(AVFXTextureReflection tex)
         {
             Tex = tex;
-            if (!tex.Assigned) return;
-            Assigned = true;
+            if (!tex.Assigned) { Assigned = false; return; }
             //====================
             Attributes.Add(new UICheckbox("Enabled", Tex.Enabled));
             Attributes.Add(new UICheckbox("Use Screen Copy", Tex.UseScreenCopy));
@@ -32,9 +30,22 @@ namespace AVFXTools.UI
         public override void Draw(string parentId)
         {
             string id = parentId + "/TR";
-            if (!Assigned) return;
+            // === UNASSIGNED ===
+            if (!Assigned)
+            {
+                if (ImGui.Button("+ Texture Reflection" + id))
+                {
+                    // TODO
+                }
+                return;
+            }
+            // ==== ASSIGNED ===
             if (ImGui.TreeNode("Reflection" + id))
             {
+                if (UIUtils.RemoveButton("Delete " + id))
+                {
+                    // TODO
+                }
                 DrawAttrs(id);
                 ImGui.TreePop();
             }

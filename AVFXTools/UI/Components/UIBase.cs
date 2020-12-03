@@ -3,18 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ImGuiNET;
 
 namespace AVFXTools.UI
 {
     public abstract class UIBase
     {
+        public bool Assigned = true;
         public List<UIBase> Attributes = new List<UIBase>();
         public abstract void Draw(string parentId);
         public void DrawAttrs(string parentId)
         {
-            foreach(UIBase attr in Attributes)
+            DrawList(Attributes, parentId);
+        }
+
+        public void DrawList(List<UIBase> items, string parentId)
+        {
+            int sameLine = 0;
+            for(int i = 0; i < items.Count; i++)
             {
-                attr.Draw(parentId);
+                if(i > 0 && !items[i].Assigned && !items[i - 1].Assigned && sameLine <= 4){
+                    ImGui.SameLine();
+                    sameLine++;
+                }
+                else
+                {
+                    sameLine = 0;
+                }
+                items[i].Draw(parentId);
             }
         }
     }

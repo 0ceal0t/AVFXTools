@@ -17,6 +17,7 @@ namespace AVFXTools.UI
         public UITextureColor1(AVFXTextureColor1 tex)
         {
             Tex = tex;
+            if (!tex.Assigned) { Assigned = false; return; }
             //====================
             Attributes.Add(new UICheckbox("Enabled", Tex.Enabled));
             Attributes.Add(new UICheckbox("Color To Alpha", Tex.ColorToAlpha));
@@ -34,8 +35,22 @@ namespace AVFXTools.UI
         public override void Draw(string parentId)
         {
             string id = parentId + "/TC1";
+            // === UNASSIGNED ===
+            if (!Assigned)
+            {
+                if (ImGui.Button("+ Texture Color 1" + id))
+                {
+                    // TODO
+                }
+                return;
+            }
+            // ==== ASSIGNED ===
             if (ImGui.TreeNode("Texture Color 1" + id))
             {
+                if (UIUtils.RemoveButton("Delete " + id))
+                {
+                    // TODO
+                }
                 DrawAttrs(id);
                 ImGui.TreePop();
             }

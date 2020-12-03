@@ -13,7 +13,6 @@ namespace AVFXTools.UI
     public class UICurve : UIBase
     {
         public AVFXCurve Curve;
-        public bool Assigned = false;
         public string Name;
         public bool Color = false;
         //=======================
@@ -22,10 +21,9 @@ namespace AVFXTools.UI
         public UICurve(AVFXCurve curve, string name, bool color=false)
         {
             Curve = curve;
-            if (!curve.Assigned) return;
-            Assigned = true;
             Name = name;
             Color = color;
+            if (!curve.Assigned) { Assigned = false; return; }
             //=====================
             Attributes.Add(new UICombo<CurveBehavior>("Pre Behavior", Curve.PreBehavior));
             Attributes.Add(new UICombo<CurveBehavior>("Post Behavior", Curve.PostBehavior));
@@ -43,9 +41,22 @@ namespace AVFXTools.UI
         public override void Draw(string parentId)
         {
             string id = parentId + "/" + Name;
-            if (!Assigned) return;
+            // === UNASSIGNED ===
+            if (!Assigned)
+            {
+                if (ImGui.Button("+ " + Name + id))
+                {
+                    // TODO
+                }
+                return;
+            }
+            // ==== ASSIGNED ===
             if (ImGui.TreeNode(Name + id))
             {
+                if(UIUtils.RemoveButton("Delete" + id))
+                {
+                    // TODO
+                }
                 DrawAttrs(id);
                 //==============
                 if(ImGui.TreeNode("Keys" + id))
@@ -56,6 +67,11 @@ namespace AVFXTools.UI
                         key.Idx = keyIdx;
                         key.Draw(id);
                         keyIdx++;
+                    }
+
+                    if (ImGui.Button("+ Key" + id))
+                    {
+                        // TODO
                     }
                     ImGui.TreePop();
                 }
@@ -87,6 +103,11 @@ namespace AVFXTools.UI
         public void Draw(string parentId)
         {
             string id = parentId + "/Key" + Idx;
+
+            if (UIUtils.RemoveButton("Delete Key" + id))
+            {
+                // TODO
+            }
             if (ImGui.InputInt("Time" + id, ref Time))
             {
                 Key.Time = Time;

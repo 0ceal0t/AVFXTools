@@ -18,15 +18,7 @@ namespace AVFXTools.UI
         // TODO: emitter type
         // TODO: particle + emitter count
         //=======================
-        public UILife Life;
-        public UICurve CreateCount;
-        public UICurve CreateInterval;
-        public UICurve CreateIntervalRandom;
-        public UICurve AirResistance;
-        public UICurveColor Color;
-        public UICurve3Axis Position;
-        public UICurve3Axis Rotation;
-        public UICurve3Axis Scale;
+        List<UIBase> Animation = new List<UIBase>();
         //========================
         public UIEmitterItem[] Particles;
         public UIEmitterItem[] Emitters;
@@ -47,15 +39,15 @@ namespace AVFXTools.UI
             Attributes.Add(new UICombo<CoordComputeOrder>("Coordinate Compute Order", Emitter.CoordComputeOrder));
             Attributes.Add(new UICombo<RotationOrder>("Rotation Order", Emitter.RotationOrder));
             // ==========================
-            Life = new UILife(Emitter.Life);
-            CreateCount = new UICurve(Emitter.CreateCount, "Create Count");
-            CreateInterval = new UICurve(Emitter.CreateInterval, "Create Interval");
-            CreateIntervalRandom = new UICurve(Emitter.CreateIntervalRandom, "Create Interval Random");
-            AirResistance = new UICurve(Emitter.AirResistance, "Air Resistance");
-            Color = new UICurveColor(Emitter.Color, "Color");
-            Position = new UICurve3Axis(Emitter.Position, "Position");
-            Rotation = new UICurve3Axis(Emitter.Rotation, "Rotation");
-            Scale = new UICurve3Axis(Emitter.Scale, "Scale");
+            Animation.Add(new UILife(Emitter.Life));
+            Animation.Add(new UICurve(Emitter.CreateCount, "Create Count"));
+            Animation.Add(new UICurve(Emitter.CreateInterval, "Create Interval"));
+            Animation.Add(new UICurve(Emitter.CreateIntervalRandom, "Create Interval Random"));
+            Animation.Add(new UICurve(Emitter.AirResistance, "Air Resistance"));
+            Animation.Add(new UICurveColor(Emitter.Color, "Color"));
+            Animation.Add(new UICurve3Axis(Emitter.Position, "Position"));
+            Animation.Add(new UICurve3Axis(Emitter.Rotation, "Rotation"));
+            Animation.Add(new UICurve3Axis(Emitter.Scale, "Scale"));
             //========================
             if(Emitter.ItPrs.Count > 0)
             {
@@ -98,6 +90,11 @@ namespace AVFXTools.UI
             string id = parentId + "/Emitter" + Idx;
             if (ImGui.CollapsingHeader("Emitter " + Idx + "(" + Emitter.EmitterVariety.stringValue() + ")" + id))
             {
+                if (UIUtils.RemoveButton("Delete" + id))
+                {
+                    // TODO
+                }
+                //==========================
                 if (ImGui.TreeNode("Parameters" + id))
                 {
                     DrawAttrs(id);
@@ -106,15 +103,7 @@ namespace AVFXTools.UI
                 //======================
                 if (ImGui.TreeNode("Animation" + id))
                 {
-                    Life.Draw(id);
-                    CreateCount.Draw(id);
-                    CreateInterval.Draw(id);
-                    CreateIntervalRandom.Draw(id);
-                    AirResistance.Draw(id);
-                    Scale.Draw(id);
-                    Rotation.Draw(id);
-                    Position.Draw(id);
-                    Color.Draw(id);
+                    DrawList(Animation, id);
                     ImGui.TreePop();
                 }
                 //=======================
@@ -127,6 +116,10 @@ namespace AVFXTools.UI
                         particle.Draw(id);
                         pIdx++;
                     }
+                    if (ImGui.Button("+ Particle" + id))
+                    {
+                        // TODO
+                    }
                     ImGui.TreePop();
                 }
                 //=======================
@@ -138,6 +131,10 @@ namespace AVFXTools.UI
                         emitter.Idx = eIdx;
                         emitter.Draw(id);
                         eIdx++;
+                    }
+                    if (ImGui.Button("+ Emitter" + id))
+                    {
+                        // TODO
                     }
                     ImGui.TreePop();
                 }

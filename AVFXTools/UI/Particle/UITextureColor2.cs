@@ -13,15 +13,13 @@ namespace AVFXTools.UI
     {
         public AVFXTextureColor2 Tex;
         public string Name;
-        public bool Assigned;
         //============================
 
         public UITextureColor2(AVFXTextureColor2 tex, string name)
         {
             Tex = tex;
-            if (!tex.Assigned) return;
-            Assigned = true;
             Name = name;
+            if (!tex.Assigned) { Assigned = false; return; }
             //====================
             Attributes.Add(new UICheckbox("Enabled", Tex.Enabled));
             Attributes.Add(new UICheckbox("Color To Alpha", Tex.ColorToAlpha));
@@ -39,9 +37,21 @@ namespace AVFXTools.UI
         public override void Draw(string parentId)
         {
             string id = parentId + "/" + Name;
-            if (!Assigned) return;
+            // === UNASSIGNED ===
+            if (!Assigned)
+            {
+                if (ImGui.Button("+ " + Name + id))
+                {
+                    // TODO
+                }
+                return;
+            }
             if (ImGui.TreeNode(Name + id))
             {
+                if (UIUtils.RemoveButton("Delete " + id))
+                {
+                    // TODO
+                }
                 DrawAttrs(id);
                 ImGui.TreePop();
             }

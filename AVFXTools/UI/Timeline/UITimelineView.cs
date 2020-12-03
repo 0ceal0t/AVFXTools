@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ImGuiNET;
 
 namespace AVFXTools.UI
 {
@@ -28,6 +29,10 @@ namespace AVFXTools.UI
                 timeline.Idx = tIdx;
                 timeline.Draw(id);
                 tIdx++;
+            }
+            if (ImGui.Button("+ Timeline" + id))
+            {
+                // TODO
             }
         }
     }

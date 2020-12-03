@@ -41,8 +41,8 @@ namespace AVFXTools.UI
             Attributes.Add(new UIFloat3("Revised Scale", AVFX.RevisedValuesScaleX, AVFX.RevisedValuesScaleY, AVFX.RevisedValuesScaleZ));
             Attributes.Add(new UIFloat3("Revised Color", AVFX.RevisedValuesR, AVFX.RevisedValuesG, AVFX.RevisedValuesB));
             Attributes.Add(new UICheckbox("Fade X", AVFX.FadeXenabled));
-            Attributes.Add(new UICheckbox("Fade Y", AVFX.FadeYenabled));
-            Attributes.Add(new UICheckbox("Fade Z", AVFX.FadeZenabled));
+            Attributes.Add(new UICheckbox("Fade Y", AVFX.FadeYenabled, sl:100));
+            Attributes.Add(new UICheckbox("Fade Z", AVFX.FadeZenabled, sl:200));
             Attributes.Add(new UIFloat3("Fade Inner", AVFX.FadeXinner, AVFX.FadeYinner, AVFX.FadeZinner));
             Attributes.Add(new UIFloat3("Fade Outer", AVFX.FadeXouter, AVFX.FadeYouter, AVFX.FadeZouter));
             Attributes.Add(new UICheckbox("Global Fog", AVFX.GlobalFogEnabled));

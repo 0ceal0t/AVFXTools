@@ -52,6 +52,10 @@ namespace AVFXTools.UI
             string id = parentId + "/Timeline" + Idx;
             if (ImGui.CollapsingHeader("Timeline " + Idx + id))
             {
+                if (UIUtils.RemoveButton("Delete" + id))
+                {
+                    // TODO
+                }
                 if (ImGui.TreeNode("Parameters" + id))
                 {
                     DrawAttrs(id);
@@ -67,6 +71,10 @@ namespace AVFXTools.UI
                         item.Draw(id);
                         iIdx++;
                     }
+                    if (ImGui.Button("+ Item" + id))
+                    {
+                        // TODO
+                    }
                     ImGui.TreePop();
                 }
                 //=====================
@@ -78,6 +86,10 @@ namespace AVFXTools.UI
                         clip.Idx = cIdx;
                         clip.Draw(id);
                         cIdx++;
+                    }
+                    if (ImGui.Button("+ Clip" + id))
+                    {
+                        // TODO
                     }
                     ImGui.TreePop();
                 }

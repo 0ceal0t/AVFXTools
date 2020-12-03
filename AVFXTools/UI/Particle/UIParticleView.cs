@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ImGuiNET;
+using ImGuiNET;
 
 namespace AVFXTools.UI
 {
@@ -28,6 +30,10 @@ namespace AVFXTools.UI
                 particle.Idx = pIdx;
                 particle.Draw(id);
                 pIdx++;
+            }
+            if (ImGui.Button("+ Particle" + id))
+            {
+                // TODO
             }
         }
     }

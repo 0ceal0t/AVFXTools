@@ -18,27 +18,13 @@ namespace AVFXTools.UI
         // TODO: UV Set Count
         // TODO: simple animations enabled
         //==========================
-        public UILife Life;
-        public UIParticleSimple Simple;
-        public UICurve Gravity;
-        public UICurve AirResistance;
-        public UICurve3Axis Scale;
-        public UICurve3Axis Rotation;
-        public UICurve3Axis Position;
-        public UICurveColor Color;
+        List<UIBase> Animation = new List<UIBase>();
         //==========================
         public UIParticleUVSet[] UVSets;
         //==========================
         public UIBase Data;
         //========================
-        public UITextureColor1 TC1;
-        public UITextureColor2 TC2;
-        public UITextureColor2 TC3;
-        public UITextureColor2 TC4;
-        public UITextureNormal TN;
-        public UITextureReflection TR;
-        public UITextureDistortion TD;
-        public UITexturePalette TP;
+        List<UIBase> Tex = new List<UIBase>();
 
         public UIParticle(AVFXParticle particle)
         {
@@ -73,14 +59,15 @@ namespace AVFXTools.UI
             Attributes.Add(new UICheckbox("DOTy", Particle.DOTy));
             Attributes.Add(new UIFloat("Apply Rate Light Buffer", Particle.DepthOffset));
             //==============================
-            Life = new UILife(Particle.Life);
-            Simple = new UIParticleSimple(Particle.Simple);
-            Gravity = new UICurve(Particle.Gravity, "Gravity");
-            AirResistance = new UICurve(Particle.AirResistance, "Air Resistance");
-            Scale = new UICurve3Axis(Particle.Scale, "Scale");
-            Rotation = new UICurve3Axis(Particle.Rotation, "Rotation");
-            Position = new UICurve3Axis(Particle.Position, "Position");
-            Color = new UICurveColor(Particle.Color, "Color");
+            Animation.Add(new UILife(Particle.Life));
+            Animation.Add(new UIParticleSimple(Particle.Simple));
+            Animation.Add(new UICurve(Particle.Gravity, "Gravity"));
+            Animation.Add(new UICurve(Particle.GravityRandom, "Gravity Random"));
+            Animation.Add(new UICurve(Particle.AirResistance, "Air Resistance"));
+            Animation.Add(new UICurve3Axis(Particle.Scale, "Scale"));
+            Animation.Add(new UICurve3Axis(Particle.Rotation, "Rotation"));
+            Animation.Add(new UICurve3Axis(Particle.Position, "Position"));
+            Animation.Add(new UICurveColor(Particle.Color, "Color"));
             //===============================
             UVSets = new UIParticleUVSet[Particle.UVSets.Count];
             for(int i = 0; i < UVSets.Length; i++)
@@ -122,14 +109,14 @@ namespace AVFXTools.UI
                     break;
             }
             //============================
-            TC1 = new UITextureColor1(Particle.TC1);
-            TC2 = new UITextureColor2(Particle.TC2, "Texture Color 2");
-            TC3 = new UITextureColor2(Particle.TC3, "Texture Color 3");
-            TC4 = new UITextureColor2(Particle.TC4, "Texture Color 4");
-            TN = new UITextureNormal(Particle.TN);
-            TR = new UITextureReflection(Particle.TR);
-            TD = new UITextureDistortion(Particle.TD);
-            TP = new UITexturePalette(Particle.TP);
+            Tex.Add(new UITextureColor1(Particle.TC1));
+            Tex.Add(new UITextureColor2(Particle.TC2, "Texture Color 2"));
+            Tex.Add(new UITextureColor2(Particle.TC3, "Texture Color 3"));
+            Tex.Add(new UITextureColor2(Particle.TC4, "Texture Color 4"));
+            Tex.Add(new UITextureNormal(Particle.TN));
+            Tex.Add(new UITextureReflection(Particle.TR));
+            Tex.Add(new UITextureDistortion(Particle.TD));
+            Tex.Add(new UITexturePalette(Particle.TP));
         }
 
         public override void Draw(string parentId)
@@ -137,6 +124,10 @@ namespace AVFXTools.UI
             string id = parentId + "/Particle" + Idx;
             if (ImGui.CollapsingHeader("Particle " + Idx + "(" + Particle.ParticleVariety.stringValue() + ")" + id))
             {
+                if (UIUtils.RemoveButton("Delete" + id))
+                {
+                    // TODO
+                }
                 if (ImGui.TreeNode("Parameters" + id))
                 {
                     DrawAttrs(id);
@@ -145,14 +136,7 @@ namespace AVFXTools.UI
                 //======================
                 if (ImGui.TreeNode("Animation" + id))
                 {
-                    Life.Draw(id);
-                    Simple.Draw(id);
-                    Gravity.Draw(id);
-                    AirResistance.Draw(id);
-                    Scale.Draw(id);
-                    Rotation.Draw(id);
-                    Position.Draw(id);
-                    Color.Draw(id);
+                    DrawList(Animation, id);
                     ImGui.TreePop();
                 }
                 //=====================
@@ -165,6 +149,12 @@ namespace AVFXTools.UI
                         uv.Draw(id);
                         uvIdx++;
                     }
+
+                    if (ImGui.Button("+ UVSet" + id))
+                    {
+                        // TODO
+                        // NOTE: ONLY UP TO 4!!!!!
+                    }
                     ImGui.TreePop();
                 }
                 //====================
@@ -173,14 +163,7 @@ namespace AVFXTools.UI
                     Data.Draw(id);
                 }
                 //===================
-                TC1.Draw(id);
-                TC2.Draw(id);
-                TC3.Draw(id);
-                TC4.Draw(id);
-                TN.Draw(id);
-                TR.Draw(id);
-                TD.Draw(id);
-                TP.Draw(id);
+                DrawList(Tex, id);
             }
         }
     }

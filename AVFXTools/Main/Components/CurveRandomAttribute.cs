@@ -82,7 +82,11 @@ namespace AVFXTools.Main
             isRandom = R;
             RandomVariety = Curve.Random.Value;
 
-            if (Curve.Keys.Count == 1)
+            if (Curve.Keys.Count == 0)
+            {
+                ConstantValue = 0;
+            }
+            else if (Curve.Keys.Count == 1)
             {
                 ConstantValue = Curve.Keys[0].Z;
             }
@@ -123,7 +127,11 @@ namespace AVFXTools.Main
                 }
             }
             //
-            if (isConstant)
+            if (y.Length == 0)
+            {
+                ConstantValue = 0;
+            }
+            else if (isConstant)
             {
                 ConstantValue = (float)y[0];
             }

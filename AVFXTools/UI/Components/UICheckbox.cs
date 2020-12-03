@@ -20,10 +20,13 @@ namespace AVFXTools.UI
         public delegate bool Change(bool value);
         public Change ChangeFunction;
 
-        public UICheckbox(string id, LiteralBool literal, Delegate initFunction = null, Delegate changeFunction = null)
+        public int SL;
+
+        public UICheckbox(string id, LiteralBool literal, Delegate initFunction = null, Delegate changeFunction = null, int sl = 0)
         {
             Id = id;
             Literal = literal;
+            SL = sl;
             if (initFunction != null)
                 InitFunction = (Init)initFunction;
             if (changeFunction != null)
@@ -41,6 +44,7 @@ namespace AVFXTools.UI
 
         public override void Draw(string id)
         {
+            if (SL > 0) ImGui.SameLine(SL);
             if (ImGui.Checkbox(Id + id, ref Value))
             {
                 if (ChangeFunction == null)

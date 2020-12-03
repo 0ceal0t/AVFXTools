@@ -125,6 +125,7 @@ namespace AVFXLib.Main
             "Smpl",
             "ARs",
             "Gra",
+            "GraR",
             "IRad",
             "ORad",
             "Att",
@@ -155,7 +156,8 @@ namespace AVFXLib.Main
             "Trgr",
             "SpS",
             "IjS",
-            "ItEm"
+            "ItEm",
+            "Moph"
         });
 
         static HashSet<String> ALLOW = new HashSet<string>(new string[]{
@@ -166,7 +168,8 @@ namespace AVFXLib.Main
             "VIdx",
             "VNum",
             "VEmt",
-            "Cols"
+            "Cols",
+            "SdNm"
         });
 
         public static List<AVFXNode> readDef(BinaryReader reader)
