@@ -16,29 +16,13 @@ namespace AVFXTools
         [STAThread]
         static void Main(string[] args)
         {
-            //JObject obj = Reader.readJSON("D:\\FFXIV\\TOOLS\\DataPuller\\AVFXStudio\\test\\test.json");
-            //AVFXBase avfx = new AVFXBase();
-            //avfx.read(obj);
-            //avfx.Print(0);
-
-            //avfx2.Print(0);
-            //AVFXNode outNode = avfx2.toAVFX(); // TEST AVFX EQUALITY
-            //Console.WriteLine(node.EqualsNode(outNode));
-
-            //JObject obj = (JObject)avfx2.toJSON(); // TEST JSON EXPORT
-            //File.WriteAllText("D:\\FFXIV\\TOOLS\\DataPuller\\AVFXStudio\\test\\test.json", obj.ToString());
-
             //ModelReader.ReadModel("D:\\FFXIV\\models\\script.glb");
             //ModelReader.ExportAllModels("D:\\FFXIV\\TOOLS\\DataPuller\\avfx\\test.gltf", avfx2);
-
-
-
-
+            
 
             const string GameDirectory = @"C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn";
             ResourceGetter getter = new ResourceGetter(GameDirectory);
 
-            //AVFXNode node = Reader.readAVFX("D:\\FFXIV\\TOOLS\\DataPuller\\avfx\\BASE_2.avfx");
 
             // dead hive -> @"chara/weapon/w1501/obj/body/b0036/vfx/eff/vw0002.avfx"
             // seeing horde -> @"chara/weapon/w1501/obj/body/b0050/vfx/eff/vw0002.avfx"
@@ -59,6 +43,14 @@ namespace AVFXTools
             //AVFXNode node = Reader.readAVFX(getter.GetData(@"vfx/common/eff/z3of_stlp1_c0c.avfx")); // omega
             //AVFXNode node = Reader.readAVFX(getter.GetData(@"vfx/common/eff/cnj17wing_c0h.avfx")); // misc
             AVFXNode node = Reader.readAVFX(getter.GetData(@"vfx/common/eff/daiichiram_stlp01p.avfx")); // misc
+            AVFXBase avfx2 = new AVFXBase();
+            avfx2.read(node);
+
+            // -------------------
+            VeldridStartupWindow window = new VeldridStartupWindow("AVFX");
+            MainViewer mv = new MainViewer(window, avfx2, getter, model);
+            mv.LastImportNode = node;
+            window.Run();
 
 
             /*
@@ -93,21 +85,6 @@ namespace AVFXTools
                 Unwavering Will vfx/common/eff/m0648statuslp01c0w.avfx 
                 Waxing Nocturne vfx/common/eff/st_berserk_aoz0f.avfx 
              */
-
-            AVFXBase avfx2 = new AVFXBase();
-            avfx2.read(node);
-
-            //JObject obj = (JObject)avfx2.toJSON(); // TEST JSON EXPORT
-            //File.WriteAllText(@"D:\FFXIV\TOOLS\AVFXTools\AVFXTools\out\rav.json", obj.ToString());
-
-
-            // -------------------
-            VeldridStartupWindow window = new VeldridStartupWindow("AVFX");
-            //Viewer viewer = new Viewer(window, avfx2, getter, model);
-
-            MainViewer mv = new MainViewer(window, avfx2, getter, model);
-            mv.LastImportNode = node;
-            window.Run();
         }
     }
 }

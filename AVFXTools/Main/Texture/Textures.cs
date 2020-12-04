@@ -30,9 +30,16 @@ namespace AVFXTools.Main
             for (int idx = 0; idx < textures.Count; idx++)
             {
                 string p = textures[idx].Path.Value.Replace("\u0000", "");
-                byte[] bytes = getter.GetDDS(p);
-                var image = Pfim.Pfim.FromStream(new MemoryStream(bytes));
-                Images[idx] = ReadFromDDS(image);
+                try
+                {
+                    byte[] bytes = getter.GetDDS(p);
+                    var image = Pfim.Pfim.FromStream(new MemoryStream(bytes));
+                    Images[idx] = ReadFromDDS(image);
+                }
+                catch(Exception e)
+                {
+                    Images[idx] = new Image<Rgba32>(64, 64);
+                }
             }
             // ===================
             Views = new TextureView[textures.Count];

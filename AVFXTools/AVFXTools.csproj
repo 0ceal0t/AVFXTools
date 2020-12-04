@@ -408,6 +408,10 @@
       <Project>{ebf40ca9-0370-40f0-8583-64700fdaeb51}</Project>
       <Name>AVFXLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DotSquish\DotSquish.csproj">
+      <Project>{f9681545-4bea-4fd3-9ab9-a67bd37ab36d}</Project>
+      <Name>DotSquish</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SaintCoinach\SaintCoinach.csproj">
       <Project>{8a7d65eb-3de3-4631-b286-cc73a3126002}</Project>
       <Name>SaintCoinach</Name>

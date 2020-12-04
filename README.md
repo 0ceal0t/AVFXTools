@@ -5,7 +5,7 @@ Here be dragons. Someone more knowledgable than me please help -_-
 ## TODO
 ### General Everything
 - [ ] ⚠️ Need to do another pass through, missed a lot of undocumented block (ex: `NoAN` in Model Particles is `NoANimation`)
-- [ ] ⚠️ Only output avfx if assigned
+- [x] ~~Only output avfx if assigned~~
 - [x] ~~Rework `LiteralEnum`~~
 ### UI Stuff
 - [x] ~~Show unassigned~~
@@ -28,11 +28,11 @@ Here be dragons. Someone more knowledgable than me please help -_-
 - [ ] Option to remove model
 - [ ] Better theme
 - [ ] Choose game location + save settings
-- [ ] ⚠️ Scheduler addition + deletion
-- [ ] ⚠️ Effector addition + deletion
-- [ ] ⚠️ Emitter addition + deletion
-- [ ] ⚠️ Timeline addition + deletion
-- [ ] ⚠️ Particle addition + deletion
+- [x] ~~Scheduler addition + deletion~~
+- [x] ~~Effector addition + deletion~~
+- [x] ~~Emitter addition + deletion~~
+- [x] ~~Timeline addition + deletion~~
+- [x] ~~Particle addition + deletion~~
 - [ ] ⚠️ Texture addition + deletion
 ### General Graphics
 - [ ] ⚠️ random (what do the random types mean)
