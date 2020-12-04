@@ -10,16 +10,23 @@ namespace AVFXTools.UI
 {
     public class UITextureView : UIBase
     {
-        List<UITexture> Textures = new List<UITexture>();
+        public AVFXBase AVFX;
+        List<UITexture> Textures;
         public UITextureBindings Bindings;
 
         public UITextureView(AVFXBase avfx, UITextureBindings bindings)
         {
+            AVFX = avfx;
             Bindings = bindings;
-            // ======================
-            foreach (var texture in avfx.Textures)
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            Textures = new List<UITexture>();
+            foreach (var texture in AVFX.Textures)
             {
-                Textures.Add(new UITexture(texture, Bindings));
+                Textures.Add(new UITexture(texture, Bindings, this));
             }
         }
 
@@ -35,7 +42,9 @@ namespace AVFXTools.UI
             }
             if (ImGui.Button("+ Texture" + id))
             {
-                // TODO
+                AVFX.addTexture();
+                Bindings.addTextureBinding("");
+                Init();
             }
         }
     }

@@ -14,32 +14,31 @@ namespace AVFXTools.UI
     {
         public string Id;
         public LiteralString Literal;
-        public byte[] Value;
+        public string Value;
+        public uint MaxSize;
         // ========================
         public delegate void Change(LiteralString literal);
         public Change ChangeFunction;
 
-        public UIString(string id, LiteralString literal, Change changeFunction = null, int maxSizeBytes = 164)
+        public UIString(string id, LiteralString literal, Change changeFunction = null, int maxSizeBytes = 256)
         {
             Id = id;
             Literal = literal;
-            Value = new byte[maxSizeBytes];
+            Value = Literal.Value;
+            MaxSize = (uint)maxSizeBytes;
             if (changeFunction != null)
                 ChangeFunction = changeFunction;
             else
                 ChangeFunction = DoNothing;
-            // =====================
-            byte[] val = Util.StringToBytes(Literal.Value);
-            Buffer.BlockCopy(val, 0, Value, 0, val.Length);
         }
 
         public override void Draw(string id)
         {
-            ImGui.InputText(Id + id, Value, (uint)Value.Length);
+            ImGui.InputText(Id + id, ref Value, MaxSize);
             ImGui.SameLine();
             if (ImGui.Button("Update" + id))
             {
-                Literal.GiveValue(Util.BytesToString(Value).Trim('\0'));
+                Literal.GiveValue(Value.Trim('\0'));
                 ChangeFunction(Literal);
             }
         }

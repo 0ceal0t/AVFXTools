@@ -54,6 +54,8 @@ namespace AVFXTools.FFXIV
         {
             File fileOut;
             bool result = GetFile(file, out fileOut);
+            if (!result)
+                throw new Exception("file not found: '" + file + "'");
             FileCommonHeader header = fileOut.CommonHeader;
             return DDSConverter.GetDDS(header.GetBuffer(), fileOut.GetData());
         }

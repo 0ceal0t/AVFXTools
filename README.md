@@ -26,14 +26,14 @@ Here be dragons. Someone more knowledgable than me please help -_-
 - [x] ~~Maybe switch from `DragInt/Float` to `InputInt/Float`~~
 - [x] ~~Separate popups for model / avfx~~
 - [ ] Option to remove model
-- [ ] Better theme
+- [x] ~~Better theme~~
 - [ ] Choose game location + save settings
 - [x] ~~Scheduler addition + deletion~~
 - [x] ~~Effector addition + deletion~~
 - [x] ~~Emitter addition + deletion~~
 - [x] ~~Timeline addition + deletion~~
 - [x] ~~Particle addition + deletion~~
-- [ ] ⚠️ Texture addition + deletion
+- [x] ~~Texture addition + deletion~~
 ### General Graphics
 - [ ] ⚠️ random (what do the random types mean)
 - [ ] random axis linking

@@ -17,8 +17,7 @@ namespace AVFXTools.UI
         public UITimeline Timeline;
         public int Idx;
         //===============================
-        public static uint UniqueIdBytesSize = 164;
-        public byte[] UniqueIdBytes = new byte[UniqueIdBytesSize];
+        public string UniqueId;
 
         public Vector4 UnknownInts;
         public Vector4 UnknownFloats;
@@ -33,8 +32,7 @@ namespace AVFXTools.UI
         {
             base.Init();
             //=====================
-            byte[] uniqueId = Util.StringToBytes(Clip.UniqueId);
-            Buffer.BlockCopy(uniqueId, 0, UniqueIdBytes, 0, uniqueId.Length);
+            UniqueId = Clip.UniqueId;
             UnknownInts = new Vector4(Clip.UnknownInts[0], Clip.UnknownFloats[1], Clip.UnknownInts[2], Clip.UnknownInts[3]);
             UnknownFloats = new Vector4(Clip.UnknownFloats[0], Clip.UnknownFloats[1], Clip.UnknownFloats[2], Clip.UnknownFloats[3]);
         }
@@ -63,9 +61,9 @@ namespace AVFXTools.UI
                     Clip.UnknownFloats[2] = UnknownFloats.Z;
                     Clip.UnknownFloats[3] = UnknownFloats.W;
                 }
-                if (ImGui.InputText("Unique Id", UniqueIdBytes, UniqueIdBytesSize))
+                if (ImGui.InputText("Unique Id", ref UniqueId, 256))
                 {
-                    Clip.UniqueId = Util.BytesToString(UniqueIdBytes).Trim('\0');
+                    Clip.UniqueId = UniqueId.Trim('\0');
                 }
                 ImGui.TreePop();
             }

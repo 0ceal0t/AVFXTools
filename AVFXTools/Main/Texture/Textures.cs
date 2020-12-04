@@ -17,45 +17,75 @@ namespace AVFXTools.Main
 {
     public class Textures
     {
-        public Image<Rgba32>[] Images;
-        public TextureView[] Views;
+        public ResourceGetter Getter;
         public TextureView EmptyView;
         public Core C;
+        public List<ImageView> ImageViews = new List<ImageView>();
+        public ImageView EmptyImageView;
+
+        public struct ImageView
+        {
+            public TextureView View;
+            public Image<Rgba32> Image;
+            public ImageView(TextureView view, Image<Rgba32> img)
+            {
+                View = view;
+                Image = img;
+            }
+        }
 
         public Textures(List<AVFXTexture> textures, ResourceGetter getter, Core core)
         {
             C = core;
+            Getter = getter;
             // =================
-            Images = new Image<Rgba32>[textures.Count];
-            for (int idx = 0; idx < textures.Count; idx++)
+            foreach (var tex in textures)
             {
-                string p = textures[idx].Path.Value.Replace("\u0000", "");
-                try
-                {
-                    byte[] bytes = getter.GetDDS(p);
-                    var image = Pfim.Pfim.FromStream(new MemoryStream(bytes));
-                    Images[idx] = ReadFromDDS(image);
-                }
-                catch(Exception e)
-                {
-                    Images[idx] = new Image<Rgba32>(64, 64);
-                }
+                AddTexture(tex.Path.Value);
             }
-            // ===================
-            Views = new TextureView[textures.Count];
-            for(int texIdx = 0; texIdx < textures.Count; texIdx++)
+            // =================
+            Image<Rgba32> emptyImage = new Image<Rgba32>(64, 64);
+            ImageSharpTexture EmptyTex = new ImageSharpTexture(emptyImage);
+            EmptyImageView = new ImageView(C.Factory.CreateTextureView(EmptyTex.CreateDeviceTexture(C.GD, C.Factory)), emptyImage);
+        }
+
+        public void AddTexture(string path)
+        {
+            ImageViews.Add(GetImageView(path));
+        }
+        public void RemoveTexture(int idx)
+        {
+            ImageViews[idx].View.Dispose();
+            ImageViews.RemoveAt(idx);
+        }
+        public void UpdateTexture(int idx, string path)
+        {
+            ImageViews[idx].View.Dispose();
+            ImageViews[idx] = GetImageView(path);
+        }
+
+        public ImageView GetImageView(string path)
+        {
+            path = path.Replace("\u0000", "");
+            Image<Rgba32> img = new Image<Rgba32>(64, 64);
+            try
             {
-                ImageSharpTexture ImgTex = new ImageSharpTexture(Images[texIdx]);
-                Views[texIdx] = C.Factory.CreateTextureView(ImgTex.CreateDeviceTexture(C.GD, C.Factory));
+                byte[] bytes = Getter.GetDDS(path);
+                var image = Pfim.Pfim.FromStream(new MemoryStream(bytes));
+                img = ReadFromDDS(image);
             }
-            ImageSharpTexture EmptyTex = new ImageSharpTexture(new Image<Rgba32>(64, 64));
-            EmptyView = C.Factory.CreateTextureView(EmptyTex.CreateDeviceTexture(C.GD, C.Factory));
+            catch (Exception e)
+            {
+            }
+
+            var ImgTex = new ImageSharpTexture(img);
+            return new ImageView(C.Factory.CreateTextureView(ImgTex.CreateDeviceTexture(C.GD, C.Factory)), img);
         }
 
         public TextureView GetView(int idx)
         {
-            if (idx == -1 || idx >= Views.Length) return EmptyView;
-            return Views[idx];
+            if (idx == -1 || idx >= ImageViews.Count()) return EmptyImageView.View;
+            return ImageViews[idx].View;
         }
 
         public Sampler GetSampler(LiteralEnum<TextureBorderType> U, LiteralEnum<TextureBorderType> V)

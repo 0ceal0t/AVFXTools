@@ -27,6 +27,11 @@ namespace AVFXLib.Models
             Path.GiveValue(Value);
         }
 
+        public override void toDefault()
+        {
+            Path.GiveValue("");
+        }
+
         public override JToken toJSON()
         {
             return Path.toJSON();

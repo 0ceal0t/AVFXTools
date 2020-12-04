@@ -13,20 +13,45 @@ namespace AVFXTools.UI
         public UIMain Main;
         // ====================
         public Textures TextureViews;
-        public Dictionary<int, TextureInfo> IndexToPointer = new Dictionary<int, TextureInfo>();
+
+        public List<TextureInfo> IdxToPointer = new List<TextureInfo>();
 
         public UITextureBindings(UIMain main)
         {
             Main = main;
             // ==============
             TextureViews = new Textures(Main.AVFX.Textures, Main.Main.Getter, Main.Main.C);
-            int idx = 0;
-            foreach(var TextureV in TextureViews.Views)
+
+            foreach(var TextureImageView in TextureViews.ImageViews)
             {
+                var TextureV = TextureImageView.View;
                 IntPtr pointer = Main.I.GetOrCreateImGuiBinding(Main.Main.Factory, TextureV);
-                IndexToPointer.Add(idx, new TextureInfo(pointer, TextureV.Target.Width, TextureV.Target.Height));
-                idx++;
+                IdxToPointer.Add(new TextureInfo(pointer, TextureV.Target.Width, TextureV.Target.Height));
             }
+        }
+
+        public void addTextureBinding(string path)
+        {
+            TextureViews.AddTexture(path);
+            var TextureV = TextureViews.ImageViews[TextureViews.ImageViews.Count() - 1].View; // the new one
+            IntPtr pointer = Main.I.GetOrCreateImGuiBinding(Main.Main.Factory, TextureV);
+            IdxToPointer.Add(new TextureInfo(pointer, TextureV.Target.Width, TextureV.Target.Height));
+        }
+        public void removeTextureBinding(int idx)
+        {
+            var TextureV = TextureViews.ImageViews[idx].View;
+            Main.I.RemoveImGuiBinding(TextureV);
+            TextureViews.RemoveTexture(idx);
+            IdxToPointer.RemoveAt(idx);
+        }
+        public void updateTextureBinding(string path, int idx)
+        {
+            var TextureV = TextureViews.ImageViews[idx].View;
+            Main.I.RemoveImGuiBinding(TextureV);
+            TextureViews.UpdateTexture(idx, path);
+            TextureV = TextureViews.ImageViews[idx].View;
+            IntPtr pointer = Main.I.GetOrCreateImGuiBinding(Main.Main.Factory, TextureV);
+            IdxToPointer[idx] = new TextureInfo(pointer, TextureV.Target.Width, TextureV.Target.Height);
         }
     }
 

@@ -14,17 +14,27 @@ namespace AVFXTools.UI
     public class UITexture : UIBase
     {
         public AVFXTexture Texture;
+        public UITextureView View;
         public UITextureBindings Bindings;
         public int Idx;
+        public string lastValue;
+        public UIString Path;
         // =======================
 
-        public UITexture(AVFXTexture texture, UITextureBindings bindings)
+        public UITexture(AVFXTexture texture, UITextureBindings bindings, UITextureView view)
         {
             Texture = texture;
             Bindings = bindings;
+            View = view;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             // ================
             UIString.Change bytesToPath = BytesToPath;
-            Attributes.Add(new UIString("Path", Texture.Path, changeFunction: bytesToPath));
+            Path = new UIString("Path", Texture.Path, changeFunction: bytesToPath);
+            lastValue = Texture.Path.Value;
         }
 
         public override void Draw(string parentId)
@@ -34,11 +44,22 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
-                    // TODO: need to change bindings as well
+                    View.AVFX.removeTexture(Idx);
+                    Bindings.removeTextureBinding(Idx);
+                    View.Init();
+                    return;
                 }
-                DrawAttrs(id);
-                TextureInfo info = Bindings.IndexToPointer[Idx];
+                Path.Draw(id);
+
+                // jank change detection
+                var newValue = Path.Literal.Value;
+                if(newValue != lastValue)
+                {
+                    Bindings.updateTextureBinding(newValue, Idx);
+                    lastValue = newValue;
+                }
+
+                TextureInfo info = Bindings.IdxToPointer[Idx];
                 ImGui.Image(info.Pointer, new Vector2(info.Width, info.Height));
             }
         }
