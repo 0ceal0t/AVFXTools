@@ -56,18 +56,6 @@ namespace AVFXLib.Models
             });
         }
 
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-            ReadJSON(Attributes, elem);
-            Type = BinderVariety.Value;
-
-            // Data
-            //========================//
-            SetType(Type);
-            ReadJSON(Data, elem);
-        }
-
         public override void read(AVFXNode node)
         {
             Assigned = true;
@@ -78,13 +66,24 @@ namespace AVFXLib.Models
             {
                 switch (item.Name)
                 {
-                    // DATA =========================
+                    // DATA ====================
                     case AVFXParticleData.NAME:
                         SetType(Type);
                         ReadAVFX(Data, node);
                         break;
                 }
             }
+        }
+
+        public override void toDefault()
+        {
+            Assigned = true;
+            SetDefault(Attributes);
+            SetUnAssigned(PropStart);
+            SetUnAssigned(PropGoal);
+            Life.GiveValue(-1);
+
+            SetVariety(BinderVariety.Value);
         }
 
         public override JToken toJSON()
@@ -106,11 +105,12 @@ namespace AVFXLib.Models
             return bindAvfx;
         }
 
-        public override void Print(int level)
+        public void SetVariety(BinderType type)
         {
-            Console.WriteLine("{0}------- BIND --------", new String('\t', level));
-            Output(Attributes, level);
-            Output(Data, level);
+            BinderVariety.GiveValue(type);
+            Type = type;
+            SetType(type);
+            SetDefault(Data);
         }
 
         public void SetType(BinderType type)
@@ -128,6 +128,9 @@ namespace AVFXLib.Models
                     break;
                 case BinderType.Camera:
                     Data = new AVFXBinderDataCamera("data");
+                    break;
+                default:
+                    Data = null;
                     break;
             }
         }

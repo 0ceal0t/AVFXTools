@@ -17,6 +17,11 @@ namespace AVFXTools.UI
         public UIParticleDataLightModel(AVFXParticleDataLightModel data)
         {
             Data = data;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=======================
             Attributes.Add(new UIInt("Model Index", Data.ModelIdx));
         }

@@ -17,6 +17,11 @@ namespace AVFXTools.UI
         public UIParticleDataLaser(AVFXParticleDataLaser data)
         {
             Data = data;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=======================
             Attributes.Add(new UICurve(Data.Width, "Width"));
             Attributes.Add(new UICurve(Data.Length, "Length"));

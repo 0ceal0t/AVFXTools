@@ -18,12 +18,6 @@ namespace AVFXLib.Models
         {
         }
 
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-            Path.read(elem);
-        }
-
         public override void read(AVFXNode node)
         {
             Assigned = true;
@@ -41,11 +35,6 @@ namespace AVFXLib.Models
         public override AVFXNode toAVFX()
         {
             return Path.toAVFX();
-        }
-
-        public override void Print(int level)
-        {
-            Path.Print(level);
         }
     }
 }

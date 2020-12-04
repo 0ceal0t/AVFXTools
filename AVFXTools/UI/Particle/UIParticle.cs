@@ -12,26 +12,36 @@ namespace AVFXTools.UI
     public class UIParticle : UIBase
     {
         public AVFXParticle Particle;
+        public UIParticleView View;
         public int Idx;
         // =======================
-        // TODO: particle type
-        // TODO: UV Set Count
-        // TODO: simple animations enabled
+        List<UIBase> Animation;
         //==========================
-        List<UIBase> Animation = new List<UIBase>();
-        //==========================
-        public UIParticleUVSet[] UVSets;
+        public UICombo<ParticleType> Type;
+        public List<UIParticleUVSet> UVSets;
         //==========================
         public UIBase Data;
         //========================
-        List<UIBase> Tex = new List<UIBase>();
+        List<UIBase> Tex;
 
-        public UIParticle(AVFXParticle particle)
+        public UIParticle(AVFXParticle particle, UIParticleView view)
         {
             Particle = particle;
+            View = view;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            // =======================
+            Animation = new List<UIBase>();
+            Tex = new List<UIBase>();
+            UVSets = new List<UIParticleUVSet>();
             //==========================
+            Type = new UICombo<ParticleType>("Type", Particle.ParticleVariety, changeFunction: ChangeType);
             Attributes.Add(new UIInt("Loop Start", Particle.LoopStart));
             Attributes.Add(new UIInt("Loop End", Particle.LoopEnd));
+            Attributes.Add(new UICheckbox("Use Simple Animation", Particle.SimpleAnimEnable));
             Attributes.Add(new UICombo<RotationDirectionBase>("Rotation Direction Base", Particle.RotationDirectionBase));
             Attributes.Add(new UICombo<RotationOrder>("Rotation Compute Order", Particle.RotationOrder));
             Attributes.Add(new UICombo<CoordComputeOrder>("Coord Compute Order", Particle.CoordComputeOrder));
@@ -70,10 +80,9 @@ namespace AVFXTools.UI
             Animation.Add(new UICurve3Axis(Particle.Position, "Position"));
             Animation.Add(new UICurveColor(Particle.Color, "Color"));
             //===============================
-            UVSets = new UIParticleUVSet[Particle.UVSets.Count];
-            for(int i = 0; i < UVSets.Length; i++)
+            foreach(var uvSet in Particle.UVSets)
             {
-                UVSets[i] = new UIParticleUVSet(Particle.UVSets[i]);
+                UVSets.Add(new UIParticleUVSet(uvSet, this));
             }
             //===============================
             switch (Particle.ParticleVariety.Value)
@@ -108,6 +117,9 @@ namespace AVFXTools.UI
                 case ParticleType.Windmill:
                     Data = new UIParticleDataWindmill((AVFXParticleDataWindmill)Particle.Data);
                     break;
+                default:
+                    Data = null;
+                    break;
             }
             //============================
             Tex.Add(new UITextureColor1(Particle.TC1));
@@ -119,6 +131,11 @@ namespace AVFXTools.UI
             Tex.Add(new UITextureDistortion(Particle.TD));
             Tex.Add(new UITexturePalette(Particle.TP));
         }
+        public void ChangeType(LiteralEnum<ParticleType> literal)
+        {
+            Particle.SetVariety(literal.Value);
+            Init();
+        }
 
         public override void Draw(string parentId)
         {
@@ -127,8 +144,11 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
+                    View.AVFX.removeParticle(Idx);
+                    View.Init();
                 }
+                Type.Draw(id);
+                //=====================
                 if (ImGui.TreeNode("Parameters" + id))
                 {
                     DrawAttrs(id);
@@ -141,7 +161,7 @@ namespace AVFXTools.UI
                     ImGui.TreePop();
                 }
                 //=====================
-                if (ImGui.TreeNode("UV Sets (" + UVSets.Length + ")" + id))
+                if (ImGui.TreeNode("UV Sets (" + UVSets.Count + ")" + id))
                 {
                     int uvIdx = 0;
                     foreach (var uv in UVSets)
@@ -151,10 +171,13 @@ namespace AVFXTools.UI
                         uvIdx++;
                     }
 
-                    if (ImGui.Button("+ UVSet" + id))
+                    if (UVSets.Count < 4)
                     {
-                        // TODO
-                        // NOTE: ONLY UP TO 4!!!!!
+                        if (ImGui.Button("+ UVSet" + id))
+                        {
+                            Particle.addUvSet();
+                            Init();
+                        }
                     }
                     ImGui.TreePop();
                 }

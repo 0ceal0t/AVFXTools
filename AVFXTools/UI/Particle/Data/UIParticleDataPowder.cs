@@ -17,6 +17,11 @@ namespace AVFXTools.UI
         public UIParticleDataPowder(AVFXParticleDataPowder data)
         {
             Data = data;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=======================
             Attributes.Add(new UICombo<DirectionalLightType>("Directional Light Type", Data.DirectionalLightType));
             Attributes.Add(new UICheckbox("Is Lightning", Data.IsLightning));

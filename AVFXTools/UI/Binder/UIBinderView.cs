@@ -10,13 +10,21 @@ namespace AVFXTools.UI
 {
     public class UIBinderView : UIBase
     {
-        List<UIBinder> Binders = new List<UIBinder>();
+        public AVFXBase AVFX;
+        List<UIBinder> Binders;
 
         public UIBinderView(AVFXBase avfx)
         {
-            foreach (var binder in avfx.Binders)
+            AVFX = avfx;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            Binders = new List<UIBinder>();
+            foreach (var binder in AVFX.Binders)
             {
-                Binders.Add(new UIBinder(binder));
+                Binders.Add(new UIBinder(binder, this));
             }
         }
 
@@ -32,7 +40,8 @@ namespace AVFXTools.UI
             }
             if (ImGui.Button("+ Binder" + id))
             {
-                // TODO
+                AVFX.addBinder();
+                Init();
             }
         }
     }

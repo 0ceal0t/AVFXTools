@@ -41,10 +41,14 @@ namespace AVFXLib.Models
             });
         }
 
-        public override void read(JObject elem)
+        public override void toDefault()
         {
             Assigned = true;
-            ReadJSON(Attributes, elem);
+            SetDefault(Attributes);
+            SetUnAssigned(Color);
+            SetUnAssigned(DistanceScale);
+            SetUnAssigned(Rotation);
+            SetUnAssigned(Position);
         }
 
         public override void read(AVFXNode node)
@@ -65,12 +69,6 @@ namespace AVFXLib.Models
             AVFXNode dataAvfx = new AVFXNode("Data");
             PutAVFX(dataAvfx, Attributes);
             return dataAvfx;
-        }
-
-        public override void Print(int level)
-        {
-            Console.WriteLine("{0}------- DATA --------", new String('\t', level));
-            Output(Attributes, level);
         }
     }
 }

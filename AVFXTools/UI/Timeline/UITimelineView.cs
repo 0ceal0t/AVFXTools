@@ -10,13 +10,21 @@ namespace AVFXTools.UI
 {
     public class UITimelineView : UIBase
     {
-        List<UITimeline> Timelines = new List<UITimeline>();
+        public AVFXBase AVFX;
+        List<UITimeline> Timelines;
 
         public UITimelineView(AVFXBase avfx)
         {
-            foreach (var timeline in avfx.Timelines)
+            AVFX = avfx;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            Timelines = new List<UITimeline>();
+            foreach (var timeline in AVFX.Timelines)
             {
-                Timelines.Add(new UITimeline(timeline));
+                Timelines.Add(new UITimeline(timeline, this));
             }
         }
 
@@ -32,7 +40,8 @@ namespace AVFXTools.UI
             }
             if (ImGui.Button("+ Timeline" + id))
             {
-                // TODO
+                AVFX.addTimeline();
+                Init();
             }
         }
     }

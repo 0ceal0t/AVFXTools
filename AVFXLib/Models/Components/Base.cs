@@ -14,12 +14,11 @@ namespace AVFXLib.Models
         public string JSONPath { get; set; }
         public string AVFXName { get; set; }
 
-        public Base() // temp
+        public Base()
         {
             JSONPath = "";
             AVFXName = "";
         }
-
         public Base(string jsonPath, string avfxName)
         {
             JSONPath = jsonPath;
@@ -27,46 +26,36 @@ namespace AVFXLib.Models
         }
 
         public abstract AVFXNode toAVFX();
-        public abstract void Print(int level);
-
-        public virtual JToken toJSON() // TEMP
-        {
-            return new JValue("");
-        }
-
-        public abstract void read(JObject elem);
+        public abstract JToken toJSON();
         public abstract void read(AVFXNode node);
 
-        // STATIC ===========================
-        public static void ReadJSON(List<Base> attributes, JObject elem)
+        // ====== DEFAULT =======
+        public virtual void toDefault() { } // TEMP
+        public static void SetDefault(List<Base> attributes)
         {
-            if (attributes == null || elem == null) return;
-            foreach (Base attribute in attributes)
+            foreach (var attribute in attributes)
             {
-                ReadJSON(attribute, elem);
+                SetDefault(attribute);
             }
         }
-        public static void ReadJSON(Base attribute, JObject elem)
+        public static void SetDefault(Base attribute)
         {
-            if (attribute == null || elem == null) return;
-            foreach (var item in elem)
+            if (attribute == null) return;
+            attribute.toDefault();
+        }
+        public static void SetUnAssigned(List<Base> attributes)
+        {
+            foreach (var attribute in attributes)
             {
-                if (item.Key == attribute.JSONPath)
-                {
-                    if(attribute is LiteralBase)
-                    {
-                        LiteralBase literal = (LiteralBase)attribute;
-                        literal.read((JValue)item.Value);
-                    }
-                    else
-                    {
-                        attribute.read((JObject)item.Value);
-                    }
-                    break;
-                }
+                SetUnAssigned(attribute);
             }
         }
-
+        public static void SetUnAssigned(Base attribute)
+        {
+            if (attribute == null) return;
+            attribute.Assigned = false;
+        }
+        // ====== READ =========
         public static void ReadAVFX(List<Base> attributes, AVFXNode node)
         {
             if (attributes == null || node == null) return;
@@ -95,7 +84,7 @@ namespace AVFXLib.Models
                 }
             }
         }
-
+        // ===== EXPORT JSON =======
         public static void PutJSON(JObject obj, List<Base> sources)
         {
             if (obj == null || sources == null) return;
@@ -110,7 +99,7 @@ namespace AVFXLib.Models
             if (!source.Assigned) return;
             obj[source.JSONPath] = source.toJSON();
         }
-
+        // ======= EXPORT AVFX ========
         public static void PutAVFX(AVFXNode destination, List<Base> sources)
         {
             if (destination == null || sources == null) return;
@@ -132,41 +121,6 @@ namespace AVFXLib.Models
                 return b.toAVFX();
             }
             return new AVFXBlank();
-        }
-
-        public static void Output(List<Base> source, int level)
-        {
-            if (source == null) return;
-            foreach (Base b in source)
-            {
-                Output(b, level);
-            }
-        }
-
-        public static void Output(Base b, int level)
-        {
-            if (b == null) return;
-            if (b.Assigned)
-            {
-                if (b is LiteralBase){
-                    b.Print(level);
-                }
-                else
-                {
-                    b.Print(level + 1);
-                }
-            }
-        }
-
-
-        // TEMP
-
-        public static void Print(Base b, int level)
-        {
-            if (b.Assigned)
-            {
-                b.Print(level);
-            }
         }
     }
 }

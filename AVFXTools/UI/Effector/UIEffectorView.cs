@@ -10,13 +10,21 @@ namespace AVFXTools.UI
 {
     public class UIEffectorView : UIBase
     {
-        List<UIEffector> Effectors = new List<UIEffector>();
+        public AVFXBase AVFX;
+        List<UIEffector> Effectors;
 
         public UIEffectorView(AVFXBase avfx)
         {
-            foreach (var effector in avfx.Effectors)
+            AVFX = avfx;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            Effectors = new List<UIEffector>();
+            foreach (var effector in AVFX.Effectors)
             {
-                Effectors.Add(new UIEffector(effector));
+                Effectors.Add(new UIEffector(effector, this));
             }
         }
 
@@ -32,7 +40,8 @@ namespace AVFXTools.UI
             }
             if (ImGui.Button("+ Effector" + id))
             {
-                // TODO
+                AVFX.addEffector();
+                Init();
             }
         }
     }

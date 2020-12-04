@@ -12,40 +12,34 @@ namespace AVFXTools.UI
     public class UIScheduler : UIBase
     {
         public AVFXSchedule Scheduler;
+        public UIScheduleView View;
         public int Idx;
         // =================
-        // TODO: item count
-        // TODO: trigger count
-        // =================
-        public UISchedulerItem[] Items;
-        // ================
-        public UISchedulerItem[] Triggers;
+        public List<UISchedulerItem> Items;
+        public List<UISchedulerItem> Triggers;
 
-        public UIScheduler(AVFXSchedule scheduler)
+        public UIScheduler(AVFXSchedule scheduler, UIScheduleView view)
         {
             Scheduler = scheduler;
+            View = view;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            // ===================
+            Items = new List<UISchedulerItem>();
+            Triggers = new List<UISchedulerItem>();
             // =====================
-            if(Scheduler.Items.Count > 0)
+            foreach (var Item in Scheduler.Items)
             {
-                var LastItem = Scheduler.Items[Scheduler.Items.Count - 1];
-                Items = new UISchedulerItem[LastItem.SubItems.Count];
-                for(int i = 0; i < Items.Length; i++)
-                {
-                    Items[i] = new UISchedulerItem(LastItem.SubItems[i], "Item");
-                }
+                Items.Add(new UISchedulerItem(Item, "Item", this));
             }
-            else { Items = new UISchedulerItem[0]; }
             // =====================
-            if (Scheduler.Triggers.Count > 0)
+            foreach (var Trigger in Scheduler.Triggers)
             {
-                var LastTrigger = Scheduler.Triggers[Scheduler.Triggers.Count - 1];
-                Triggers = new UISchedulerItem[LastTrigger.SubItems.Count - Items.Length];
-                for (int i = 0; i < Triggers.Length; i++)
-                {
-                    Triggers[i] = new UISchedulerItem(LastTrigger.SubItems[i + Items.Length], "Trigger");
-                }
+                Triggers.Add(new UISchedulerItem(Trigger, "Trigger", this));
             }
-            else { Triggers = new UISchedulerItem[0]; }
         }
 
         public override void Draw(string parentId)
@@ -54,7 +48,7 @@ namespace AVFXTools.UI
             if (ImGui.CollapsingHeader("Scheduler " + Idx + id))
             {
                 //=====================
-                if (ImGui.TreeNode("Items (" + Items.Length + ")" + id))
+                if (ImGui.TreeNode("Items (" + Items.Count() + ")" + id))
                 {
                     int iIdx = 0;
                     foreach (var item in Items)
@@ -65,12 +59,13 @@ namespace AVFXTools.UI
                     }
                     if (ImGui.Button("+ Item" + id))
                     {
-                        // TODO
+                        Scheduler.addItem();
+                        Init();
                     }
                     ImGui.TreePop();
                 }
                 //=====================
-                if (ImGui.TreeNode("Triggers (" + Triggers.Length + ")" + id))
+                if (ImGui.TreeNode("Triggers (" + Triggers.Count() + ")" + id))
                 {
                     int tIdx = 0;
                     foreach (var trigger in Triggers)

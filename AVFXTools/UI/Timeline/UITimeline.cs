@@ -12,38 +12,37 @@ namespace AVFXTools.UI
     public class UITimeline : UIBase
     {
         public AVFXTimeline Timeline;
+        public UITimelineView View;
         public int Idx;
         //=====================
-        // TODO: timeline count
-        // TODO clip count
+        public List<UITimelineItem> Items;
         //=====================
-        public UITimelineItem[] Items;
-        //=====================
-        public UITimelineClip[] Clips;
+        public List<UITimelineClip> Clips;
 
-        public UITimeline(AVFXTimeline timeline)
+        public UITimeline(AVFXTimeline timeline, UITimelineView view)
         {
             Timeline = timeline;
+            View = view;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            Items = new List<UITimelineItem>();
+            Clips = new List<UITimelineClip>();
             //========================
             Attributes.Add(new UIInt("Loop Start", Timeline.LoopStart));
             Attributes.Add(new UIInt("Loop End", Timeline.LoopEnd));
             Attributes.Add(new UIInt("Binder Index", Timeline.BinderIdx));
             //========================
-            if(Timeline.Items.Count > 0)
+            foreach (var item in Timeline.Items)
             {
-                var LastItem = Timeline.Items[Timeline.Items.Count - 1];
-                Items = new UITimelineItem[LastItem.SubItems.Count];
-                for(int i = 0; i < Items.Length; i++)
-                {
-                    Items[i] = new UITimelineItem(LastItem.SubItems[i]);
-                }
+                Items.Add(new UITimelineItem(item, this));
             }
-            else { Items = new UITimelineItem[0]; }
             //==========================
-            Clips = new UITimelineClip[Timeline.Clips.Count];
-            for (int i = 0; i < Timeline.Clips.Count; i++)
+            foreach (var clip in Timeline.Clips)
             {
-                Clips[i] = new UITimelineClip(Timeline.Clips[i]);
+                Clips.Add(new UITimelineClip(clip, this));
             }
         }
 
@@ -54,7 +53,8 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
+                    View.AVFX.removeTimeline(Idx);
+                    View.Init();
                 }
                 if (ImGui.TreeNode("Parameters" + id))
                 {
@@ -62,7 +62,7 @@ namespace AVFXTools.UI
                     ImGui.TreePop();
                 }
                 //=====================
-                if (ImGui.TreeNode("Items (" + Items.Length + ")" + id))
+                if (ImGui.TreeNode("Items (" + Items.Count() + ")" + id))
                 {
                     int iIdx = 0;
                     foreach (var item in Items)
@@ -73,12 +73,13 @@ namespace AVFXTools.UI
                     }
                     if (ImGui.Button("+ Item" + id))
                     {
-                        // TODO
+                        Timeline.addItem();
+                        Init();
                     }
                     ImGui.TreePop();
                 }
                 //=====================
-                if (ImGui.TreeNode("Clips (" + Clips.Length + ")" + id))
+                if (ImGui.TreeNode("Clips (" + Clips.Count() + ")" + id))
                 {
                     int cIdx = 0;
                     foreach (var clip in Clips)
@@ -89,7 +90,8 @@ namespace AVFXTools.UI
                     }
                     if (ImGui.Button("+ Clip" + id))
                     {
-                        // TODO
+                        Timeline.addClip();
+                        Init();
                     }
                     ImGui.TreePop();
                 }

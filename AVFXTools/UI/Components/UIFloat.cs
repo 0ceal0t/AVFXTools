@@ -15,43 +15,30 @@ namespace AVFXTools.UI
         public float Value;
         public LiteralFloat Literal;
 
-        public delegate float Init(LiteralFloat literal);
-        public Init InitFunction;
-        public delegate float Change(float value);
+        public delegate void Change(LiteralFloat literal);
         public Change ChangeFunction;
 
-        public UIFloat(string id, LiteralFloat literal, Init initFunction = null, Change changeFunction = null)
+        public UIFloat(string id, LiteralFloat literal, Change changeFunction = null)
         {
             Id = id;
             Literal = literal;
-            if (initFunction != null)
-                InitFunction = initFunction;
             if (changeFunction != null)
                 ChangeFunction = changeFunction;
-            // =====================
-            if (InitFunction == null)
-            {
-                Value = Literal.Value;
-            }
             else
-            {
-                Value = InitFunction(Literal);
-            }
+                ChangeFunction = DoNothing;
+            // =====================
+            Value = Literal.Value;
         }
 
         public override void Draw(string id)
         {
             if (ImGui.InputFloat(Id + id, ref Value))
             {
-                if (ChangeFunction == null)
-                {
-                    Literal.GiveValue(Value);
-                }
-                else
-                {
-                    Literal.GiveValue(ChangeFunction(Value));
-                }
+                Literal.GiveValue(Value);
+                ChangeFunction(Literal);
             }
         }
+
+        public static void DoNothing(LiteralFloat literal) { }
     }
 }

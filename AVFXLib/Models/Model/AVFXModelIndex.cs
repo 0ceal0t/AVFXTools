@@ -14,13 +14,6 @@ namespace AVFXLib.Models
         public int I2; // 2 bytes
         public int I3; // 2 bytes
 
-        public Index(JArray elems)
-        {
-            I1 = (int)elems[0];
-            I2 = (int)elems[1];
-            I3 = (int)elems[2];
-        }
-
         public Index(byte[] bytes)
         {
             byte[] i1 = new byte[2];

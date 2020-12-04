@@ -38,18 +38,6 @@ namespace AVFXLib.Models
             });
         }
 
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-            ReadJSON(Attributes, elem);
-            Type = EffectorVariety.Value;
-
-            // Data
-            //========================//
-            SetType(Type);
-            ReadJSON(Data, elem);
-        }
-
         public override void read(AVFXNode node)
         {
             Assigned = true;
@@ -58,13 +46,20 @@ namespace AVFXLib.Models
 
             foreach (AVFXNode item in node.Children){
                 switch (item.Name){
-                    // DATA ==================================
+                    // DATA ======================
                     case AVFXEffectorData.NAME:
-                            SetType(Type);
+                        SetType(Type);
                         ReadAVFX(Data, node);
                         break;
                 }
             }
+        }
+
+        public override void toDefault()
+        {
+            Assigned = true;
+            SetDefault(Attributes);
+            SetVariety(EffectorVariety.Value);
         }
 
         public override JToken toJSON()
@@ -84,17 +79,17 @@ namespace AVFXLib.Models
             return effectorAvfx;
         }
 
-        public override void Print(int level)
+        public void SetVariety(EffectorType type)
         {
-            Console.WriteLine("{0}------- EFCT --------", new String('\t', level));
-            Output(Attributes, level);
-
-            Output(Data, level);
+            EffectorVariety.GiveValue(type);
+            Type = type;
+            SetType(type);
+            SetDefault(Data);
         }
 
         public void SetType(EffectorType type)
         {
-            switch (Type)
+            switch (type)
             {
                 case EffectorType.PointLight:
                     Data = new AVFXEffectorDataPointLight("data");
@@ -110,6 +105,9 @@ namespace AVFXLib.Models
                     break;
                 case EffectorType.CameraQuake:
                     Data = new AVFXEffectorDataCameraQuake("data");
+                    break;
+                default:
+                    Data = null;
                     break;
             }
         }

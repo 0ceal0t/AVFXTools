@@ -16,25 +16,30 @@ namespace AVFXTools.UI
         public string Name;
         public bool Color = false;
         //=======================
-        public UIKey[] Keys;
+        public List<UIKey> Keys;
 
         public UICurve(AVFXCurve curve, string name, bool color=false)
         {
             Curve = curve;
             Name = name;
             Color = color;
-            if (!curve.Assigned) { Assigned = false; return; }
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            Keys = new List<UIKey>();
+            if (!Curve.Assigned) { Assigned = false; return; }
             //=====================
             Attributes.Add(new UICombo<CurveBehavior>("Pre Behavior", Curve.PreBehavior));
             Attributes.Add(new UICombo<CurveBehavior>("Post Behavior", Curve.PostBehavior));
-            if (!color)
+            if (!Color)
             {
                 Attributes.Add(new UICombo<RandomType>("Random Type", Curve.Random));
             }
-            Keys = new UIKey[Curve.Keys.Count];
-            for(int i = 0; i < Keys.Length; i++)
+            foreach (var key in Curve.Keys)
             {
-                Keys[i] = new UIKey(Curve.Keys[i], color);
+                Keys.Add(new UIKey(key, this, Color));
             }
         }
 
@@ -46,7 +51,8 @@ namespace AVFXTools.UI
             {
                 if (ImGui.Button("+ " + Name + id))
                 {
-                    // TODO
+                    Curve.toDefault();
+                    Init();
                 }
                 return;
             }
@@ -55,7 +61,8 @@ namespace AVFXTools.UI
             {
                 if(UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
+                    Curve.Assigned = false;
+                    Init();
                 }
                 DrawAttrs(id);
                 //==============
@@ -71,7 +78,8 @@ namespace AVFXTools.UI
 
                     if (ImGui.Button("+ Key" + id))
                     {
-                        // TODO
+                        Curve.addKey();
+                        Init();
                     }
                     ImGui.TreePop();
                 }
@@ -83,6 +91,7 @@ namespace AVFXTools.UI
     public class UIKey
     {
         public AVFXKey Key;
+        public UICurve Curve;
         public int Idx;
         // ====================
         public int Time;
@@ -91,9 +100,10 @@ namespace AVFXTools.UI
         public static readonly string[] TypeOptions = Enum.GetNames(typeof(KeyType));
         public int TypeIdx;
 
-        public UIKey(AVFXKey key, bool color=false)
+        public UIKey(AVFXKey key, UICurve curve, bool color=false)
         {
             Key = key;
+            Curve = curve;
             Time = key.Time;
             Color = color;
             Data = new Vector3(key.X, key.Y, key.Z);
@@ -106,7 +116,8 @@ namespace AVFXTools.UI
 
             if (UIUtils.RemoveButton("Delete Key" + id))
             {
-                // TODO
+                Curve.Curve.removeKey(Idx);
+                Curve.Init();
             }
             if (ImGui.InputInt("Time" + id, ref Time))
             {

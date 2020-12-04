@@ -18,7 +18,12 @@ namespace AVFXTools.UI
         public UITexturePalette(AVFXTexturePalette tex)
         {
             Tex = tex;
-            if (!tex.Assigned) { Assigned = false; return; }
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            if (!Tex.Assigned) { Assigned = false; return; }
             //====================
             Attributes.Add(new UICheckbox("Enabled", Tex.Enabled));
             Attributes.Add(new UIInt("Texture Index", Tex.TextureIdx));
@@ -34,7 +39,8 @@ namespace AVFXTools.UI
             {
                 if (ImGui.Button("+ Texture Palette" + id))
                 {
-                    // TODO
+                    Tex.toDefault();
+                    Init();
                 }
                 return;
             }
@@ -43,7 +49,8 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete " + id))
                 {
-                    // TODO
+                    Tex.Assigned = false;
+                    Init();
                 }
                 DrawAttrs(id);
                 ImGui.TreePop();

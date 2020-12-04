@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace AVFXLib.Models
 {
-    public class AVFXScheduleItem : AVFXScheduleTrigger
+    public class AVFXEmitterCreateEmitter : AVFXEmitterCreateParticle // how are these different than ItPr ? I have no idea
     {
-        public const string NAME = "Item";
+        public const string NAME = "ItEm";
 
-        public AVFXScheduleItem() : base()
+        public AVFXEmitterCreateEmitter() : base()
         {
         }
 
         public override AVFXNode toAVFX()
         {
             AVFXNode res = base.toAVFX();
-            res.Name = "Item";
+            res.Name = NAME;
             return res;
         }
     }

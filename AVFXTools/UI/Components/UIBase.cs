@@ -17,12 +17,18 @@ namespace AVFXTools.UI
             DrawList(Attributes, parentId);
         }
 
+        public virtual void Init()
+        {
+            Assigned = true;
+            Attributes = new List<UIBase>();
+        }
+
         public void DrawList(List<UIBase> items, string parentId)
         {
             int sameLine = 0;
             for(int i = 0; i < items.Count; i++)
             {
-                if(i > 0 && !items[i].Assigned && !items[i - 1].Assigned && sameLine <= 4){
+                if(i > 0 && !items[i].Assigned && !items[i - 1].Assigned && sameLine < 3){
                     ImGui.SameLine();
                     sameLine++;
                 }

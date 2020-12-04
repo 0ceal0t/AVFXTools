@@ -17,6 +17,11 @@ namespace AVFXTools.UI
         public UIParticleDataDisc(AVFXParticleDataDisc data)
         {
             Data = data;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=======================
             Attributes.Add(new UIInt("Parts Count", Data.PartsCount));
             Attributes.Add(new UIInt("Parts Count U", Data.PartsCountU));

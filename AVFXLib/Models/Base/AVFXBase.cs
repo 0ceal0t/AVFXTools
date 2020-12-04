@@ -126,77 +126,6 @@ namespace AVFXLib.Models
             });
         }
 
-        public override void read(JObject elem) {
-            Assigned = true;
-            JObject avfxElem = (JObject)elem.GetValue("params");
-            ReadJSON(Attributes, avfxElem);
-
-            // SCHEDULE
-            JArray schdElems = (JArray)elem.GetValue("schedulers");
-            foreach (JToken s in schdElems)
-            {
-                AVFXSchedule Scheduler = new AVFXSchedule();
-                Scheduler.read((JObject)s);
-                Schedulers.Add(Scheduler);
-            }
-            // TIMELINES
-            JArray tmlnElems = (JArray)elem.GetValue("timelines");
-            foreach (JToken t in tmlnElems)
-            {
-                AVFXTimeline Timeline = new AVFXTimeline();
-                Timeline.read((JObject)t);
-                Timelines.Add(Timeline);
-            }
-            // EMITTERS
-            JArray emitElems = (JArray)elem.GetValue("emitters");
-            foreach (JToken e in emitElems)
-            {
-                AVFXEmitter Emitter = new AVFXEmitter();
-                Emitter.read((JObject)e);
-                Emitters.Add(Emitter);
-            }
-            // PARTICLES
-            JArray ptclElems = (JArray)elem.GetValue("particles");
-            foreach (JToken p in ptclElems)
-            {
-                AVFXParticle Particle = new AVFXParticle();
-                Particle.read((JObject)p);
-                Particles.Add(Particle);
-            }
-            // EFFECTORS
-            JArray effctorElems = (JArray)elem.GetValue("effectors");
-            foreach (JToken e in effctorElems)
-            {
-                AVFXEffector Effector = new AVFXEffector();
-                Effector.read((JObject)e);
-                Effectors.Add(Effector);
-            }
-            // BINDERS
-            JArray bndElems = (JArray)elem.GetValue("binders");
-            foreach (JToken b in bndElems)
-            {
-                AVFXBinder Binder = new AVFXBinder();
-                Binder.read((JObject)b);
-                Binders.Add(Binder);
-            }
-            // TEXTURES
-            JArray texElems = (JArray)elem.GetValue("textures");
-            foreach (JToken t in texElems)
-            {
-                AVFXTexture Texture = new AVFXTexture();
-                Texture.read((JObject)t);
-                Textures.Add(Texture);
-            }
-            // MODELS
-            JArray mdlElems = (JArray)elem.GetValue("models");
-            foreach (JToken m in mdlElems)
-            {
-                AVFXModel Model = new AVFXModel();
-                Model.read((JObject)m);
-                Models.Add(Model);
-            }
-        }
-
         public override void read(AVFXNode node) {
             Assigned = true;
             ReadAVFX(Attributes, node);
@@ -249,6 +178,79 @@ namespace AVFXLib.Models
             }
         }
 
+        // ==== ADD/REMOVE ======
+        public void addScheduler()
+        {
+            AVFXSchedule sched = new AVFXSchedule();
+            sched.toDefault();
+            Schedulers.Add(sched);
+        }
+        public void removeScheduler(int idx)
+        {
+            Schedulers.RemoveAt(idx);
+        }
+        public void addTimeline()
+        {
+            AVFXTimeline timeline = new AVFXTimeline();
+            timeline.toDefault();
+            Timelines.Add(timeline);
+        }
+        public void removeTimeline(int idx)
+        {
+            Timelines.RemoveAt(idx);
+        }
+        public void addEffector()
+        {
+            AVFXEffector effector = new AVFXEffector();
+            effector.toDefault();
+            Effectors.Add(effector);
+        }
+        public void removeEffector(int idx)
+        {
+            Effectors.RemoveAt(idx);
+        }
+        public void addEmitter()
+        {
+            AVFXEmitter emitter = new AVFXEmitter();
+            emitter.toDefault();
+            Emitters.Add(emitter);
+        }
+        public void removeEmitter(int idx)
+        {
+            Emitters.RemoveAt(idx);
+        }
+        public void addParticle()
+        {
+            AVFXParticle particle = new AVFXParticle();
+            particle.toDefault();
+            Particles.Add(particle);
+        }
+        public void removeParticle(int idx)
+        {
+            Particles.RemoveAt(idx);
+        }
+        public void addBinder()
+        {
+            AVFXBinder binder = new AVFXBinder();
+            binder.toDefault();
+            Binders.Add(binder);
+        }
+        public void removeBinder(int idx)
+        {
+            Binders.RemoveAt(idx);
+        }
+        public void addTexture()
+        {
+            AVFXTexture texture = new AVFXTexture();
+            texture.toDefault();
+            Textures.Add(texture);
+        }
+        public void removeTexture(int idx)
+        {
+            Textures.RemoveAt(idx);
+        }
+
+        // ======= EXPORT =======
         public override JToken toJSON()
         {
             JObject elem = new JObject();
@@ -374,53 +376,6 @@ namespace AVFXLib.Models
                 baseAVFX.Children.Add(GetAVFX(modelElem));
             }
             return baseAVFX;
-        }
-
-        public override void Print(int level)
-        {
-            Console.WriteLine("{0}------- AVFX --------", new String('\t',level));
-            Output(Attributes, level);
-
-            // SCHEDULE
-            foreach (AVFXSchedule schedElem in Schedulers)
-            {
-                Output(schedElem, level);
-            }
-            // TIMELINES
-            foreach (AVFXTimeline tmlnElem in Timelines)
-            {
-                Output(tmlnElem, level);
-            }
-            // EMITTERS
-            foreach (AVFXEmitter emitterElem in Emitters)
-            {
-                Output(emitterElem, level);
-            }
-            // PARTICLES
-            foreach (AVFXParticle particleElement in Particles)
-            {
-                Output(particleElement, level);
-            }
-            // EFFECTORS
-            foreach (AVFXEffector effectorElem in Effectors)
-            {
-                Output(effectorElem, level);
-            }
-            // BINDERS
-            foreach (AVFXBinder bindElem in Binders)
-            {
-                Output(bindElem, level);
-            }
-            // TEXTURES
-            foreach (AVFXTexture texElem in Textures)
-            {
-                Output(texElem, level);
-            }
-            // MODELS
-            foreach (AVFXModel modelElem in Models)
-            {
-                Output(modelElem, level);
-            }
         }
 
         public AVFXBase clone()

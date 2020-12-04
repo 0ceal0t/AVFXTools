@@ -17,6 +17,11 @@ namespace AVFXTools.UI
         public UIParticleDataPolygon(AVFXParticleDataPolygon data)
         {
             Data = data;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=======================
             Attributes.Add(new UICurve(Data.Count, "count"));
         }

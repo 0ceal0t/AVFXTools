@@ -149,14 +149,6 @@ namespace AVFXLib.Models
             });
         }
 
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-            ReadJSON(Attributes, elem);
-            Colors = new ColorStruct((JArray)elem.GetValue("colors"));
-            Frames = new ColorFrames((JArray)elem.GetValue("colorFrames"));
-        }
-
         public override void read(AVFXNode node)
         {
             Assigned = true;
@@ -170,6 +162,14 @@ namespace AVFXLib.Models
                     break;
                 }
             }
+        }
+
+        public override void toDefault()
+        {
+            Assigned = true;
+            SetDefault(Attributes);
+            Colors = new ColorStruct(new byte[16]);
+            Frames = new ColorFrames(new byte[8]);
         }
 
         public override JToken toJSON()
@@ -192,14 +192,6 @@ namespace AVFXLib.Models
 
             return smplAvfx;
         }
-
-        public override void Print(int level)
-        {
-            Console.WriteLine("{0}------- SIMPLE --------", new String('\t', level));
-            Output(Attributes, level);
-            Colors.Print(level);
-            Frames.Print(level);
-        }
     }
 
     // ColorStruct is 16 bytes -> 4x4, each byte is color channel
@@ -211,18 +203,6 @@ namespace AVFXLib.Models
         public ColorStruct(byte[] rawBytes)
         {
             colors = rawBytes;
-        }
-
-        public ColorStruct(JArray elem)
-        {
-            colors = new byte[16];
-            int idx = 0;
-            foreach (JValue e in elem)
-            {
-                int intValue = (int)e;
-                colors[idx] = Util.IntTo1Bytes(intValue)[0];
-                idx++;
-            }
         }
 
         public JArray GetJSON()
@@ -239,11 +219,6 @@ namespace AVFXLib.Models
         {
             return colors;
         }
-
-        public void Print(int level)
-        {
-            Console.WriteLine("{0} {1}", new String('\t', level), string.Join(",", colors));
-        }
     }
 
     // ColorFrames is 8 bytes -> 4x2, each frame is 2 bytes
@@ -258,18 +233,6 @@ namespace AVFXLib.Models
             for(int idx = 0; idx < 4; idx++)
             {
                 frames[idx] = Util.Bytes2ToInt(new byte[] { rawBytes[2 * idx], rawBytes[2 * idx + 1] });
-            }
-        }
-
-        public ColorFrames(JArray elem)
-        {
-            frames = new int[4];
-            int idx = 0;
-            foreach (JValue e in elem)
-            {
-                int intValue = (int)e;
-                frames[idx] = intValue;
-                idx++;
             }
         }
 
@@ -294,11 +257,6 @@ namespace AVFXLib.Models
                 idx++;
             }
             return bytes;
-        }
-
-        public void Print(int level)
-        {
-            Console.WriteLine("{0} {1}", new String('\t', level), string.Join(",", frames));
         }
     }
 }

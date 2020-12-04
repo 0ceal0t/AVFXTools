@@ -13,22 +13,12 @@ namespace AVFXLib.Models
     {
         public float Value { get; set; }
 
-        public LiteralFloat(string jsonPath, string avfxName, int size = 4, bool inJson = true, bool inAVFX = true) : base(jsonPath, avfxName, size, inJson, inAVFX)
-        {
-        }
-
-        public override void read(JObject json)
+        public LiteralFloat(string jsonPath, string avfxName, int size = 4) : base(jsonPath, avfxName, size)
         {
         }
 
         public override void read(AVFXNode node)
         {
-        }
-
-        public override void read(JValue value)
-        {
-            Value = (float)value;
-            Assigned = true;
         }
 
         public override void read(AVFXLeaf leaf)
@@ -42,6 +32,11 @@ namespace AVFXLib.Models
         {
             Value = value;
             Assigned = true;
+        }
+
+        public override void toDefault()
+        {
+            GiveValue(0.0f);
         }
 
         public override JToken toJSON()

@@ -16,6 +16,11 @@ namespace AVFXTools.UI
         public UILife(AVFXLife life)
         {
             Life = life;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //==========================
             Attributes.Add(new UIFloat("Value", Life.Value));
             Attributes.Add(new UIFloat("Random Value", Life.ValRandom));

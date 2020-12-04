@@ -97,10 +97,10 @@
     <Compile Include="Models\Binder\Data\AVFXBinderDataPoint.cs" />
     <Compile Include="Models\Binder\AVFXBinderProperty.cs" />
     <Compile Include="Models\Binder\Data\AVFXBinderDataSpline.cs" />
-    <Compile Include="Models\Compontents\AVFXCurve.cs" />
-    <Compile Include="Models\Compontents\AVFXCurve2Axis.cs" />
-    <Compile Include="Models\Compontents\AVFXCurve3Axis.cs" />
-    <Compile Include="Models\Compontents\AVFXCurveColor.cs" />
+    <Compile Include="Models\Components\Curve\AVFXCurve.cs" />
+    <Compile Include="Models\Components\Curve\AVFXCurve2Axis.cs" />
+    <Compile Include="Models\Components\Curve\AVFXCurve3Axis.cs" />
+    <Compile Include="Models\Components\Curve\AVFXCurveColor.cs" />
     <Compile Include="Models\Effector\AVFXEffector.cs" />
     <Compile Include="Models\Effector\Data\AVFXEffectorData.cs" />
     <Compile Include="Models\Effector\Data\AVFXEffectorDataBlackHole.cs" />
@@ -109,13 +109,14 @@
     <Compile Include="Models\Effector\Data\AVFXEffectorDataPointLight.cs" />
     <Compile Include="Models\Effector\Data\AVFXEffectorDataRadialBlur.cs" />
     <Compile Include="Models\Emitter\AVFXEmitter.cs" />
+    <Compile Include="Models\Emitter\AVFXEmitterIterationItem.cs" />
     <Compile Include="Models\Emitter\Data\AVFXEmitterData.cs" />
     <Compile Include="Models\Emitter\Data\AVFXEmitterDataCylinderModel.cs" />
     <Compile Include="Models\Emitter\Data\AVFXEmitterDataModel.cs" />
     <Compile Include="Models\Emitter\Data\AVFXEmitterDataSphereModel.cs" />
-    <Compile Include="Models\Emitter\AVFXEmitterItem.cs" />
-    <Compile Include="Models\Emitter\AVFXEmitterIteration.cs" />
-    <Compile Include="Models\Compontents\AVFXLife.cs" />
+    <Compile Include="Models\Emitter\AVFXEmitterCreateEmitter.cs" />
+    <Compile Include="Models\Emitter\AVFXEmitterCreateParticle.cs" />
+    <Compile Include="Models\Components\Curve\AVFXLife.cs" />
     <Compile Include="Models\Model\AVFXModel.cs" />
     <Compile Include="Models\Model\AVFXModelEmitVertex.cs" />
     <Compile Include="Models\Model\AVFXModelIndex.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Models\Particle\AVFXParticleUVSet.cs" />
     <Compile Include="Models\Scheduler\AVFXSchedule.cs" />
     <Compile Include="Models\Scheduler\AVFXScheduleItem.cs" />
+    <Compile Include="Models\Scheduler\AVFXScheduleSubItem.cs" />
     <Compile Include="Models\Scheduler\AVFXScheduleTrigger.cs" />
     <Compile Include="Models\Texture\AVFXTexture.cs" />
     <Compile Include="Models\Particle\AVFXTextureColor1.cs" />
@@ -150,14 +152,15 @@
     <Compile Include="Models\Timeline\AVFXTimeline.cs" />
     <Compile Include="Models\Timeline\AVFXTimelineClip.cs" />
     <Compile Include="Models\Timeline\AVFXTimelineItem.cs" />
-    <Compile Include="Models\Compontents\Base.cs" />
-    <Compile Include="Models\Compontents\Enum.cs" />
-    <Compile Include="Models\Compontents\LiteralBase.cs" />
-    <Compile Include="Models\Compontents\LiteralBool.cs" />
-    <Compile Include="Models\Compontents\LiteralEnum.cs" />
-    <Compile Include="Models\Compontents\LiteralFloat.cs" />
-    <Compile Include="Models\Compontents\LiteralInt.cs" />
-    <Compile Include="Models\Compontents\LiteralString.cs" />
+    <Compile Include="Models\Components\Base.cs" />
+    <Compile Include="Models\Components\Enum.cs" />
+    <Compile Include="Models\Components\LiteralBase.cs" />
+    <Compile Include="Models\Components\LiteralBool.cs" />
+    <Compile Include="Models\Components\LiteralEnum.cs" />
+    <Compile Include="Models\Components\LiteralFloat.cs" />
+    <Compile Include="Models\Components\LiteralInt.cs" />
+    <Compile Include="Models\Components\LiteralString.cs" />
+    <Compile Include="Models\Timeline\AVFXTimelineSubItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

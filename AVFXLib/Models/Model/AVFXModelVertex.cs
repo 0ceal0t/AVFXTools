@@ -23,25 +23,6 @@ namespace AVFXLib.Models
 
         public Vertex() { }
 
-        public Vertex(JObject elem)
-        {
-            JArray position = (JArray)elem.GetValue("p");
-            JArray normal = (JArray)elem.GetValue("n");
-            JArray tangent = (JArray)elem.GetValue("t");
-            JArray color = (JArray)elem.GetValue("c");
-            JArray uv1 = (JArray)elem.GetValue("uv1");
-            JArray uv2 = (JArray)elem.GetValue("uv2");
-            for(int idx = 0; idx < 4; idx++)
-            {
-                Position[idx] = (float)position[idx];
-                Normal[idx] = (int)normal[idx];
-                Tangent[idx] = (int)tangent[idx];
-                Color[idx] = (int)color[idx];
-                UV1[idx] = (float)uv1[idx];
-                UV2[idx] = (float)uv2[idx];
-            }
-        }
-
         public Vertex(byte[] bytes)
         {
             MemoryStream ms = new MemoryStream(bytes);

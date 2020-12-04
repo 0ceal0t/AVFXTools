@@ -17,6 +17,11 @@ namespace AVFXTools.UI
         public UIParticleDataDecalRing(AVFXParticleDataDecalRing data)
         {
             Data = data;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=======================
             Attributes.Add(new UICurve(Data.Width, "Width"));
             Attributes.Add(new UIFloat("Scaling Scale", Data.ScalingScale));

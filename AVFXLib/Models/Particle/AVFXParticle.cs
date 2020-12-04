@@ -164,31 +164,41 @@ namespace AVFXLib.Models
                         break;
                 }
             }
-
             ReadAVFX(Attributes2, node);
         }
 
-        public override void read(JObject elem)
+        public override void toDefault()
         {
             Assigned = true;
-            ReadJSON(Attributes, elem);
-            Type = ParticleVariety.Value;
+            SetDefault(Attributes);
+            ParticleVariety.GiveValue(ParticleType.Model);
+            SimpleAnimEnable.GiveValue(false);
+            SetUnAssigned(Simple);
+            SetUnAssigned(Gravity);
+            SetUnAssigned(GravityRandom);
+            SetUnAssigned(AirResistance);
+            SetUnAssigned(AirResistanceRandom);
+            SetUnAssigned(Scale);
+            SetUnAssigned(Rotation);
+            SetUnAssigned(Position);
+            SetUnAssigned(Color);
+            UVSets = new List<AVFXParticleUVSet>();
 
-            // UVSets
-            //=======================//
-            JArray uvElems = (JArray)elem.GetValue("uvSets");
-            foreach (JToken u in uvElems)
-            {
-                AVFXParticleUVSet UVSet = new AVFXParticleUVSet();
-                UVSet.read((JObject)u);
-                UVSets.Add(UVSet);
-            }
+            SetVariety(ParticleVariety.Value);
+        }
 
-            // Data
-            //========================//
-            SetType(Type);
-            ReadJSON(Data, elem);
-            ReadJSON(Attributes2, elem);
+        public void addUvSet()
+        {
+            if (UVSets.Count >= 4) return;
+            AVFXParticleUVSet UvSet = new AVFXParticleUVSet();
+            UvSet.toDefault();
+            UVSets.Add(UvSet);
+            UvSetCount.GiveValue(UVSets.Count());
+        }
+        public void removeUvSet(int idx)
+        {
+            UVSets.RemoveAt(idx);
+            UvSetCount.GiveValue(UVSets.Count());
         }
 
         public override JToken toJSON()
@@ -227,20 +237,12 @@ namespace AVFXLib.Models
             return ptclAvfx;
         }
 
-        public override void Print(int level)
+        public void SetVariety(ParticleType type)
         {
-            Console.WriteLine("{0}------- PTCL --------", new String('\t', level));
-            Output(Attributes, level);
-
-            // UVSets
-            //=======================//
-            foreach (AVFXParticleUVSet uvElem in UVSets)
-            {
-                Output(uvElem, level);
-            }
-
-            Output(Data, level);
-            Output(Attributes2, level);
+            ParticleVariety.GiveValue(type);
+            Type = type;
+            SetType(type);
+            SetDefault(Data);
         }
 
         public void SetType(ParticleType type)
@@ -267,9 +269,8 @@ namespace AVFXLib.Models
                 case ParticleType.Polyline:
                     Data = new AVFXParticleDataPolyline("data");
                     break;
-                case ParticleType.Reserve0:
-                    break;
                 case ParticleType.Quad:
+                    Data = null;
                     break;
                 case ParticleType.Polygon:
                     Data = new AVFXParticleDataPolygon("data");
@@ -285,6 +286,9 @@ namespace AVFXLib.Models
                     break;
                 case ParticleType.LightModel:
                     Data = new AVFXParticleDataLightModel("data");
+                    break;
+                default:
+                    Data = null;
                     break;
             }
         }

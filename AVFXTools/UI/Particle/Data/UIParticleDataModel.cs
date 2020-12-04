@@ -17,6 +17,11 @@ namespace AVFXTools.UI
         public UIParticleDataModel(AVFXParticleDataModel data)
         {
             Data = data;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=======================
             Attributes.Add(new UIInt("Model Number Random", Data.ModelNumberRandomValue));
             Attributes.Add(new UICombo<RandomType>("Model Number Random Type", Data.ModelNumberRandomType));

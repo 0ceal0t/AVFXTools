@@ -28,18 +28,6 @@ namespace AVFXLib.Models
             });
         }
 
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-            ReadJSON(Attributes, elem);
-            // READ KEYS
-            JArray keyElems = (JArray)elem.GetValue("keys");
-            foreach (JToken k in keyElems)
-            {
-                Keys.Add(new AVFXKey((JObject)k));
-            }
-        }
-
         public override void read(AVFXNode node)
         {
             Assigned = true;
@@ -61,6 +49,24 @@ namespace AVFXLib.Models
                     break;
                 }
             }
+        }
+
+        public override void toDefault()
+        {
+            Assigned = true;
+            SetDefault(Attributes);
+            Keys = new List<AVFXKey>();
+        }
+
+        public void addKey()
+        {
+            AVFXKey key = new AVFXKey(KeyType.Linear, 0, 1, 1, 1);
+            Keys.Add(key);
+        }
+
+        public void removeKey(int idx)
+        {
+            Keys.RemoveAt(idx);
         }
 
         public override JToken toJSON()
@@ -98,16 +104,6 @@ namespace AVFXLib.Models
             }
             curveAvfx.Children.Add(new AVFXLeaf("Keys", 16 * Keys.Count(), keyBArray));
             return curveAvfx;
-        }
-
-        public override void Print(int level)
-        {
-            Console.WriteLine("{0}------- {1} --------", new String('\t', level), AVFXName);
-            Output(Attributes, level);
-            foreach (AVFXKey key in Keys)
-            {
-                key.Print(level + 1);
-            }
         }
     }
 
@@ -150,18 +146,6 @@ namespace AVFXLib.Models
             Z = Util.Bytes4ToFloat(zBytes);
         }
 
-        public AVFXKey(JObject elem)
-        {
-            JArray vals = (JArray)elem.GetValue("vals");
-            X = (float)vals[0];
-            Y = (float)vals[1];
-            Z = (float)vals[2];
-
-            Time = (int)elem.GetValue("time");
-            string typeVal = (string)elem.GetValue("type");
-            Type = (KeyType)Enum.Parse(typeof(KeyType), typeVal);
-        }
-
         public JObject GetJSON()
         {
             JObject ret = new JObject();
@@ -190,11 +174,6 @@ namespace AVFXLib.Models
             Buffer.BlockCopy(yBytes, 0, bytes, 8, 4);
             Buffer.BlockCopy(zBytes, 0, bytes, 12, 4);
             return bytes;
-        }
-
-        public void Print(int level)
-        {
-            Console.WriteLine("{0} {1} {2} / {3}, {4}, {5}", new String('\t', level), Time, Type, X, Y, Z);
         }
     }
 }

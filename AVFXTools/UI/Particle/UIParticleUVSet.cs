@@ -12,12 +12,19 @@ namespace AVFXTools.UI
     public class UIParticleUVSet : UIBase
     {
         public AVFXParticleUVSet UVSet;
+        public UIParticle Particle;
         public int Idx;
         //=======================
 
-        public UIParticleUVSet(AVFXParticleUVSet uvSet)
+        public UIParticleUVSet(AVFXParticleUVSet uvSet, UIParticle particle)
         {
             UVSet = uvSet;
+            Particle = particle;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=================
             Attributes.Add(new UICombo<TextureCalculateUV>("Rotation Direction Base", UVSet.CalculateUVType));
             Attributes.Add(new UICurve2Axis(UVSet.Scale, "Scale"));
@@ -33,7 +40,8 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
+                    Particle.Particle.removeUvSet(Idx);
+                    Particle.Init();
                 }
                 DrawAttrs(id);
                 ImGui.TreePop();

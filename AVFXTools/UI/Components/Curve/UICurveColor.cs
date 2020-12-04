@@ -13,7 +13,6 @@ namespace AVFXTools.UI
     public class UICurveColor : UIBase
     {
         public AVFXCurveColor Curve;
-        public bool Assigned = false;
         public string Name;
         //=========================
 
@@ -21,10 +20,14 @@ namespace AVFXTools.UI
         {
             Curve = curve;
             Name = name;
-            if (!curve.Assigned) { Assigned = false; return; }
-            Assigned = true;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            if (!Curve.Assigned) { Assigned = false; return; }
             // ======================
-            Attributes.Add(new UICurve(Curve.RGB, "RGB", color:true));
+            Attributes.Add(new UICurve(Curve.RGB, "RGB", color: true));
             Attributes.Add(new UICurve(Curve.A, "Alpha"));
             Attributes.Add(new UICurve(Curve.SclR, "Scale R"));
             Attributes.Add(new UICurve(Curve.SclG, "Scale G"));
@@ -46,7 +49,8 @@ namespace AVFXTools.UI
             {
                 if (ImGui.Button("+ " + Name + id))
                 {
-                    // TODO
+                    Curve.toDefault();
+                    Init();
                 }
                 return;
             }
@@ -55,7 +59,8 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
+                    Curve.Assigned = false;
+                    Init();
                 }
                 DrawAttrs(id);
                 ImGui.TreePop();

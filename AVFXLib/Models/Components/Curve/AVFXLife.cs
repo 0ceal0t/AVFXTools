@@ -32,16 +32,6 @@ namespace AVFXLib.Models
             });
         }
 
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-            Enabled = (bool)elem.GetValue("enabled");
-            if (Enabled)
-            {
-                ReadJSON(Attributes, elem);
-            }
-        }
-
         public override void read(AVFXNode node)
         {
             Assigned = true;
@@ -50,6 +40,14 @@ namespace AVFXLib.Models
             {
                 ReadAVFX(Attributes, node);
             }
+        }
+
+        public override void toDefault()
+        {
+            Assigned = true;
+            Enabled = true;
+            SetDefault(Attributes);
+            Value.GiveValue(-1f);
         }
 
         public override JToken toJSON()
@@ -77,22 +75,6 @@ namespace AVFXLib.Models
             {
                 AVFXNode lifeAvfx = new AVFXLeaf("Life", 4, Util.IntTo4Bytes(-1));
                 return lifeAvfx;
-            }
-        }
-
-        public override void Print(int level)
-        {
-
-            if (Enabled)
-            {
-                Console.WriteLine("{0}------- LIFE --------", new String('\t', level));
-                Output(Attributes, level);
-            }
-            else // -1
-            {
-                LiteralInt lifeAvfx = new LiteralInt("life", "Life");
-                lifeAvfx.GiveValue(-1);
-                Output(lifeAvfx, level);
             }
         }
     }

@@ -43,9 +43,9 @@ namespace AVFXTools.UI
             }
         }
 
-        public static string BytesToPath(byte[] value)
+        public static void BytesToPath(LiteralString literal)
         {
-            return Util.BytesToString(value).Trim('\0') + "\u0000";
+            literal.GiveValue(literal.Value + "\u0000");
         }
     }
 }

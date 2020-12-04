@@ -5,19 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ImGuiNET;
-using ImGuiNET;
 
 namespace AVFXTools.UI
 {
     public class UIParticleView : UIBase
     {
-        List<UIParticle> Particles = new List<UIParticle>();
+        public AVFXBase AVFX;
+        List<UIParticle> Particles;
 
         public UIParticleView(AVFXBase avfx)
         {
-            foreach (var particle in avfx.Particles)
+            AVFX = avfx;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            Particles = new List<UIParticle>();
+            foreach (var particle in AVFX.Particles)
             {
-                Particles.Add(new UIParticle(particle));
+                Particles.Add(new UIParticle(particle, this));
             }
         }
 
@@ -33,7 +40,8 @@ namespace AVFXTools.UI
             }
             if (ImGui.Button("+ Particle" + id))
             {
-                // TODO
+                AVFX.addParticle();
+                Init();
             }
         }
     }

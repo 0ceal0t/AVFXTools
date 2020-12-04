@@ -15,28 +15,19 @@ namespace AVFXTools.UI
         public int Value;
         public LiteralEnum<T> Literal;
 
-        public delegate int Init(LiteralEnum<T> literal, string[] options);
-        public Init InitFunction;
-        public delegate string Change(int value, string[] options);
+        public delegate void Change(LiteralEnum<T> literal);
         public Change ChangeFunction;
 
-        public UICombo(string id, LiteralEnum<T> literal, Init initFunction = null, Change changeFunction = null)
+        public UICombo(string id, LiteralEnum<T> literal, Change changeFunction = null)
         {
             Id = id;
             Literal = literal;
-            if (initFunction != null)
-                InitFunction = initFunction;
             if (changeFunction != null)
                 ChangeFunction = changeFunction;
-            // =====================
-            if (InitFunction == null)
-            {
-                Value = (int)(object)Literal.Value;
-            }
             else
-            {
-                Value = InitFunction(Literal, Literal.Options);
-            }
+                ChangeFunction = DoNothing;
+            // =====================
+            Value = (int)(object)Literal.Value;
         }
 
         public override void Draw(string id)
@@ -49,14 +40,8 @@ namespace AVFXTools.UI
                     if (ImGui.Selectable(Literal.Options[i], isSelected))
                     {
                         Value = i;
-                        if(ChangeFunction == null)
-                        {
-                            Literal.GiveValue(Literal.Options[Value]);
-                        }
-                        else
-                        {
-                            Literal.GiveValue(ChangeFunction(Value, Literal.Options));
-                        }
+                        Literal.GiveValue(Literal.Options[Value]);
+                        ChangeFunction(Literal);
                     }
                     if (isSelected)
                     {
@@ -66,5 +51,7 @@ namespace AVFXTools.UI
                 ImGui.EndCombo();
             }
         }
+
+        public static void DoNothing(LiteralEnum<T> literal) { }
     }
 }

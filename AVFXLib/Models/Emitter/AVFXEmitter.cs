@@ -20,9 +20,9 @@ namespace AVFXLib.Models
         public LiteralInt EffectorIdx = new LiteralInt("effectorIdx", "EfNo");
         public LiteralBool AnyDirection = new LiteralBool("anyDirection", "bAD", size:1);
         public LiteralEnum<EmitterType> EmitterVariety = new LiteralEnum<EmitterType>("emitterType", "EVT");
-        public LiteralEnum<RotationDirectionBase> RotationDirectionBase = new LiteralEnum<RotationDirectionBase>("rotationDirectionBase", "RBDT");
-        public LiteralEnum<CoordComputeOrder> CoordComputeOrder = new LiteralEnum<CoordComputeOrder>("coordComputeOrder", "CCOT");
-        public LiteralEnum<RotationOrder> RotationOrder = new LiteralEnum<RotationOrder>("rotationOrder", "ROT");
+        public LiteralEnum<RotationDirectionBase> RotationDirectionBaseType = new LiteralEnum<RotationDirectionBase>("rotationDirectionBase", "RBDT");
+        public LiteralEnum<CoordComputeOrder> CoordComputeOrderType = new LiteralEnum<CoordComputeOrder>("coordComputeOrder", "CCOT");
+        public LiteralEnum<RotationOrder> RotationOrderType = new LiteralEnum<RotationOrder>("rotationOrder", "ROT");
         public LiteralInt ParticleCount = new LiteralInt("particleCount", "PrCn");
         public LiteralInt EmitterCount = new LiteralInt("emitterCount", "EmCn");
         public AVFXLife Life = new AVFXLife("life");
@@ -31,23 +31,20 @@ namespace AVFXLib.Models
         public AVFXCurve CreateCountRandom = new AVFXCurve("createCountRandom", "CrCR");
         public AVFXCurve CreateInterval = new AVFXCurve("createInterval", "CrI");
         public AVFXCurve CreateIntervalRandom = new AVFXCurve("createIntervalRandom", "CrIR");
-
         public AVFXCurve Gravity = new AVFXCurve("gravity", "Gra");
         public AVFXCurve GravityRandom = new AVFXCurve("gravityRandom", "GraR");
         public AVFXCurve AirResistance = new AVFXCurve("airResistance", "ARs");
         public AVFXCurve AirResistanceRandom = new AVFXCurve("airResistanceRandom", "ARsR");
-
         public AVFXCurveColor Color = new AVFXCurveColor("color");
         public AVFXCurve3Axis Position = new AVFXCurve3Axis("position", "Pos");
         public AVFXCurve3Axis Rotation = new AVFXCurve3Axis("rotation", "Rot");
         public AVFXCurve3Axis Scale = new AVFXCurve3Axis("scale", "Scl");
 
-
-        // ItPr
-        public List<AVFXEmitterItem> ItEms = new List<AVFXEmitterItem>();
-        public List<AVFXEmitterIteration> ItPrs = new List<AVFXEmitterIteration>();
+        public List<AVFXEmitterIterationItem> Particles = new List<AVFXEmitterIterationItem>();
+        public List<AVFXEmitterIterationItem> Emitters = new List<AVFXEmitterIterationItem>();
 
         // Data
+        //========================//
         public EmitterType Type;
         public AVFXEmitterData Data;
 
@@ -65,9 +62,9 @@ namespace AVFXLib.Models
                 EffectorIdx,
                 AnyDirection,
                 EmitterVariety,
-                RotationDirectionBase,
-                CoordComputeOrder,
-                RotationOrder,
+                RotationDirectionBaseType,
+                CoordComputeOrderType,
+                RotationOrderType,
                 ParticleCount,
                 EmitterCount,
                 Life,
@@ -76,49 +73,15 @@ namespace AVFXLib.Models
                 CreateCountRandom,
                 CreateInterval,
                 CreateIntervalRandom,
-
                 Gravity,
                 GravityRandom,
                 AirResistance,
                 AirResistanceRandom,
-
                 Color,
                 Position,
                 Rotation,
                 Scale,
             });
-        }
-
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-            ReadJSON(Attributes, elem);
-            Type = EmitterVariety.Value;
-
-            // ITEM
-            //=======================//
-            JArray itemElems = (JArray)elem.GetValue("items");
-            foreach (JToken i in itemElems)
-            {
-                AVFXEmitterItem ItEm = new AVFXEmitterItem();
-                ItEm.read((JObject)i);
-                ItEms.Add(ItEm);
-            }
-
-            // ITPR
-            //=======================//
-            JArray itprElems = (JArray)elem.GetValue("itPr");
-            foreach (JToken i in itprElems)
-            {
-                AVFXEmitterIteration ItPr = new AVFXEmitterIteration();
-                ItPr.read((JObject)i);
-                ItPrs.Add(ItPr);
-            }
-
-            // Data
-            //========================//
-            SetType(Type);
-            ReadJSON(Data, elem);
         }
 
         public override void read(AVFXNode node)
@@ -127,29 +90,88 @@ namespace AVFXLib.Models
             ReadAVFX(Attributes, node);
             Type = EmitterVariety.Value;
 
-            foreach (AVFXNode item in node.Children){
+            AVFXEmitterCreateParticle lastParticle = null;
+            AVFXEmitterCreateEmitter lastEmitter = null;
+
+            foreach (AVFXNode item in node.Children)
+            {
                 switch (item.Name){
-                    // ItEm =================================
-                    case AVFXEmitterItem.NAME:
-                        AVFXEmitterItem ItEm = new AVFXEmitterItem();
-                        ItEm.read(item);
-                        ItEms.Add(ItEm);
+                    // ItEm =================
+                    case AVFXEmitterCreateEmitter.NAME:
+                        lastEmitter = new AVFXEmitterCreateEmitter();
+                        lastEmitter.read(item);
                         break;
 
-                    // ITPR =================================
-                    case AVFXEmitterIteration.NAME:
-                        AVFXEmitterIteration ItPr = new AVFXEmitterIteration();
-                        ItPr.read(item);
-                        ItPrs.Add(ItPr);
+                    // ITPR ==================
+                    case AVFXEmitterCreateParticle.NAME:
+                        lastParticle = new AVFXEmitterCreateParticle();
+                        lastParticle.read(item);
                         break;
 
-                    // DATA ==================================
+                    // DATA ================
                     case AVFXEmitterData.NAME:
                         SetType(Type);
                         ReadAVFX(Data, node);
                         break;
                 }
             }
+
+            if(lastParticle != null)
+            {
+                Particles.AddRange(lastParticle.Items);
+            }
+            if(lastEmitter != null)
+            {
+                Emitters.AddRange(lastEmitter.Items);
+            }
+        }
+
+        public override void toDefault()
+        {
+            Assigned = true;
+            SetUnAssigned(Attributes);
+            SoundNumber.GiveValue(-1);
+            LoopStart.GiveValue(0);
+            LoopEnd.GiveValue(0);
+            ChildLimit.GiveValue(30);
+            EffectorIdx.GiveValue(-1);
+            AnyDirection.GiveValue(false);
+            EmitterVariety.GiveValue(EmitterType.Point);
+            RotationDirectionBaseType.GiveValue(RotationDirectionBase.Z);
+            CoordComputeOrderType.GiveValue(CoordComputeOrder.Scale_Rot_Translate);
+            RotationOrderType.GiveValue(RotationOrder.ZXY);
+            ParticleCount.GiveValue(0);
+            EmitterCount.GiveValue(0);
+            Particles = new List<AVFXEmitterIterationItem>();
+            Emitters = new List<AVFXEmitterIterationItem>();
+            SetDefault(Life);
+
+            SetVariety(EmitterVariety.Value);
+        }
+
+        public void addParticle()
+        {
+            AVFXEmitterIterationItem ItPr = new AVFXEmitterIterationItem();
+            ItPr.toDefault();
+            Particles.Add(ItPr);
+            ParticleCount.GiveValue(Particles.Count());
+        }
+        public void removeParticle(int idx)
+        {
+            Particles.RemoveAt(idx);
+            ParticleCount.GiveValue(Particles.Count());
+        }
+        public void addEmitter()
+        {
+            AVFXEmitterIterationItem ItEm = new AVFXEmitterIterationItem();
+            ItEm.toDefault();
+            Emitters.Add(ItEm);
+            EmitterCount.GiveValue(Emitters.Count());
+        }
+        public void removeEmitter(int idx)
+        {
+            Emitters.RemoveAt(idx);
+            EmitterCount.GiveValue(Emitters.Count());
         }
 
         public override JToken toJSON()
@@ -159,19 +181,19 @@ namespace AVFXLib.Models
 
             // ItEm ========
             JArray itemArray = new JArray();
-            foreach (AVFXEmitterItem item in ItEms)
+            foreach(var e in Emitters)
             {
-                itemArray.Add(item.toJSON());
+                itemArray.Add(e.toJSON());
             }
-            elem["items"] = itemArray;
+            elem["emitters"] = itemArray;
 
             // ItPr ========
             JArray itPrArray = new JArray();
-            foreach (AVFXEmitterIteration itpr in ItPrs)
+            foreach (var p in Particles)
             {
-                itPrArray.Add(itpr.toJSON());
+                itPrArray.Add(p.toJSON());
             }
-            elem["itPr"] = itPrArray;
+            elem["particles"] = itPrArray;
 
             PutJSON(elem, Data);
             return elem;
@@ -183,39 +205,22 @@ namespace AVFXLib.Models
 
             PutAVFX(emitAvfx, Attributes);
 
-            /*
             // ITEM
             //=======================//
-            foreach (AVFXEmitterItem itemElem in ItEms)
+            for (int i = 0; i < Emitters.Count; i++)
             {
-                PutAVFX(emitAvfx, itemElem);
+                AVFXEmitterCreateEmitter ItEM = new AVFXEmitterCreateEmitter();
+                ItEM.Items = Emitters.GetRange(0, i + 1); // get 1, then 2, etc.
+                emitAvfx.Children.Add(ItEM.toAVFX());
             }
 
             // ITPR
             //=======================//
-            foreach (AVFXEmitterIteration itprElem in ItPrs)
+            for (int i = 0; i < Particles.Count; i++)
             {
-                PutAVFX(emitAvfx, itprElem);
-            }*/
-
-            if(ItEms.Count > 0) // only care about the last one, since the others should all be determined by it
-            {
-                var lastItEm = ItEms[ItEms.Count - 1];
-                var subItemCount = lastItEm.Items.Count;
-                for(int i = 1; i <= subItemCount; i++)
-                {
-                    emitAvfx.Children.Add(lastItEm.toAVFXRange(i));
-                }
-            }
-
-            if (ItPrs.Count > 0)
-            {
-                var lastItPr = ItPrs[ItPrs.Count - 1];
-                var subItemCount = lastItPr.Items.Count;
-                for (int i = 1; i <= subItemCount; i++)
-                {
-                    emitAvfx.Children.Add(lastItPr.toAVFXRange(i));
-                }
+                AVFXEmitterCreateParticle ItPr = new AVFXEmitterCreateParticle();
+                ItPr.Items = Particles.GetRange(0, i + 1);
+                emitAvfx.Children.Add(ItPr.toAVFX());
             }
 
             PutAVFX(emitAvfx, Data);
@@ -223,26 +228,12 @@ namespace AVFXLib.Models
             return emitAvfx;
         }
 
-        public override void Print(int level)
+        public void SetVariety(EmitterType type)
         {
-            Console.WriteLine("{0}------- EMIT --------", new String('\t', level));
-            Output(Attributes, level);
-
-            // ITEM
-            //=======================//
-            foreach (AVFXEmitterItem itemElem in ItPrs)
-            {
-                Output(itemElem, level);
-            }
-
-            // ITPR
-            //=======================//
-            foreach (AVFXEmitterIteration itprElem in ItPrs)
-            {
-                Output(itprElem, level);
-            }
-
-            Output(Data, level);
+            EmitterVariety.GiveValue(type);
+            Type = type;
+            SetType(type);
+            SetDefault(Data);
         }
 
         public void SetType(EmitterType type)
@@ -250,6 +241,7 @@ namespace AVFXLib.Models
             switch (type)
             {
                 case EmitterType.Point: // no data here :)
+                    Data = null;
                     break;
                 case EmitterType.Cone:
                     throw new System.InvalidOperationException("Cone Emitter!");
@@ -265,6 +257,9 @@ namespace AVFXLib.Models
                     break;
                 case EmitterType.Model:
                     Data = new AVFXEmitterDataModel("data");
+                    break;
+                default:
+                    Data = null;
                     break;
             }
         }

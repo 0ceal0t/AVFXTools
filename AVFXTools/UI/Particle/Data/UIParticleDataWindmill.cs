@@ -17,6 +17,11 @@ namespace AVFXTools.UI
         public UIParticleDataWindmill(AVFXParticleDataWindmill data)
         {
             Data = data;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=======================
             Attributes.Add(new UICombo<WindmillUVType>("Windmill UV Type", Data.WindmillUVType));
         }

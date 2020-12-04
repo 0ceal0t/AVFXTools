@@ -25,16 +25,16 @@ namespace AVFXLib.Models
             });
         }
 
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-            ReadJSON(Attributes, elem);
-        }
-
         public override void read(AVFXNode node)
         {
             Assigned = true;
             ReadAVFX(Attributes, node);
+        }
+
+        public override void toDefault()
+        {
+            Assigned = true;
+            SetDefault(Attributes);
         }
 
         public override JToken toJSON()
@@ -49,12 +49,6 @@ namespace AVFXLib.Models
             AVFXNode dataAvfx = new AVFXNode("Data");
             PutAVFX(dataAvfx, Attributes);
             return dataAvfx;
-        }
-
-        public override void Print(int level)
-        {
-            Console.WriteLine("{0}------- DATA --------", new String('\t', level));
-            Output(Attributes, level);
         }
     }
 }

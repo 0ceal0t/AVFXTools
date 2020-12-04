@@ -44,16 +44,16 @@ namespace AVFXLib.Models
             });
         }
 
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-            ReadJSON(Attributes, elem);
-        }
-
         public override void read(AVFXNode node)
         {
             Assigned = true;
             ReadAVFX(Attributes, node);
+        }
+
+        public override void toDefault()
+        {
+            Assigned = true;
+            SetUnAssigned(Attributes);
         }
 
         public override JToken toJSON()
@@ -68,12 +68,6 @@ namespace AVFXLib.Models
             AVFXNode curveAvfx = new AVFXNode(AVFXName);
             PutAVFX(curveAvfx, Attributes);
             return curveAvfx;
-        }
-
-        public override void Print(int level)
-        {
-            Console.WriteLine("{0}------- {1} --------", new String('\t', level), AVFXName);
-            Output(Attributes, level);
         }
     }
 }

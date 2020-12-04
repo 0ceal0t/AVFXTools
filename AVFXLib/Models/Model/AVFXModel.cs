@@ -22,51 +22,6 @@ namespace AVFXLib.Models
         {
         }
 
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-
-            // VNum ===============
-            if (elem.ContainsKey("num"))
-            {
-                JArray vnumElems = (JArray)elem.GetValue("num");
-                foreach (JToken n in vnumElems)
-                {
-                    VNums.Add(new VNum((int)n));
-                }
-            }
-
-            // VDRW ===============
-            if (elem.ContainsKey("vertices"))
-            {
-                JArray vdrwElems = (JArray)elem.GetValue("vertices");
-                foreach(JToken v in vdrwElems)
-                {
-                    Vertices.Add(new Vertex((JObject)v));
-                }
-            }
-
-            // VEmt ===============
-            if (elem.ContainsKey("emit"))
-            {
-                JArray vemtElems = (JArray)elem.GetValue("emit");
-                foreach (JToken e in vemtElems)
-                {
-                    EmitVertices.Add(new EmitVertex((JObject)e));
-                }
-            }
-
-            // VIDX ===============
-            if (elem.ContainsKey("indexes"))
-            {
-                JArray vidxElems = (JArray)elem.GetValue("indexes");
-                foreach (JToken v in vidxElems)
-                {
-                    Indexes.Add(new Index((JArray)v));
-                }
-            }
-        }
-
         public override void read(AVFXNode node)
         {
             Assigned = true;
@@ -75,8 +30,7 @@ namespace AVFXLib.Models
                 AVFXLeaf leaf;
                 switch (n.Name)
                 {
-                    case "VNum": // VNum ===========
-                        // 
+                    case "VNum":
                         leaf = (AVFXLeaf)n;
                         foreach (byte[] bytes in Util.SplitBytes(leaf.Contents, VNum.SIZE))
                         {
@@ -84,8 +38,7 @@ namespace AVFXLib.Models
                         }
                         break;
 
-                    case "VDrw": // VDRW ===========
-                        // 
+                    case "VDrw":
                         AVFXLeaf vleaf = (AVFXLeaf)n;
                         foreach (byte[] bytes in Util.SplitBytes(vleaf.Contents, Vertex.SIZE))
                         {
@@ -93,8 +46,7 @@ namespace AVFXLib.Models
                         }
                         break;
 
-                    case "VEmt": // VEMT ===========
-                        // 
+                    case "VEmt":
                         leaf = (AVFXLeaf)n;
                         foreach (byte[] bytes in Util.SplitBytes(leaf.Contents, EmitVertex.SIZE))
                         {
@@ -102,8 +54,7 @@ namespace AVFXLib.Models
                         }
                         break;
 
-                    case "VIdx": // VIDX ===========
-                        // 
+                    case "VIdx":
                         leaf = (AVFXLeaf)n;
                         foreach(byte[] bytes in Util.SplitBytes(leaf.Contents, Index.SIZE))
                         {
@@ -114,10 +65,9 @@ namespace AVFXLib.Models
             }
         }
 
-        public override void Print(int level)
+        public override JToken toJSON()
         {
-            Console.WriteLine("{0}------- MDL --------", new String('\t', level));
-            Console.WriteLine("{0} VDrw {1}, Idx {2}, Emit {3}, VNum {4}", new String('\t', level), Vertices.Count.ToString(), Indexes.Count.ToString(), EmitVertices.Count.ToString(), VNums.Count.ToString());
+            return new JValue("");
         }
 
         public override AVFXNode toAVFX()

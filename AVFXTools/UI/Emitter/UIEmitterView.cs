@@ -10,13 +10,21 @@ namespace AVFXTools.UI
 {
     public class UIEmitterView : UIBase
     {
-        List<UIEmitter> Emitters = new List<UIEmitter>();
+        public AVFXBase AVFX;
+        List<UIEmitter> Emitters;
 
         public UIEmitterView(AVFXBase avfx)
         {
-            foreach (var emitter in avfx.Emitters)
+            AVFX = avfx;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            Emitters = new List<UIEmitter>();
+            foreach (var emitter in AVFX.Emitters)
             {
-                Emitters.Add(new UIEmitter(emitter));
+                Emitters.Add(new UIEmitter(emitter, this));
             }
         }
 
@@ -32,7 +40,8 @@ namespace AVFXTools.UI
             }
             if (ImGui.Button("+ Emitter" + id))
             {
-                // TODO
+                AVFX.addEmitter();
+                Init();
             }
         }
     }

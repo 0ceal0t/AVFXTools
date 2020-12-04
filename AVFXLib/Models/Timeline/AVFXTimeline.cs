@@ -20,7 +20,7 @@ namespace AVFXLib.Models
 
         List<Base> Attributes;
 
-        public List<AVFXTimelineItem> Items = new List<AVFXTimelineItem>();
+        public List<AVFXTimelineSubItem> Items = new List<AVFXTimelineSubItem>();
         public List<AVFXTimelineClip> Clips = new List<AVFXTimelineClip>();
 
         public AVFXTimeline() : base("timelines", NAME)
@@ -39,17 +39,18 @@ namespace AVFXLib.Models
             Assigned = true;
             ReadAVFX(Attributes, node);
 
+            AVFXTimelineItem lastItem = null;
+
             foreach (AVFXNode item in node.Children)
             {
                 switch (item.Name)
                 {
-                    // ITEMS =================================
+                    // ITEMS ====================
                     case AVFXTimelineItem.NAME:
-                        AVFXTimelineItem Item = new AVFXTimelineItem();
-                        Item.read(item);
-                        Items.Add(Item);
+                        lastItem = new AVFXTimelineItem();
+                        lastItem.read(item);
                         break;
-                    // CLIPS =================================
+                    // CLIPS ====================
                     case AVFXTimelineClip.NAME:
                         AVFXTimelineClip Clip = new AVFXTimelineClip();
                         Clip.read(item);
@@ -57,32 +58,47 @@ namespace AVFXLib.Models
                         break;
                 }
             }
+
+            if(lastItem != null)
+            {
+                Items.AddRange(lastItem.SubItems);
+            }
         }
 
-        public override void read(JObject elem)
+        public override void toDefault()
         {
             Assigned = true;
-            ReadJSON(Attributes, elem);
+            SetDefault(Attributes);
+            BinderIdx.GiveValue(-1);
+            TimelineCount.GiveValue(0);
+            ClipCount.GiveValue(0);
+            Items = new List<AVFXTimelineSubItem>();
+            Clips = new List<AVFXTimelineClip>();
+        }
 
-            // ITEMS
-            //=======================//
-            JArray itemElems = (JArray)elem.GetValue("items");
-            foreach (JToken i in itemElems)
-            {
-                AVFXTimelineItem Item = new AVFXTimelineItem();
-                Item.read((JObject)i);
-                Items.Add(Item);
-            }
-
-            // CLIPS
-            //=======================//
-            JArray clipElems = (JArray)elem.GetValue("clips");
-            foreach (JToken c in clipElems)
-            {
-                AVFXTimelineClip Clip = new AVFXTimelineClip();
-                Clip.read((JObject)c);
-                Clips.Add(Clip);
-            }
+        public void addItem()
+        {
+            AVFXTimelineSubItem Item = new AVFXTimelineSubItem();
+            Item.toDefault();
+            Items.Add(Item);
+            TimelineCount.GiveValue(Items.Count());
+        }
+        public void removeItem(int idx)
+        {
+            Items.RemoveAt(idx);
+            TimelineCount.GiveValue(Items.Count());
+        }
+        public void addClip()
+        {
+            AVFXTimelineClip Clip = new AVFXTimelineClip();
+            Clip.toDefault();
+            Clips.Add(Clip);
+            ClipCount.GiveValue(Clips.Count());
+        }
+        public void removeClip(int idx)
+        {
+            Clips.RemoveAt(idx);
+            ClipCount.GiveValue(Clips.Count());
         }
 
         public override JToken toJSON()
@@ -91,7 +107,7 @@ namespace AVFXLib.Models
             PutJSON(elem, Attributes);
 
             JArray itemArray = new JArray();
-            foreach(AVFXTimelineItem item in Items)
+            foreach(AVFXTimelineSubItem item in Items)
             {
                 itemArray.Add(item.toJSON());
             }
@@ -115,18 +131,11 @@ namespace AVFXLib.Models
 
             // Items
             //=======================//
-            /*foreach (AVFXTimelineItem itemElem in Items)
+            for (int i = 0; i < Items.Count(); i++)
             {
-                PutAVFX(tmlnAvfx, itemElem);
-            }*/
-            if (Items.Count > 0)
-            {
-                var lastItem = Items[Items.Count - 1];
-                var subItemCount = lastItem.SubItems.Count;
-                for (int i = 1; i <= subItemCount; i++)
-                {
-                    tmlnAvfx.Children.Add(lastItem.toAVFXRange(i));
-                }
+                AVFXTimelineItem Item = new AVFXTimelineItem();
+                Item.SubItems = Items.GetRange(0, i + 1);
+                tmlnAvfx.Children.Add(Item.toAVFX());
             }
 
             // Clips
@@ -137,26 +146,6 @@ namespace AVFXLib.Models
             }
 
             return tmlnAvfx;
-        }
-
-        public override void Print(int level)
-        {
-            Console.WriteLine("{0}------- TMLN --------", new String('\t', level));
-            Output(Attributes, level);
-
-            // Items
-            //=======================//
-            foreach (AVFXTimelineItem itemElem in Items)
-            {
-                Output(itemElem, level);
-            }
-
-            // Clips
-            //=======================//
-            foreach (AVFXTimelineClip clipElem in Clips)
-            {
-                Output(clipElem, level);
-            }
         }
     }
 }

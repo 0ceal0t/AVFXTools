@@ -377,7 +377,7 @@
     <Compile Include="UI\Emitter\Data\UIEmitterDataCylinderModel.cs" />
     <Compile Include="UI\Emitter\Data\UIEmitterDataSphereModel.cs" />
     <Compile Include="UI\Emitter\UIEmitterItem.cs" />
-    <Compile Include="UI\Components\UILife.cs" />
+    <Compile Include="UI\Components\Curve\UILife.cs" />
     <Compile Include="UI\Particle\UIParticle.cs" />
     <Compile Include="UI\Particle\Data\UIParticleDataLightModel.cs" />
     <Compile Include="UI\Particle\Data\UIParticleDataModel.cs" />

@@ -14,7 +14,7 @@ namespace AVFXLib.Models
 
         public LiteralEnum<BindPoint> BindPointType = new LiteralEnum<BindPoint>("bindPointType", "BPT");
         public LiteralEnum<BindTargetPoint> BindTargetPointType = new LiteralEnum<BindTargetPoint>("bindTargetPointType", "BPTP");
-        public LiteralString BinderName = new LiteralString("name", "Name");
+        public LiteralString BinderName = new LiteralString("name", "Name", fixedSize:8);
         public LiteralInt BindPointId = new LiteralInt("bindPointId", "BPID");
         public LiteralInt GenerateDelay = new LiteralInt("generateDelay", "GenD");
         public LiteralInt CoordUpdateFrame = new LiteralInt("coordUpdateFrame", "CoUF");
@@ -48,16 +48,18 @@ namespace AVFXLib.Models
             });
         }
 
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-            ReadJSON(Attributes, elem);
-        }
-
         public override void read(AVFXNode node)
         {
             Assigned = true;
             ReadAVFX(Attributes, node);
+        }
+
+        public override void toDefault()
+        {
+            Assigned = true;
+            SetDefault(Attributes);
+            SetUnAssigned(Position);
+            BinderName.GiveValue("null");
         }
 
         public override JToken toJSON()
@@ -72,12 +74,6 @@ namespace AVFXLib.Models
             AVFXNode dataAvfx = new AVFXNode(Name);
             PutAVFX(dataAvfx, Attributes);
             return dataAvfx;
-        }
-
-        public override void Print(int level)
-        {
-            Console.WriteLine("{0}------- {1} --------", new String('\t', level), Name);
-            Output(Attributes, level);
         }
     }
 }

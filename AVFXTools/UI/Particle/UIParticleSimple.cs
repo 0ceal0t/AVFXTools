@@ -21,7 +21,12 @@ namespace AVFXTools.UI
         public UIParticleSimple(AVFXParticleSimple simple)
         {
             Simple = simple;
-            if (!simple.Assigned) { Assigned = false; return; }
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            if (!Simple.Assigned) { Assigned = false; return; }
             //=======================
             Attributes.Add(new UIInt("Injection Position Type", Simple.InjectionPositionType));
             Attributes.Add(new UIInt("Injection Direction Type", Simple.InjectionDirectionType));
@@ -69,7 +74,7 @@ namespace AVFXTools.UI
             //=================
             Colors = new Vector4[4];
             Frames = new int[4];
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Colors[i] = new Vector4(
                     (float)Util.Bytes1ToInt(new byte[] { Simple.Colors.colors[i * 4 + 0] }) / 255,
@@ -89,7 +94,8 @@ namespace AVFXTools.UI
             {
                 if (ImGui.Button("+ Simple Animation" + id))
                 {
-                    // TODO
+                    Simple.toDefault();
+                    Init();
                 }
                 return;
             }
@@ -98,7 +104,8 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
+                    Simple.Assigned = false;
+                    Init();
                 }
                 DrawAttrs(id);
                 //====================

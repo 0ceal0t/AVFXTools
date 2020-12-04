@@ -32,29 +32,6 @@ namespace AVFXLib.Models
             UnknownFloats = new float[4];
         }
 
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-            JValue stringVal = (JValue)elem.GetValue("uniqueId");
-            UniqueId = (string)stringVal;
-
-            JArray intVals = (JArray)elem.GetValue("intVals");
-            int idx = 0;
-            foreach(JToken i in intVals)
-            {
-                UnknownInts[idx] = (int)i;
-                idx++;
-            }
-
-            JArray floatVals = (JArray)elem.GetValue("floatVals");
-            int idx2 = 0;
-            foreach (JToken f in floatVals)
-            {
-                UnknownFloats[idx2] = (float)f;
-                idx2++;
-            }
-        }
-
         public override void read(AVFXNode node)
         {
             Assigned = true;
@@ -81,6 +58,13 @@ namespace AVFXLib.Models
                 UnknownFloats[idx] = Util.Bytes4ToFloat(floatBytes);
                 offset += 4;
             }
+        }
+
+        public override void toDefault()
+        {
+            UniqueId = "LLIK";
+            UnknownInts = new int[] { 0, 0, 0, 0 };
+            UnknownFloats = new float[] { -1, 0, 0, 0 };
         }
 
         public override JToken toJSON()
@@ -129,12 +113,6 @@ namespace AVFXLib.Models
             }
 
             return new AVFXLeaf(NAME, 164, contents);
-        }
-
-        public override void Print(int level)
-        {
-            Console.WriteLine("{0}------- CLIP --------", new String('\t', level));
-            Console.WriteLine("{0}", new String('\t', level), UniqueId.ToString());
         }
     }
 }

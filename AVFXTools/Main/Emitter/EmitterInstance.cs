@@ -117,49 +117,41 @@ namespace AVFXTools.Main
             CreateInterval = emitter.CreateInterval.Keys[0].Z;
 
             // WHICH PARTICLES TO CREATE? ===========
-            if(emitter.ItPrs.Count > 0)
+            for (int idx = 0; idx < emitter.Particles.Count; idx++)
             {
-                var lastItPr = emitter.ItPrs[emitter.ItPrs.Count - 1];
-                for(int idx = 0; idx < lastItPr.Items.Count; idx++)
+                var SubItem = emitter.Particles[idx];
+                int targetIdx = SubItem.TargetIdx.Value;
+                if (targetIdx != -1 && SubItem.Enabled.Value == true && targetIdx < Item.C.Particles.Length)  // TODO: sometimes it's over. why?
                 {
-                    var SubItem = lastItPr.Items[idx];
-                    int targetIdx = SubItem.TargetIdx.Value;
-                    if(targetIdx != -1 && SubItem.Enabled.Value == true && targetIdx < Item.C.Particles.Length)  // TODO: sometimes it's over. why?
-                    {
-                        var Target = Item.C.Particles[targetIdx];
-                        float targetLife = Target.Life;
-                        CreateParticles.Add(new EmitterCreateStruct(
-                            targetIdx,
-                            targetLife == -1,
-                            SubItem
-                        ));
-                    }
+                    var Target = Item.C.Particles[targetIdx];
+                    float targetLife = Target.Life;
+                    CreateParticles.Add(new EmitterCreateStruct(
+                        targetIdx,
+                        targetLife == -1,
+                        SubItem
+                    ));
                 }
             }
             // WHICH EMITTERS TO CREATE? ==============
-            if (emitter.ItEms.Count > 0)
+            for (int idx = 0; idx < emitter.Emitters.Count; idx++)
             {
-                var lastItEm = emitter.ItEms[emitter.ItEms.Count - 1];
-                for (int idx = 0; idx < lastItEm.Items.Count; idx++)
+                var SubItem = emitter.Emitters[idx];
+                int targetIdx = SubItem.TargetIdx.Value;
+                if (targetIdx != -1 && SubItem.Enabled.Value == true && targetIdx < Item.C.Emitters.Length) // TODO: sometimes it's over. why?
                 {
-                    var SubItem = lastItEm.Items[idx];
-                    int targetIdx = SubItem.TargetIdx.Value;
-                    if (targetIdx != -1 && SubItem.Enabled.Value == true && targetIdx < Item.C.Emitters.Length) // TODO: sometimes it's over. why?
-                    {
-                        var Target = Item.C.Emitters[targetIdx];
-                        float targetLife = Target.Life;
-                        CreateEmitters.Add(new EmitterCreateStruct(
-                            targetIdx,
-                            targetLife == -1,
-                            SubItem
-                        ));
-                    }
+                    var Target = Item.C.Emitters[targetIdx];
+                    float targetLife = Target.Life;
+                    CreateEmitters.Add(new EmitterCreateStruct(
+                        targetIdx,
+                        targetLife == -1,
+                        SubItem
+                    ));
                 }
             }
 
-            _RotationOrder = emitter.RotationOrder.Value;
-            _CoordOrder = emitter.CoordComputeOrder.Value;
-            _RotationBase = emitter.RotationDirectionBase.Value;
+            _RotationOrder = emitter.RotationOrderType.Value;
+            _CoordOrder = emitter.CoordComputeOrderType.Value;
+            _RotationBase = emitter.RotationDirectionBaseType.Value;
             _Type = emitter.EmitterVariety.Value;
             switch (_Type)
             {

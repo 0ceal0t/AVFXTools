@@ -12,38 +12,40 @@ namespace AVFXLib.Models
     public class LiteralString : LiteralBase
     {
         public string Value { get; set; }
+        public int FixedSize;
 
-        public LiteralString(string jsonPath, string avfxName, int size = 4, bool inJson = true, bool inAVFX = true) : base(jsonPath, avfxName, size, inJson, inAVFX)
+        public LiteralString(string jsonPath, string avfxName, int size = 4, int fixedSize = -1) : base(jsonPath, avfxName, size)
         {
-        }
-
-        public override void read(JObject json)
-        {
+            FixedSize = fixedSize;
         }
 
         public override void read(AVFXNode node)
         {
         }
 
-        public override void read(JValue value)
-        {
-            Value = (string)value;
-            Size = Value.Length;
-            Assigned = true;
-        }
-
         public override void read(AVFXLeaf leaf)
         {
             Value = Util.BytesToString(leaf.Contents);
-            Size = leaf.Size;
+            if (FixedSize == -1)
+                Size = leaf.Size;
+            else
+                Size = FixedSize;
             Assigned = true;
         }
 
         public void GiveValue(string value)
         {
             Value = value;
-            Size = Value.Length;
+            if (FixedSize == -1)
+                Size = Value.Length;
+            else
+                Size = FixedSize;
             Assigned = true;
+        }
+
+        public override void toDefault()
+        {
+            GiveValue("");
         }
 
         public override JToken toJSON()

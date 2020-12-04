@@ -21,7 +21,12 @@ namespace AVFXTools.UI
         {
             Prop = prop;
             Name = name;
-            if (!prop.Assigned) { Assigned = false; return; }
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            if (!Prop.Assigned) { Assigned = false; return; }
             //====================
             Attributes.Add(new UICombo<BindPoint>("Bind Point Type", Prop.BindPointType));
             Attributes.Add(new UICombo<BindTargetPoint>("Bind Target Point Type", Prop.BindTargetPointType));
@@ -43,7 +48,8 @@ namespace AVFXTools.UI
             {
                 if (ImGui.Button("+ " + Name + id))
                 {
-                    // TODO
+                    Prop.toDefault();
+                    Init();
                 }
                 return;
             }
@@ -52,7 +58,8 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
+                    Prop.Assigned = false;
+                    Init();
                 }
                 DrawAttrs(id);
                 ImGui.TreePop();

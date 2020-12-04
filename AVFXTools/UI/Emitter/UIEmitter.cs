@@ -12,32 +12,43 @@ namespace AVFXTools.UI
     public class UIEmitter : UIBase
     {
         public AVFXEmitter Emitter;
+        public UIEmitterView View;
         public int Idx;
         //========================
         // TODO: sound
-        // TODO: emitter type
-        // TODO: particle + emitter count
         //=======================
-        List<UIBase> Animation = new List<UIBase>();
+        public UICombo<EmitterType> Type;
+        List<UIBase> Animation;
         //========================
-        public UIEmitterItem[] Particles;
-        public UIEmitterItem[] Emitters;
+        public List<UIEmitterItem> Particles;
+        public List<UIEmitterItem> Emitters;
         //========================
         public UIBase Data;
 
-        public UIEmitter(AVFXEmitter emitter)
+        public UIEmitter(AVFXEmitter emitter, UIEmitterView view)
         {
             Emitter = emitter;
+            View = view;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            // =====================
+            Animation = new List<UIBase>();
+            Particles = new List<UIEmitterItem>();
+            Emitters = new List<UIEmitterItem>();
             //======================
+            Type = new UICombo<EmitterType>("Type", Emitter.EmitterVariety, changeFunction: ChangeType);
             Attributes.Add(new UIInt("Sound Index", Emitter.SoundNumber));
             Attributes.Add(new UIInt("Loop Start", Emitter.LoopStart));
             Attributes.Add(new UIInt("Loop End", Emitter.LoopEnd));
             Attributes.Add(new UIInt("Child Limit", Emitter.ChildLimit));
             Attributes.Add(new UIInt("Effector Index", Emitter.EffectorIdx));
             Attributes.Add(new UICheckbox("Any Direction", Emitter.AnyDirection));
-            Attributes.Add(new UICombo<RotationDirectionBase>("Rotation Direction Base", Emitter.RotationDirectionBase));
-            Attributes.Add(new UICombo<CoordComputeOrder>("Coordinate Compute Order", Emitter.CoordComputeOrder));
-            Attributes.Add(new UICombo<RotationOrder>("Rotation Order", Emitter.RotationOrder));
+            Attributes.Add(new UICombo<RotationDirectionBase>("Rotation Direction Base", Emitter.RotationDirectionBaseType));
+            Attributes.Add(new UICombo<CoordComputeOrder>("Coordinate Compute Order", Emitter.CoordComputeOrderType));
+            Attributes.Add(new UICombo<RotationOrder>("Rotation Order", Emitter.RotationOrderType));
             // ==========================
             Animation.Add(new UILife(Emitter.Life));
             Animation.Add(new UICurve(Emitter.CreateCount, "Create Count"));
@@ -52,30 +63,21 @@ namespace AVFXTools.UI
             Animation.Add(new UICurve3Axis(Emitter.Rotation, "Rotation"));
             Animation.Add(new UICurve3Axis(Emitter.Scale, "Scale"));
             //========================
-            if(Emitter.ItPrs.Count > 0)
+            foreach(var particle in Emitter.Particles)
             {
-                var lastOne = Emitter.ItPrs[Emitter.ItPrs.Count - 1];
-                Particles = new UIEmitterItem[lastOne.Items.Count];
-                for(int i = 0; i < Particles.Length; i++)
-                {
-                    Particles[i] = new UIEmitterItem(lastOne.Items[i], true);
-                }
+                Particles.Add(new UIEmitterItem(particle, true, this));
             }
-            else { Particles = new UIEmitterItem[0]; }
             //============================
-            if (Emitter.ItEms.Count > 0)
+            foreach (var emitter in Emitter.Emitters)
             {
-                var lastOne = Emitter.ItEms[Emitter.ItEms.Count - 1];
-                Emitters = new UIEmitterItem[lastOne.Items.Count];
-                for (int i = 0; i < Emitters.Length; i++)
-                {
-                    Emitters[i] = new UIEmitterItem(lastOne.Items[i], false);
-                }
+                Emitters.Add(new UIEmitterItem(emitter, false, this));
             }
-            else { Emitters = new UIEmitterItem[0]; }
             //=======================
             switch (Emitter.EmitterVariety.Value)
             {
+                case EmitterType.Point:
+                    Data = null;
+                    break;
                 case EmitterType.SphereModel:
                     Data = new UIEmitterDataSphereModel((AVFXEmitterDataSphereModel)Emitter.Data);
                     break;
@@ -85,7 +87,15 @@ namespace AVFXTools.UI
                 case EmitterType.Model:
                     Data = new UIEmitterDataModel((AVFXEmitterDataModel)Emitter.Data);
                     break;
+                default:
+                    Data = null;
+                    break;
             }
+        }
+        public void ChangeType(LiteralEnum<EmitterType> literal)
+        {
+            Emitter.SetVariety(literal.Value);
+            Init();
         }
 
         public override void Draw(string parentId)
@@ -95,8 +105,10 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
+                    View.AVFX.removeEmitter(Idx);
+                    View.Init();
                 }
+                Type.Draw(id);
                 //==========================
                 if (ImGui.TreeNode("Parameters" + id))
                 {
@@ -110,7 +122,7 @@ namespace AVFXTools.UI
                     ImGui.TreePop();
                 }
                 //=======================
-                if (ImGui.TreeNode("Particles (" + Particles.Length + ")" + id))
+                if (ImGui.TreeNode("Particles (" + Particles.Count + ")" + id))
                 {
                     int pIdx = 0;
                     foreach (var particle in Particles)
@@ -121,12 +133,13 @@ namespace AVFXTools.UI
                     }
                     if (ImGui.Button("+ Particle" + id))
                     {
-                        // TODO
+                        Emitter.addParticle();
+                        Init();
                     }
                     ImGui.TreePop();
                 }
                 //=======================
-                if (ImGui.TreeNode("Emitters (" + Emitters.Length + ")" + id))
+                if (ImGui.TreeNode("Emitters (" + Emitters.Count + ")" + id))
                 {
                     int eIdx = 0;
                     foreach (var emitter in Emitters)
@@ -137,7 +150,8 @@ namespace AVFXTools.UI
                     }
                     if (ImGui.Button("+ Emitter" + id))
                     {
-                        // TODO
+                        Emitter.addEmitter();
+                        Init();
                     }
                     ImGui.TreePop();
                 }

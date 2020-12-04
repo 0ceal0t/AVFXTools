@@ -14,25 +14,12 @@ namespace AVFXLib.Models
         public T Value { get; set; }
         public string[] Options = Enum.GetNames(typeof(T));
 
-        public LiteralEnum(string jsonPath, string avfxName, int size = 4, bool inJson = true, bool inAVFX = true) : base(jsonPath, avfxName, size, inJson, inAVFX)
-        {
-        }
-
-        public override void read(JObject json)
+        public LiteralEnum(string jsonPath, string avfxName, int size = 4) : base(jsonPath, avfxName, size)
         {
         }
 
         public override void read(AVFXNode node)
         {
-        }
-
-        public override void read(JValue value)
-        {
-            if ((int)value != -1)
-            {
-                GiveValue((string)value);
-            }
-            Assigned = true;
         }
 
         public override void read(AVFXLeaf leaf)
@@ -49,8 +36,18 @@ namespace AVFXLib.Models
 
         public void GiveValue(string value)
         {
-            Value = (T)Enum.Parse(typeof(T), value, true);
+            T enumValue = (T)Enum.Parse(typeof(T), value, true);
+            GiveValue(enumValue);
+        }
+        public void GiveValue(T value)
+        {
+            Value = value;
             Assigned = true;
+        }
+
+        public override void toDefault()
+        {
+            GiveValue((T)(object)0);
         }
 
         public override JToken toJSON()

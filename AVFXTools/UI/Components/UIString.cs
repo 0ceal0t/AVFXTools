@@ -16,30 +16,20 @@ namespace AVFXTools.UI
         public LiteralString Literal;
         public byte[] Value;
         // ========================
-        public delegate byte[] Init(LiteralString literal);
-        public Init InitFunction;
-        public delegate string Change(byte[] value);
+        public delegate void Change(LiteralString literal);
         public Change ChangeFunction;
 
-        public UIString(string id, LiteralString literal, Init initFunction = null, Change changeFunction = null, int maxSizeBytes = 164)
+        public UIString(string id, LiteralString literal, Change changeFunction = null, int maxSizeBytes = 164)
         {
             Id = id;
             Literal = literal;
             Value = new byte[maxSizeBytes];
-            if (initFunction != null)
-                InitFunction = initFunction;
             if (changeFunction != null)
                 ChangeFunction = changeFunction;
-            // =====================
-            byte[] val;
-            if (InitFunction == null)
-            {
-                val = Util.StringToBytes(Literal.Value);
-            }
             else
-            {
-                val = InitFunction(Literal);
-            }
+                ChangeFunction = DoNothing;
+            // =====================
+            byte[] val = Util.StringToBytes(Literal.Value);
             Buffer.BlockCopy(val, 0, Value, 0, val.Length);
         }
 
@@ -49,15 +39,11 @@ namespace AVFXTools.UI
             ImGui.SameLine();
             if (ImGui.Button("Update" + id))
             {
-                if (ChangeFunction == null)
-                {
-                    Literal.GiveValue(Util.BytesToString(Value).Trim('\0'));
-                }
-                else
-                {
-                    Literal.GiveValue(ChangeFunction(Value));
-                }
+                Literal.GiveValue(Util.BytesToString(Value).Trim('\0'));
+                ChangeFunction(Literal);
             }
         }
+
+        public static void DoNothing(LiteralString literal) { }
     }
 }

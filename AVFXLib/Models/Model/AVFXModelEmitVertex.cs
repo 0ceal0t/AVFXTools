@@ -17,18 +17,6 @@ namespace AVFXLib.Models
 
         public EmitVertex() { }
 
-        public EmitVertex(JObject elem)
-        {
-            JArray position = (JArray)elem.GetValue("p");
-            JArray normal = (JArray)elem.GetValue("n");
-            for (int idx = 0; idx < 3; idx++)
-            {
-                Position[idx] = (float)position[idx];
-                Normal[idx] = (int)normal[idx];
-            }
-            C = (int)elem.GetValue("c");
-        }
-
         public EmitVertex(byte[] bytes)
         {
             for (int idx = 0; idx < 3; idx++)

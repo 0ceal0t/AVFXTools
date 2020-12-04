@@ -14,6 +14,7 @@ namespace AVFXTools.UI
     public class UITimelineClip : UIBase
     {
         public AVFXTimelineClip Clip;
+        public UITimeline Timeline;
         public int Idx;
         //===============================
         public static uint UniqueIdBytesSize = 164;
@@ -22,14 +23,20 @@ namespace AVFXTools.UI
         public Vector4 UnknownInts;
         public Vector4 UnknownFloats;
 
-        public UITimelineClip(AVFXTimelineClip clip)
+        public UITimelineClip(AVFXTimelineClip clip, UITimeline timeline)
         {
             Clip = clip;
+            Timeline = timeline;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=====================
-            byte[] uniqueId = Util.StringToBytes(clip.UniqueId);
+            byte[] uniqueId = Util.StringToBytes(Clip.UniqueId);
             Buffer.BlockCopy(uniqueId, 0, UniqueIdBytes, 0, uniqueId.Length);
-            UnknownInts = new Vector4(clip.UnknownInts[0], clip.UnknownFloats[1], clip.UnknownInts[2], clip.UnknownInts[3]);
-            UnknownFloats = new Vector4(clip.UnknownFloats[0], clip.UnknownFloats[1], clip.UnknownFloats[2], clip.UnknownFloats[3]);
+            UnknownInts = new Vector4(Clip.UnknownInts[0], Clip.UnknownFloats[1], Clip.UnknownInts[2], Clip.UnknownInts[3]);
+            UnknownFloats = new Vector4(Clip.UnknownFloats[0], Clip.UnknownFloats[1], Clip.UnknownFloats[2], Clip.UnknownFloats[3]);
         }
 
         public override void Draw(string parentId)
@@ -39,7 +46,8 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
+                    Timeline.Timeline.removeClip(Idx);
+                    Timeline.Init();
                 }
                 if (ImGui.InputFloat4("Unknown Ints" + id, ref UnknownInts))
                 {

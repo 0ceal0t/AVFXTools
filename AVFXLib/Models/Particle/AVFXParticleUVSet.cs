@@ -31,16 +31,17 @@ namespace AVFXLib.Models
             });
         }
 
-        public override void read(JObject elem)
-        {
-            Assigned = true;
-            ReadJSON(Attributes, elem);
-        }
-
         public override void read(AVFXNode node)
         {
             Assigned = true;
             ReadAVFX(Attributes, node);
+        }
+
+        public override void toDefault()
+        {
+            Assigned = true;
+            SetUnAssigned(Attributes);
+            SetDefault(CalculateUVType);
         }
 
         public override JToken toJSON()
@@ -55,12 +56,6 @@ namespace AVFXLib.Models
             AVFXNode uvstAvfx = new AVFXNode("UvSt");
             PutAVFX(uvstAvfx, Attributes);
             return uvstAvfx;
-        }
-
-        public override void Print(int level)
-        {
-            Console.WriteLine("{0}------- UVSt --------", new String('\t', level));
-            Output(Attributes, level);
         }
     }
 }

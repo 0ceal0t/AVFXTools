@@ -15,43 +15,30 @@ namespace AVFXTools.UI
         public int Value;
         public LiteralInt Literal;
 
-        public delegate int Init(LiteralInt literal);
-        public Init InitFunction;
-        public delegate int Change(int value);
+        public delegate void Change(LiteralInt literal);
         public Change ChangeFunction;
 
-        public UIInt(string id, LiteralInt literal, Init initFunction = null, Change changeFunction = null)
+        public UIInt(string id, LiteralInt literal, Change changeFunction = null)
         {
             Id = id;
             Literal = literal;
-            if (initFunction != null)
-                InitFunction = initFunction;
             if (changeFunction != null)
                 ChangeFunction = changeFunction;
-            // =====================
-            if (InitFunction == null)
-            {
-                Value = Literal.Value;
-            }
             else
-            {
-                Value = InitFunction(Literal);
-            }
+                ChangeFunction = DoNothing;
+            // =====================
+            Value = Literal.Value;
         }
 
         public override void Draw(string id)
         {
             if (ImGui.InputInt(Id + id, ref Value))
             {
-                if (ChangeFunction == null)
-                {
-                    Literal.GiveValue(Value);
-                }
-                else
-                {
-                    Literal.GiveValue(ChangeFunction(Value));
-                }
+                Literal.GiveValue(Value);
+                ChangeFunction(Literal);
             }
         }
+
+        public static void DoNothing(LiteralInt literal) { }
     }
 }

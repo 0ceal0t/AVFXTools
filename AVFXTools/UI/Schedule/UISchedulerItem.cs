@@ -13,14 +13,21 @@ namespace AVFXTools.UI
     public class UISchedulerItem : UIBase
     {
         public AVFXScheduleSubItem Item;
+        public UIScheduler Sched;
         public int Idx;
         public string Name;
         // ====================
 
-        public UISchedulerItem(AVFXScheduleSubItem item, string name)
+        public UISchedulerItem(AVFXScheduleSubItem item, string name, UIScheduler sched)
         {
             Item = item;
+            Sched = sched;
             Name = name;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             // ============================
             Attributes.Add(new UICheckbox("Enabled", Item.Enabled));
             Attributes.Add(new UIInt("Start Time", Item.StartTime));
@@ -36,7 +43,8 @@ namespace AVFXTools.UI
                 {
                     if (UIUtils.RemoveButton("Delete" + id))
                     {
-                        // TODO
+                        Sched.Scheduler.removeItem(Idx);
+                        Sched.Init();
                     }
                 }
                 DrawAttrs(id);

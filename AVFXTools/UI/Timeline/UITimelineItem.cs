@@ -12,12 +12,19 @@ namespace AVFXTools.UI
     public class UITimelineItem : UIBase
     {
         public AVFXTimelineSubItem Item;
+        public UITimeline Timeline;
         public int Idx;
         //===========================
 
-        public UITimelineItem(AVFXTimelineSubItem item)
+        public UITimelineItem(AVFXTimelineSubItem item, UITimeline timeline)
         {
             Item = item;
+            Timeline = timeline;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //==================
             Attributes.Add(new UICheckbox("Enabled", Item.Enabled));
             Attributes.Add(new UIInt("Start Time", Item.StartTime));
@@ -36,7 +43,8 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
+                    Timeline.Timeline.removeItem(Idx);
+                    Timeline.Init();
                 }
                 DrawAttrs(id);
                 ImGui.TreePop();

@@ -31,16 +31,12 @@ namespace AVFXTools.Main
             Timeline = timeline;
             C = core;
             //==============
-            if (timeline.Items.Count > 0)
+            foreach (var subItem in Timeline.Items)
             {
-                var lastItem = timeline.Items[timeline.Items.Count - 1];
-                foreach (var subItem in lastItem.SubItems)
+                var emitterIdx = subItem.EmitterIdx.Value;
+                if (emitterIdx != -1 && (subItem.Enabled.Value == true))
                 {
-                    var emitterIdx = subItem.EmitterIdx.Value;
-                    if (emitterIdx != -1 && (subItem.Enabled.Value == true))
-                    {
-                        Items.Add(new TimelineSubItem(subItem.BinderIdx.Value, emitterIdx));
-                    }
+                    Items.Add(new TimelineSubItem(subItem.BinderIdx.Value, emitterIdx));
                 }
             }
         }

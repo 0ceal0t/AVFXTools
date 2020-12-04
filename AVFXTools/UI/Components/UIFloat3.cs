@@ -19,50 +19,34 @@ namespace AVFXTools.UI
         public LiteralFloat Literal2;
         public LiteralFloat Literal3;
 
-        public delegate Vector3 Init(LiteralFloat literal1, LiteralFloat literal2, LiteralFloat literal3);
-        public Init InitFunction;
-        public delegate Vector3 Change(Vector3 value);
+        public delegate void Change(LiteralFloat literal1, LiteralFloat literal2, LiteralFloat literal3);
         public Change ChangeFunction;
 
-        public UIFloat3(string id, LiteralFloat literal1, LiteralFloat literal2, LiteralFloat literal3, Init initFunction = null, Change changeFunction = null)
+        public UIFloat3(string id, LiteralFloat literal1, LiteralFloat literal2, LiteralFloat literal3, Change changeFunction = null)
         {
             Id = id;
             Literal1 = literal1;
             Literal2 = literal2;
             Literal3 = literal3;
-            if (initFunction != null)
-                InitFunction = initFunction;
             if (changeFunction != null)
                 ChangeFunction = changeFunction;
-            // =====================
-            if (InitFunction == null)
-            {
-                Value = new Vector3(Literal1.Value, Literal2.Value, Literal3.Value);
-            }
             else
-            {
-                Value = InitFunction(Literal1, Literal2, Literal3);
-            }
+                ChangeFunction = DoNothing;
+            // =====================
+            Value = new Vector3(Literal1.Value, Literal2.Value, Literal3.Value);
         }
 
         public override void Draw(string id)
         {
             if (ImGui.InputFloat3(Id + id, ref Value))
             {
-                if (ChangeFunction == null)
-                {
-                    Literal1.GiveValue(Value.X);
-                    Literal2.GiveValue(Value.Y);
-                    Literal3.GiveValue(Value.Z);
-                }
-                else
-                {
-                    Vector3 V = ChangeFunction(Value);
-                    Literal1.GiveValue(V.X);
-                    Literal2.GiveValue(V.Y);
-                    Literal3.GiveValue(V.Z);
-                }
+                Literal1.GiveValue(Value.X);
+                Literal2.GiveValue(Value.Y);
+                Literal3.GiveValue(Value.Z);
+                ChangeFunction(Literal1, Literal2, Literal3);
             }
         }
+
+        public static void DoNothing(LiteralFloat literal1, LiteralFloat literal2, LiteralFloat literal3) { }
     }
 }

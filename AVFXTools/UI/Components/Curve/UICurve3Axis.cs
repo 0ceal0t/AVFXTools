@@ -13,7 +13,6 @@ namespace AVFXTools.UI
     public class UICurve3Axis : UIBase
     {
         public AVFXCurve3Axis Curve;
-        public bool Assigned = false;
         public string Name;
         //=========================
         public UICurve X;
@@ -27,8 +26,12 @@ namespace AVFXTools.UI
         {
             Curve = curve;
             Name = name;
-            if (!curve.Assigned) { Assigned = false; return; }
-            Assigned = true;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            if (!Curve.Assigned) { Assigned = false; return; }
             // ======================
             Attributes.Add(new UICombo<AxisConnect>("Axis Connect", Curve.AxisConnectType));
             Attributes.Add(new UICombo<RandomType>("Axis Connect Random", Curve.AxisConnectRandomType));
@@ -48,7 +51,8 @@ namespace AVFXTools.UI
             {
                 if (ImGui.Button("+ " + Name + id))
                 {
-                    // TODO
+                    Curve.toDefault();
+                    Init();
                 }
                 return;
             }
@@ -57,7 +61,8 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
+                    Curve.Assigned = false;
+                    Init();
                 }
                 DrawAttrs(id);
                 ImGui.TreePop();

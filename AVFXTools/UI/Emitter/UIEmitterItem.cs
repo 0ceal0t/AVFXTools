@@ -13,14 +13,21 @@ namespace AVFXTools.UI
     public class UIEmitterItem : UIBase
     {
         public AVFXEmitterIterationItem Iteration;
+        public UIEmitter Emitter;
         public bool IsParticle;
         public int Idx;
         //=============================
 
-        public UIEmitterItem(AVFXEmitterIterationItem iteration, bool isParticle)
+        public UIEmitterItem(AVFXEmitterIterationItem iteration, bool isParticle, UIEmitter emitter)
         {
             Iteration = iteration;
+            Emitter = emitter;
             IsParticle = isParticle;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=========================
             Attributes.Add(new UICheckbox("Enabled", Iteration.Enabled));
             Attributes.Add(new UIInt("Target Index", Iteration.TargetIdx));
@@ -56,7 +63,15 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete " + Type + id))
                 {
-                    // TODO
+                    if (IsParticle)
+                    {
+                        Emitter.Emitter.removeParticle(Idx);
+                    }
+                    else
+                    {
+                        Emitter.Emitter.removeEmitter(Idx);
+                    }
+                    Emitter.Init();
                 }
                 DrawAttrs(id);
                 ImGui.TreePop();

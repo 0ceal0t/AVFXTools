@@ -9,13 +9,21 @@ namespace AVFXTools.UI
 {
     public class UIScheduleView : UIBase
     {
-        List<UIScheduler> Schedulers = new List<UIScheduler>();
+        public AVFXBase AVFX;
+        List<UIScheduler> Schedulers;
 
         public UIScheduleView(AVFXBase avfx)
         {
-            foreach (var sched in avfx.Schedulers)
+            AVFX = avfx;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
+            Schedulers = new List<UIScheduler>();
+            foreach (var sched in AVFX.Schedulers)
             {
-                Schedulers.Add(new UIScheduler(sched));
+                Schedulers.Add(new UIScheduler(sched, this));
             }
         }
 

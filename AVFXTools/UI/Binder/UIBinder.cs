@@ -11,16 +11,23 @@ namespace AVFXTools.UI
     public class UIBinder : UIBase
     {
         public AVFXBinder Binder;
+        public UIBinderView View;
         public int Idx;
         //====================
-        // TODO: Binder Type
-        // ====================
+        public UICombo<BinderType> Type;
         public UIBase Data;
 
-        public UIBinder(AVFXBinder binder)
+        public UIBinder(AVFXBinder binder, UIBinderView view)
         {
             Binder = binder;
+            View = view;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=====================
+            Type = new UICombo<BinderType>("Type", Binder.BinderVariety, changeFunction:ChangeType);
             Attributes.Add(new UICheckbox("Start to Global Direction", Binder.StartToGlobalDirection));
             Attributes.Add(new UICheckbox("VFX Scale", Binder.VfxScaleEnabled));
             Attributes.Add(new UIFloat("VFX Scale Bias", Binder.VfxScaleBias));
@@ -51,7 +58,15 @@ namespace AVFXTools.UI
                 case BinderType.Camera:
                     Data = new UIBinderDataCamera((AVFXBinderDataCamera)Binder.Data);
                     break;
+                default:
+                    Data = null;
+                    break;
             }
+        }
+        public void ChangeType(LiteralEnum<BinderType> literal)
+        {
+            Binder.SetVariety(literal.Value);
+            Init();
         }
 
         public override void Draw(string parentId)
@@ -61,8 +76,10 @@ namespace AVFXTools.UI
             {
                 if (UIUtils.RemoveButton("Delete" + id))
                 {
-                    // TODO
+                    View.AVFX.removeBinder(Idx);
+                    View.Init();
                 }
+                Type.Draw(id);
                 DrawAttrs(id);
                 //====================
                 if (Data != null)

@@ -1,4 +1,5 @@
 ﻿using AVFXLib.AVFX;
+using AVFXLib.Main;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,11 @@ using System.Threading.Tasks;
 
 namespace AVFXLib.Models
 {
-    public class LiteralInt : LiteralBase
+    public class LiteralBool : LiteralBase
     {
-        public int Value { get; set; }
+        public bool? Value { get; set; }
 
-        public LiteralInt(string jsonPath, string avfxName, int size = 4, bool inJson = true, bool inAVFX = true) : base(jsonPath, avfxName, size, inJson, inAVFX)
-        {
-        }
-
-        public override void read(JObject json)
+        public LiteralBool(string jsonPath, string avfxName, int size = 4) : base(jsonPath, avfxName, size)
         {
         }
 
@@ -24,47 +21,51 @@ namespace AVFXLib.Models
         {
         }
 
-        public override void read(JValue value)
-        {
-            Value = (int)value;
-            Assigned = true;
-        }
-
         public override void read(AVFXLeaf leaf)
         {
+            if(Size == 1)
+            {
+                Value = Util.Bytes1ToBool(leaf.Contents);
+            }
+            else if(Size == 4)
+            {
+                Value = Util.Bytes4ToBool(leaf.Contents);
+            }
+
             Size = leaf.Size;
-            if (Size == 4)
-            {
-                Value = BitConverter.ToInt32(leaf.Contents, 0);
-            }
-            else if (Size == 1)
-            {
-                Value = (int)leaf.Contents[0];
-            }
             Assigned = true;
         }
 
-        public void GiveValue(int value)
+        public void GiveValue(bool? value)
         {
             Value = value;
             Assigned = true;
         }
 
+        public override void toDefault()
+        {
+            GiveValue(false);
+        }
+
         public override JToken toJSON()
         {
+            if(Value == null)
+            {
+                return new JValue(-1);
+            }
             return new JValue(Value);
         }
 
         public override AVFXNode toAVFX()
         {
             byte[] bytes = new byte[0];
-            if (Size == 4)
+            if(Size == 4)
             {
-                bytes = BitConverter.GetBytes(Convert.ToInt32(Value));
+                bytes = Util.BoolTo4Bytes(Value);
             }
-            else if (Size == 1)
+            else if(Size == 1)
             {
-                bytes = new byte[] { Convert.ToByte(Value) };
+                bytes = Util.BoolTo1Bytes(Value);
             }
             return new AVFXLeaf(AVFXName, Size, bytes);
         }

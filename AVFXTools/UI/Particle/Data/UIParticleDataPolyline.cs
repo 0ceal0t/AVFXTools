@@ -17,6 +17,11 @@ namespace AVFXTools.UI
         public UIParticleDataPolyline(AVFXParticleDataPolyline data)
         {
             Data = data;
+            Init();
+        }
+        public override void Init()
+        {
+            base.Init();
             //=======================
             Attributes.Add(new UICombo<LineCreateType>("Create Line Type", Data.CreateLineType));
             Attributes.Add(new UICombo<NotBillboardBaseAxisType>("Not Billboard Base Axis", Data.NotBillBoardBaseAxisType));
