@@ -36,6 +36,7 @@ namespace AVFXTools.Main
         public ResourceSet ProjViewWorldSet;
         public ResourceFactory Factory;
 
+        public bool Init = false; // getter set up
         public AVFXBase AVFX;
         public ResourceGetter Getter;
         public WepModel Model;

@@ -15,8 +15,6 @@ namespace AVFXTools.UI
         public UIEffectorView View;
         public int Idx;
         //========================
-        // TODO: effector type
-        //=======================
         public UICombo<EffectorType> Type;
         public UIBase Data;
 

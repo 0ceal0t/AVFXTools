@@ -19,6 +19,11 @@ namespace AVFXTools.FFXIV
 
         public ResourceGetter(string gamePath)
         {
+            init(gamePath);
+        }
+
+        public void init(string gamePath)
+        {
             realm = new ARealmReversed(gamePath, SaintCoinach.Ex.Language.English);
             realm.Packs.GetPack(new SaintCoinach.IO.PackIdentifier("exd", SaintCoinach.IO.PackIdentifier.DefaultExpansion, 0)).KeepInMemory = true;
 

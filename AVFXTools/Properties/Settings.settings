@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AVFXTools.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GamePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ModelOnLoad" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="VFXOnLoad" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ModelPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">chara/weapon/w1501/obj/body/b0036/model/w1501b0036.mdl</Value>
+    </Setting>
+    <Setting Name="VFXPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">chara/weapon/w1501/obj/body/b0036/vfx/eff/vw0002.avfx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

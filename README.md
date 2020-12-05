@@ -1,6 +1,14 @@
 ﻿# AVFXTools
  
-Here be dragons. Someone more knowledgable than me please help -_-
+VFX viewer and editor for FFXIV
+
+## Disclaimer
+
+I cannot overstate how in-progress this is. Here be dragons.
+
+## Aknowledgements
+
+Parts are stitched together from the code of XIVLauncher and SaintCoinach because I have no idea what I'm doing. Thanks.
 
 ## TODO
 ### General Everything

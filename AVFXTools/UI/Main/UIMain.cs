@@ -55,11 +55,11 @@ namespace AVFXTools.UI
             Controls = new UIControls(this);
             ImGui.SetNextWindowPos(new Vector2(10, 10));
             ImGui.SetNextWindowSize(new Vector2(400, 600));
+            SetupTheme();
         }
 
         public void Draw()
         {
-            SetupTheme();
             ImGui.Begin("AVFX");
             //================================
             ImGui.PushStyleColor(ImGuiCol.Button, new Vector4(0.8f, 0, 0, 1));

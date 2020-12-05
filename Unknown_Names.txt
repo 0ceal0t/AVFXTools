@@ -1,9 +1,0 @@
-BASE:
-	'NBC '
-	'FBC '
-BINDER:
-	'Prp1'
-	'Prp2'
-	'PrpG'
-EFFECTOR - DIR LIGHT
-EFFECTOR - BLACK HOLE

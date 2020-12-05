@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\squirrel.windows.2.0.1\build\squirrel.windows.props" Condition="Exists('..\packages\squirrel.windows.2.0.1\build\squirrel.windows.props')" />
   <Import Project="..\AVFXStudio\packages\OpenCvSharp4.runtime.win.4.5.0.20201013\build\net\OpenCvSharp4.runtime.win.props" Condition="Exists('..\AVFXStudio\packages\OpenCvSharp4.runtime.win.4.5.0.20201013\build\net\OpenCvSharp4.runtime.win.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -15,6 +16,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -27,6 +43,8 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>8.0</LangVersion>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DefineConstants>TRACE;DEBUG;AVFX_NOAUTOUPDATE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -39,9 +57,27 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>AVFXTools.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="alglib.net, Version=3.16.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\alglib.net.3.16.0\lib\net48\alglib.net.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DeltaCompressionDotNet, Version=1.1.0.0, Culture=neutral, PublicKeyToken=1d14d6e5194e7f4a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DeltaCompressionDotNet.MsDelta, Version=1.1.0.0, Culture=neutral, PublicKeyToken=46b2138a390abf55, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.MsDelta.dll</HintPath>
+    </Reference>
+    <Reference Include="DeltaCompressionDotNet.PatchApi, Version=1.1.0.0, Culture=neutral, PublicKeyToken=3e8888ee913ed789, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.PatchApi.dll</HintPath>
     </Reference>
     <Reference Include="ImGui.NET, Version=1.72.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ImGui.NET.1.72.0\lib\netstandard2.0\ImGui.NET.dll</HintPath>
@@ -60,14 +96,32 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Mono.Cecil, Version=0.11.2.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.11.2\lib\net40\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb, Version=0.11.2.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.11.2\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.11.2.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.11.2\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.11.2.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.11.2\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
     <Reference Include="NativeLibraryLoader, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\NativeLibraryLoader.1.0.10\lib\netstandard2.0\NativeLibraryLoader.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NuGet.Squirrel, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\squirrel.windows.2.0.1\lib\Net45\NuGet.Squirrel.dll</HintPath>
+    </Reference>
     <Reference Include="Pfim, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\Pfim.0.9.1\lib\netstandard2.0\Pfim.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress, Version=0.17.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.17.1\lib\net45\SharpCompress.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\SharpDX.4.0.1\lib\net45\SharpDX.dll</HintPath>
@@ -90,6 +144,9 @@
     <Reference Include="SixLabors.ImageSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\SixLabors.ImageSharp.1.0.1\lib\net472\SixLabors.ImageSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Squirrel, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\squirrel.windows.2.0.1\lib\Net45\Squirrel.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
@@ -100,12 +157,17 @@
       <HintPath>..\AVFXStudio\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.7.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -162,6 +224,7 @@
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net" />
     <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
       <Private>True</Private>
@@ -204,6 +267,10 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.7.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
       <Private>True</Private>
@@ -224,6 +291,13 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Security.Permissions, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.4.7.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.7.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Text.Encodings.Web, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\System.Text.Encodings.Web.4.7.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
@@ -238,6 +312,7 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -283,41 +358,45 @@
     <Reference Include="vk, Version=1.0.22.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\AVFXStudio\packages\Vk.1.0.22\lib\netstandard1.4\vk.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\AppSettings.cs" />
+    <Compile Include="Configuration\AppUpdates.cs" />
+    <Compile Include="Configuration\Paths.cs" />
     <Compile Include="FFXIV\DDSConverter.cs" />
     <Compile Include="FFXIV\HavokInterop.cs" />
     <Compile Include="FFXIV\InteropTransform.cs" />
     <Compile Include="FFXIV\InteropVector4.cs" />
     <Compile Include="FFXIV\ResourceGetter.cs" />
-    <Compile Include="GraphicsBase\Application.cs" />
-    <Compile Include="GraphicsBase\ApplicationWindow.cs" />
-    <Compile Include="GraphicsBase\Camera.cs" />
-    <Compile Include="GraphicsBase\InputTracker.cs" />
-    <Compile Include="GraphicsBase\VeldridStartupWindow.cs" />
-    <Compile Include="Main\Binder\BinderItem.cs" />
-    <Compile Include="Main\Main\Core.cs" />
-    <Compile Include="Main\Components\CurveRandomAttribute.cs" />
-    <Compile Include="Main\Emitter\EmitterInstance.cs" />
-    <Compile Include="Main\Emitter\EmitterItem.cs" />
-    <Compile Include="Main\Components\GenericInstance.cs" />
-    <Compile Include="Main\Components\GUtil.cs" />
-    <Compile Include="Main\Main\MainViewer.cs" />
-    <Compile Include="Main\Components\MatrixTriplet.cs" />
-    <Compile Include="Main\Model\ModelItem.cs" />
-    <Compile Include="Main\Particle\Data\ParticleInstanceModel.cs" />
-    <Compile Include="Main\Particle\ParticleInstance.cs" />
-    <Compile Include="Main\Particle\Data\ParticleInstanceData.cs" />
-    <Compile Include="Main\Particle\Data\ParticleInstancePowderInstance.cs" />
-    <Compile Include="Main\Particle\ParticleItem.cs" />
-    <Compile Include="Main\Particle\ParticlePipeline.cs" />
-    <Compile Include="Main\Particle\Data\ParticleInstancePowderSpawner.cs" />
-    <Compile Include="Main\Shaders\ShaderBuilder.cs" />
-    <Compile Include="Main\Shaders\ShaderConstants.cs" />
-    <Compile Include="Main\Texture\Textures.cs" />
-    <Compile Include="Main\Timeline\TimelineItem.cs" />
-    <Compile Include="Main\Model\WepModel.cs" />
-    <Compile Include="Main\Model\WepModelItem.cs" />
+    <Compile Include="ApplicationBase\Application.cs" />
+    <Compile Include="ApplicationBase\ApplicationWindow.cs" />
+    <Compile Include="ApplicationBase\Camera.cs" />
+    <Compile Include="ApplicationBase\InputTracker.cs" />
+    <Compile Include="ApplicationBase\VeldridStartupWindow.cs" />
+    <Compile Include="Graphics\Binder\BinderItem.cs" />
+    <Compile Include="Graphics\Main\Core.cs" />
+    <Compile Include="Graphics\Components\CurveRandomAttribute.cs" />
+    <Compile Include="Graphics\Emitter\EmitterInstance.cs" />
+    <Compile Include="Graphics\Emitter\EmitterItem.cs" />
+    <Compile Include="Graphics\Components\GenericInstance.cs" />
+    <Compile Include="Graphics\Components\GUtil.cs" />
+    <Compile Include="Graphics\Main\MainViewer.cs" />
+    <Compile Include="Graphics\Components\MatrixTriplet.cs" />
+    <Compile Include="Graphics\Model\ModelItem.cs" />
+    <Compile Include="Graphics\Particle\Data\ParticleInstanceModel.cs" />
+    <Compile Include="Graphics\Particle\ParticleInstance.cs" />
+    <Compile Include="Graphics\Particle\Data\ParticleInstanceData.cs" />
+    <Compile Include="Graphics\Particle\Data\ParticleInstancePowderInstance.cs" />
+    <Compile Include="Graphics\Particle\ParticleItem.cs" />
+    <Compile Include="Graphics\Particle\ParticlePipeline.cs" />
+    <Compile Include="Graphics\Particle\Data\ParticleInstancePowderSpawner.cs" />
+    <Compile Include="Graphics\Shaders\ShaderBuilder.cs" />
+    <Compile Include="Graphics\Shaders\ShaderConstants.cs" />
+    <Compile Include="Graphics\Texture\Textures.cs" />
+    <Compile Include="Graphics\Timeline\TimelineItem.cs" />
+    <Compile Include="Graphics\Model\WepModel.cs" />
+    <Compile Include="Graphics\Model\WepModelItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -326,6 +405,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="FFXIV\Skeleton.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="UI\Binder\Data\UIBinderDataCamera.cs" />
     <Compile Include="UI\Binder\Data\UIBinderDataLinear.cs" />
     <Compile Include="UI\Binder\Data\UIBinderDataSpline.cs" />
@@ -349,6 +433,7 @@
     <Compile Include="UI\Main\UIControls.cs" />
     <Compile Include="UI\Main\UIMain.cs" />
     <Compile Include="UI\Base\UIParameterView.cs" />
+    <Compile Include="UI\Main\UISettings.cs" />
     <Compile Include="UI\Model\UIModel.cs" />
     <Compile Include="UI\Model\UIModelView.cs" />
     <Compile Include="UI\Particle\Data\UIParticleDataDecal.cs" />
@@ -394,13 +479,23 @@
     <Compile Include="UI\Timeline\UITimelineClip.cs" />
     <Compile Include="UI\Timeline\UITimelineItem.cs" />
     <Compile Include="UI\Main\UIUtils.cs" />
+    <Compile Include="Windows\ConfigWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\ConfigWindow.Designer.cs">
+      <DependentUpon>ConfigWindow.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="out\base.json" />
-    <None Include="out\nid.json" />
-    <None Include="out\rav.json" />
-    <None Include="out\test.json" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Test\base.json" />
+    <None Include="Test\nid.json" />
+    <None Include="Test\rav.json" />
+    <None Include="Test\test.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -422,12 +517,29 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ConfigWindow.resx">
+      <DependentUpon>ConfigWindow.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <Content Include="hkAnimationInterop.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icon.ico" />
+    <Content Include="Test\MiscNotes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\AVFXStudio\packages\Veldrid.SPIRV.1.0.13\build\net40\Veldrid.SPIRV.targets" Condition="Exists('..\AVFXStudio\packages\Veldrid.SPIRV.1.0.13\build\net40\Veldrid.SPIRV.targets')" />
@@ -440,6 +552,7 @@
     <Error Condition="!Exists('..\AVFXStudio\packages\OpenCvSharp4.runtime.win.4.5.0.20201013\build\net\OpenCvSharp4.runtime.win.props')" Text="$([System.String]::Format('$(ErrorText)', '..\AVFXStudio\packages\OpenCvSharp4.runtime.win.4.5.0.20201013\build\net\OpenCvSharp4.runtime.win.props'))" />
     <Error Condition="!Exists('..\packages\Veldrid.SPIRV.1.0.13\build\net40\Veldrid.SPIRV.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Veldrid.SPIRV.1.0.13\build\net40\Veldrid.SPIRV.targets'))" />
     <Error Condition="!Exists('..\packages\ImGui.NET.1.72.0\build\net40\ImGui.NET.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ImGui.NET.1.72.0\build\net40\ImGui.NET.targets'))" />
+    <Error Condition="!Exists('..\packages\squirrel.windows.2.0.1\build\squirrel.windows.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\squirrel.windows.2.0.1\build\squirrel.windows.props'))" />
   </Target>
   <Import Project="..\AVFXStudio\packages\Veldrid.SDL2.4.8.0\build\net40\Veldrid.SDL2.targets" Condition="Exists('..\AVFXStudio\packages\Veldrid.SDL2.4.8.0\build\net40\Veldrid.SDL2.targets')" />
   <Import Project="..\packages\Veldrid.SPIRV.1.0.13\build\net40\Veldrid.SPIRV.targets" Condition="Exists('..\packages\Veldrid.SPIRV.1.0.13\build\net40\Veldrid.SPIRV.targets')" />
