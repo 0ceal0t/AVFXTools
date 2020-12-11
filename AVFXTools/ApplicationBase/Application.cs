@@ -8,33 +8,34 @@ using System.IO;
 using System.Runtime.InteropServices;
 using Veldrid;
 
-namespace AVFXTools.GraphicsBase
+namespace AVFXTools.ApplicationBase
 {
     public abstract class Application
     {
 
         protected Camera _camera;
 
-        public VeldridStartupWindow Window { get; }
+        public VeldridComponent Window { get; }
         public GraphicsDevice GraphicsDevice { get; private set; }
         public ResourceFactory ResourceFactory { get; private set; }
         public Swapchain MainSwapchain { get; private set; }
 
-        public Application(VeldridStartupWindow window)
+        public Application(VeldridComponent window)
         {
             Window = window;
+
             Window.Resized += HandleWindowResize;
             Window.GraphicsDeviceCreated += OnGraphicsDeviceCreated;
             Window.GraphicsDeviceDestroyed += OnDeviceDestroyed;
             Window.Rendering += PreDraw;
             Window.Rendering += Draw;
             Window.KeyPressed += OnKeyDown;
-
-            _camera = new Camera(Window.Width, Window.Height);
         }
 
         public void OnGraphicsDeviceCreated(GraphicsDevice gd, ResourceFactory factory, Swapchain sc)
         {
+            _camera = new Camera(Window.WindowWidth, Window.WindowHeight);
+
             GraphicsDevice = gd;
             ResourceFactory = factory;
             MainSwapchain = sc;
@@ -64,7 +65,7 @@ namespace AVFXTools.GraphicsBase
 
         protected virtual void HandleWindowResize()
         {
-            _camera.WindowResized(Window.Width, Window.Height);
+            _camera.WindowResized(Window.WindowWidth, Window.WindowHeight);
         }
 
         protected virtual void OnKeyDown(KeyEvent ke) { }

@@ -1,0 +1,49 @@
+﻿<mah:MetroWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        x:Class="AVFXTools.Views.ConfigWindow"
+        xmlns:local="clr-namespace:AVFXTools.Views"
+    
+        Title="Settings" WindowStartupLocation="CenterScreen"
+        Height="294" Width="539"
+        ShowMaxRestoreButton="False" ShowMinButton="False"
+        mc:Ignorable="d" VerticalAlignment="Top"
+    >
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="GamePath" Grid.Row="0" Text="{Binding GamePath}" TextWrapping="NoWrap" IsReadOnly="True" Margin="5" mah:TextBoxHelper.Watermark="FFXIV Path" mah:TextBoxHelper.UseFloatingWatermark="True"/>
+        <TextBox x:Name="VFXPath" Grid.Row="1" Text="{Binding VFXPath}" Margin="5" mah:TextBoxHelper.Watermark="Starting VFX Path" mah:TextBoxHelper.UseFloatingWatermark="True"/>
+        <TextBox x:Name="ModelPath" Grid.Row="2" Text="{Binding ModelPath}" Margin="5" mah:TextBoxHelper.Watermark="Starting Model Path" mah:TextBoxHelper.UseFloatingWatermark="True"/>
+        <Button Content="..." Grid.Column="1" Command="{Binding GamePath_Select}" Grid.Row="0" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="30" MinHeight="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
+
+        <Grid Grid.Row="3" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <CheckBox x:Name="ModelOnLoad" Grid.Column="0" Margin="5" IsChecked="{Binding ModelOnLoad}">Model On Load</CheckBox>
+            <CheckBox x:Name="VFXOnLoad" Grid.Column="1" Margin="5" IsChecked="{Binding VFXOnLoad}">VFX On Load</CheckBox>
+        </Grid>
+
+        <TextBlock Grid.Row="4" Margin="5">Note: Changes will not take effect until the application is restarted</TextBlock>
+        <Button x:Name="SaveButton" Command="{Binding Save}" Grid.Row="5" Style="{DynamicResource MahApps.Styles.Button}" Margin="5" Width="200" HorizontalAlignment="Left">SAVE</Button>
+    </Grid>
+</mah:MetroWindow>

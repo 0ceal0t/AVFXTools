@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# CS0162: Unreachable code detected
+dotnet_diagnostic.CS0162.severity = none
+
+# CS0649: Field 'DDSConverter.DDS_PIXELFORMAT.dwRBitMask' is never assigned to, and will always have its default value 0
+dotnet_diagnostic.CS0649.severity = silent

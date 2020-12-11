@@ -23,6 +23,7 @@ namespace AVFXTools.UI
             Attributes.Add(new UIInt("Divide X", Data.DivideX));
             Attributes.Add(new UIInt("Divide Y", Data.DivideY));
             Attributes.Add(new UICurve(Data.Radius, "Radius"));
+            Attributes.Add(new UICurve(Data.InjectionSpeed, "Injection Speed"));
         }
 
         public override void Draw(string parentId)

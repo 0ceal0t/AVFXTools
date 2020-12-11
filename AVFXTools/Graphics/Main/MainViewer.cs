@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 using System.Numerics;
 using Veldrid;
-using Veldrid.SPIRV;
-using Veldrid.ImageSharp;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
 
-using AVFXTools.GraphicsBase;
+using AVFXTools.ApplicationBase;
 using AVFXLib.Models;
 using AVFXTools.FFXIV;
 using AVFXTools.UI;
@@ -36,7 +32,6 @@ namespace AVFXTools.Main
         public ResourceSet ProjViewWorldSet;
         public ResourceFactory Factory;
 
-        public bool Init = false; // getter set up
         public AVFXBase AVFX;
         public ResourceGetter Getter;
         public WepModel Model;
@@ -45,7 +40,7 @@ namespace AVFXTools.Main
 
         public AVFXNode LastImportNode;
 
-        public MainViewer(VeldridStartupWindow window, AVFXBase b, ResourceGetter g, WepModel baseM) : base(window)
+        public MainViewer(VeldridComponent window, AVFXBase b, ResourceGetter g, WepModel baseM) : base(window)
         {
             AVFX = b;
             Getter = g;
@@ -104,10 +99,18 @@ namespace AVFXTools.Main
 
         public void OpenGameAVFX(string path)
         {
-            AVFXNode node = Reader.readAVFX(Getter.GetData(path));
-            LastImportNode = node;
-            AVFX = new AVFXBase();
-            AVFX.read(node);
+            var dataResult = Getter.GetData(path, out var bytes);
+            if (dataResult)
+            {
+                AVFXNode node = Reader.readAVFX(bytes);
+                LastImportNode = node;
+                AVFX = new AVFXBase();
+                AVFX.read(node);
+            }
+            else
+            {
+                ApplicationBase.Logger.WriteError("Unable to find VFX");
+            }
         }
 
         public void clearAll()
@@ -119,7 +122,15 @@ namespace AVFXTools.Main
 
         public void OpenGameMdl(string path)
         {
-            Model = new WepModel(path, Getter);
+            var mdlResult = Getter.GetModel(path, out var mdlDef);
+            if (mdlResult)
+            {
+                Model = new WepModel(mdlDef, Getter);
+            }
+            else
+            {
+                ApplicationBase.Logger.WriteError("Unable to find model");
+            }
         }
 
         protected override void OnDeviceDestroyed()
@@ -137,7 +148,7 @@ namespace AVFXTools.Main
             CL.UpdateBuffer(ViewBuffer, 0, _camera.ViewMatrix);
             CameraPos = _camera.Position;
             CameraLook = _camera.Forward;
-            Size = new Vector2((float)Window.Width, (float)Window.Height);
+            Size = new Vector2(Window.WindowWidth, Window.WindowHeight);
             // WORLD
             Matrix4x4 rotation = Matrix4x4.Identity;
             CL.UpdateBuffer(WorldBuffer, 0, ref rotation);
@@ -150,6 +161,9 @@ namespace AVFXTools.Main
             {
                 C.Update(deltaSeconds);
                 C.Draw();
+            }
+            if (UI != null)
+            {
                 UI.Draw();
             }
 

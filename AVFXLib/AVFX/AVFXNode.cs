@@ -51,13 +51,13 @@ namespace AVFXLib.AVFX
         {
             if((node is AVFXLeaf) || (node is AVFXBlank))
             {
-                Console.WriteLine("Wrong Type");
+                System.Diagnostics.Debug.WriteLine("Wrong Type");
 
                 return false;
             }
             if (Name != node.Name)
             {
-                Console.WriteLine("Wrong Name {0} {1}", Name, node.Name);
+                System.Diagnostics.Debug.WriteLine("Wrong Name {0} {1}", Name, node.Name);
 
                 return false;
             }
@@ -83,7 +83,7 @@ namespace AVFXLib.AVFX
 
             if(notBlank.Count != notBlank2.Count)
             {
-                Console.WriteLine("Wrong Node Size {0} : {1} / {2} : {3}", Name, notBlank.Count.ToString(), node.Name, notBlank2.Count.ToString());
+                System.Diagnostics.Debug.WriteLine("Wrong Node Size {0} : {1} / {2} : {3}", Name, notBlank.Count.ToString(), node.Name, notBlank2.Count.ToString());
                 foreach(AVFXNode n in notBlank)
                 {
                     Console.WriteLine(n.Name);
@@ -100,7 +100,7 @@ namespace AVFXLib.AVFX
                 bool e = notBlank[idx].EqualsNode(notBlank2[idx]);
                 if (!e)
                 {
-                    Console.WriteLine("Not Equal {0} : {1}", Name, idx.ToString());
+                    System.Diagnostics.Debug.WriteLine("Not Equal {0} : {1}", Name, idx.ToString());
 
                     return false;
                 }

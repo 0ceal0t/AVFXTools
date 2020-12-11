@@ -26,3 +26,4 @@ bld/
 [Oo]bj/
 
 *.nupkg
+nuget.exe

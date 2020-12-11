@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Veldrid;
 
-namespace AVFXTools.GraphicsBase
+namespace AVFXTools.ApplicationBase
 {
     public interface ApplicationWindow
     {

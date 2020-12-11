@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>AVFXTools</id>
+    <version>1.0.3</version>
+    <authors>mkaminsky11</authors>
+    <owners>mkaminsky11</owners>
+    <description>A vfx viewer and editor for FFXIV</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright ©  2020</copyright>
+  </metadata>
+  <files>
+    <file src="bin\x86\Release\net5.0-windows\*.*" target="lib\net45\" exclude="*.xml;*.zip"/>
+    <file src="bin\x86\Release\net5.0-windows\Definitions\*.*" target="lib\net45\Definitions" exclude=""/>
+  </files>
+</package>

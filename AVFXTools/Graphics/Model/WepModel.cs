@@ -38,20 +38,21 @@ namespace AVFXTools.Main
 
     public class WepModel
     {
+        public bool Valid = false;
         public BasicVertex[][] Vertices;
         public ushort[][] Indices;
         public Dictionary<int, BindPoint> BindPoints = new Dictionary<int, BindPoint>();
 
-        public WepModel(string file, ResourceGetter getter)
+        public WepModel(SaintCoinach.Graphics.ModelDefinition mdlDef, ResourceGetter getter)
         {
-            var mdlDef = getter.GetModel(file);
             var model = mdlDef.GetModel(0);
-            var sheet = getter.GetModelSkeleton();
-
+            string file = mdlDef.File.Path;
             Regex regex = new Regex("w[0-9]+");
             Match match = regex.Match(file);
             string skeletonPath = String.Format(@"chara/weapon/{0}/skeleton/base/b0001/skl_{0}b0001.sklb", match.Value);
-            var skeleton = getter.GetSkeleton(skeletonPath);
+            var skeletonResult = getter.GetSkeleton(skeletonPath, out var skeleton);
+            if (!skeletonResult)
+                return;
 
             int LAST_NUM = 0; // this whole thing is probably wrong
             int BONE_IDX = 0;
@@ -74,12 +75,13 @@ namespace AVFXTools.Main
 
                 BindPoints[bindIdx] = new BindPoint(P1, P2);
 
-                var row = sheet[sheetIdx]; // goes from row[0] to row[16]
+                //var sheet = getter.GetModelSkeleton();
+                //var row = sheet[sheetIdx]; // goes from row[0] to row[16]
             }
 
             for (int idx = 0; idx < skeleton.BoneCount; idx++)
             {
-                Console.WriteLine("BONE| {0} {1} : {2} {3} {4}", skeleton.BoneNames[idx], skeleton.ParentBoneIndices[idx], skeleton.ReferencePosLocal[idx].Translation.X, skeleton.ReferencePosLocal[idx].Translation.Y, skeleton.ReferencePosLocal[idx].Translation.Z);
+                System.Diagnostics.Debug.WriteLine("BONE| {0} {1} : {2} {3} {4}", skeleton.BoneNames[idx], skeleton.ParentBoneIndices[idx], skeleton.ReferencePosLocal[idx].Translation.X, skeleton.ReferencePosLocal[idx].Translation.Y, skeleton.ReferencePosLocal[idx].Translation.Z);
             }
 
 
@@ -109,6 +111,8 @@ namespace AVFXTools.Main
                     Indices[meshIdx][idx] = mesh.Indices[idx];
                 }
             }
+
+            Valid = true;
         }
 
         public static float UIntToFloat(uint i)

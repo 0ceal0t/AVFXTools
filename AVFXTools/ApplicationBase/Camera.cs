@@ -7,7 +7,7 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 using Veldrid;
 
-namespace AVFXTools.GraphicsBase
+namespace AVFXTools.ApplicationBase
 {
     public class Camera
     {

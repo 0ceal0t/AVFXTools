@@ -15,6 +15,7 @@ namespace AVFXLib.Models
         public LiteralInt DivideX = new LiteralInt("divideX", "DivX");
         public LiteralInt DivideY = new LiteralInt("divideY", "DivY");
         public AVFXCurve Radius = new AVFXCurve("radius", "Rads");
+        public AVFXCurve InjectionSpeed = new AVFXCurve("injectionSpeed", "IjS");
 
         List<Base> Attributes;
 
@@ -25,7 +26,8 @@ namespace AVFXLib.Models
                 GenerateMethodType,
                 DivideX,
                 DivideY,
-                Radius
+                Radius,
+                InjectionSpeed
             });
         }
 

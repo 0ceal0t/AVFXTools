@@ -28,38 +28,28 @@ namespace AVFXTools.Configuration
 
         public void RequestGamePath()
         {
-            if (!GetGamePath())
-            {
-                Program.Shutdown(1);
-                return;
-            }
-        }
-
-        public bool GetGamePath()
-        {
             var path = GamePath;
             while (!IsValidGamePath(path))
             {
                 FolderBrowserDialog folderDialog = new FolderBrowserDialog();
                 folderDialog.Description = "Choose your FFXIV installation folder (contains /boot and /game)";
                 folderDialog.ShowNewFolderButton = false;
-                if(folderDialog.ShowDialog() == DialogResult.OK)
+                if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
                     path = folderDialog.SelectedPath;
                 }
                 else
                 {
                     DialogResult wantToClose = MessageBox.Show("An installation folder is required. Exit the application?", "Empty path", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
-                    if(wantToClose == DialogResult.Yes)
+                    if (wantToClose == DialogResult.Yes)
                     {
-                        return false;
+                        App.ShutdownAll(1);
+                        return;
                     }
                 }
             }
             GamePath = path;
             Save();
-
-            return true;
         }
 
         public static bool IsValidGamePath(string path)

@@ -5,13 +5,12 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
+
+using System.Windows.Forms;
 using Squirrel;
 
 namespace AVFXTools.Configuration
 {
-    // #if !XL_NOAUTOUPDATE
-    // #endif
     public class AppUpdates
     {
         public EventHandler OnUpdateCheckFinished;
@@ -27,9 +26,11 @@ namespace AVFXTools.Configuration
 
             try
             {
+                ApplicationBase.Logger.WriteInfo("Checking for updates....");
+
                 using (var updateManager = await UpdateManager.GitHubUpdateManager(repoUrl: "https://github.com/mkaminsky11/AVFXTools", applicationName: "AVFXTools", prerelease: true))
                 {
-                    SquirrelAwareApp.HandleEvents(
+                    /*SquirrelAwareApp.HandleEvents(
                         onInitialInstall: v => updateManager.CreateShortcutForThisExe(),
                         onAppUpdate: v => updateManager.CreateShortcutForThisExe(),
                         onAppUninstall: v => updateManager.RemoveShortcutForThisExe());
@@ -37,17 +38,24 @@ namespace AVFXTools.Configuration
                     var downloadedRelease = await updateManager.UpdateApp();
 
                     if (downloadedRelease != null)
+                    {
+                        Console.WriteLine("Updates found, restarting");
                         UpdateManager.RestartApp();
-#if !AVFX_NOAUTOUPDATE
+                    }
                     else
-                    OnUpdateCheckFinished?.Invoke(this, null);
-#endif
+                    {
+                        Console.WriteLine("No updates found");
+                    }*/
                 }
+
+                await Task.Delay(200);
+
+                OnUpdateCheckFinished?.Invoke(this, null);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                //Program.Shutdown(1);
+                MessageBox.Show("An Error Occurred When Installing Updates", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                App.ShutdownAll(1);
             }
 
             // Reset security protocol after updating

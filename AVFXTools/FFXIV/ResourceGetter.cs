@@ -30,39 +30,42 @@ namespace AVFXTools.FFXIV
             HavokInterop.InitializeMTA();
         }
 
-        public ModelDefinition GetModel(string file)
+        public bool GetModel(string file, out ModelDefinition data)
         {
             File mdlBase;
             bool result = GetFile(file, out mdlBase);
-            return ((ModelFile)mdlBase).GetModelDefinition();
+            data = result ? ((ModelFile)mdlBase).GetModelDefinition() : null;
+            return result;
         }
 
-        public Skeleton GetSkeleton(string file)
+        public bool GetSkeleton(string file, out Skeleton data)
         {
             File mdlBase;
             bool result = GetFile(file, out mdlBase);
-            if(result == false)
-            {
-                return null;
-            }
-            return new Skeleton(new SklbFile(mdlBase));
+            data = result ? new Skeleton(new SklbFile(mdlBase)) : null;
+            return result;
         }
 
-        public byte[] GetData(string file)
+        public bool GetData(string file, out byte[] data)
         {
             File fileOut;
             bool result = GetFile(file, out fileOut);
-            return result ? fileOut.GetData() : new byte[0];
+            data = result ? fileOut.GetData() : new byte[0];
+            return result;
         }
 
-        public byte[] GetDDS(string file) // .atex -> .dds
+        public bool GetDDS(string file, out byte[] data) // .atex -> .dds
         {
             File fileOut;
             bool result = GetFile(file, out fileOut);
             if (!result)
-                throw new Exception("file not found: '" + file + "'");
+            {
+                data = new byte[0];
+                return false;
+            }
             FileCommonHeader header = fileOut.CommonHeader;
-            return DDSConverter.GetDDS(header.GetBuffer(), fileOut.GetData());
+            data = DDSConverter.GetDDS(header.GetBuffer(), fileOut.GetData());
+            return result;
         }
 
         public bool GetFile(string path, out File fileOut)

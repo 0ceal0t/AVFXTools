@@ -7,7 +7,7 @@ using System.Numerics;
 using Veldrid;
 using ImGuiNET;
 
-namespace AVFXTools.GraphicsBase
+namespace AVFXTools.ApplicationBase
 {
     public static class InputTracker
     {
@@ -46,7 +46,7 @@ namespace AVFXTools.GraphicsBase
             _newKeysThisFrame.Clear();
             _newMouseButtonsThisFrame.Clear();
 
-            if (ImGui.IsAnyItemActive() || ImGui.IsAnyItemFocused() || ImGui.IsAnyItemHovered()) return;
+            if (ImGui.IsAnyItemActive() || ImGui.IsAnyItemFocused() || ImGui.IsAnyItemHovered()) { return; }
 
             MousePosition = snapshot.MousePosition;
             for (int i = 0; i < snapshot.KeyEvents.Count; i++)

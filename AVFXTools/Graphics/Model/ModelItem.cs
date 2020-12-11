@@ -55,7 +55,7 @@ namespace AVFXTools.Main
         {
             ushort[] ret = new ushort[model.Indexes.Count * 3];
             int idx = 0;
-            foreach (Index i in model.Indexes)
+            foreach (AVFXLib.Models.Index i in model.Indexes)
             {
                 ret[(idx * 3) + 0] = (ushort)i.I1;
                 ret[(idx * 3) + 1] = (ushort)i.I2;

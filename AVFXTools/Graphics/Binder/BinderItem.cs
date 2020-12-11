@@ -17,7 +17,7 @@ namespace AVFXTools.Main
         {
             Binder = binder;
             CurrentTransform = Matrix4x4.Identity;
-            if (model == null)
+            if (model == null || !model.Valid)
             {
                 return;
             }

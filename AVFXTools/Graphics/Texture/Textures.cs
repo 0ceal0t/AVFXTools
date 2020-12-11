@@ -70,9 +70,12 @@ namespace AVFXTools.Main
             Image<Rgba32> img = new Image<Rgba32>(64, 64);
             try
             {
-                byte[] bytes = Getter.GetDDS(path);
-                var image = Pfim.Pfim.FromStream(new MemoryStream(bytes));
-                img = ReadFromDDS(image);
+                bool ddsResult = Getter.GetDDS(path, out var bytes);
+                if (ddsResult)
+                {
+                    var image = Pfim.Pfim.FromStream(new MemoryStream(bytes));
+                    img = ReadFromDDS(image);
+                }
             }
             catch (Exception e)
             {

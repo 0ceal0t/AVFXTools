@@ -31,6 +31,7 @@ namespace AVFXTools.UI
 
         public UITextureBindings TextureBindings;
         public UIControls Controls;
+        public UILogger Logs;
 
         public UIMain(AVFXBase avfx, MainViewer main, ImGuiRenderer imgui, GraphicsDevice gd, CommandList cl)
         {
@@ -53,13 +54,20 @@ namespace AVFXTools.UI
             ScheduleView = new UIScheduleView(avfx);
 
             Controls = new UIControls(this);
-            ImGui.SetNextWindowPos(new Vector2(10, 10));
-            ImGui.SetNextWindowSize(new Vector2(400, 600));
+            Logs = new UILogger(this);
             SetupTheme();
         }
 
+        public bool _DrawOnce = false;
+
         public void Draw()
         {
+            if (!_DrawOnce)
+            {
+                ImGui.SetNextWindowPos(new Vector2(10, 10));
+                ImGui.SetNextWindowSize(new Vector2(600, 800));
+                _DrawOnce = true;
+            }
             ImGui.Begin("AVFX");
             //================================
             ImGui.PushStyleColor(ImGuiCol.Button, new Vector4(0.8f, 0, 0, 1));
@@ -118,7 +126,10 @@ namespace AVFXTools.UI
                 }
                 ImGui.EndTabBar();
             }
+            ImGui.End();
+
             Controls.Draw();
+            Logs.Draw();
             I.Render(GD, CL);
         }
 

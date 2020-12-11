@@ -210,7 +210,7 @@ namespace AVFXLib.Main
                 {
                     if (Size > 8 && !(ALLOW.Contains(DefName)))
                     {
-                        Console.WriteLine("LARGE BLOCK: {0} {1}", DefName, Size);
+                        System.Diagnostics.Debug.WriteLine("LARGE BLOCK: {0} {1}", DefName, Size);
                     }
 
                     AVFXLeaf leafNode = new AVFXLeaf(DefName, Size, Contents);

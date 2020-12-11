@@ -1,0 +1,58 @@
+﻿<mah:MetroWindow x:Class="AVFXTools.Views.VFXViewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:control="clr-namespace:AVFXTools.ApplicationBase"
+                 
+        GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen"
+            
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="AVFXTools"
+        Height="1279" Width="2564"
+        
+        KeyDown="_veldridControl_KeyDown"
+        KeyUp="_veldridControl_KeyUp"
+        TextInput="_veldridControl_TextInput"
+        SizeChanged="_veldridControl_Resized"
+     >
+
+    <mah:MetroWindow.LeftWindowCommands>
+        <mah:WindowCommands>
+            <Button Click="LaunchGithub" ToolTip="Open up the GitHub site">
+                <iconPacks:PackIconModern Width="22" Height="22" Kind="SocialGithubOctocat" />
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.LeftWindowCommands>
+
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Open Local AVFX" Click="Menu_OpenLocalAVFX"/>
+                    <MenuItem Header="_Open AVFX From Game" Click="Menu_OpenGameAVFX"/>
+                    <Separator />
+                    <MenuItem Header="_Export" Click="Menu_Export"/>
+                    <MenuItem Header="_Export to JSON" Click="Menu_ExportJSON"/>
+                </MenuItem>
+                <MenuItem Header="_Model">
+                    <MenuItem Header="_Open Model From Game" Click="Menu_OpenGameModel"/>
+                </MenuItem>
+                <MenuItem Header="_Debug">
+                    <MenuItem Header="_Export Raw Structure" Click="Menu_ExportRaw"/>
+                    <MenuItem Header="_Verify" Click="Menu_Verify"/>
+                </MenuItem>
+                <MenuItem Header="_Options">
+                    <MenuItem Header="_Settings" Click="Menu_Settings"/>
+                </MenuItem>
+            </Menu>
+            <Grid x:Name="_grid">
+                <control:VeldridComponent x:Name="_veldridControl"/>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</mah:MetroWindow>

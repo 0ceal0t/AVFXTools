@@ -1,12 +1,7 @@
 ﻿using AVFXLib.Models;
 using AVFXTools.FFXIV;
-using AVFXTools.GraphicsBase;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using AVFXTools.ApplicationBase;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using Veldrid;
 
 namespace AVFXTools.Main
@@ -41,7 +36,7 @@ namespace AVFXTools.Main
             Cam = camera;
             // ==================
             Tex = new Textures(avfx.Textures, getter, this);
-            if (model != null)
+            if (model != null && model.Valid)
             {
                 Wep = new WepModelItem(model, this);
             }
