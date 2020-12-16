@@ -447,13 +447,13 @@ namespace AVFXTools.ApplicationBase
 
         private VeldridModifier GetKeyModifiers(bool m_Ctl, bool m_Shift, bool m_Alt)
         {
-            var modifiers = Veldrid.ModifierKeys.None;
+            var modifiers = VeldridModifier.None;
             if (m_Ctl)
-                modifiers |= Veldrid.ModifierKeys.Control;
+                modifiers |= VeldridModifier.Control;
             if (m_Shift)
-                modifiers |= Veldrid.ModifierKeys.Shift;
+                modifiers |= VeldridModifier.Shift;
             if (m_Alt)
-                modifiers |= Veldrid.ModifierKeys.Alt;
+                modifiers |= VeldridModifier.Alt;
             return modifiers;
         }
     }

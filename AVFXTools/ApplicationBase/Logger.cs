@@ -14,19 +14,20 @@ namespace AVFXTools.ApplicationBase
         {
             Items.Add(item);
         }
-        public static void Write(string text, LoggerType type)
+        public static void Write(object text, LoggerType type)
         {
-            Add(new LoggerItem(text, type));
+            Add(new LoggerItem(text.ToString(), type));
+            System.Diagnostics.Debug.WriteLine(text);
         }
-        public static void WriteInfo(string text)
+        public static void WriteInfo(object text)
         {
             Write(text, LoggerType.INFO);
         }
-        public static void WriteWarning(string text)
+        public static void WriteWarning(object text)
         {
             Write(text, LoggerType.WARNING);
         }
-        public static void WriteError(string text)
+        public static void WriteError(object text)
         {
             Write(text, LoggerType.ERROR);
         }

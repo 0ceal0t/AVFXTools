@@ -60,8 +60,6 @@ namespace AVFXLib.AVFX
                 if(Contents[idx] != leaf.Contents[idx])
                 {
                     System.Diagnostics.Debug.WriteLine("Wrong Contents in {0} byte {1} : {2} / {3}", Name, idx, Contents[idx].ToString(), leaf.Contents[idx].ToString());
-                    Util.PrintBytes(Contents);
-                    Util.PrintBytes(leaf.Contents);
                     return false;
                 }
             }

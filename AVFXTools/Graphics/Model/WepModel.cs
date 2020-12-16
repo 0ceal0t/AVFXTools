@@ -81,7 +81,7 @@ namespace AVFXTools.Main
 
             for (int idx = 0; idx < skeleton.BoneCount; idx++)
             {
-                System.Diagnostics.Debug.WriteLine("BONE| {0} {1} : {2} {3} {4}", skeleton.BoneNames[idx], skeleton.ParentBoneIndices[idx], skeleton.ReferencePosLocal[idx].Translation.X, skeleton.ReferencePosLocal[idx].Translation.Y, skeleton.ReferencePosLocal[idx].Translation.Z);
+                ApplicationBase.Logger.WriteInfo(string.Format("BONE| {0} {1} : {2} {3} {4}", skeleton.BoneNames[idx], skeleton.ParentBoneIndices[idx], skeleton.ReferencePosLocal[idx].Translation.X, skeleton.ReferencePosLocal[idx].Translation.Y, skeleton.ReferencePosLocal[idx].Translation.Z));
             }
 
 

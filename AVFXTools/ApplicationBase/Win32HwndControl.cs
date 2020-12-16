@@ -93,7 +93,6 @@ namespace AVFXTools.ApplicationBase
             base.OnRenderSizeChanged(sizeInfo);
             if (HwndInitialized)
             {
-                System.Diagnostics.Debug.WriteLine("resized");
                 OnResized();
             }
         }

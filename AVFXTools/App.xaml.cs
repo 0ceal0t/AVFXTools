@@ -9,6 +9,7 @@ using AVFXTools.Views;
 using System.Windows;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace AVFXTools
 {
@@ -46,6 +47,7 @@ namespace AVFXTools
             //var model = new WepModel(@"chara/weapon/w2101/obj/body/b0006/model/w2101b0006.mdl", getter); // ucob
             //var model = new WepModel(@"chara/weapon/w1501/obj/body/b0050/model/w1501b0050.mdl", getter); // nid
             // @"chara/weapon/w1501/obj/body/b0036/model/w1501b0036.mdl"
+
             WepModel model = null;
             if (Settings.ModelOnLoad)
             {
@@ -76,7 +78,11 @@ namespace AVFXTools
                 var dataResult = getter.GetData(Settings.VFXPath, out var bytes);
                 if (dataResult)
                 {
-                    node = Reader.readAVFX(bytes);
+                    node = Reader.readAVFX(bytes, out List<string> messages);
+                    foreach (var m in messages)
+                    {
+                        ApplicationBase.Logger.WriteWarning(m);
+                    }
                     avfx = new AVFXBase();
                     avfx.read(node);
                 }

@@ -111,6 +111,11 @@ namespace AVFXTools.ApplicationBase
             }
         }
 
+        public void SetPrevMousePosition(Vector2 pos)
+        {
+            _previousMousePos = pos;
+        }
+
         private float Clamp(float value, float min, float max)
         {
             return value > max

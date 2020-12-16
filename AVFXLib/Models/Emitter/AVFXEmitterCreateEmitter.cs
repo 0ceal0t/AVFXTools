@@ -10,7 +10,7 @@ namespace AVFXLib.Models
 {
     public class AVFXEmitterCreateEmitter : AVFXEmitterCreateParticle // how are these different than ItPr ? I have no idea
     {
-        public const string NAME = "ItEm";
+        public new const string NAME = "ItEm";
 
         public AVFXEmitterCreateEmitter() : base()
         {

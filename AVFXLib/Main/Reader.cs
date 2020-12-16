@@ -15,44 +15,41 @@ namespace AVFXLib.Main
 {
     public class Reader
     {
-        public static JObject readJSON(string JSON_PATH)
-        {
-            using (StreamReader file = File.OpenText(JSON_PATH))
-            using (JsonTextReader reader = new JsonTextReader(file))
-            {
-                JObject array = (JObject)JToken.ReadFrom(reader);
-                return array;
-            }
-        }
-
-        public static AVFXNode readAVFX(byte[] bytes)
+        public static AVFXNode readAVFX(byte[] bytes, out List<string> messages)
         {
             BinaryReader nestedReader = new BinaryReader(new MemoryStream(bytes));
-            return readAVFX(nestedReader);
+            return readAVFX(nestedReader, out messages);
         }
 
-        public static AVFXNode readAVFX(BinaryReader reader)
+        public static AVFXNode readAVFX(BinaryReader reader, out List<string> messages)
         {
-            return readDef(reader)[0];
+            AVFXNode.ResetLog();
+            var result = readDef(reader)[0];
+            messages = new List<string>(AVFXNode.LogMessages);
+            return result;
         }
 
-        public static AVFXNode readAVFX(string AVFX_PATH)
+        public static AVFXNode readAVFX(string AVFX_PATH, out List<string> messages)
         {
+            AVFXNode.ResetLog();
             if (File.Exists(AVFX_PATH))
             {
                 using (BinaryReader reader = new BinaryReader(File.Open(AVFX_PATH, FileMode.Open)))
                 {
-                    return readDef(reader)[0];
+                    var result = readDef(reader)[0];
+                    messages = new List<string>(AVFXNode.LogMessages);
+                    return result;
                 }
             }
             else
             {
-                Console.WriteLine("File does not exist");
+                AVFXNode.LogMessages.Add("File does not exist");
             }
+            messages = new List<string>(AVFXNode.LogMessages);
             return null;
         }
 
-        static HashSet<String> NESTED = new HashSet<string>(new string[]{
+        static readonly HashSet<string> NESTED = new HashSet<string>(new string[]{
             "RGB",
             "SclR",
             "SclG",
@@ -167,7 +164,7 @@ namespace AVFXLib.Main
             "WID"
         });
 
-        static HashSet<String> ALLOW = new HashSet<string>(new string[]{
+        static readonly HashSet<string> ALLOW = new HashSet<string>(new string[]{
             "Clip",
             "Keys",
             "Tex",
@@ -210,7 +207,7 @@ namespace AVFXLib.Main
                 {
                     if (Size > 8 && !(ALLOW.Contains(DefName)))
                     {
-                        System.Diagnostics.Debug.WriteLine("LARGE BLOCK: {0} {1}", DefName, Size);
+                        AVFXNode.LogMessages.Add(string.Format("LARGE BLOCK: {0} {1}", DefName, Size));
                     }
 
                     AVFXLeaf leafNode = new AVFXLeaf(DefName, Size, Contents);

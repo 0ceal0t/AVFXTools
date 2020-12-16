@@ -74,7 +74,11 @@ namespace AVFXTools.Views
             {
                 if ((stream = fileDialog.OpenFile()) != null)
                 {
-                    AVFXNode node = Reader.readAVFX(new BinaryReader(stream));
+                    AVFXNode node = Reader.readAVFX(new BinaryReader(stream), out List<string> messages);
+                    foreach (var m in messages)
+                    {
+                        ApplicationBase.Logger.WriteWarning(m);
+                    }
                     _viewer.LastImportNode = node;
                     _viewer.AVFX = new AVFXBase();
                     _viewer.AVFX.read(node);

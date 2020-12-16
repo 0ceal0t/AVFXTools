@@ -10,7 +10,7 @@ namespace AVFXLib.Models
 {
     public class AVFXScheduleItem : AVFXScheduleTrigger
     {
-        public const string NAME = "Item";
+        public new const string NAME = "Item";
 
         public AVFXScheduleItem() : base()
         {

@@ -52,7 +52,7 @@ namespace AVFXTools.Configuration
 
                 OnUpdateCheckFinished?.Invoke(this, null);
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("An Error Occurred When Installing Updates", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 App.ShutdownAll(1);

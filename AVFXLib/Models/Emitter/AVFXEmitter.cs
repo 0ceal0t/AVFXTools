@@ -245,10 +245,8 @@ namespace AVFXLib.Models
                     break;
                 case EmitterType.Cone:
                     throw new System.InvalidOperationException("Cone Emitter!");
-                    break;
                 case EmitterType.ConeModel:
                     throw new System.InvalidOperationException("Cone Model Emitter!");
-                    break;
                 case EmitterType.SphereModel:
                     Data = new AVFXEmitterDataSphereModel("data");
                     break;

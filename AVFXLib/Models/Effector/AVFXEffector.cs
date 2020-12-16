@@ -96,13 +96,11 @@ namespace AVFXLib.Models
                     break;
                 case EffectorType.DirectionalLight:
                     throw new System.InvalidOperationException("Directional Light Effector!");
-                    break;
                 case EffectorType.RadialBlur:
                     Data = new AVFXEffectorDataRadialBlur("data");
                     break;
                 case EffectorType.BlackHole:
                     throw new System.InvalidOperationException("Black Hole Effector!");
-                    break;
                 case EffectorType.CameraQuake:
                     Data = new AVFXEffectorDataCameraQuake("data");
                     break;

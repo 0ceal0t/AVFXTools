@@ -251,8 +251,6 @@ namespace AVFXLib.Models
             {
                 case ParticleType.Parameter:
                     throw new System.InvalidOperationException("Parameter Particle Data!");
-                    Data = new AVFXParticleDataParameter("data");
-                    break;
                 case ParticleType.Powder:
                     Data = new AVFXParticleDataPowder("data");
                     break;
@@ -261,8 +259,6 @@ namespace AVFXLib.Models
                     break;
                 case ParticleType.Line:
                     throw new System.InvalidOperationException("Line Particle Data!");
-                    Data = new AVFXParticleDataLine("data");
-                    break;
                 case ParticleType.Model:
                     Data = new AVFXParticleDataModel("data");
                     break;

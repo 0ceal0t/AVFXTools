@@ -91,7 +91,11 @@ namespace AVFXTools.Main
 
         public void OpenLocalAVFX(string path)
         {
-            AVFXNode node = Reader.readAVFX(path);
+            AVFXNode node = Reader.readAVFX(path, out List<string> messages);
+            foreach (var m in messages)
+            {
+                ApplicationBase.Logger.WriteWarning(m);
+            }
             LastImportNode = node;
             AVFX = new AVFXBase();
             AVFX.read(node);
@@ -102,7 +106,11 @@ namespace AVFXTools.Main
             var dataResult = Getter.GetData(path, out var bytes);
             if (dataResult)
             {
-                AVFXNode node = Reader.readAVFX(bytes);
+                AVFXNode node = Reader.readAVFX(bytes, out List<string> messages);
+                foreach (var m in messages)
+                {
+                    ApplicationBase.Logger.WriteWarning(m);
+                }
                 LastImportNode = node;
                 AVFX = new AVFXBase();
                 AVFX.read(node);

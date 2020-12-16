@@ -11,6 +11,10 @@ namespace AVFXLib.AVFX
 {
     public class AVFXNode
     {
+        // jank logging shit
+        public static List<string> LogMessages = new List<string>();
+        public static void ResetLog() { LogMessages = new List<string>(); }
+
         public string Name { get; set; }
         // calculate size on the fly
 
@@ -46,19 +50,22 @@ namespace AVFXLib.AVFX
         }
 
         // =====================
+        public bool CheckEquals(AVFXNode node)
+        {
+            ResetLog();
+            return EqualsNode(node);
+        }
 
         public virtual bool EqualsNode(AVFXNode node)
         {
             if((node is AVFXLeaf) || (node is AVFXBlank))
             {
                 System.Diagnostics.Debug.WriteLine("Wrong Type");
-
                 return false;
             }
             if (Name != node.Name)
             {
                 System.Diagnostics.Debug.WriteLine("Wrong Name {0} {1}", Name, node.Name);
-
                 return false;
             }
 
@@ -68,31 +75,17 @@ namespace AVFXLib.AVFX
             {
 
                 if(!(n is AVFXBlank))
-                {
                     notBlank.Add(n);
-                }
             }
             foreach (AVFXNode n in node.Children)
             {
-
                 if (!(n is AVFXBlank))
-                {
                     notBlank2.Add(n);
-                }
             }
 
             if(notBlank.Count != notBlank2.Count)
             {
                 System.Diagnostics.Debug.WriteLine("Wrong Node Size {0} : {1} / {2} : {3}", Name, notBlank.Count.ToString(), node.Name, notBlank2.Count.ToString());
-                foreach(AVFXNode n in notBlank)
-                {
-                    Console.WriteLine(n.Name);
-                }
-                foreach (AVFXNode n in notBlank2)
-                {
-                    Console.WriteLine(n.Name);
-                }
-
                 return false;
             }
             for(int idx = 0; idx < notBlank.Count; idx++)
@@ -101,7 +94,6 @@ namespace AVFXLib.AVFX
                 if (!e)
                 {
                     System.Diagnostics.Debug.WriteLine("Not Equal {0} : {1}", Name, idx.ToString());
-
                     return false;
                 }
             }

@@ -76,9 +76,14 @@ namespace AVFXTools.Main
                     var image = Pfim.Pfim.FromStream(new MemoryStream(bytes));
                     img = ReadFromDDS(image);
                 }
+                else
+                {
+                    ApplicationBase.Logger.WriteError(string.Format("Could not read file {0}", path));
+                }
             }
-            catch (Exception e)
+            catch
             {
+                ApplicationBase.Logger.WriteError(string.Format("Error reading file {0}", path));
             }
 
             var ImgTex = new ImageSharpTexture(img);
