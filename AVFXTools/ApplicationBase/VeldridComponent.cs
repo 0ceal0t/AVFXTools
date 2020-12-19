@@ -59,6 +59,7 @@ namespace AVFXTools.ApplicationBase
             _OnMouseUp += Event_MouseUp;
             _OnMouseMove += Event_MouseMove;
             _OnMouseWheel += Event_MouseWheel;
+            _OnTextInput += Event_TextInput;
         }
 
         protected override sealed void Uninitialize()

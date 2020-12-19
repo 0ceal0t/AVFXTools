@@ -30,6 +30,7 @@ namespace AVFXTools.ApplicationBase
         public Action<MouseButton> _OnMouseDown;
         public Action<double, double> _OnMouseMove;
         public Action<int> _OnMouseWheel;
+        public Action<string> _OnTextInput;
 
         private const string WindowClass = "HwndWrapper";
 
@@ -177,10 +178,22 @@ namespace AVFXTools.ApplicationBase
 
                     _previousPosition = currentMousePosition;
                     break;
+                case NativeMethods.WM_KEYDOWN:
+                    // (System.Windows.Forms.Keys)wParam
+                    break;
+                case NativeMethods.WM_KEYUP:
+                    break;
+                case NativeMethods.WM_CHAR:
+                    RaiseTextInputEvent((char)wParam);
+                    break;
             }
             return base.WndProc(hwnd, msg, wParam, lParam, ref handled);
         }
 
+        private void RaiseTextInputEvent(char c)
+        {
+            _OnTextInput?.Invoke(c.ToString());
+        }
         private void RaiseMouseMoveEvent(Point p)
         {
             _OnMouseMove?.Invoke(p.X, p.Y);
@@ -214,6 +227,10 @@ namespace AVFXTools.ApplicationBase
         public const int WM_MOUSEMOVE = 512;
         public const int WM_MOUSELEAVE = 0x02A3;
         public const int WM_MBUTTONDBLCLK = 0x0209;
+
+        public const int WM_KEYDOWN = 0x100;
+        public const int WM_KEYUP = 0x101;
+        public const int WM_CHAR = 0x102;
 
         public const uint TME_LEAVE = 0x00000002;
 

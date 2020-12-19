@@ -55,6 +55,7 @@ namespace AVFXTools.Views
         }
         private void _veldridControl_TextInput(object sender, TextCompositionEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine(e.Text);
             _veldridControl.Event_TextInput(e.Text);
         }
 

@@ -17,7 +17,6 @@
         
         KeyDown="_veldridControl_KeyDown"
         KeyUp="_veldridControl_KeyUp"
-        TextInput="_veldridControl_TextInput"
         SizeChanged="_veldridControl_Resized"
      >
 
