@@ -23,7 +23,7 @@ namespace AVFXLib.AVFX
         {
             if(!(node is AVFXBlank))
             {
-                Console.WriteLine("Not Blank");
+                AVFXNode.LogMessages.Add(string.Format("Not Blank"));
                 return false;
             }
             return true;

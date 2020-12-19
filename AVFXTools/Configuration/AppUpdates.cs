@@ -28,9 +28,10 @@ namespace AVFXTools.Configuration
             {
                 ApplicationBase.Logger.WriteInfo("Checking for updates....");
 
+#if !AVFX_NOAUTOUPDATE
                 using (var updateManager = await UpdateManager.GitHubUpdateManager(repoUrl: "https://github.com/mkaminsky11/AVFXTools", applicationName: "AVFXTools", prerelease: true))
                 {
-                    /*SquirrelAwareApp.HandleEvents(
+                    SquirrelAwareApp.HandleEvents(
                         onInitialInstall: v => updateManager.CreateShortcutForThisExe(),
                         onAppUpdate: v => updateManager.CreateShortcutForThisExe(),
                         onAppUninstall: v => updateManager.RemoveShortcutForThisExe());
@@ -39,14 +40,15 @@ namespace AVFXTools.Configuration
 
                     if (downloadedRelease != null)
                     {
-                        Console.WriteLine("Updates found, restarting");
+                        ApplicationBase.Logger.WriteInfo("Updates found, restarting");
                         UpdateManager.RestartApp();
                     }
                     else
                     {
-                        Console.WriteLine("No updates found");
-                    }*/
+                        ApplicationBase.Logger.WriteInfo("No updates found");
+                    }
                 }
+#endif
 
                 await Task.Delay(200);
 

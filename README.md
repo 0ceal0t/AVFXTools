@@ -6,6 +6,10 @@ VFX viewer and editor for FFXIV
 
 I cannot overstate how in-progress this is. Here be dragons.
 
+## Installation
+
+Go to [Releases](https://github.com/mkaminsky11/AVFXTools/releases), and download `Setup.exe`
+
 ## Aknowledgements
 
 Parts are stitched together from the code of XIVLauncher and SaintCoinach because I have no idea what I'm doing. Thanks.

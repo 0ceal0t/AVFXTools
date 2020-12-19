@@ -36,30 +36,30 @@ namespace AVFXLib.AVFX
         {
             if(!(node is AVFXLeaf))
             {
-                System.Diagnostics.Debug.WriteLine("Wrong Type {0}", node.Name);
+                AVFXNode.LogMessages.Add(string.Format("Wrong Type {0} / {1}", Name, node.Name));
                 return false;
             }
             AVFXLeaf leaf = (AVFXLeaf)node;
             if (Name != leaf.Name)
             {
-                System.Diagnostics.Debug.WriteLine("Wrong Name {0} {1}", Name, leaf.Name);
+                AVFXNode.LogMessages.Add(string.Format("Wrong Name {0} / {1}", Name, node.Name));
                 return false;
             }
             if(Size != leaf.Size)
             {
-                System.Diagnostics.Debug.WriteLine("Wrong Leaf Size {0} : {1} / {2} : {3}", Name, Size.ToString(), leaf.Name, leaf.Size.ToString());
+                AVFXNode.LogMessages.Add(string.Format("Wrong Leaf Size {0} : {1} / {2} : {3}", Name, Size, leaf.Name, leaf.Size));
                 return false;
             }
             if(Contents.Length != leaf.Contents.Length)
             {
-                System.Diagnostics.Debug.WriteLine("Wrong Contents Size {0} : {1} / {2} : {3}", Name, Contents.Length.ToString(), leaf.Name, leaf.Contents.Length.ToString());
+                AVFXNode.LogMessages.Add(string.Format("Wrong Contents Size {0} : {1} / {2} : {3}", Name, Contents.Length.ToString(), leaf.Name, leaf.Contents.Length.ToString()));
                 return false;
             }
             for(int idx = 0; idx < Contents.Length; idx++)
             {
                 if(Contents[idx] != leaf.Contents[idx])
                 {
-                    System.Diagnostics.Debug.WriteLine("Wrong Contents in {0} byte {1} : {2} / {3}", Name, idx, Contents[idx].ToString(), leaf.Contents[idx].ToString());
+                    AVFXNode.LogMessages.Add(string.Format("Wrong Contents in {0} byte {1} : {2} / {3}", Name, idx, Contents[idx].ToString(), leaf.Contents[idx].ToString()));
                     return false;
                 }
             }
@@ -68,8 +68,8 @@ namespace AVFXLib.AVFX
 
         public override string exportString(int level)
         {
-            string C = Size < 8 ? BitConverter.ToString(Contents).Replace("-", String.Empty) : "";
-            return String.Format("{0}> {1} {2} / {3}\n", new String('\t', level), Name, Size, C);
+            string C = Size < 8 ? BitConverter.ToString(Contents).Replace("-", string.Empty) : "";
+            return string.Format("{0}> {1} {2} / {3}\n", new string('\t', level), Name, Size, C);
         }
     }
 }

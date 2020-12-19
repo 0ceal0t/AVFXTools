@@ -20,6 +20,8 @@ namespace AVFXTools.ApplicationBase
         public static Vector2 MousePosition;
         public static InputSnapshot FrameSnapshot { get; private set; }
 
+        public static bool JustEnteredWindow = false;
+
         public static bool GetKey(Key key)
         {
             return _currentlyPressedKeys.Contains(key);

@@ -156,6 +156,8 @@ namespace AVFXTools.ApplicationBase
                         NativeMethods.GetYLParam((int)lParam));
                     if (!_mouseInWindow)
                     {
+                        InputTracker.JustEnteredWindow = true;
+                        System.Diagnostics.Debug.WriteLine("just entered window");
                         _mouseInWindow = true;
                         _HwndPrev = NativeMethods.GetFocus();
                         NativeMethods.SetFocus(Hwnd);

@@ -53,7 +53,7 @@
   <ItemGroup>
     <PackageReference Include="alglib.net" Version="3.16.0" />
     <PackageReference Include="MahApps.Metro" Version="2.4.2" />
-    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.8.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks.Modern" Version="4.8.0" />
     <PackageReference Include="Pfim" Version="0.9.1" />
     <PackageReference Include="squirrel.windows" Version="1.9.0" />
     <PackageReference Include="Veldrid" Version="4.8.0" />

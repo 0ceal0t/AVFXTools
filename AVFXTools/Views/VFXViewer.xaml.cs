@@ -117,7 +117,19 @@ namespace AVFXTools.Views
         private void Menu_Verify(object sender, RoutedEventArgs e)
         {
             AVFXNode node = _viewer.UI.AVFX.toAVFX();
-            Debug.WriteLine(_viewer.LastImportNode.EqualsNode(node));
+            bool verifyResult = _viewer.LastImportNode.CheckEquals(node, out List<string> messages);
+            if (verifyResult)
+            {
+                ApplicationBase.Logger.WriteInfo("Import was successful");
+            }
+            else
+            {
+                ApplicationBase.Logger.WriteError("Import has errors");
+            }
+            foreach (var m in messages)
+            {
+                ApplicationBase.Logger.WriteError(m);
+            }
         }
         private void Menu_Settings(object sender, RoutedEventArgs e)
         {

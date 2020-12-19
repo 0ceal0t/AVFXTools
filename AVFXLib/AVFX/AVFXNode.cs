@@ -50,22 +50,24 @@ namespace AVFXLib.AVFX
         }
 
         // =====================
-        public bool CheckEquals(AVFXNode node)
+        public bool CheckEquals(AVFXNode node, out List<string> messages)
         {
             ResetLog();
-            return EqualsNode(node);
+            bool result = EqualsNode(node);
+            messages = new List<string>(AVFXNode.LogMessages);
+            return result;
         }
 
         public virtual bool EqualsNode(AVFXNode node)
         {
             if((node is AVFXLeaf) || (node is AVFXBlank))
             {
-                System.Diagnostics.Debug.WriteLine("Wrong Type");
+                AVFXNode.LogMessages.Add(string.Format("Wrong Type {0} / {1}", Name, node.Name));
                 return false;
             }
             if (Name != node.Name)
             {
-                System.Diagnostics.Debug.WriteLine("Wrong Name {0} {1}", Name, node.Name);
+                AVFXNode.LogMessages.Add(string.Format("Wrong Name {0} / {1}", Name, node.Name));
                 return false;
             }
 
@@ -85,7 +87,7 @@ namespace AVFXLib.AVFX
 
             if(notBlank.Count != notBlank2.Count)
             {
-                System.Diagnostics.Debug.WriteLine("Wrong Node Size {0} : {1} / {2} : {3}", Name, notBlank.Count.ToString(), node.Name, notBlank2.Count.ToString());
+                AVFXNode.LogMessages.Add(string.Format("Wrong Node Size {0} : {1} / {2} : {3}", Name, notBlank.Count, node.Name, notBlank2.Count));
                 return false;
             }
             for(int idx = 0; idx < notBlank.Count; idx++)
@@ -93,7 +95,7 @@ namespace AVFXLib.AVFX
                 bool e = notBlank[idx].EqualsNode(notBlank2[idx]);
                 if (!e)
                 {
-                    System.Diagnostics.Debug.WriteLine("Not Equal {0} : {1}", Name, idx.ToString());
+                    AVFXNode.LogMessages.Add(string.Format("Not Equal {0} index: {1}", Name, idx));
                     return false;
                 }
             }
@@ -103,7 +105,7 @@ namespace AVFXLib.AVFX
 
         public virtual string exportString(int level)
         {
-            string ret = String.Format("{0}+---  {1} ----\n", new String('\t', level), Name);
+            string ret = string.Format("{0}+---  {1} ----\n", new string('\t', level), Name);
             foreach(var c in Children)
             {
                 ret = ret + c.exportString(level + 1);

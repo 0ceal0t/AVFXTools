@@ -98,6 +98,11 @@ namespace AVFXTools.ApplicationBase
                 UpdateViewMatrix();
             }
 
+            if (InputTracker.JustEnteredWindow)
+            {
+                _previousMousePos = InputTracker.MousePosition;
+                InputTracker.JustEnteredWindow = false;
+            }
             Vector2 mouseDelta = InputTracker.MousePosition - _previousMousePos;
             _previousMousePos = InputTracker.MousePosition;
 
