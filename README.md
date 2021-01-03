@@ -1,4 +1,4 @@
-﻿# AVFXTools
+﻿# AVFXTools (Dev moved to [https://github.com/mkaminsky11/Dalamud-VFXEditor](https://github.com/mkaminsky11/Dalamud-VFXEditor))
  
 VFX viewer and editor for FFXIV
 
